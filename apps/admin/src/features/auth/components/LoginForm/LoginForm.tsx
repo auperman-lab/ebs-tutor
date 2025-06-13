@@ -3,14 +3,21 @@ import { ILoginForm } from '../../types/ILoginForm';
 import './LoginForm.scss';
 // @ts-ignore
 import { ArrowRight } from '@phosphor-icons/react';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '../../../../api/api';
 
 export const LoginForm = () => {
   const [form] = Form.useForm();
 
   const onFinish = async () => {
     const values: ILoginForm = await form.validateFields();
+    mutate(values);
     console.log('Success:', values);
   };
+
+  const { mutate } = useMutation({
+    mutationFn: (data: ILoginForm) => api.auth.login(data),
+  });
 
   return (
     <div className="login_form">

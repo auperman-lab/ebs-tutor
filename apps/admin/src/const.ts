@@ -8,4 +8,5 @@ export const routes = {
 
 export const apiEndpoints = {
   register: '/api/auth/register',
+  login: '/api/auth/login',
 };
