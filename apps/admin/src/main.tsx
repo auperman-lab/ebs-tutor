@@ -4,6 +4,7 @@ import {BrowserRouter} from 'react-router-dom';
 import { Router } from './router/router';
 import themeConfig from './styles/theme.json';
 import { StyleProvider, ThemeProvider } from 'antd-style';
+import { QueryClientContext } from './context/QueryClientContext';
 
 
 const root = ReactDOM.createRoot(
@@ -13,11 +14,15 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <StyleProvider>
-        <ThemeProvider  theme={themeConfig}>
-          <Router />
-        </ThemeProvider>
-      </StyleProvider>
+      <QueryClientContext>
+
+        <StyleProvider>
+          <ThemeProvider  theme={themeConfig}>
+            <Router />
+          </ThemeProvider>
+        </StyleProvider>
+
+      </QueryClientContext>
     </BrowserRouter>
   </StrictMode>
 );
