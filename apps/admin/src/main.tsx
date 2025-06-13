@@ -2,6 +2,10 @@ import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import {BrowserRouter} from 'react-router-dom';
 import { Router } from './router/router';
+import themeConfig from './styles/theme.json';
+import { StyleProvider, ThemeProvider } from 'antd-style';
+import { QueryClientContext } from './context/QueryClientContext';
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -10,7 +14,15 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <Router />
+      <QueryClientContext>
+
+        <StyleProvider>
+          <ThemeProvider  theme={themeConfig}>
+            <Router />
+          </ThemeProvider>
+        </StyleProvider>
+
+      </QueryClientContext>
     </BrowserRouter>
   </StrictMode>
 );
