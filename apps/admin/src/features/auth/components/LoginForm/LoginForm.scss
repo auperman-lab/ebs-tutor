@@ -1,7 +1,5 @@
-
-.login_form
-{
-
+.login_form {
+  width: 100%;
   .form-submit {
     display: flex;
     justify-content: space-between;
@@ -10,18 +8,14 @@
     margin-top: 1rem;
     flex-direction: row;
 
-    .auth_button{
+    .auth_button {
       padding: 0 48px;
     }
   }
-
 }
 
-
-@media (max-width:480px) {
+@media (max-width: 480px) {
   .form-submit {
     flex-direction: column;
   }
-
-
 }

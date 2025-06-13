@@ -1,15 +1,14 @@
 import { Button, Checkbox, Form, Input } from 'antd';
 import { ILoginForm } from '../../types/ILoginForm';
 import './LoginForm.scss';
-import { ArrowRight } from "@phosphor-icons/react";
-
-
+// @ts-ignore
+import { ArrowRight } from '@phosphor-icons/react';
 
 export const LoginForm = () => {
   const [form] = Form.useForm();
 
   const onFinish = async () => {
-    const values: ILoginForm = await form.validateFields()
+    const values: ILoginForm = await form.validateFields();
     console.log('Success:', values);
   };
 
@@ -22,11 +21,16 @@ export const LoginForm = () => {
         initialValues={{ remember: true }}
         onFinish={onFinish}
       >
-
         <Form.Item<ILoginForm>
           label="Email"
           name="email"
-          rules={[{ required: true, message: 'Please input your email!', type: 'email' }]}
+          rules={[
+            {
+              required: true,
+              message: 'Please input your email!',
+              type: 'email',
+            },
+          ]}
         >
           <Input />
         </Form.Item>
@@ -38,9 +42,11 @@ export const LoginForm = () => {
             { required: true, message: 'Please input your password!' },
             {
               pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
-              message: 'Password must be at least 6 characters long and contain both letters and numbers.',
-            }
-          ]}        >
+              message:
+                'Password must be at least 6 characters long and contain both letters and numbers.',
+            },
+          ]}
+        >
           <Input.Password />
         </Form.Item>
 
@@ -65,9 +71,7 @@ export const LoginForm = () => {
             </Button>
           </Form.Item>
         </div>
-
       </Form>
     </div>
   );
-
-}
+};
