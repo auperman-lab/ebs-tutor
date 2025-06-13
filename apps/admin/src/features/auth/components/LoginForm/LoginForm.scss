@@ -1,0 +1,27 @@
+
+.login_form
+{
+
+  .form-submit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-direction: row;
+
+    .auth_button{
+      padding: 0 48px;
+    }
+  }
+
+}
+
+
+@media (max-width:480px) {
+  .form-submit {
+    flex-direction: column;
+  }
+
+
+}
