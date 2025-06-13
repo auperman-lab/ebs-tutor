@@ -4,5 +4,8 @@
   "private": true,
   "dependencies": {
     "recharts": "^2.15.3"
+  },
+  "scripts": {
+   "dev": "vite"
   }
 }
