@@ -1,0 +1,38 @@
+.login_options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 24px;
+
+
+  .auth_button {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+
+    .logo_container {
+      width: 40px;
+      height: 100%;
+      border: rgb(233, 234, 240) solid 1px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .logo {
+        height: fit-content;
+        width: fit-content;
+      }
+    }
+
+    span {
+      height: 100%;
+      width: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+  }
+}
