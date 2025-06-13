@@ -1,9 +1,12 @@
 import { Outlet } from 'react-router-dom';
+import "./AuthLayout.scss"
 
 export const AuthLayout = () => {
   return (
     <div>
-      Yomayo
+      <div className="header">
+        Yomayo
+      </div>
       <div>
         <Outlet/>
       </div>

@@ -1,7 +1,7 @@
 import { useRoutes } from 'react-router-dom';
 
 import { routes } from '../const';
-import { RegistrationPage } from '../features/auth';
+import { LoginPage, RegistrationPage } from '../features/auth';
 import { AuthLayout } from '../layout';
 
 export const Router = () => {
@@ -15,6 +15,10 @@ export const Router = () => {
         {
           path: routes.register,
           element: <RegistrationPage />
+        },
+        {
+          path: routes.login,
+          element: <LoginPage />
         },
       ]
     }

@@ -1,6 +1,6 @@
 {
   "token": {
-    "colorPrimary": "#363b47",
+    "colorPrimary": "#ff6636",
     "colorInfo": "#363b47",
     "colorPrimaryBgHover": "#ff6636",
     "colorBgBase": "#f5f7fa",
@@ -13,9 +13,9 @@
   },
   "components": {
     "Button": {
-      "defaultBg": "rgb(255,102,54)",
-      "defaultColor": "rgba(255,255,255,0.88)",
-      "defaultBorderColor": "rgb(255,255,255)"
+      "defaultBg": "rgb(255,255,255)",
+      "defaultColor": "rgba(0,0,0,0.88)",
+      "defaultBorderColor": "rgb(233,234,240)"
     },
     "Divider": {
       "colorSplit": "rgb(233,234,240)"
