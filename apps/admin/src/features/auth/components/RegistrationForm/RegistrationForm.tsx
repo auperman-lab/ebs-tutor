@@ -112,7 +112,7 @@ const RegistrationForm: React.FC = () => {
           </Form.Item>
         </Flex>
         <Divider plain style={{ color: '#8C94A3' }}>
-          Sign Up
+          SIGN UP
         </Divider>
       </Form>
     </div>
