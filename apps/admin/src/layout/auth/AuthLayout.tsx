@@ -1,18 +1,20 @@
 import { Outlet } from 'react-router-dom';
-import {  Layout } from 'antd';
 import { AuthHeader } from '../../features/auth/components';
-import { useStyles } from "./AuthLayoutStyles"
-
+import { Layout } from 'antd';
+import "./AuthLayout.scss"
+import { AuthHeader } from '../../features/auth/components';
 
 export const AuthLayout = () => {
   const {  Content } = Layout;
-  const { styles } = useStyles();
-
   return (
-    <Layout className={styles.authLayout}>
+
+    <Layout>
       <AuthHeader/>
       <Content>
         <Outlet />
       </Content>
-    </Layout>);
+    </Layout>
+
+
+  );
 };
