@@ -16,6 +16,11 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["development"]
+    "customConditions": ["development"],
+    "baseUrl": ".",
+    "paths": {
+      "@api/*": ["apps/admin/src/api/*"],
+      "@assets/*": ["apps/admin/src/assets/*"]
+    }
   }
 }

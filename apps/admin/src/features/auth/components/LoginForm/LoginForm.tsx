@@ -4,7 +4,7 @@ import './LoginForm.scss';
 // @ts-ignore
 import { ArrowRight } from '@phosphor-icons/react';
 import { useMutation } from '@tanstack/react-query';
-import { api } from '../../../../api/api';
+import { api } from '@api/api';
 
 export const LoginForm = () => {
   const [form] = Form.useForm();

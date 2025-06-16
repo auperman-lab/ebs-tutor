@@ -1,16 +1,16 @@
 import { axiosInstance } from './axios/instance';
-import { RegistrationForm } from '../features/auth/types/RegistrationFormProps';
+import { RegistrationFormProps } from '../features/auth/types/RegistrationFormProps';
 import { apiEndpoints } from '../const';
-import { ILoginForm } from '../features/auth/types/LoginFormProps';
+import { LoginFormProps } from '../features/auth/types/LoginFormProps';
 
 export const auth = {
-  register: async (payload: RegistrationForm) => {
+  register: async (payload: RegistrationFormProps) => {
     const { data } = await axiosInstance.post(apiEndpoints.register, payload);
     console.log(data);
 
     return data;
   },
-  login: async (payload: ILoginForm) => {
+  login: async (payload: LoginFormProps) => {
     const { data } = await axiosInstance.post(apiEndpoints.login, payload);
     console.log(data);
 

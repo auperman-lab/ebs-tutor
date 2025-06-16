@@ -3,7 +3,7 @@ import { Button, Checkbox, Form, Input, Divider, Flex } from 'antd';
 import React from 'react';
 import type { RegistrationFormProps } from '../../types/RegistrationFormProps';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { api } from '../../../../api/api';
+import { api } from '@api/api';
 import './RegistrationForm.scss';
 
 export const RegistrationForm: React.FC = () => {

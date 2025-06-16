@@ -1,6 +1,6 @@
 import { Button, Flex, Image } from 'antd';
 import './AuthHeader.scss';
-import GraduationCap from '../../../../assets/auth/GraduationCap.png';
+import GraduationCap from '@assets/auth/GraduationCap.png';
 
 export const AuthHeader = () => {
   return (

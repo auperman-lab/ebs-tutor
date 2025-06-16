@@ -1,17 +1,15 @@
 import { Button, Divider } from 'antd';
-import google_logo from '../../../../assets/auth/google_logo.png';
-import facebook_logo from '../../../../assets/auth/facebook_logo.png';
-import apple_logo from '../../../../assets/auth/apple_logo.png';
-import "./LoginOptions.scss"
+import google_logo from '@assets/auth/google_logo.png';
+import facebook_logo from '@assets/auth/facebook_logo.png';
+import apple_logo from '@assets/auth/apple_logo.png';
+import './LoginOptions.scss';
 import { LoginOptionsProps } from './LoginOptionsTypes';
 import React from 'react';
 
-
-export const LoginOptions: React.FC<LoginOptionsProps> = ({dividerText}) => {
-
+export const LoginOptions: React.FC<LoginOptionsProps> = ({ dividerText }) => {
   return (
     <div>
-      <Divider >{dividerText}</Divider>
+      <Divider>{dividerText}</Divider>
       <div className="login_options">
         <Button type="default" size="large" className="auth_button">
           <div className="logo_container">
@@ -35,5 +33,5 @@ export const LoginOptions: React.FC<LoginOptionsProps> = ({dividerText}) => {
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};
