@@ -1,39 +1,57 @@
-import { Button, Divider } from 'antd';
-import google_logo from '../../../../assets/auth/google_logo.png';
-import facebook_logo from '../../../../assets/auth/facebook_logo.png';
-import apple_logo from '../../../../assets/auth/apple_logo.png';
-import "./LoginOptions.scss"
+import { Button, Divider, Flex } from 'antd';
+import { google_logo, facebook_logo, apple_logo } from '@assets';
 import { LoginOptionsProps } from './LoginOptionsTypes';
-import React from 'react';
+import { useStyles } from './LoginOptionStyles';
 
-
-export const LoginOptions: React.FC<LoginOptionsProps> = ({dividerText}) => {
-
+export const LoginOptions = ({ dividerText }: LoginOptionsProps) => {
+  const { styles } = useStyles();
   return (
     <div>
-      <Divider >{dividerText}</Divider>
-      <div className="login_options">
-        <Button type="default" size="large" className="auth_button">
-          <div className="logo_container">
-            <img src={google_logo} alt="Google logo" className="logo" />
-          </div>
-          <span>Google</span>
+      <Divider>{dividerText}</Divider>
+      <Flex justify="space-between" gap={24} className={styles.login_options}>
+        <Button type="default" size="large" className={styles.auth_button}>
+          <Flex
+            justify="center"
+            align="center"
+            className={styles.logo_container}
+          >
+            <img src={google_logo} alt="Google logo" className={styles.logo} />
+          </Flex>
+          <Flex justify="center" align="center" className={styles.company}>
+            Google
+          </Flex>
         </Button>
 
-        <Button type="default" size="large" className="auth_button">
-          <div className="logo_container">
-            <img src={facebook_logo} alt="Facebook logo" className="logo" />
-          </div>
-          <span>Facebook</span>
+        <Button type="default" size="large" className={styles.auth_button}>
+          <Flex
+            justify="center"
+            align="center"
+            className={styles.logo_container}
+          >
+            <img
+              src={facebook_logo}
+              alt="Facebook logo"
+              className={styles.logo}
+            />
+          </Flex>
+          <Flex justify="center" align="center" className={styles.company}>
+            Facebook
+          </Flex>
         </Button>
 
-        <Button type="default" size="large" className="auth_button">
-          <div className="logo_container">
-            <img src={apple_logo} alt="Apple logo" className="logo" />
-          </div>
-          <span>Apple</span>
+        <Button type="default" size="large" className={styles.auth_button}>
+          <Flex
+            justify="center"
+            align="center"
+            className={styles.logo_container}
+          >
+            <img src={apple_logo} alt="Apple logo" className={styles.logo} />
+          </Flex>
+          <Flex justify="center" align="center" className={styles.company}>
+            Apple
+          </Flex>
         </Button>
-      </div>
+      </Flex>
     </div>
-  )
-}
+  );
+};

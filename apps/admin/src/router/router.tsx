@@ -1,6 +1,6 @@
 import { useRoutes } from 'react-router-dom';
 
-import { routes } from '../const';
+import { routes } from '@const';
 import { LoginPage, RegistrationPage } from '../features/auth';
 import { AuthLayout } from '../layout';
 
