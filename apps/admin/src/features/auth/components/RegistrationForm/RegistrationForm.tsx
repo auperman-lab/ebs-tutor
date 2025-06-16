@@ -1,12 +1,11 @@
 import type { FormProps } from 'antd';
 import { Button, Checkbox, Form, Input, Divider, Flex } from 'antd';
-import React from 'react';
 import type { RegistrationFormProps } from '../../types';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@api';
 import './RegistrationForm.scss';
 
-export const RegistrationForm: React.FC = () => {
+export const RegistrationForm= () => {
   const [form] = Form.useForm();
 
   const { mutate } = useMutation({
