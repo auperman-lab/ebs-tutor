@@ -1,14 +1,13 @@
-import { RegistrationForm } from '../../components/RegistrationForm/RegistrationForm';
-import saly from '@assets/auth/Saly-1.png';
-import './RegistrationPage.scss';
+import { RegistrationForm, RegistrationImageContainer } from '../../components';
+import { Flex } from 'antd';
+import { useStyles } from './RegistrationPageStyles';
 
 export const RegistrationPage = () => {
+  const { styles } = useStyles();
   return (
-    <div className="registerContainer">
-      <div className="salyPhoto">
-        <img src={saly} />
-      </div>
+    <Flex justify="space-between" className={styles.registerContainer}>
+      <RegistrationImageContainer />
       <RegistrationForm />
-    </div>
+    </Flex>
   );
 };

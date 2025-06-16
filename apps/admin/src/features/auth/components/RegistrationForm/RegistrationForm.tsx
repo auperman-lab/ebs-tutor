@@ -1,12 +1,14 @@
 import type { FormProps } from 'antd';
-import { Button, Checkbox, Form, Input, Divider, Flex } from 'antd';
+import { Button, Checkbox, Form, Input, Flex } from 'antd';
 import React from 'react';
 import type { RegistrationFormProps } from '../../types/RegistrationFormProps';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@api/api';
-import './RegistrationForm.scss';
+import { LoginOptions } from '../LoginOptions/LoginOptions';
+import { useStyles } from './RegistrationFormStyles';
 
 export const RegistrationForm: React.FC = () => {
+  const { styles } = useStyles();
   const client = useQueryClient();
   const [form] = Form.useForm();
 
@@ -26,7 +28,13 @@ export const RegistrationForm: React.FC = () => {
   };
 
   return (
-    <div className="registerForm">
+    <Flex
+      vertical={true}
+      justify="center"
+      align="center"
+      className={styles.registerForm}
+      gap={40}
+    >
       <h1>Create your account</h1>
       <Form
         form={form}
@@ -39,7 +47,7 @@ export const RegistrationForm: React.FC = () => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-        <Flex className="fullname" gap={18}>
+        <Flex className={styles.fullname} gap={18}>
           <Form.Item<RegistrationFormProps>
             label="First name"
             name="firstName"
@@ -111,10 +119,8 @@ export const RegistrationForm: React.FC = () => {
             </Button>
           </Form.Item>
         </Flex>
-        <Divider plain style={{ color: '#8C94A3' }}>
-          SIGN UP
-        </Divider>
+        <LoginOptions dividerText="SIGN UP" />
       </Form>
-    </div>
+    </Flex>
   );
 };

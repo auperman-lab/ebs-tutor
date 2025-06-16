@@ -1,22 +1,13 @@
-import { LoginForm, LoginOptions } from '../../components';
-import './LoginPage.scss';
-import sally_login from '@assets/auth/sally_login.png';
+import { Flex } from 'antd';
+import { useStyles } from './LoginPageStyles';
+import { LoginFormContainer, LoginImageContainer } from '../../components';
 
 export const LoginPage = () => {
+  const { styles } = useStyles();
   return (
-    <div>
-      <div className="login_page">
-        <div className="image_container">
-          <img src={sally_login} alt="login img" />
-        </div>
-        <div className="login_form_container">
-          <div className={'login_form_wrapper'}>
-            <h1> Sign in to your account</h1>
-            <LoginForm />
-            <LoginOptions dividerText={'SIGN IN WITH'} />
-          </div>
-        </div>
-      </div>
-    </div>
+    <Flex justify="center" className={styles.loginPage}>
+      <LoginImageContainer />
+      <LoginFormContainer />
+    </Flex>
   );
 };

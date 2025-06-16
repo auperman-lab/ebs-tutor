@@ -1,6 +1,6 @@
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Checkbox, Flex, Form, Input } from 'antd';
 import { LoginFormProps } from '../../types/LoginFormProps';
-import './LoginForm.scss';
+import { useStyles } from './LoginFormStyles';
 // @ts-ignore
 import { ArrowRight } from '@phosphor-icons/react';
 import { useMutation } from '@tanstack/react-query';
@@ -8,6 +8,7 @@ import { api } from '@api/api';
 
 export const LoginForm = () => {
   const [form] = Form.useForm();
+  const { styles } = useStyles();
 
   const onFinish = async () => {
     const values: LoginFormProps = await form.validateFields();
@@ -20,7 +21,7 @@ export const LoginForm = () => {
   });
 
   return (
-    <div className="login_form">
+    <div className={styles.login_form}>
       <Form
         form={form}
         name="basic"
@@ -57,7 +58,12 @@ export const LoginForm = () => {
           <Input.Password />
         </Form.Item>
 
-        <div className="form-submit">
+        <Flex
+          align="center"
+          gap={16}
+          justify="space-between"
+          className={styles.form_submit}
+        >
           <Form.Item<LoginFormProps>
             name="remember"
             valuePropName="checked"
@@ -71,13 +77,13 @@ export const LoginForm = () => {
               type="primary"
               htmlType="submit"
               size="large"
-              className="auth_button"
+              className={styles.auth_button}
             >
               Sign In
               <ArrowRight />
             </Button>
           </Form.Item>
-        </div>
+        </Flex>
       </Form>
     </div>
   );
