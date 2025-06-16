@@ -1,5 +1,5 @@
 // todo: check how to
-export type ILoginForm = {
+export type LoginFormProps = {
   email: string;
   password: string;
   remember: boolean;

@@ -1,4 +1,4 @@
-export type RegistrationForm = {
+export type RegistrationFormProps = {
   email: string;
   password: string;
   firstName: string;

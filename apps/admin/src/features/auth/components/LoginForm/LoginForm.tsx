@@ -1,5 +1,5 @@
 import { Button, Checkbox, Form, Input } from 'antd';
-import { ILoginForm } from '../../types/ILoginForm';
+import { LoginFormProps } from '../../types/LoginFormProps';
 import './LoginForm.scss';
 // @ts-ignore
 import { ArrowRight } from '@phosphor-icons/react';
@@ -10,13 +10,13 @@ export const LoginForm = () => {
   const [form] = Form.useForm();
 
   const onFinish = async () => {
-    const values: ILoginForm = await form.validateFields();
+    const values: LoginFormProps = await form.validateFields();
     mutate(values);
     console.log('Success:', values);
   };
 
   const { mutate } = useMutation({
-    mutationFn: (data: ILoginForm) => api.auth.login(data),
+    mutationFn: (data: LoginFormProps) => api.auth.login(data),
   });
 
   return (
@@ -28,7 +28,7 @@ export const LoginForm = () => {
         initialValues={{ remember: true }}
         onFinish={onFinish}
       >
-        <Form.Item<ILoginForm>
+        <Form.Item<LoginFormProps>
           label="Email"
           name="email"
           rules={[
@@ -42,7 +42,7 @@ export const LoginForm = () => {
           <Input />
         </Form.Item>
 
-        <Form.Item<ILoginForm>
+        <Form.Item<LoginFormProps>
           label="Password"
           name="password"
           rules={[
@@ -58,7 +58,7 @@ export const LoginForm = () => {
         </Form.Item>
 
         <div className="form-submit">
-          <Form.Item<ILoginForm>
+          <Form.Item<LoginFormProps>
             name="remember"
             valuePropName="checked"
             label={null}

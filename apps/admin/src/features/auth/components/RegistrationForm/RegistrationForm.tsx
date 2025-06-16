@@ -1,25 +1,25 @@
 import type { FormProps } from 'antd';
 import { Button, Checkbox, Form, Input, Divider, Flex } from 'antd';
 import React from 'react';
-import type { RegistrationForm } from '../../types/RegistrationForm';
+import type { RegistrationFormProps } from '../../types/RegistrationFormProps';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '../../../../api/api';
 import './RegistrationForm.scss';
 
-const RegistrationForm: React.FC = () => {
+export const RegistrationForm: React.FC = () => {
   const client = useQueryClient();
   const [form] = Form.useForm();
 
   const { mutate } = useMutation({
-    mutationFn: (data: RegistrationForm) => api.auth.register(data),
+    mutationFn: (data: RegistrationFormProps) => api.auth.register(data),
   });
 
-  const onFinish: FormProps<RegistrationForm>['onFinish'] = (values) => {
+  const onFinish: FormProps<RegistrationFormProps>['onFinish'] = (values) => {
     console.log('Success:', values);
     mutate(values);
   };
 
-  const onFinishFailed: FormProps<RegistrationForm>['onFinishFailed'] = (
+  const onFinishFailed: FormProps<RegistrationFormProps>['onFinishFailed'] = (
     errorInfo
   ) => {
     console.log('Failed:', errorInfo);
@@ -40,7 +40,7 @@ const RegistrationForm: React.FC = () => {
         autoComplete="off"
       >
         <Flex className="fullname" gap={18}>
-          <Form.Item<RegistrationForm>
+          <Form.Item<RegistrationFormProps>
             label="First name"
             name="firstName"
             rules={[{ required: true, message: 'Please input your username!' }]}
@@ -48,7 +48,7 @@ const RegistrationForm: React.FC = () => {
             <Input variant="outlined" placeholder="First name" />
           </Form.Item>
 
-          <Form.Item<RegistrationForm>
+          <Form.Item<RegistrationFormProps>
             label="Last name"
             name="lastName"
             rules={[{ required: true, message: 'Please input your username!' }]}
@@ -57,7 +57,7 @@ const RegistrationForm: React.FC = () => {
           </Form.Item>
         </Flex>
 
-        <Form.Item<RegistrationForm>
+        <Form.Item<RegistrationFormProps>
           label="Email"
           name="email"
           rules={[{ required: true, message: 'Please input your username!' }]}
@@ -65,7 +65,7 @@ const RegistrationForm: React.FC = () => {
           <Input placeholder="Email adress" />
         </Form.Item>
 
-        <Form.Item<RegistrationForm>
+        <Form.Item<RegistrationFormProps>
           label="Password"
           name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
@@ -73,7 +73,7 @@ const RegistrationForm: React.FC = () => {
           <Input.Password variant="outlined" placeholder="Create password" />
         </Form.Item>
 
-        <Form.Item<RegistrationForm>
+        <Form.Item<RegistrationFormProps>
           label="Confirm password"
           name="confirmPassword"
           rules={[{ required: true, message: 'Please input your password!' }]}
@@ -118,5 +118,3 @@ const RegistrationForm: React.FC = () => {
     </div>
   );
 };
-
-export default RegistrationForm;
