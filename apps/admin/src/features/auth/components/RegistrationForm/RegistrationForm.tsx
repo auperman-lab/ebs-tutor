@@ -81,7 +81,7 @@ export const RegistrationForm = () => {
             {
               pattern: regexPatterns.password,
               message:
-                'Password must be at least 6 characters long and contain both letters and numbers.',
+                'Password must be 6+ characters with latin letters and numbers.',
             },
           ]}
         >
