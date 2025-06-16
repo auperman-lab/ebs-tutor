@@ -79,14 +79,6 @@ export const RegistrationForm= () => {
           <Input.Password placeholder="Confirm password" />
         </Form.Item>
 
-        {/* <Form.Item<RegistrationForm>
-          name="remember"
-          valuePropName="checked"
-          label={null}
-        >
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item> */}
-
         <Flex justify="space-between">
           <Checkbox
             style={{
