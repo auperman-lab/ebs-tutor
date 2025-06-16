@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { api } from '@const';
 
 export const axiosInstance = axios.create({
-  baseURL: api,
+  baseURL:  'https://api-stage.escolalms.com/',
   headers: {
-    'Content-Type': 'application/json',
-  },
+    'Content-Type': 'application/json'
+  }
 });
