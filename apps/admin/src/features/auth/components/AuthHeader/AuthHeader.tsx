@@ -1,11 +1,12 @@
 import { Button, Flex, Space } from 'antd';
-import logo from '../../../../assets/auth/logo.png';
-import Title from 'antd/lib/typography/Title';
+import { logo } from '@assets';
 import { Header } from 'antd/lib/layout/layout';
 import { useLocation, useNavigate } from 'react-router-dom';
-import "./AuthHeader.scss"
+import { useStyles } from "./AuthHeaderStyles"
+
 
 export const AuthHeader = () => {
+  const { styles } = useStyles();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -15,28 +16,29 @@ export const AuthHeader = () => {
   };
 
   return(
-    <Header className="header">
-      <Flex gap="middle" className="header_components_wrapper">
+    <Header className={styles.header}>
+      <Flex gap="middle" align="center" justify="space-between" className={styles.headerComponentsWrapper}>
         <Button
           size="large"
-          className={'header_logo'}
-          onClick={() => {
-            navigate('/');
-          }}
+          className={styles.headerLogo}
+          onClick={() => navigate('/')}
         >
-          <img src={logo} alt={'logo'} />
-          <Title level={3} className="header_title">
+          <img src={logo} alt="logo" />
+          <h1  className={styles.headerTitle}>
             E-tutor
-          </Title>
+          </h1>
         </Button>
 
-        <Space size={'middle'} className="create_account_wrapper">
-          <p className="create_account_text">
-            {isLogin ? 'Don\'t have an account?' : 'Already have an account?'}
+        <Space
+          className={styles.createAccountWrapper}
+        >
+          <p className={styles.createAccountText}>
+            {isLogin
+              ? `Don't have an account?`
+              : `Already have an account?`}
           </p>
-          <Button
-            size="large" className="create_account_button"
-            onClick={handleRedirect}> {isLogin ? 'Create account' : 'Sign in'}
+          <Button className={styles.createAccountButton} size="large" onClick={handleRedirect}>
+            {isLogin ? 'Sign Up' : 'Log In'}
           </Button>
         </Space>
       </Flex>
