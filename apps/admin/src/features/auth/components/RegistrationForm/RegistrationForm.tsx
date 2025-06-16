@@ -4,6 +4,7 @@ import type { RegistrationFormProps } from '../../types';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@api';
 import './RegistrationForm.scss';
+import { regexPatterns } from "@const";
 
 export const RegistrationForm= () => {
   const [form] = Form.useForm();
@@ -66,7 +67,15 @@ export const RegistrationForm= () => {
         <Form.Item<RegistrationFormProps>
           label="Password"
           name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          rules={
+            [{ required: true, message: 'Please input your password!' },
+              {
+                pattern: regexPatterns.password,
+                message:
+                  'Password must be at least 6 characters long and contain both letters and numbers.',
+              },
+            ]
+          }
         >
           <Input.Password variant="outlined" placeholder="Create password" />
         </Form.Item>
@@ -74,27 +83,50 @@ export const RegistrationForm= () => {
         <Form.Item<RegistrationFormProps>
           label="Confirm password"
           name="confirmPassword"
-          rules={[{ required: true, message: 'Please input your password!' }]}
-        >
+          dependencies={['password']}
+          rules={[
+            { required: true, message: 'Please confirm your password!' },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error('Passwords do not match!'));
+              },
+            }),
+          ]}        >
           <Input.Password placeholder="Confirm password" />
         </Form.Item>
 
         <Flex justify="space-between">
-          <Checkbox
-            style={{
-              alignItems: 'center',
-              height: '32px',
-              letterSpacing: '-1px',
-            }}
+          <Form.Item
+            name="agreement"
+            valuePropName="checked"
+            rules={[
+              {
+                validator: (_, value) =>
+                  value
+                    ? Promise.resolve() : Promise.reject(new Error('You must agree to the terms and conditions')),
+              },
+            ]}
+            style={{ marginBottom: 0 }}
           >
-            I Agree with all of your{' '}
-            <a
-              href="https://www.figma.com/design/vTqXwyiUThC5O3BYnkwLKo/E-Tutor---Learning-Management-System--Community---Community-?node-id=2616-75102&t=eUyJeZJGjNDy2qtG-0"
-              target="blank"
+            <Checkbox
+              style={{
+                alignItems: 'center',
+                height: '32px',
+                letterSpacing: '-1px',
+              }}
             >
-              Terms & Conditions
-            </a>
-          </Checkbox>
+              I Agree with all of your{' '}
+              <a
+                href="https://www.figma.com/design/vTqXwyiUThC5O3BYnkwLKo/E-Tutor---Learning-Management-System--Community---Community-?node-id=2616-75102&t=eUyJeZJGjNDy2qtG-0"
+                target="blank"
+              >
+                Terms & Conditions
+              </a>
+            </Checkbox>
+          </Form.Item>
           <Form.Item label={null}>
             <Button type="primary" htmlType="submit">
               Submit
