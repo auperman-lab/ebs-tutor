@@ -1,6 +1,6 @@
-import { Button, Flex, Image } from 'antd';
-import './AuthHeader.scss';
-import GraduationCap from '@assets/auth/GraduationCap.png';
+import { Button, Flex, Image } from "antd";
+import "./AuthHeader.scss";
+import { logo } from "@assets";
 
 export const AuthHeader = () => {
   return (
@@ -8,7 +8,7 @@ export const AuthHeader = () => {
       <Flex align="center" justify="space-around" className="flexContainer">
         <div>
           <Flex align="center" gap={8} className="logoText">
-            <Image width={40} height={40} preview={false} src={GraduationCap} />
+            <Image width={40} height={40} preview={false} src={logo} />
             E-tutor
           </Flex>
         </div>

@@ -17,8 +17,10 @@ export default defineConfig(() => ({
   plugins: [react()],
   resolve: {
     alias: {
-      '@api': path.resolve(__dirname, 'src/api'),
+      '@api': path.resolve(__dirname, 'src/api/api'),
       '@assets': path.resolve(__dirname, 'src/assets'),
+      '@types': path.resolve(__dirname, 'src/types'),
+      '@context': path.resolve(__dirname, 'src/context'),
     },
   },
   // Uncomment this if you are using workers.

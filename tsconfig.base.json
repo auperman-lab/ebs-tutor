@@ -19,8 +19,12 @@
     "customConditions": ["development"],
     "baseUrl": ".",
     "paths": {
-      "@api/*": ["apps/admin/src/api/*"],
-      "@assets/*": ["apps/admin/src/assets/*"]
+      "@api": ["apps/admin/src/api/api"],
+      "@assets/*": ["apps/admin/src/assets/*"],
+      "@assets": ["apps/admin/src/assets/index.ts"],
+      "@types/*": ["apps/admin/src/types/*"],
+      "@types": ["apps/admin/src/types/index.ts"],
+      "@context": ["apps/admin/src/context/index.ts"],
     }
   }
 }

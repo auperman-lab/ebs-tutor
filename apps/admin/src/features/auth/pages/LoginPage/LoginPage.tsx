@@ -1,6 +1,6 @@
 import { LoginForm, LoginOptions } from '../../components';
 import './LoginPage.scss';
-import sally_login from '@assets/auth/sally_login.png';
+import { sally_login } from '@assets';
 
 export const LoginPage = () => {
   return (

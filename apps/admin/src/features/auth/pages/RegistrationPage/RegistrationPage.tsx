@@ -1,12 +1,12 @@
 import { RegistrationForm } from '../../components/RegistrationForm/RegistrationForm';
-import saly from '@assets/auth/Saly-1.png';
+import { sally_register } from '@assets';
 import './RegistrationPage.scss';
 
 export const RegistrationPage = () => {
   return (
     <div className="registerContainer">
       <div className="salyPhoto">
-        <img src={saly} />
+        <img src={sally_register} />
       </div>
       <RegistrationForm />
     </div>
