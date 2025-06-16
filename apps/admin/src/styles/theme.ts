@@ -1,4 +1,4 @@
-{
+export const theme = {
   "token": {
     "colorPrimary": "#ff6636",
     "colorInfo": "#363b47",

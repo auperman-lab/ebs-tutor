@@ -7,6 +7,7 @@ export const RegistrationPage = () => {
   return (
     <Flex justify="space-between" className={styles.registerContainer}>
       <RegistrationImageContainer />
+
       <RegistrationForm />
     </Flex>
   );

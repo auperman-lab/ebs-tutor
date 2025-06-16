@@ -1,15 +1,15 @@
 import type { FormProps } from 'antd';
 import { Button, Checkbox, Form, Input, Flex } from 'antd';
-import React from 'react';
-import type { RegistrationFormProps } from '../../types/RegistrationFormProps';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { api } from '@api/api';
+import type { RegistrationFormProps } from '../../types';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '@api';
 import { LoginOptions } from '../LoginOptions/LoginOptions';
 import { useStyles } from './RegistrationFormStyles';
+import { regexPatterns } from '@const';
 
-export const RegistrationForm: React.FC = () => {
+export const RegistrationForm = () => {
   const { styles } = useStyles();
-  const client = useQueryClient();
+
   const [form] = Form.useForm();
 
   const { mutate } = useMutation({
@@ -76,7 +76,14 @@ export const RegistrationForm: React.FC = () => {
         <Form.Item<RegistrationFormProps>
           label="Password"
           name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          rules={[
+            { required: true, message: 'Please input your password!' },
+            {
+              pattern: regexPatterns.password,
+              message:
+                'Password must be at least 6 characters long and contain both letters and numbers.',
+            },
+          ]}
         >
           <Input.Password variant="outlined" placeholder="Create password" />
         </Form.Item>
@@ -84,35 +91,54 @@ export const RegistrationForm: React.FC = () => {
         <Form.Item<RegistrationFormProps>
           label="Confirm password"
           name="confirmPassword"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          dependencies={['password']}
+          rules={[
+            { required: true, message: 'Please confirm your password!' },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error('Passwords do not match!'));
+              },
+            }),
+          ]}
         >
           <Input.Password placeholder="Confirm password" />
         </Form.Item>
 
-        {/* <Form.Item<RegistrationForm>
-          name="remember"
-          valuePropName="checked"
-          label={null}
-        >
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item> */}
-
         <Flex justify="space-between">
-          <Checkbox
-            style={{
-              alignItems: 'center',
-              height: '32px',
-              letterSpacing: '-1px',
-            }}
+          <Form.Item
+            name="agreement"
+            valuePropName="checked"
+            rules={[
+              {
+                validator: (_, value) =>
+                  value
+                    ? Promise.resolve()
+                    : Promise.reject(
+                        new Error('You must agree to the terms and conditions')
+                      ),
+              },
+            ]}
+            style={{ marginBottom: 0 }}
           >
-            I Agree with all of your{' '}
-            <a
-              href="https://www.figma.com/design/vTqXwyiUThC5O3BYnkwLKo/E-Tutor---Learning-Management-System--Community---Community-?node-id=2616-75102&t=eUyJeZJGjNDy2qtG-0"
-              target="blank"
+            <Checkbox
+              style={{
+                alignItems: 'center',
+                height: '32px',
+                letterSpacing: '-1px',
+              }}
             >
-              Terms & Conditions
-            </a>
-          </Checkbox>
+              I Agree with all of your{' '}
+              <a
+                href="https://www.figma.com/design/vTqXwyiUThC5O3BYnkwLKo/E-Tutor---Learning-Management-System--Community---Community-?node-id=2616-75102&t=eUyJeZJGjNDy2qtG-0"
+                target="blank"
+              >
+                Terms & Conditions
+              </a>
+            </Checkbox>
+          </Form.Item>
           <Form.Item label={null}>
             <Button type="primary" htmlType="submit">
               Submit

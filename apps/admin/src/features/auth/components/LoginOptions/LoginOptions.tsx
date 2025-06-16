@@ -1,12 +1,9 @@
 import { Button, Divider } from 'antd';
-import google_logo from '@assets/auth/google_logo.png';
-import facebook_logo from '@assets/auth/facebook_logo.png';
-import apple_logo from '@assets/auth/apple_logo.png';
+import { google_logo, facebook_logo, apple_logo } from '@assets';
 import './LoginOptions.scss';
 import { LoginOptionsProps } from './LoginOptionsTypes';
-import React from 'react';
 
-export const LoginOptions: React.FC<LoginOptionsProps> = ({ dividerText }) => {
+export const LoginOptions= ({ dividerText }: LoginOptionsProps) => {
   return (
     <div>
       <Divider>{dividerText}</Divider>
