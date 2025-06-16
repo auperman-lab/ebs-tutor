@@ -6,7 +6,7 @@ export const RegistrationPage = () => {
   return (
     <div className="registerContainer">
       <div className="salyPhoto">
-        <img src={sally_register} />
+        <img alt={"register_image"} src={sally_register} />
       </div>
       <RegistrationForm />
     </div>

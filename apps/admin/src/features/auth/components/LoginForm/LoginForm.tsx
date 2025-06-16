@@ -5,6 +5,7 @@ import './LoginForm.scss';
 import { ArrowRight } from '@phosphor-icons/react';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@api';
+import {regexPatterns} from "@const";
 
 export const LoginForm = () => {
   const [form] = Form.useForm();
@@ -48,7 +49,7 @@ export const LoginForm = () => {
           rules={[
             { required: true, message: 'Please input your password!' },
             {
-              pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
+              pattern: regexPatterns.password,
               message:
                 'Password must be at least 6 characters long and contain both letters and numbers.',
             },

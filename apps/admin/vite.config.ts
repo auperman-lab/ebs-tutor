@@ -21,6 +21,7 @@ export default defineConfig(() => ({
       '@assets': path.resolve(__dirname, 'src/assets'),
       '@types': path.resolve(__dirname, 'src/types'),
       '@context': path.resolve(__dirname, 'src/context'),
+      '@const': path.resolve(__dirname, 'src/const.ts'),
     },
   },
   // Uncomment this if you are using workers.

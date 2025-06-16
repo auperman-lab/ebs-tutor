@@ -1,5 +1,5 @@
 import { axiosInstance } from './axios/instance';
-import { apiEndpoints } from '../const';
+import { apiEndpoints } from '@const';
 import { RegisterEndpointProps, LoginEndpointProps } from "@types";
 
 export const auth = {
