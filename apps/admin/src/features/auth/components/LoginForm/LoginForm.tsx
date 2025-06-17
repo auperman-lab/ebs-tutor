@@ -5,8 +5,7 @@ import { useStyles } from './LoginFormStyles';
 import { ArrowRight } from '@phosphor-icons/react';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@api';
-import { regexPatterns } from '@const';
-import { useAuth } from "../../../../hooks";
+import { useAuth } from "@hooks";
 
 export const LoginForm = () => {
   const [form] = Form.useForm();

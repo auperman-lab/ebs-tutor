@@ -4,6 +4,7 @@ import { routes } from '@const';
 import { LoginPage, RegistrationPage } from '../features/auth';
 import { AuthLayout } from '../layout';
 import { AuthProvider } from "@context";
+import { NotFoundPage } from "../features/NotFound";
 
 export const Router = () => {
   return useRoutes([
