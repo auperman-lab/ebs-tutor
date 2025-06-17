@@ -4,7 +4,6 @@ import { LoginPage, RegistrationPage } from '../features/auth';
 import { NotFoundPage } from '../features/NotFound';
 import { AuthLayout } from '../layout';
 import { AuthProvider } from "@context";
-import { NotFoundPage } from "../features/NotFound";
 
 export const Router = () => {
   return useRoutes([
@@ -17,7 +16,7 @@ export const Router = () => {
         </AuthProvider>
       ),
 
-        
+
       children: [
         {
           path: routes.register,
