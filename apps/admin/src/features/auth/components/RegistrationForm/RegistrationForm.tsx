@@ -1,5 +1,5 @@
 import type { FormProps } from 'antd';
-import { Button, Checkbox, Form, Input, Flex } from 'antd';
+import { Button, Checkbox, Form, Input, Flex, Typography } from 'antd';
 import type { RegistrationFormProps } from '../../types';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@api';
@@ -130,12 +130,12 @@ export const RegistrationForm = () => {
               }}
             >
               I Agree with all of your{' '}
-              <a
-                href="https://www.figma.com/design/vTqXwyiUThC5O3BYnkwLKo/E-Tutor---Learning-Management-System--Community---Community-?node-id=2616-75102&t=eUyJeZJGjNDy2qtG-0"
-                target="blank"
+              <Typography.Link
+                href="https://ant.design/components/typography#typography-demo-text"
+                target="_blank"
               >
                 Terms & Conditions
-              </a>
+              </Typography.Link>
             </Checkbox>
           </Form.Item>
           <Form.Item label={null}>

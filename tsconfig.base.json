@@ -25,7 +25,8 @@
       "@types/*": ["apps/admin/src/types/*"],
       "@types": ["apps/admin/src/types/index.ts"],
       "@context": ["apps/admin/src/context/index.ts"],
-      "@const": ["apps/admin/src/const.ts"]
+      "@const": ["apps/admin/src/const.ts"],
+      "@hooks": ["apps/admin/src/hooks/index.ts"]
     }
   }
 }

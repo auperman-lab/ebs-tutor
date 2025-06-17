@@ -22,9 +22,10 @@ div,
 figure,
 figcaption,
 blockquote,
+div,
 dl,
 dd {
-  margin: 0;
+  margin: 0 !important;
 }
 
 * {

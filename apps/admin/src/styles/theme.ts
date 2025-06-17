@@ -16,6 +16,8 @@ export const theme = {
       defaultBg: 'rgb(255,255,255)',
       defaultColor: 'rgba(0,0,0,0.88)',
       defaultBorderColor: 'rgb(233,234,240)',
+      paddingBlock: 6,
+      paddingInline: 16,
     },
     Divider: {
       colorSplit: 'rgb(233,234,240)',

@@ -16,11 +16,13 @@ root.render(
   <StrictMode>
     <BrowserRouter>
       <QueryClientContext>
-        <StyleProvider>
-          <ThemeProvider theme={theme}>
-            <Router />
-          </ThemeProvider>
-        </StyleProvider>
+
+          <StyleProvider>
+            <ThemeProvider theme={theme}>
+              <Router />
+            </ThemeProvider>
+          </StyleProvider>
+
       </QueryClientContext>
     </BrowserRouter>
   </StrictMode>
