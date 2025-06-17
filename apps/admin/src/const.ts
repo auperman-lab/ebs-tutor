@@ -4,6 +4,8 @@ export const routes = {
   main: "/",
   login: "/login",
   register: "/register",
+  settings: "/settings",
+  courses: "/courses"
 };
 
 export const apiEndpoints = {
