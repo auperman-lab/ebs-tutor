@@ -2,7 +2,6 @@ import { useRoutes } from 'react-router-dom';
 
 import { routes } from '@const';
 import { LoginPage, RegistrationPage } from '../features/auth';
-import { NotFoundPage } from '../features/NotFound/NotFoundPage';
 import { AuthLayout } from '../layout';
 import { AuthProvider } from "@context";
 
