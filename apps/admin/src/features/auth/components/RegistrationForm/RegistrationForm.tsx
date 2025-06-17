@@ -45,7 +45,6 @@ export const RegistrationForm = () => {
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        autoComplete="off"
       >
         <Flex className={styles.fullname} gap={18}>
           <Form.Item<RegistrationFormProps>
@@ -53,7 +52,7 @@ export const RegistrationForm = () => {
             name="firstName"
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
-            <Input variant="outlined" placeholder="First name" />
+            <Input placeholder="First name" />
           </Form.Item>
 
           <Form.Item<RegistrationFormProps>
