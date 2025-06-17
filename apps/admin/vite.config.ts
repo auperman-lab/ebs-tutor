@@ -22,6 +22,7 @@ export default defineConfig(() => ({
       '@types': path.resolve(__dirname, 'src/types'),
       '@context': path.resolve(__dirname, 'src/context'),
       '@const': path.resolve(__dirname, 'src/const.ts'),
+      '@hooks': path.resolve(__dirname, 'src/hooks'),
     },
   },
   // Uncomment this if you are using workers.
