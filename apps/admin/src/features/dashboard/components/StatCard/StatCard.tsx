@@ -1,22 +1,27 @@
 import { useStyles } from "./StatCardStyles";
 import { Col, Flex } from "antd";
-import { PlusCircle} from "@phosphor-icons/react";
+import { StatCardProp } from "./StatCardTypes";
+import React from "react";
 
 
 
-export const StatCard = () =>{
-  const { styles } = useStyles();
+export const StatCard = ({color, title, quantity, icon}: StatCardProp) =>{
+  const { styles } = useStyles(color);
 
-  //todo: props
+  const styledIcon = React.isValidElement(icon)
+    // @ts-ignore
+    ? React.cloneElement(icon, { className: styles.icon })
+    : icon;
+
   return (
     <Col span={6} >
       <Flex justify={"space-between"}  align={"center"} className={styles.wrapper}>
         <Flex align={"center"} justify={"center"} className={styles.iconWrapper} >
-          <PlusCircle className={styles.icon}/>
+          {styledIcon}
         </Flex>
         <Flex vertical={true} justify={"space-between"} align={"start"} className={styles.textWrapper}>
-          <h2>957</h2>
-          <h4>Enrolled Courses</h4>
+          <h2>{quantity}</h2>
+          <h4>{title}</h4>
         </Flex>
       </Flex>
     </Col>

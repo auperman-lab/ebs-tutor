@@ -8,7 +8,7 @@ import {
   removeUser,
   setTokens,
   setUser as setUserInStorage
-} from '../utils/auth';
+} from '@utils';
 import { routes } from "@const";
 
 type AuthContextProps  = {
