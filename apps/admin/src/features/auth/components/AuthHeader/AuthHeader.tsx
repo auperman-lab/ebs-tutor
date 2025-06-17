@@ -3,6 +3,7 @@ import { logo } from '@assets';
 import { Header } from 'antd/lib/layout/layout';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useStyles } from "./AuthHeaderStyles"
+import { routes } from "@const";
 
 
 export const AuthHeader = () => {
@@ -12,7 +13,7 @@ export const AuthHeader = () => {
   const navigate = useNavigate();
   const isLogin = location.pathname === '/login';
   const handleRedirect = () => {
-    navigate(isLogin ? '/register' : '/login');
+    navigate(isLogin ? routes.register : routes.login);
   };
 
   return(

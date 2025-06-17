@@ -1,4 +1,4 @@
-export type RegisterEndpointProps = {
+export type RegisterEndpointRequest = {
   email: string;
   password: string;
   firstName: string;
@@ -6,8 +6,14 @@ export type RegisterEndpointProps = {
   confirmPassword: string;
 }
 
-export type LoginEndpointProps = {
+export type LoginEndpointRequest = {
   email: string;
   password: string;
   remember: boolean;
 }
+
+export type LoginEndpointResponse = {
+  jwt:string
+}
+
+

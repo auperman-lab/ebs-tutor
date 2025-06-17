@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Router } from "./router/router";
 import { theme } from "./styles";
 import { StyleProvider, ThemeProvider } from "antd-style";
-import { QueryClientContext } from "@context";
+import { QueryClientContext, AuthProvider } from "@context";
 import "@ant-design/v5-patch-for-react-19";
 
 const root = ReactDOM.createRoot(
@@ -15,11 +15,15 @@ root.render(
   <StrictMode>
     <BrowserRouter>
       <QueryClientContext>
-        <StyleProvider>
-          <ThemeProvider theme={theme}>
-            <Router />
-          </ThemeProvider>
-        </StyleProvider>
+        <AuthProvider>
+
+          <StyleProvider>
+            <ThemeProvider theme={theme}>
+              <Router />
+            </ThemeProvider>
+          </StyleProvider>
+
+        </AuthProvider>
       </QueryClientContext>
     </BrowserRouter>
   </StrictMode>,
