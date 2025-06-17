@@ -6,10 +6,13 @@ import { ArrowRight } from '@phosphor-icons/react';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@api';
 import { regexPatterns } from '@const';
+import { useAuth } from "../../../../hooks";
 
 export const LoginForm = () => {
   const [form] = Form.useForm();
   const { styles } = useStyles();
+
+  const { login } = useAuth();
 
   const onFinish = async () => {
     const values: LoginFormProps = await form.validateFields();
@@ -19,6 +22,7 @@ export const LoginForm = () => {
 
   const { mutate } = useMutation({
     mutationFn: (data: LoginFormProps) => api.auth.login(data),
+    onSuccess: (data) => login(data)
   });
 
   return (

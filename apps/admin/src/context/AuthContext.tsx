@@ -11,14 +11,14 @@ import {
 } from '../utils/auth';
 import { routes } from "@const";
 
-interface AuthContextInterface {
+type AuthContextProps  = {
   user: User | null;
   logout: () => void;
   login: (data: AuthUser) => void;
   refresh: (data: AuthUser) => void;
 }
 
-export const AuthContext = createContext<AuthContextInterface | undefined>(undefined);
+export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider = ({ children }: React.HTMLProps<HTMLElement>) => {
   const [user, setUser] = useState<User | null>(getUserByToken);
