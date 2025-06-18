@@ -1,9 +1,9 @@
-import { createStyles } from 'antd-style';
+import { createStyles } from "antd-style";
 
 export const useStyles = createStyles(({ token, css, responsive }) => ({
   loginPage: css`
     height: calc(100vh - 88px);
-    background-color: ${token.colorBgBase};
+    background-color: ${token.colorWhite};
 
     ${responsive.md} {
       flex-direction: column;

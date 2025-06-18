@@ -2,8 +2,10 @@ import { createGlobalStyle } from "antd-style";
 
 export const GlobalStyle = createGlobalStyle(
   ({ theme }) => `
-// .ant-form-item {
-//       margin-bottom: 0px;
-//     }
-`
+    @media (max-width: 576px) {
+      .ant-form-item {
+        margin-bottom: 0px;
+      }
+    }
+  `
 );

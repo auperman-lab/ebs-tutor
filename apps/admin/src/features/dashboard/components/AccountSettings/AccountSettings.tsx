@@ -104,7 +104,7 @@ export const AccountSettings = () => {
                   shape="square"
                   size={200}
                   style={{
-                    backgroundColor: "#f0f0f0",
+                    backgroundColor: "#F5F7FA",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",

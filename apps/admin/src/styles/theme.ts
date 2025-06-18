@@ -3,7 +3,7 @@ export const theme = {
     colorPrimary: "#ff6636",
     colorInfo: "#363b47",
     colorPrimaryBgHover: "#ff6636",
-    colorBgBase: "#f5f7fa",
+    // colorBgBase: "#f5f7fa",
     colorSuccess: "#23bd33",
     colorError: "#e34444",
     colorWarning: "#fd8e1f",
