@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import {
   Flex,
   Form,
@@ -11,6 +12,7 @@ import {
 } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { useStyles } from "./AccountSettingsStyles";
+
 
 export const AccountSettings = () => {
   const { styles } = useStyles();
@@ -27,6 +29,7 @@ export const AccountSettings = () => {
     }
     if (!isLt1M) {
       message.error("Image must be smaller than 1MB!");
+
     }
 
     return isImage && isLt1M;
@@ -45,6 +48,7 @@ export const AccountSettings = () => {
 
   return (
     <Flex vertical className={styles.mainPart}>
+
       <Form>
         <Flex vertical gap={24}>
           <Flex className={styles.photoPart} justify="space-between" gap={24}>
@@ -55,12 +59,14 @@ export const AccountSettings = () => {
             >
               <h1 className={styles.heading}>Account Settings</h1>
               <Flex className={styles.fullName}>
+
                 <Form.Item
                   layout="vertical"
                   label="First name"
                   style={{ flex: 1 }}
                 >
                   <Input size="large" placeholder="First name" />
+
                 </Form.Item>
                 <Form.Item
                   layout="vertical"
@@ -68,11 +74,13 @@ export const AccountSettings = () => {
                   style={{ flex: 1 }}
                 >
                   <Input size="large" placeholder="Last name" />
+
                 </Form.Item>
               </Flex>
 
               <Form.Item layout="vertical" label="Username">
                 <Input size="large" placeholder="Enter your username" />
+
               </Form.Item>
               <Form.Item layout="vertical" label="Phone Number">
                 <Flex>
@@ -81,11 +89,13 @@ export const AccountSettings = () => {
                     options={options}
                     style={{ width: 120 }}
                     size="large"
+
                   />
                   <Input
                     style={{ flex: 1 }}
                     placeholder="Your Phone number..."
                     size="large"
+
                   />
                 </Flex>
               </Form.Item>
@@ -98,6 +108,7 @@ export const AccountSettings = () => {
                   shape="square"
                   size={200}
                   style={{ objectFit: "cover" }}
+
                 />
               ) : (
                 <Avatar
@@ -110,6 +121,7 @@ export const AccountSettings = () => {
                     justifyContent: "center",
                     fontSize: 16,
                     color: "#999",
+
                   }}
                 >
                   Upload
@@ -141,6 +153,7 @@ export const AccountSettings = () => {
                 max: 50,
               }}
               size="large"
+
             />
           </Form.Item>
           <Form.Item layout="vertical" label="Biography">

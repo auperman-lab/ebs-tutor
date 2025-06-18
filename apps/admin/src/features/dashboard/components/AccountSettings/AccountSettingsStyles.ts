@@ -47,6 +47,7 @@ export const useStyles = createStyles(({ token, responsive }) => ({
     textAlign: "center",
     color: token.colorTextDescription,
     marginTop: token.marginXS,
+
   },
 
   saveButton: {
@@ -54,11 +55,13 @@ export const useStyles = createStyles(({ token, responsive }) => ({
     backgroundColor: token.colorPrimary,
     borderColor: token.colorPrimary,
     color: token.colorWhite,
+
   },
 
   textArea: {
     minHeight: 120,
     borderColor: token.colorBorder,
     borderRadius: token.borderRadiusLG,
+
   },
 }));

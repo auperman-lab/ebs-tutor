@@ -10,6 +10,7 @@ import { useStyles } from "./SettingPageStyles";
 
 export const SettingsPage = () => {
   const { styles } = useStyles();
+
   const { Content } = Layout;
   return (
     <Content>
@@ -26,6 +27,7 @@ export const SettingsPage = () => {
           <NotificationsSettings />
           <ChangePassword />
         </Flex>
+
       </Flex>
     </Content>
   );

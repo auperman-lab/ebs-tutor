@@ -11,6 +11,7 @@ export const useStyles = createStyles(({ token }) => ({
     fontWeight: token.fontWeightStrong,
     color: token.colorTextHeading,
     lineHeight: token.lineHeightHeading1,
+
   },
   saveButton: {
     // marginTop: 94,
