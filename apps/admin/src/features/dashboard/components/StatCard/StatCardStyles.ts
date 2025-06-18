@@ -1,8 +1,10 @@
-import { createStyles } from 'antd-style';
+import { createStyles } from "antd-style";
+import { hexToRgba } from "@utils"
 
-export const useStyles = createStyles(({ token, css, responsive }) => ({
+
+export const useStyles = createStyles(({ token, css, responsive }, color: string) => ({
   wrapper: css`
-    background-color: ${token.colorBgBase};
+    background-color: white;
     height: 108px;
     width: 100%;
     padding: 24px;
@@ -16,20 +18,20 @@ export const useStyles = createStyles(({ token, css, responsive }) => ({
     max-width: 60px;
     width: 100%;
     aspect-ratio: 1;
-
-    background-color: orange;  //also props
+    background-color: ${hexToRgba(color, 0.1)};
 
   `,
   icon: css`
     width: 32px;
     height: 100%;
+    color: ${color};
+    //color: black;
   `,
   textWrapper: css`
-    height:100%;
-    padding:5px 0;
+    height: 100%;
+    padding: 5px 0;
     padding-left: 20px;
     width: 100%;
-
-  `
+  `,
 
 }));

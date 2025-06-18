@@ -1,0 +1,61 @@
+import { Avatar, Button, Col, Flex, Progress } from "antd";
+import { useStyles } from "./ProfileCardStyles";
+import { useNavigate } from "react-router-dom";
+import { routes } from "@const";
+import { ArrowDown } from "@phosphor-icons/react";
+
+
+export const ProfileCard = () => {
+  const { styles } = useStyles();
+  const navigate = useNavigate();
+
+  return (
+    <Col span={24}>
+      <Flex align={"center"} justify={"space-between"} className={styles.wrapper}>
+
+        <Flex gap={"large"} justify={"start"} align={"center"} className={styles.avatarWrapper}>
+          <Avatar size={"large"}/>
+          <Flex vertical={true} justify={"center"} align={"start"}>
+            <div style={{fontSize: "20px"}}>Name</div>
+            <div style={{fontSize: "14px", opacity: "60%"}}>email</div>
+          </Flex>
+        </Flex>
+
+        <Flex gap={20} justify={"center"} align={"center"} className={styles.progressWrapper}>
+          <p className={styles.progressText}>3/4 Steps</p>
+          <Progress
+            strokeLinecap="butt"
+            percent={75}
+            size={[300, 15]}
+            strokeColor={"#23BD33"}
+            trailColor={"#FFFFFF0D"}
+            format={(percent) => (
+              <span style={{ color: "white", fontWeight: "bold" }}>{percent}% Completed</span>
+            )}
+          />
+        </Flex>
+
+        <Flex gap={20} className={styles.buttonsWrapper}>
+          <Button
+            type="primary"
+            size="large"
+            onClick={() => {
+              navigate(routes.settings);
+            }}
+          >
+            Edit Biography
+          </Button>
+          {/*todo: fix the border-bottom*/}
+          <Button
+            size="large"
+            type="primary"
+            className={styles.downButton}
+          >
+            <ArrowDown  size={24}/>
+          </Button>
+        </Flex>
+
+      </Flex>
+    </Col>
+  );
+};

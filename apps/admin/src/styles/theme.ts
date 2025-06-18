@@ -52,5 +52,10 @@ export const theme = {
       footerBg: 'rgb(245,247,250)',
       fontWeightStrong: 500,
     },
+    Avatar: {
+      containerSize: 60,
+      containerSizeLG: 80,
+      containerSizeSM: 48
+    }
   },
 };
