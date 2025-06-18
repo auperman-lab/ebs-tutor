@@ -1,9 +1,15 @@
-import { Col, Layout, Row } from 'antd';
-import { Flex } from 'antd';
-import { AccountSettings, NotificationsSettings } from '../../components';
-import { SocialProfile } from '../../components/';
+import { Layout } from "antd";
+import { Flex } from "antd";
+import {
+  AccountSettings,
+  ChangePassword,
+  NotificationsSettings,
+} from "../../components";
+import { SocialProfile } from "../../components/";
+import { useStyles } from "./SettingPageStyles";
 
 export const SettingsPage = () => {
+  const { styles } = useStyles();
   const { Content } = Layout;
   return (
     <Content>
@@ -16,14 +22,10 @@ export const SettingsPage = () => {
       >
         <AccountSettings />
         <SocialProfile />
-        <Row gutter={[0, 24]}>
-          <Col className="gutter-row" span={12}>
-            <NotificationsSettings />
-          </Col>
-          <Col className="gutter-row" span={12}>
-            erfgthjkl
-          </Col>
-        </Row>
+        <Flex className={styles.bottomPart} gap={24}>
+          <NotificationsSettings />
+          <ChangePassword />
+        </Flex>
       </Flex>
     </Content>
   );

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   Flex,
   Form,
@@ -8,25 +8,25 @@ import {
   Button,
   Avatar,
   message,
-} from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
-import { useStyles } from './AccountSettingsStyles';
+} from "antd";
+import { UploadOutlined } from "@ant-design/icons";
+import { useStyles } from "./AccountSettingsStyles";
 
 export const AccountSettings = () => {
   const { styles } = useStyles();
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
-  const options = [{ value: '+880', label: '+880' }];
+  const options = [{ value: "+880", label: "+880" }];
 
   const beforeUpload = (file: File) => {
-    const isImage = file.type.startsWith('image/');
+    const isImage = file.type.startsWith("image/");
     const isLt1M = file.size / 1024 / 1024 < 1;
 
     if (!isImage) {
-      message.error('You can only upload image files!');
+      message.error("You can only upload image files!");
     }
     if (!isLt1M) {
-      message.error('Image must be smaller than 1MB!');
+      message.error("Image must be smaller than 1MB!");
     }
 
     return isImage && isLt1M;
@@ -54,25 +54,25 @@ export const AccountSettings = () => {
               className={styles.accountSettings}
             >
               <h1 className={styles.heading}>Account Settings</h1>
-              <Flex className={styles.fullName} gap={18}>
+              <Flex className={styles.fullName}>
                 <Form.Item
                   layout="vertical"
                   label="First name"
                   style={{ flex: 1 }}
                 >
-                  <Input placeholder="First name" />
+                  <Input size="large" placeholder="First name" />
                 </Form.Item>
                 <Form.Item
                   layout="vertical"
                   label="Last name"
                   style={{ flex: 1 }}
                 >
-                  <Input placeholder="Last name" />
+                  <Input size="large" placeholder="Last name" />
                 </Form.Item>
               </Flex>
 
               <Form.Item layout="vertical" label="Username">
-                <Input placeholder="Enter your username" />
+                <Input size="large" placeholder="Enter your username" />
               </Form.Item>
               <Form.Item layout="vertical" label="Phone Number">
                 <Flex>
@@ -80,10 +80,12 @@ export const AccountSettings = () => {
                     defaultValue="+880"
                     options={options}
                     style={{ width: 120 }}
+                    size="large"
                   />
                   <Input
                     style={{ flex: 1 }}
                     placeholder="Your Phone number..."
+                    size="large"
                   />
                 </Flex>
               </Form.Item>
@@ -95,19 +97,19 @@ export const AccountSettings = () => {
                   src={imageUrl}
                   shape="square"
                   size={200}
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: "cover" }}
                 />
               ) : (
                 <Avatar
                   shape="square"
                   size={200}
                   style={{
-                    backgroundColor: '#f0f0f0',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    backgroundColor: "#f0f0f0",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                     fontSize: 16,
-                    color: '#999',
+                    color: "#999",
                   }}
                 >
                   Upload
@@ -138,6 +140,7 @@ export const AccountSettings = () => {
                 show: true,
                 max: 50,
               }}
+              size="large"
             />
           </Form.Item>
           <Form.Item layout="vertical" label="Biography">

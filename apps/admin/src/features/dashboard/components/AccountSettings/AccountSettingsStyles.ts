@@ -1,28 +1,37 @@
-import { createStyles } from 'antd-style';
+import { createStyles } from "antd-style";
 
-export const useStyles = createStyles(({ token }) => ({
+export const useStyles = createStyles(({ token, responsive }) => ({
   mainPart: {
-    width: '80%',
+    width: "80%",
     padding: 40,
     backgroundColor: token.colorWhite,
     marginTop: token.marginLG,
   },
 
   heading: {
-    fontSize: token.fontSizeHeading4,
+    fontSize: token.fontSizeHeading3,
     fontWeight: token.fontWeightStrong,
     color: token.colorTextHeading,
     lineHeight: token.lineHeightHeading1,
   },
 
-  photoPart: {},
+  photoPart: {
+    [responsive.lg]: {
+      flexDirection: "column",
+    },
+  },
 
   accountSettings: {
-    width: '100%',
+    width: "100%",
+    gap: 18,
   },
 
   fullName: {
-    width: '100%',
+    width: "100%",
+    gap: 18,
+    [responsive.lg]: {
+      flexDirection: "column",
+    },
   },
 
   instructorPhoto: {
@@ -35,7 +44,7 @@ export const useStyles = createStyles(({ token }) => ({
 
   imageNote: {
     fontSize: token.fontSizeSM,
-    textAlign: 'center',
+    textAlign: "center",
     color: token.colorTextDescription,
     marginTop: token.marginXS,
   },

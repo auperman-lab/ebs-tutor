@@ -4,7 +4,7 @@ export const useStyles = createStyles(({ token }) => ({
   mainBlock: {
     backgroundColor: token.colorWhite,
     width: "100%",
-    padding: 40,
+    padding: 39.5,
     marginBottom: token.marginLG,
   },
   heading: {
@@ -12,5 +12,9 @@ export const useStyles = createStyles(({ token }) => ({
     fontWeight: token.fontWeightStrong,
     color: token.colorTextHeading,
     lineHeight: token.lineHeightHeading1,
+  },
+
+  button: {
+    marginTop: token.marginXL,
   },
 }));
