@@ -1,5 +1,5 @@
-export * from "./DashboardFooter"
-export * from "./DashboardSider"
-export * from "./DashboardHeader"
-export * from "./StatCard"
-export * from "./ProfileCard"
+export * from './DashboardFooter';
+export * from './DashboardSider';
+export * from './DashboardHeader';
+export { AccountSettings } from './AccountSettings';
+export { SocialProfile } from './SocialProfile';
