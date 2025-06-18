@@ -34,11 +34,13 @@ export const theme = {
       colorBorder: 'rgb(233,234,240)',
       controlOutlineWidth: 1,
       colorTextDescription: 'rgb(140,148,163)',
+      itemMarginBottom: 32,
     },
     Input: {
       lineWidth: 1,
       colorBorder: 'rgb(233,234,240)',
       hoverBorderColor: 'rgb(255,102,54)',
+      controlHeightSM: 32,
     },
     Rate: {
       starColor: 'rgb(253,142,31)',

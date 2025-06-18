@@ -4,12 +4,15 @@ export const useStyles = createStyles(({ token }) => ({
   mainPart: {
     width: '80%',
     padding: 40,
-    backgroundColor: 'white',
-    marginTop: 24,
+    backgroundColor: token.colorWhite,
+    marginTop: token.marginLG,
   },
 
   heading: {
-    lineHeight: 1,
+    fontSize: token.fontSizeHeading4,
+    fontWeight: token.fontWeightStrong,
+    color: token.colorTextHeading,
+    lineHeight: token.lineHeightHeading1,
   },
 
   photoPart: {},
@@ -23,23 +26,30 @@ export const useStyles = createStyles(({ token }) => ({
   },
 
   instructorPhoto: {
-    backgroundColor: '#F5F7FA',
+    backgroundColor: token.colorBgBase,
     minWidth: 264,
     height: 320,
-    padding: 16,
+    padding: token.padding,
+    borderRadius: token.borderRadiusLG,
   },
 
   imageNote: {
-    fontSize: 12,
+    fontSize: token.fontSizeSM,
     textAlign: 'center',
-    color: '#6E7485',
+    color: token.colorTextDescription,
+    marginTop: token.marginXS,
   },
 
   saveButton: {
     marginTop: 90,
+    backgroundColor: token.colorPrimary,
+    borderColor: token.colorPrimary,
+    color: token.colorWhite,
   },
 
   textArea: {
     minHeight: 120,
+    borderColor: token.colorBorder,
+    borderRadius: token.borderRadiusLG,
   },
 }));

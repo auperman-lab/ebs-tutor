@@ -44,7 +44,7 @@ export const AccountSettings = () => {
   };
 
   return (
-    <Flex vertical className={styles.mainPart} gap={24}>
+    <Flex vertical className={styles.mainPart}>
       <Form>
         <Flex vertical gap={24}>
           <Flex className={styles.photoPart} justify="space-between" gap={24}>

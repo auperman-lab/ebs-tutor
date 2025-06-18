@@ -15,7 +15,7 @@ export const SocialProfile = () => {
 
   return (
     <Flex vertical className={styles.mainPart} gap={24}>
-      <h1 className={styles.heading}>Account Settings</h1>
+      <h1 className={styles.heading}>Social Profile</h1>
       <Form>
         <Flex vertical gap={24}>
           <Form.Item
@@ -83,9 +83,7 @@ export const SocialProfile = () => {
             </Col>
           </Row>
           <Form.Item style={{ marginBottom: 0 }}>
-            <Button className={styles.saveButton} type="primary">
-              Save Changes
-            </Button>
+            <Button type="primary">Save Changes</Button>
           </Form.Item>
         </Flex>
       </Form>
