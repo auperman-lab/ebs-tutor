@@ -1,24 +1,50 @@
-import { Button, Flex, Image } from "antd";
-import "./AuthHeader.scss";
-import { logo } from "@assets";
+import { Button, Flex, Space } from 'antd';
+import { logo } from '@assets';
+import { Header } from 'antd/lib/layout/layout';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useStyles } from "./AuthHeaderStyles"
+import { routes } from "@const";
+
 
 export const AuthHeader = () => {
-  return (
-    <header className="authHeader">
-      <Flex align="center" justify="space-around" className="flexContainer">
-        <div>
-          <Flex align="center" gap={8} className="logoText">
-            <Image width={40} height={40} preview={false} src={logo} />
+  const { styles } = useStyles();
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isLogin = location.pathname === '/login';
+  const handleRedirect = () => {
+    navigate(isLogin ? routes.register : routes.login);
+  };
+
+  return(
+    <Header className={styles.header}>
+      <Flex gap="middle" align="center" justify="space-between" className={styles.headerComponentsWrapper}>
+        <Button
+          size="large"
+          className={styles.headerLogo}
+          onClick={() => navigate('/')}
+        >
+          <img src={logo} alt="logo" />
+          <h1  className={styles.headerTitle}>
             E-tutor
-          </Flex>
-        </div>
-        <Flex gap={18} align="center">
-          <div className="optionTitle">Don't have account?</div>
-          <Button variant="filled" type="primary">
-            Create Account
+          </h1>
+        </Button>
+
+        <Space
+          className={styles.createAccountWrapper}
+        >
+          <p className={styles.createAccountText}>
+            {isLogin
+              ? `Don't have an account?`
+              : `Already have an account?`}
+          </p>
+          <Button className={styles.createAccountButton} size="large" onClick={handleRedirect}>
+            {isLogin ? 'Sign Up' : 'Log In'}
           </Button>
-        </Flex>
+        </Space>
       </Flex>
-    </header>
-  );
+    </Header>
+  )
+
+
 };

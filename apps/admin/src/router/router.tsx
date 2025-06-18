@@ -4,6 +4,8 @@ import { routes } from '@const';
 import { LoginPage, RegistrationPage } from '../features/auth';
 import {  DashboardLayout, AuthLayout } from '../layout';
 import { MainPage, SettingsPage } from "../features/dashboard";
+import { NotFoundPage } from '../features/NotFound';
+import { AuthProvider } from "@context";
 
 export const Router = () => {
   return useRoutes([
@@ -25,19 +27,29 @@ export const Router = () => {
     },
     {
       path: routes.main,
+
       element: (
-        <AuthLayout />
+        <AuthProvider>
+          <AuthLayout />
+        </AuthProvider>
       ),
+
+
       children: [
         {
           path: routes.register,
-          element: <RegistrationPage />
+          element: <RegistrationPage />,
         },
         {
           path: routes.login,
-          element: <LoginPage />
+          element: <LoginPage />,
         },
-      ]
-    }
+        {
+          path: '*',
+          element: <NotFoundPage />,
+        },
+
+      ],
+    },
   ]);
 };
