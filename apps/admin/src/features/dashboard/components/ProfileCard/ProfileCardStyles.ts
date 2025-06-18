@@ -7,6 +7,7 @@ export const useStyles = createStyles(({ token, css, responsive }) => ({
     height: 160px;
     width: 100%;
     padding: 40px;
+    color: white;
 
     ${responsive.lg} {
       padding: 30px;
@@ -20,9 +21,7 @@ export const useStyles = createStyles(({ token, css, responsive }) => ({
     color: white;
   `,
 
-
   progressWrapper: css`
-    color: white;
     height: 100%;
   `,
 
@@ -34,12 +33,10 @@ export const useStyles = createStyles(({ token, css, responsive }) => ({
   buttonsWrapper: css`
   `,
   downButton: css`
-    border: 0 !important;
+    border: 0;
     background-color: #FFFFFF0D;
     padding: 0 ;
     aspect-ratio: 1;
-    color: white;
-    font-weight: bold;
 
   `
 
