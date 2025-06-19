@@ -48,70 +48,57 @@ export const AccountSettings = () => {
       <Form>
         <Flex vertical gap={24}>
           <Flex className={styles.photoPart} justify="space-between" gap={24}>
-            <Flex
-              vertical
-              justify="space-between"
-              className={styles.accountSettings}
-            >
+            <Flex vertical className={styles.accountSettings} gap={24}>
               <h1 className={styles.heading}>Account Settings</h1>
-              <Flex className={styles.fullName}>
-                <Form.Item
-                  layout="vertical"
-                  label="First name"
-                  style={{ flex: 1 }}
-                >
-                  <Input size="large" placeholder="First name" />
+              <Flex vertical gap={64}>
+                <Flex className={styles.fullName} gap={64}>
+                  <Form.Item
+                    layout="vertical"
+                    label="First name"
+                    style={{ flex: 1 }}
+                  >
+                    <Input size="large" placeholder="First name" />
+                  </Form.Item>
+                  <Form.Item
+                    layout="vertical"
+                    label="Last name"
+                    style={{ flex: 1 }}
+                  >
+                    <Input size="large" placeholder="Last name" />
+                  </Form.Item>
+                </Flex>
+
+                <Form.Item layout="vertical" label="Username">
+                  <Input size="large" placeholder="Enter your username" />
                 </Form.Item>
-                <Form.Item
-                  layout="vertical"
-                  label="Last name"
-                  style={{ flex: 1 }}
-                >
-                  <Input size="large" placeholder="Last name" />
+                <Form.Item layout="vertical" label="Phone Number">
+                  <Flex>
+                    <Select
+                      defaultValue="+880"
+                      options={options}
+                      style={{ width: 120 }}
+                      size="large"
+                    />
+                    <Input
+                      style={{ flex: 1 }}
+                      placeholder="Your Phone number..."
+                      size="large"
+                    />
+                  </Flex>
                 </Form.Item>
               </Flex>
-
-              <Form.Item layout="vertical" label="Username">
-                <Input size="large" placeholder="Enter your username" />
-              </Form.Item>
-              <Form.Item layout="vertical" label="Phone Number">
-                <Flex>
-                  <Select
-                    defaultValue="+880"
-                    options={options}
-                    style={{ width: 120 }}
-                    size="large"
-                  />
-                  <Input
-                    style={{ flex: 1 }}
-                    placeholder="Your Phone number..."
-                    size="large"
-                  />
-                </Flex>
-              </Form.Item>
             </Flex>
 
-            <Flex vertical className={styles.instructorPhoto} align="center">
+            <Flex
+              vertical
+              className={styles.instructorPhoto}
+              align="center"
+              justify="space-between"
+            >
               {imageUrl ? (
-                <Avatar
-                  src={imageUrl}
-                  shape="square"
-                  size={200}
-                  style={{ objectFit: "cover" }}
-                />
+                <Avatar src={imageUrl} shape="square" size={200} />
               ) : (
-                <Avatar
-                  shape="square"
-                  size={200}
-                  style={{
-                    backgroundColor: "#F5F7FA",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: 16,
-                    color: "#999",
-                  }}
-                >
+                <Avatar shape="square" size={200} className={styles.avatar}>
                   Upload
                 </Avatar>
               )}
@@ -122,9 +109,7 @@ export const AccountSettings = () => {
                 onChange={handleChange}
                 accept="image/*"
               >
-                <Button icon={<UploadOutlined />} style={{ marginTop: 8 }}>
-                  Upload Image
-                </Button>
+                <Button icon={<UploadOutlined />}>Upload Image</Button>
               </Upload>
 
               <p className={styles.imageNote}>
@@ -133,24 +118,26 @@ export const AccountSettings = () => {
             </Flex>
           </Flex>
 
-          <Form.Item layout="vertical" label="Title">
-            <Input
-              placeholder="Your tittle, proffesion or small biography"
-              count={{
-                show: true,
-                max: 50,
-              }}
-              size="large"
-            />
-          </Form.Item>
-          <Form.Item layout="vertical" label="Biography">
-            <Input.TextArea
-              placeholder="Your tittle, proffesion or small biography"
-              className={styles.textArea}
-              autoSize={{ minRows: 5 }}
-            />
-          </Form.Item>
-          <Form.Item style={{ marginBottom: 0 }}>
+          <Flex vertical gap={64}>
+            <Form.Item layout="vertical" label="Title">
+              <Input
+                placeholder="Your tittle, proffesion or small biography"
+                count={{
+                  show: true,
+                  max: 50,
+                }}
+                size="large"
+              />
+            </Form.Item>
+            <Form.Item layout="vertical" label="Biography">
+              <Input.TextArea
+                placeholder="Your tittle, proffesion or small biography"
+                className={styles.textArea}
+                autoSize={{ minRows: 5 }}
+              />
+            </Form.Item>
+          </Flex>
+          <Form.Item noStyle>
             <Button className={styles.saveButton} type="primary">
               Save Changes
             </Button>

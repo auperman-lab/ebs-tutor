@@ -23,12 +23,10 @@ export const useStyles = createStyles(({ token, responsive }) => ({
 
   accountSettings: {
     width: "100%",
-    gap: 18,
   },
 
   fullName: {
     width: "100%",
-    gap: 18,
     [responsive.lg]: {
       flexDirection: "column",
     },
@@ -49,8 +47,14 @@ export const useStyles = createStyles(({ token, responsive }) => ({
     marginTop: token.marginXS,
   },
 
+  avatar: {
+    backgroundColor: "#F5F7FA",
+    color: token.colorInfo,
+  },
+
   saveButton: {
-    marginTop: 90,
+    marginTop: 124,
+    width: 130,
     backgroundColor: token.colorPrimary,
     borderColor: token.colorPrimary,
     color: token.colorWhite,

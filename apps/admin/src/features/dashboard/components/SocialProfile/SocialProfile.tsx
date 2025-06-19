@@ -17,7 +17,7 @@ export const SocialProfile = () => {
     <Flex vertical className={styles.mainPart} gap={24}>
       <h1 className={styles.heading}>Social Profile</h1>
       <Form>
-        <Flex vertical gap={24}>
+        <Flex vertical gap={64}>
           <Form.Item
             layout="vertical"
             label="Personal website"
@@ -29,9 +29,9 @@ export const SocialProfile = () => {
               size="large"
             />
           </Form.Item>
-          <Row gutter={[16, 24]}>
+          <Row gutter={[16, 64]}>
             <Col className="gutter-row" span={24} xl={8}>
-              <Form.Item layout="vertical" label="Facebook" style={{ flex: 1 }}>
+              <Form.Item layout="vertical" label="Facebook">
                 <Input
                   addonBefore={<img src={SocialFacebook} />}
                   placeholder="Username"
@@ -40,11 +40,7 @@ export const SocialProfile = () => {
               </Form.Item>
             </Col>
             <Col className="gutter-row" span={24} xl={8}>
-              <Form.Item
-                layout="vertical"
-                label="Instagram"
-                style={{ flex: 1 }}
-              >
+              <Form.Item layout="vertical" label="Instagram">
                 <Input
                   addonBefore={<img src={SocialInstagram} />}
                   placeholder="Username"
@@ -53,7 +49,7 @@ export const SocialProfile = () => {
               </Form.Item>
             </Col>
             <Col className="gutter-row" span={24} xl={8}>
-              <Form.Item layout="vertical" label="Linkedin" style={{ flex: 1 }}>
+              <Form.Item layout="vertical" label="Linkedin">
                 <Input
                   addonBefore={<img src={SociallinkedIn} />}
                   placeholder="Username"
@@ -62,7 +58,7 @@ export const SocialProfile = () => {
               </Form.Item>
             </Col>
             <Col className="gutter-row" span={24} xl={8}>
-              <Form.Item layout="vertical" label="Twitter" style={{ flex: 1 }}>
+              <Form.Item layout="vertical" label="Twitter">
                 <Input
                   addonBefore={<img src={SocialTwitter} />}
                   placeholder="Username"
@@ -71,7 +67,7 @@ export const SocialProfile = () => {
               </Form.Item>
             </Col>
             <Col className="gutter-row" span={24} xl={8}>
-              <Form.Item layout="vertical" label="Whatsapp" style={{ flex: 1 }}>
+              <Form.Item layout="vertical" label="Whatsapp">
                 <Input
                   addonBefore={<img src={SocialWhatsapp} />}
                   placeholder="Phone number"
@@ -80,7 +76,7 @@ export const SocialProfile = () => {
               </Form.Item>
             </Col>
             <Col className="gutter-row" span={24} xl={8}>
-              <Form.Item layout="vertical" label="Youtube" style={{ flex: 1 }}>
+              <Form.Item layout="vertical" label="Youtube">
                 <Input
                   addonBefore={<img src={SocialYouTube} />}
                   placeholder="Username"
@@ -89,7 +85,7 @@ export const SocialProfile = () => {
               </Form.Item>
             </Col>
           </Row>
-          <Form.Item style={{ marginBottom: 0 }}>
+          <Form.Item>
             <Button type="primary">Save Changes</Button>
           </Form.Item>
         </Flex>

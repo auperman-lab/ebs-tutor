@@ -46,21 +46,27 @@ export const NotificationsSettings = () => {
   };
 
   return (
-    <Flex vertical className={styles.mainBlock} gap={24}>
+    <Flex
+      vertical
+      justify="space-between"
+      className={styles.mainBlock}
+      gap={24}
+    >
       <h1 className={styles.heading}>Notifications</h1>
       <Form>
-        <Flex vertical gap={16}>
-          {notificationsData.map(({ id, label }) => (
-            <Form.Item key={id} noStyle>
-              <Checkbox
-                checked={selectedIds.includes(id)}
-                onChange={() => handleChange(id)}
-              >
-                {label}
-              </Checkbox>
-            </Form.Item>
-          ))}
-
+        <Flex vertical gap={32}>
+          <Flex vertical gap={16}>
+            {notificationsData.map(({ id, label }) => (
+              <Form.Item key={id} noStyle>
+                <Checkbox
+                  checked={selectedIds.includes(id)}
+                  onChange={() => handleChange(id)}
+                >
+                  {label}
+                </Checkbox>
+              </Form.Item>
+            ))}
+          </Flex>
           <Form.Item noStyle>
             <Button type="primary" style={{ width: 130 }} onClick={handleSave}>
               Save Changes

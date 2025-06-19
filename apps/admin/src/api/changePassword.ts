@@ -8,7 +8,6 @@ export const changePassword = {
       apiEndpoints.changePassword,
       payload
     );
-    console.log(data);
 
     return data;
   },

@@ -23,7 +23,7 @@ export const ChangePassword = () => {
     <Flex vertical className={styles.mainBlock} gap={24}>
       <h1 className={styles.heading}>Change password</h1>
       <Form onFinish={onFinish} form={form}>
-        <Flex vertical gap={18}>
+        <Flex vertical gap={64}>
           <Form.Item<ChangePasswordProps>
             name="currentPassword"
             layout="vertical"
