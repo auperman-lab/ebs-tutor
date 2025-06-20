@@ -1,5 +1,5 @@
 import { Col, Layout, Row } from "antd";
-import { StatCard, ProfileCard } from "../../components";
+import { StatCard, ProfileCard, ActivityCard } from "../../components";
 //@ts-ignore
 import { ChartBar, CreditCard, ChatCircleDots, Gear } from "@phosphor-icons/react";
 
@@ -23,9 +23,8 @@ export const MainPage = () => {
         {/*row1*/}
         <ProfileCard/>
         {/*row2*/}
-        <Col span={8} >
-          <div style={{ height:"420px", backgroundColor: "#000000", color: "white", width:"100%" }}>recent activity</div>
-        </Col>
+        <ActivityCard/>
+
         <Col span={10} >
           <div style={{ height:"420px", backgroundColor: "#000000", color: "white", width:"100%" }}>revenue</div>
         </Col>
