@@ -1,9 +1,16 @@
-import { Layout } from 'antd';
-import { Flex } from 'antd';
-import { AccountSettings } from '../../components';
-import { SocialProfile } from '../../components/';
+import { Layout } from "antd";
+import { Flex } from "antd";
+import {
+  AccountSettings,
+  ChangePassword,
+  NotificationsSettings,
+} from "../../components";
+import { SocialProfile } from "../../components/";
+import { useStyles } from "./SettingPageStyles";
 
 export const SettingsPage = () => {
+  const { styles } = useStyles();
+
   const { Content } = Layout;
   return (
     <Content>
@@ -16,6 +23,11 @@ export const SettingsPage = () => {
       >
         <AccountSettings />
         <SocialProfile />
+        <Flex className={styles.bottomPart} gap={24}>
+          <NotificationsSettings />
+          <ChangePassword />
+        </Flex>
+
       </Flex>
     </Content>
   );
