@@ -1,45 +1,71 @@
-import { createStyles } from 'antd-style';
+import { createStyles } from "antd-style";
 
-export const useStyles = createStyles(({ token }) => ({
+export const useStyles = createStyles(({ token, responsive }) => ({
   mainPart: {
-    width: '80%',
+    width: "80%",
     padding: 40,
-    backgroundColor: 'white',
-    marginTop: 24,
+    backgroundColor: token.colorWhite,
+    marginTop: token.marginLG,
   },
 
   heading: {
-    lineHeight: 1,
+    fontSize: token.fontSizeHeading3,
+    fontWeight: token.fontWeightStrong,
+    color: token.colorTextHeading,
+    lineHeight: token.lineHeightHeading1,
   },
 
-  photoPart: {},
+  photoPart: {
+    [responsive.lg]: {
+      flexDirection: "column",
+    },
+  },
 
   accountSettings: {
-    width: '100%',
+    width: "100%",
   },
 
   fullName: {
-    width: '100%',
+    width: "100%",
+    [responsive.lg]: {
+      flexDirection: "column",
+    },
   },
 
   instructorPhoto: {
-    backgroundColor: '#F5F7FA',
+    backgroundColor: token.colorBgBase,
     minWidth: 264,
     height: 320,
-    padding: 16,
+    padding: token.padding,
+    borderRadius: token.borderRadiusLG,
   },
 
   imageNote: {
-    fontSize: 12,
-    textAlign: 'center',
-    color: '#6E7485',
+    fontSize: token.fontSizeSM,
+    textAlign: "center",
+    color: token.colorTextDescription,
+    marginTop: token.marginXS,
+
+  },
+
+  avatar: {
+    backgroundColor: "#F5F7FA",
+    color: token.colorInfo,
   },
 
   saveButton: {
-    marginTop: 90,
+    marginTop: 124,
+    width: 130,
+    backgroundColor: token.colorPrimary,
+    borderColor: token.colorPrimary,
+    color: token.colorWhite,
+
   },
 
   textArea: {
     minHeight: 120,
+    borderColor: token.colorBorder,
+    borderRadius: token.borderRadiusLG,
+
   },
 }));
