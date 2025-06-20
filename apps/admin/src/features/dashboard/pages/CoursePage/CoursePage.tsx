@@ -1,6 +1,6 @@
 import { Layout } from "antd";
 import { Flex } from "antd";
-import { CoursePath } from "../../components/Course";
+import { CoursePath, CourseDescription } from "../../components/Course";
 
 export const CoursePage = () => {
   const { Content } = Layout;
@@ -14,7 +14,7 @@ export const CoursePage = () => {
         gap={24}
       >
         <CoursePath />
-        aasassssssssssssssssssssssssssssssssss
+        <CourseDescription />
       </Flex>
     </Content>
   );
