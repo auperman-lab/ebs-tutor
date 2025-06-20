@@ -1,4 +1,4 @@
-import { Col, Divider, Flex, Select } from "antd";
+import { Divider, Flex, Select } from "antd";
 // @ts-ignore
 import { useStyles } from "./ActivityCardStyles";
 import { Cards, ChatText, Star } from "@phosphor-icons/react";
@@ -52,35 +52,33 @@ export const ActivityCard = () => {
     });
   };
 
-  const styles = useStyles().styles;
+  const { styles } = useStyles();
   return (
-    <Col span={8}>
-      <Flex vertical={true} className={styles.wrapper}>
-        <Flex justify={"space-between"} align={"center"} className={styles.activityHeader}>
-          <div style={{ fontSize: "16px" }}>Recent activity</div>
-          <Select
-            defaultValue="today"
-            variant={"borderless"}
-            style={{ maxWidth: 120 }}
-            onChange={(value) => {
-              setSelectedRange(value);
-            }}
-            options={[
-              { value: "today", label: "Today" },
-              { value: "yesterday", label: "Yesterday" },
-              { value: "week", label: "This week" },
-            ]}
-          />
-        </Flex>
-        <Divider style={{ margin: "0px" }} />
-        <Flex vertical={true} justify={"start"} align={"center"} style={{ overflow: "hidden" }}>
-          {filterItems().map((item, index) => (
-            <ActivityItem key={index} {...item} />
-          ))}
-        </Flex>
+    <Flex vertical={true} className={styles.wrapper}>
+      <Flex justify={"space-between"} align={"center"} className={styles.activityHeader}>
+        <div style={{ fontSize: "16px" }}>Recent activity</div>
+        <Select
+          defaultValue="today"
+          variant={"borderless"}
+          style={{ maxWidth: 120 }}
+          onChange={(value) => {
+            setSelectedRange(value);
+          }}
+          options={[
+            { value: "today", label: "Today" },
+            { value: "yesterday", label: "Yesterday" },
+            { value: "week", label: "This week" },
+          ]}
+        />
       </Flex>
+      <Divider style={{ margin: "0px" }} />
+      <Flex vertical={true} justify={"start"} align={"center"} style={{ overflow: "hidden" }}>
+        {filterItems().map((item, index) => (
+          <ActivityItem key={index} {...item} />
+        ))}
+      </Flex>
+    </Flex>
 
-    </Col>
   );
 };
 

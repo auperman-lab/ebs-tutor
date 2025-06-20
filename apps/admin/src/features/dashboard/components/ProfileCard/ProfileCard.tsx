@@ -1,4 +1,4 @@
-import { Avatar, Button, Col, Flex, Progress } from "antd";
+import { Avatar, Button, Flex, Progress } from "antd";
 import { useStyles } from "./ProfileCardStyles";
 import { useNavigate } from "react-router-dom";
 import { routes } from "@const";
@@ -12,7 +12,6 @@ export const ProfileCard = () => {
   const navigate = useNavigate();
 
   return (
-    <Col span={24}>
       <Flex align={"center"} justify={"space-between"} className={styles.wrapper}>
 
         <Flex gap={"large"} justify={"start"} align={"center"} className={styles.avatarWrapper}>
@@ -58,6 +57,5 @@ export const ProfileCard = () => {
         </Flex>
 
       </Flex>
-    </Col>
   );
 };
