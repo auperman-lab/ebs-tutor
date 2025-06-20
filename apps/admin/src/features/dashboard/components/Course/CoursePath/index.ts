@@ -1,0 +1,1 @@
+export { CoursePath } from "./CoursePath";

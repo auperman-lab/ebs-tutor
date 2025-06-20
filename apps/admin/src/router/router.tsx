@@ -1,29 +1,31 @@
-import { useRoutes } from 'react-router-dom';
+import { useRoutes } from "react-router-dom";
 
-import { routes } from '@const';
-import { LoginPage, RegistrationPage } from '../features/auth';
-import {  DashboardLayout, AuthLayout } from '../layout';
-import { MainPage, SettingsPage } from "../features/dashboard";
-import { NotFoundPage } from '../features/NotFound';
+import { routes } from "@const";
+import { LoginPage, RegistrationPage } from "../features/auth";
+import { DashboardLayout, AuthLayout } from "../layout";
+import { CoursePage, MainPage, SettingsPage } from "../features/dashboard";
+import { NotFoundPage } from "../features/NotFound";
 import { AuthProvider } from "@context";
 
 export const Router = () => {
   return useRoutes([
     {
       path: routes.main,
-      element: (
-        <DashboardLayout />
-      ),
+      element: <DashboardLayout />,
       children: [
         {
           index: true,
-          element: <MainPage />
+          element: <MainPage />,
         },
         {
           path: routes.settings,
-          element: <SettingsPage />
+          element: <SettingsPage />,
         },
-      ]
+        {
+          path: routes.course,
+          element: <CoursePage />,
+        },
+      ],
     },
     {
       path: routes.main,
@@ -33,7 +35,6 @@ export const Router = () => {
           <AuthLayout />
         </AuthProvider>
       ),
-
 
       children: [
         {
@@ -45,10 +46,9 @@ export const Router = () => {
           element: <LoginPage />,
         },
         {
-          path: '*',
+          path: "*",
           element: <NotFoundPage />,
         },
-
       ],
     },
   ]);
