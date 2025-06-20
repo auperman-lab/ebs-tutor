@@ -1,6 +1,6 @@
 import { Layout } from "antd";
 import { Flex } from "antd";
-import { CoursePath, CourseDescription } from "../../components/Course";
+import { CoursePath, CourseDescription } from "../../components";
 
 export const CoursePage = () => {
   const { Content } = Layout;
