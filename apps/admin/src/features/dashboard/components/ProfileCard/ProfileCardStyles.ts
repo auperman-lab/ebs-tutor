@@ -4,13 +4,15 @@ export const useStyles = createStyles(({ token, css, responsive }) => ({
   wrapper: css`
     //background-color: #f0f0f0f0;
     background-color: #111033;
-    height: 160px;
+    height: fit-content;
     width: 100%;
     padding: 40px;
     color: white;
 
-    ${responsive.lg} {
-      padding: 30px;
+    ${responsive.xl} {
+      padding: 20px;
+      flex-direction: column;
+      gap: 20px;
     }
   `,
 
@@ -23,6 +25,9 @@ export const useStyles = createStyles(({ token, css, responsive }) => ({
 
   progressWrapper: css`
     height: 100%;
+    ${responsive.xl}{
+      flex-direction: column;
+    }
   `,
 
   progressText: css`

@@ -3,7 +3,7 @@ import { createStyles } from "antd-style";
 export const useStyles = createStyles(({ token, css, responsive }, color: string) => ({
   wrapper: css`
     background-color: white;
-    height: 420px;
+    height: 480px;
     width: 100%;
   `,
 
