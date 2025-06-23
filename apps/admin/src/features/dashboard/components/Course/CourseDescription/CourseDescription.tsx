@@ -1,6 +1,6 @@
 import { useStyles } from "./CourseDescriptionStyles";
 import { Typography, Image, Flex, Divider, Button, Rate } from "antd";
-import { Globe, DotsTree } from "@assets/dashboard";
+import { DotsThree } from "@assets/dashboard";
 
 const { Text, Title } = Typography;
 
@@ -96,7 +96,7 @@ export const CourseDescription = () => {
               Withdrew money
             </Button>
             <Button size="large">
-              <img src={DotsTree} />
+              <img src={DotsThree} />
             </Button>
           </Flex>
         </Flex>
