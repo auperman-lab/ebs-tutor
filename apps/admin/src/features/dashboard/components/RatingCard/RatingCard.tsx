@@ -38,7 +38,7 @@ export const RatingCard = () => {
       <Flex
         justify={"space-between"}
         align={"center"}
-        style={{ padding: "20px 16px 20px 16px" }}
+        style={{ padding: "16px 20px" }}
       >
         <div style={{ fontSize: "16px" }}>Overall Course Rating</div>
         <Select
