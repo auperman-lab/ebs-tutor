@@ -43,11 +43,15 @@ export const OverviewCard = () => {
     <Flex vertical={true} className={styles.wrapper}>
 
       <CardsHeader
-        title={"Revenue"}
+        title={"Course Overview"}
         options={[
           { value: "week", label: "This Week" },
           { value: "month", label: "This Month" },
           { value: "year", label: "This Year" },
+        ]}
+        legend={[
+          {color: "#FF6636", name:"Comments"},
+          {color: "#564FFD", name:"Views"}
         ]}
       />
 
@@ -56,10 +60,10 @@ export const OverviewCard = () => {
           data={overviewData}
           primaryY={"up"}
           primaryColor={"#564FFD"}
-          primaryLabel={"Rating"}
+          primaryLabel={"Views"}
           secondaryY={"uv"}
           secondaryColor={"#FF6636"}
-          secondaryLabel={"Rating"}
+          secondaryLabel={"Comments"}
           ticksX={["Aug 01", "Aug 10", "Aug 20", "Aug 31"]}
           ticksY={["0", "10000", "50000", "100000", "200000"]}
           showAxis={true}
