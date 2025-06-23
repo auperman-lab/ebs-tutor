@@ -1,15 +1,16 @@
-import { createStyles } from 'antd-style';
+import { createStyles } from "antd-style";
 
 export const useStyles = createStyles(({ token }) => ({
   mainPart: {
-    width: '80%',
+    width: "80%",
     padding: 40,
-    backgroundColor: 'white',
+    backgroundColor: token.colorWhite,
   },
   heading: {
-    lineHeight: 1,
-  },
-  saveButton: {
-    // marginTop: 94,
+    fontSize: token.fontSizeHeading3,
+    fontWeight: token.fontWeightStrong,
+    color: token.colorTextHeading,
+    lineHeight: token.lineHeightHeading1,
+
   },
 }));

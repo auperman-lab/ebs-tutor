@@ -1,18 +1,18 @@
 /// <reference types='vitest' />
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
 
 export default defineConfig(() => ({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/apps/admin',
+  cacheDir: "../../node_modules/.vite/apps/admin",
   server: {
     port: 4200,
-    host: 'localhost',
+    host: "localhost",
   },
   preview: {
     port: 4300,
-    host: 'localhost',
+    host: "localhost",
   },
   plugins: [react()],
   resolve: {
@@ -25,6 +25,7 @@ export default defineConfig(() => ({
       '@hooks': path.resolve(__dirname, 'src/hooks'),
       '@utils': path.resolve(__dirname, 'src/utils'),
       '@components' : path.resolve(__dirname, 'src/components'),
+
     },
   },
   // Uncomment this if you are using workers.
@@ -32,7 +33,7 @@ export default defineConfig(() => ({
   //  plugins: [ nxViteTsPaths() ],
   // },
   build: {
-    outDir: './dist',
+    outDir: "./dist",
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {

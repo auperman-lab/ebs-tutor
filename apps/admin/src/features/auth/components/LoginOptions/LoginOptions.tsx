@@ -1,7 +1,7 @@
-import { Button, Divider, Flex } from 'antd';
-import { google_logo, facebook_logo, apple_logo } from '@assets';
-import { LoginOptionsProps } from './LoginOptionsTypes';
-import { useStyles } from './LoginOptionStyles';
+import { Button, Divider, Flex } from "antd";
+import { google_logo, facebook_logo, apple_logo } from "@assets";
+import { LoginOptionsProps } from "./LoginOptionsTypes";
+import { useStyles } from "./LoginOptionStyles";
 
 export const LoginOptions = ({ dividerText }: LoginOptionsProps) => {
   const { styles } = useStyles();
