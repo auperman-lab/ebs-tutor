@@ -1,9 +1,10 @@
-import { Divider, Flex, Select } from "antd";
+import { Flex } from "antd";
 // @ts-ignore
 import { useStyles } from "./ActivityCardStyles";
 
 import { useState } from "react";
 import { ActivityItem } from "./ActivityItem";
+import { CardsHeader } from "@components";
 
 
 const items: ActivityItemProps[] = [
@@ -55,23 +56,19 @@ export const ActivityCard = () => {
   const { styles } = useStyles();
   return (
     <Flex vertical={true} className={styles.wrapper}>
-      <Flex justify={"space-between"} align={"center"} className={styles.activityHeader}>
-        <div style={{ fontSize: "16px" }}>Recent activity</div>
-        <Select
-          defaultValue="today"
-          variant={"borderless"}
-          style={{ maxWidth: 120 }}
-          onChange={(value) => {
-            setSelectedRange(value);
-          }}
-          options={[
-            { value: "today", label: "Today" },
-            { value: "yesterday", label: "Yesterday" },
-            { value: "week", label: "This week" },
-          ]}
-        />
-      </Flex>
-      <Divider style={{ margin: "0px" }} />
+
+      <CardsHeader
+        title={"Recent activity"}
+        options={[
+          {value: "today", label: "Today"},
+          {value: "yesterday", label: "Yesterday"},
+          {value: "week", label: "This Week"}
+        ]}
+        onChange={(value: string) => {
+          setSelectedRange(value);
+        }}
+      />
+
       <Flex vertical={true} justify={"start"} align={"center"} style={{ overflow: "hidden" }}>
         {filterItems().map((item, index) => (
           <ActivityItem key={index} {...item} />

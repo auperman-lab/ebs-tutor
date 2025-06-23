@@ -1,6 +1,7 @@
-import { Divider, Flex, Select } from "antd";
+import { Flex } from "antd";
 import { useStyles } from "./ProfileViewsCardStyles";
 import { Bar, BarChart, ResponsiveContainer } from "recharts";
+import { CardsHeader } from "@components";
 
 const data = [
   {
@@ -53,24 +54,14 @@ export const ProfileViewsCard = () => {
 
   return (
     <Flex vertical={true} className={styles.wrapper}>
-      <Flex
-        justify={"space-between"}
-        align={"center"}
-        style={{ padding: "16px 20px" }}
-      >
-        <div style={{ fontSize: "16px" }}>Profile Views</div>
-        <Select
-          defaultValue="week"
-          variant={"borderless"}
-          style={{ maxWidth: 120 }}
-          options={[
-            { value: "week", label: "Week" },
-            { value: "month", label: "Month" },
-            { value: "year", label: "Year" },
-          ]}
-        />
-      </Flex>
-      <Divider style={{ margin: "0px" }} />
+      <CardsHeader
+        title={"Profile Views"}
+        options={[
+          { value: "week", label: "This Week" },
+          { value: "month", label: "This Month", },
+          { value: "year", label: "This Year" }
+        ]}
+      />
       <Flex vertical={true} align={"center"} justify={"space-between"} style={{ padding: "8px", height: "100%" }}>
 
         <ResponsiveContainer className={styles.barchartContainer}>

@@ -1,8 +1,8 @@
-import { Divider, Flex, Rate, Select } from "antd";
+import { Divider, Flex, Rate } from "antd";
 import { useStyles } from "./RatingCardStyles";
 import { useState } from "react";
 import { RateItem } from "./RateItem";
-import { LineChart } from "@components";
+import { CardsHeader, LineChart } from "@components";
 
 const items: RateItemProps[] = [
   {
@@ -57,7 +57,7 @@ const ratingData = [
   { name: "Aug 25", "rate": 3 },
   { name: "Aug 26", "rate": 4 },
   { name: "Aug 27", "rate": 5 },
-  { name: "Aug 28", "rate": 3},
+  { name: "Aug 28", "rate": 3 },
   { name: "Aug 29", "rate": 3 },
   { name: "Aug 30", "rate": 4 },
   { name: "Aug 31", "rate": 5 },
@@ -72,23 +72,14 @@ export const RatingCard = () => {
   return (
     <Flex vertical={true} className={styles.wrapper}>
 
-      <Flex
-        justify={"space-between"}
-        align={"center"}
-        style={{ padding: "16px 20px" }}
-      >
-        <div style={{ fontSize: "16px" }}>Overall Course Rating</div>
-        <Select
-          defaultValue="week"
-          variant={"borderless"}
-          style={{ maxWidth: 120 }}
-          options={[
-            { value: "week", label: "Week" },
-            { value: "month", label: "Month" },
-            { value: "year", label: "Year" },
-          ]}
-        />
-      </Flex>
+      <CardsHeader
+        title={"Overall Course Ratings"}
+        options={[
+          { value: "week", label: "This Week" },
+          { value: "month", label: "This Month", },
+          { value: "year", label: "This Year" }
+        ]}
+      />
 
       <Divider style={{ margin: "0px" }} />
 
@@ -108,8 +99,9 @@ export const RatingCard = () => {
           <Rate allowHalf defaultValue={rating} />
           <p>Overall Rating</p>
         </Flex>
-        <div  className={styles.ratingGraph} >
-          <LineChart data={ratingData} primaryY={"rate"} primaryColor={"#FD8E1F"} primaryLabel={"Rating"} showAxis={false} />
+        <div className={styles.ratingGraph}>
+          <LineChart data={ratingData} primaryY={"rate"} primaryColor={"#FD8E1F"} primaryLabel={"Rating"}
+                     showAxis={false} />
         </div>
 
       </Flex>
