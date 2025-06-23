@@ -3,13 +3,14 @@ export const theme = {
     colorPrimary: "#ff6636",
     colorInfo: "#363b47",
     colorPrimaryBgHover: "#ff6636",
-    colorBgBase: "#ffffff",
+    colorBgBase: "#f5f7fa",
     colorSuccess: "#23bd33",
     colorError: "#e34444",
     colorWarning: "#fd8e1f",
     borderRadius: 0,
     wireframe: false,
     colorPrimaryBg: "#ff6636",
+    fontSizeXL: 18,
   },
   components: {
     Button: {
@@ -23,6 +24,8 @@ export const theme = {
     },
     Divider: {
       colorSplit: "rgb(233,234,240)",
+      marginLG: 16,
+
     },
     Layout: {
       bodyBg: "rgb(245,247,250)",
@@ -59,6 +62,15 @@ export const theme = {
     Table: {
       footerBg: "rgb(245,247,250)",
       fontWeightStrong: 500,
+    },
+    Card: {
+      paddingLG: 16,
+    },
+    Typography: {
+      titleMarginBottom: "0",
+      titleMarginTop: "0",
+      marginXS: 0,
+      marginXXS: 0,
     },
   },
 };

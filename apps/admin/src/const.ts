@@ -6,6 +6,7 @@ export const routes = {
   register: "/register",
   settings: "/settings",
   courses: "/courses",
+  myCourses: "/my-courses",
 };
 
 export const apiEndpoints = {
