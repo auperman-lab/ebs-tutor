@@ -2,7 +2,7 @@ import { createStyles } from "antd-style";
 
 export const useStyles = createStyles(({ token }) => ({
   mainPart: {
-    width: "80%",
+    width: "100%",
     backgroundColor: token.colorWhite,
     padding: token.paddingLG,
   },
