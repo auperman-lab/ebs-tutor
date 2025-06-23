@@ -7,6 +7,7 @@ export type LineChartProps = {
   secondaryLabel?: string;  // label of the second y value row (optional)
   secondaryColor?: string;  // color of the second y value row (optional)
   referenceX?: string; // a fixed tooltip
-  ticksX?: string[]
+  ticksX?: string[] // scale on x
+  ticksY?: string[] // scale on y
   showAxis: boolean;
 };

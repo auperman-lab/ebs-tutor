@@ -13,6 +13,7 @@ export const LineChart = ({
                             secondaryColor,
                             referenceX,
                             ticksX,
+                            ticksY,
                             showAxis,
                           }: LineChartProps) => {
   const { styles } = useStyles();
@@ -84,16 +85,17 @@ export const LineChart = ({
             dataKey="name"
             axisLine={false}
             tickLine={false}
-            padding={{ left: 10 }}
+            padding={{ left: 5 }}
             ticks={ticksX}
           />
         )}
 
         {showAxis && (
           <YAxis
+            width={45}
             axisLine={false}
             tickLine={false}
-            ticks={[1000, 10000, 50000, 150000]}
+            ticks={ticksY}
             tickFormatter={(value) =>
               value >= 1000000
                 ? `${value / 1000000}m`
@@ -101,6 +103,7 @@ export const LineChart = ({
                   ? `${value / 1000}k`
                   : value
             }
+
           />
         )}
 
@@ -121,6 +124,7 @@ export const LineChart = ({
           fillOpacity={1}
           fill={`url(#${gradientPrimaryId})`}
           strokeWidth={3}
+
         />
 
         {secondaryY && secondaryColor && (

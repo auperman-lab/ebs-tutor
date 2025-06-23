@@ -3,6 +3,7 @@ import { ActivityCard, ProfileCard, ProfileViewsCard, StatCard } from "../../com
 //@ts-ignore
 import { ChartBar, ChatCircleDots, CreditCard, Gear } from "@phosphor-icons/react";
 import { RatingCard } from "../../components/RatingCard";
+import { RevenueCard } from "../../components/RevenueCard";
 
 
 
@@ -35,8 +36,7 @@ export const MainPage = () => {
           </Col>
 
           <Col span={10}>
-            <div style={{ height: "420px", backgroundColor: "#000000", color: "white", width: "100%" }}>revenue</div>
-
+            <RevenueCard/>
           </Col>
           <Col span={6}>
             <ProfileViewsCard/>
