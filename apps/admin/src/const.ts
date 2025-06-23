@@ -7,6 +7,7 @@ export const routes = {
   settings: "/settings",
   courses: "/courses",
   course: "/course",
+  myCourses: "/my-courses",
 };
 
 export const apiEndpoints = {

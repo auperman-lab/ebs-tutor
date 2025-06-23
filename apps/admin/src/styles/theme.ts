@@ -10,6 +10,7 @@ export const theme = {
     borderRadius: 0,
     wireframe: false,
     colorPrimaryBg: "#ff6636",
+    fontSizeXL: 18,
   },
   components: {
     Button: {
@@ -60,6 +61,9 @@ export const theme = {
     Table: {
       footerBg: "rgb(245,247,250)",
       fontWeightStrong: 500,
+    },
+    Card: {
+      paddingLG: 16,
     },
     Typography: {
       titleMarginBottom: "0",
