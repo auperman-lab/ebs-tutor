@@ -3,7 +3,8 @@ import { createStyles } from "antd-style";
 export const useStyles = createStyles(({ css, token }) => ({
   wrapper: css`
     background-color: #fff;
-    height: 420px;
+    min-height: 420px;
+    height: 100%;
     width: 100%;
   `,
   activityHeader:css`
