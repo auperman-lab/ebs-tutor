@@ -12,15 +12,16 @@ export const useStyles = createStyles(({ css }) => ({
     max-width: 40%;
     width: 100%;
     gap: 5px;
-    aspect-ratio: 1;
+    height: 100%;
     background-color: #FFF2E5;
   `,
 
   ratingGraph: css`
-    max-width: 60%;
-    width: 100%;
+    width: 60% ;
     height: 100%;
-    background-color: #FFF2E5
+    aspect-ratio: 2/1;
+    text-align: center;
+
   `
 
 }));

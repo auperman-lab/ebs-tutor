@@ -2,6 +2,7 @@ import { Divider, Flex, Rate, Select } from "antd";
 import { useStyles } from "./RatingCardStyles";
 import { useState } from "react";
 import { RateItem } from "./RateItem";
+import { LineChart } from "@components";
 
 const items: RateItemProps[] = [
   {
@@ -26,6 +27,42 @@ const items: RateItemProps[] = [
   },
 
 ];
+
+
+const ratingData = [
+  { name: "Aug 01", "rate": 5 },
+  { name: "Aug 02", "rate": 4 },
+  { name: "Aug 03", "rate": 4 },
+  { name: "Aug 04", "rate": 5 },
+  { name: "Aug 05", "rate": 4 },
+  { name: "Aug 06", "rate": 1 },
+  { name: "Aug 07", "rate": 3 },
+  { name: "Aug 08", "rate": 2 },
+  { name: "Aug 09", "rate": 2 },
+  { name: "Aug 10", "rate": 4 },
+  { name: "Aug 11", "rate": 1 },
+  { name: "Aug 12", "rate": 3 },
+  { name: "Aug 13", "rate": 4 },
+  { name: "Aug 14", "rate": 5 },
+  { name: "Aug 15", "rate": 5 },
+  { name: "Aug 16", "rate": 5 },
+  { name: "Aug 17", "rate": 5 },
+  { name: "Aug 18", "rate": 5 },
+  { name: "Aug 19", "rate": 5 },
+  { name: "Aug 20", "rate": 5 },
+  { name: "Aug 21", "rate": 5 },
+  { name: "Aug 22", "rate": 5 },
+  { name: "Aug 23", "rate": 5 },
+  { name: "Aug 24", "rate": 4 },
+  { name: "Aug 25", "rate": 3 },
+  { name: "Aug 26", "rate": 4 },
+  { name: "Aug 27", "rate": 5 },
+  { name: "Aug 28", "rate": 3},
+  { name: "Aug 29", "rate": 3 },
+  { name: "Aug 30", "rate": 4 },
+  { name: "Aug 31", "rate": 5 },
+];
+
 
 export const RatingCard = () => {
   const { styles } = useStyles();
@@ -71,8 +108,10 @@ export const RatingCard = () => {
           <Rate allowHalf defaultValue={rating} />
           <p>Overall Rating</p>
         </Flex>
-        {/*todo: add graph*/}
-        <div className={styles.ratingGraph}> qw qw</div>
+        <div  className={styles.ratingGraph} >
+          <LineChart data={ratingData} primaryY={"rate"} primaryColor={"#FD8E1F"} primaryLabel={"Rating"} showAxis={false} />
+        </div>
+
       </Flex>
 
       <Divider style={{ margin: "0px" }} />
