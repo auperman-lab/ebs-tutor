@@ -3,7 +3,8 @@ import { useRoutes } from "react-router-dom";
 import { routes } from "@const";
 import { LoginPage, RegistrationPage } from "../features/auth";
 import { DashboardLayout, AuthLayout } from "../layout";
-import { CoursePage, MainPage, SettingsPage } from "../features/dashboard";
+
+import { MainPage, SettingsPage, MyCoursesPage, CoursePage } from "../features/dashboard";
 import { NotFoundPage } from "../features/NotFound";
 import { AuthProvider } from "@context";
 
@@ -24,6 +25,10 @@ export const Router = () => {
         {
           path: routes.course,
           element: <CoursePage />,
+        },
+        {
+          path: routes.myCourses,
+          element: <MyCoursesPage />,
         },
       ],
     },

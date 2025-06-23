@@ -5,7 +5,10 @@ import SociallinkedIn from "./SociallinkedIn.png";
 import SocialTwitter from "./SocialTwitter.png";
 import SocialWhatsapp from "./SocialWhatsapp.png";
 import SocialYouTube from "./SocialYouTube.png";
-import DotsTree from "./DotsThree.png";
+import Star from "./Star.png";
+import DotsThree from "./DotsThree.png";
+import User from "./User.png";
+
 
 export {
   Globe,
@@ -15,5 +18,7 @@ export {
   SocialWhatsapp,
   SocialYouTube,
   SociallinkedIn,
-  DotsTree,
+  Star,
+  DotsThree,
+  User,
 };
