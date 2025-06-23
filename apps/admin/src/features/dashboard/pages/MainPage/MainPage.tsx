@@ -4,6 +4,7 @@ import { ActivityCard, ProfileCard, ProfileViewsCard, StatCard } from "../../com
 import { ChartBar, ChatCircleDots, CreditCard, Gear } from "@phosphor-icons/react";
 import { RatingCard } from "../../components/RatingCard";
 import { RevenueCard } from "../../components/RevenueCard";
+import { OverviewCard } from "../../components/OverviewCard";
 
 
 
@@ -46,7 +47,7 @@ export const MainPage = () => {
             <RatingCard />
           </Col>
           <Col span={14}>
-            <div style={{ height: "480px", backgroundColor: "#000000", color: "white", width: "100%" }}>overview</div>
+            <OverviewCard/>
           </Col>
         </Row>
       </Flex>

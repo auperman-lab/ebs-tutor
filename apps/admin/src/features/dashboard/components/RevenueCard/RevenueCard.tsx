@@ -56,7 +56,8 @@ export const RevenueCard = () => {
           data={revenueData}
           primaryY={"up"}
           primaryColor={"#564FFD"}
-          primaryLabel={"Rating"}
+          primaryLabel={"Revenue"}
+          referenceX={"Aug 30"}
           ticksX={["Aug 01", "Aug 10", "Aug 20", "Aug 31"]}
           ticksY={["0", "10000", "50000", "100000", "200000"]}
           showAxis={true}
