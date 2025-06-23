@@ -5,7 +5,6 @@ import { CardHeaderProps } from "./CardsHeaderTypes";
 export const CardsHeader = ({title, options, legend, onChange}: CardHeaderProps) => {
 
 
-  console.log(legend);
   return (
     <Flex vertical={true} justify="space-between" >
       <Flex
