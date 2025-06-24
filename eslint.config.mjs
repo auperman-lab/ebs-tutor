@@ -40,7 +40,32 @@ export default [
       '**/*.cjs',
       '**/*.mjs',
     ],
-    // Override or add rules here
-    rules: {},
+    plugins: {
+      import: require('eslint-plugin-import'),
+      '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
+      react: require('eslint-plugin-react'),
+    },
+    rules: {
+      'import/order': [
+        'error',
+        {
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            ['parent', 'sibling', 'index'],
+            'object',
+            'type',
+          ],
+          'newlines-between': 'always',
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
+        },
+      ],
+      '@typescript-eslint/no-explicit-any': 'error',
+      'react/no-inline-styles': 'error',
+    },
   },
 ];
