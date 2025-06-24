@@ -5,9 +5,23 @@ export const useStyles = createStyles(({ token, responsive }) => ({
     position: "sticky",
     top: 0,
     zIndex: 1,
-    display: "flex",
     width: "100%",
-    alignItems: "center",
-    color: "black",
+    paddingLeft: "10%",
+    paddingRight: "10%",
+    height: 100,
+  },
+
+  headerWrapper: {
+    width: "100%",
+    height: "100%",
+  },
+
+  button: {
+    backgroundColor: token.colorBgBase,
+    border: "none",
+  },
+  avatar: {
+    minWidth: 48,
+    minHeight: 48,
   },
 }));

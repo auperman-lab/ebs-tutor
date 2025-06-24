@@ -8,6 +8,7 @@ import SocialYouTube from "./SocialYouTube.png";
 import Star from "./Star.png";
 import DotsThree from "./DotsThree.png";
 import User from "./User.png";
+import Bell from "./Bell.png";
 
 export {
   Globe,
@@ -20,4 +21,5 @@ export {
   Star,
   DotsThree,
   User,
+  Bell,
 };
