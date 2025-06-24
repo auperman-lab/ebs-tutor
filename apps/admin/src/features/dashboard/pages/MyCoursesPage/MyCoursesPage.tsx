@@ -1,9 +1,9 @@
-import { Flex, Layout } from "antd";
+import { Flex, Layout } from 'antd';
 import {
   MyCoursesCards,
   MyCoursesFiltration,
-} from "../../components/MyCourses";
-import { useStyles } from "./MyCoursesPageStyle";
+} from '../../components/MyCourses';
+import { useStyles } from './styles';
 
 export const MyCoursesPage = () => {
   const { styles } = useStyles();

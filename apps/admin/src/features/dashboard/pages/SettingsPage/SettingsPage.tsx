@@ -1,12 +1,12 @@
-import { Layout } from "antd";
-import { Flex } from "antd";
+import { Layout } from 'antd';
+import { Flex } from 'antd';
 import {
   AccountSettings,
   ChangePassword,
   NotificationsSettings,
-} from "../../components";
-import { SocialProfile } from "../../components/";
-import { useStyles } from "./SettingPageStyles";
+} from '../../components';
+import { SocialProfile } from '../../components/';
+import { useStyles } from './styles';
 
 export const SettingsPage = () => {
   const { styles } = useStyles();
@@ -27,7 +27,6 @@ export const SettingsPage = () => {
           <NotificationsSettings />
           <ChangePassword />
         </Flex>
-
       </Flex>
     </Content>
   );

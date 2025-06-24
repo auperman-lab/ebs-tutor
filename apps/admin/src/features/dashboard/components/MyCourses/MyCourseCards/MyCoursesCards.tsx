@@ -1,5 +1,5 @@
 import { Card, Col, Divider, Dropdown, Flex, MenuProps, Row, Tag } from 'antd';
-import { useStyles } from './MyCoursesCardsStyles';
+import { useStyles } from './styles';
 import { Star, DotsThree, User } from '@assets/dashboard';
 import { Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';

@@ -1,6 +1,6 @@
-import { Col, Flex, Form, Input, Row, Select } from "antd";
-import { useStyles } from "./MyCoursesFiltrationStyles";
-import { SearchOutlined } from "@ant-design/icons";
+import { Col, Flex, Form, Input, Row, Select } from 'antd';
+import { useStyles } from './styles';
+import { SearchOutlined } from '@ant-design/icons';
 
 const { Option } = Select;
 

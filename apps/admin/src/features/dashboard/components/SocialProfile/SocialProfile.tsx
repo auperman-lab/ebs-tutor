@@ -1,5 +1,5 @@
-import { Button, Col, Flex, Form, Input, Row } from "antd";
-import { useStyles } from "./SocialProfileStyles";
+import { Button, Col, Flex, Form, Input, Row } from 'antd';
+import { useStyles } from './styles';
 
 import {
   Globe,
@@ -9,7 +9,7 @@ import {
   SocialWhatsapp,
   SocialYouTube,
   SociallinkedIn,
-} from "@assets/dashboard";
+} from '@assets/dashboard';
 
 export const SocialProfile = () => {
   const { styles } = useStyles();

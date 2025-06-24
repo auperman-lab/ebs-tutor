@@ -1,6 +1,6 @@
-import { useStyles } from "./CourseDescriptionStyles";
-import { Typography, Image, Flex, Divider, Button, Rate } from "antd";
-import { DotsThree } from "@assets/dashboard";
+import { useStyles } from './styles';
+import { Typography, Image, Flex, Divider, Button, Rate } from 'antd';
+import { DotsThree } from '@assets/dashboard';
 
 const { Text, Title } = Typography;
 
@@ -9,21 +9,21 @@ export const CourseDescription = () => {
 
   const course = {
     id: 1,
-    uploaded_at: "Uploaded: Jan 21, 2020",
-    last_updated: "Last Updated: Sep 11, 2021",
-    title: "2021 Complete Python Bootcamp From Zero to Hero in Python",
+    uploaded_at: 'Uploaded: Jan 21, 2020',
+    last_updated: 'Last Updated: Sep 11, 2021',
+    title: '2021 Complete Python Bootcamp From Zero to Hero in Python',
     description:
-      "3 in 1 Course: Learn to design websites with Figma, build with Webflow, and make a living freelancing.",
+      '3 in 1 Course: Learn to design websites with Figma, build with Webflow, and make a living freelancing.',
     authors: [
       {
         id: 1,
-        full_name: "Kevin Gilbert",
-        avatar: "https://media.2x2tv.ru/content/images/2021/04/spor.jpg",
+        full_name: 'Kevin Gilbert',
+        avatar: 'https://media.2x2tv.ru/content/images/2021/04/spor.jpg',
       },
       {
         id: 2,
-        full_name: "Kristin Watson",
-        avatar: "https://media.2x2tv.ru/content/images/2021/04/spor.jpg",
+        full_name: 'Kristin Watson',
+        avatar: 'https://media.2x2tv.ru/content/images/2021/04/spor.jpg',
       },
     ],
     rating: 4.8,
@@ -63,7 +63,7 @@ export const CourseDescription = () => {
             <Flex vertical gap={4}>
               <Text type="secondary">Created by:</Text>
               <Text className={styles.authors}>
-                {course.authors.map((name) => name.full_name).join(" • ")}
+                {course.authors.map((name) => name.full_name).join(' • ')}
               </Text>
             </Flex>
           </Flex>

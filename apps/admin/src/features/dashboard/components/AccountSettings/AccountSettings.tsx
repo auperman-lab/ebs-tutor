@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 import {
   Flex,
@@ -9,25 +9,25 @@ import {
   Button,
   Avatar,
   message,
-} from "antd";
-import { UploadOutlined } from "@ant-design/icons";
-import { useStyles } from "./AccountSettingsStyles";
+} from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import { useStyles } from './styles';
 
 export const AccountSettings = () => {
   const { styles } = useStyles();
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
-  const options = [{ value: "+880", label: "+880" }];
+  const options = [{ value: '+880', label: '+880' }];
 
   const beforeUpload = (file: File) => {
-    const isImage = file.type.startsWith("image/");
+    const isImage = file.type.startsWith('image/');
     const isLt1M = file.size / 1024 / 1024 < 1;
 
     if (!isImage) {
-      message.error("You can only upload image files!");
+      message.error('You can only upload image files!');
     }
     if (!isLt1M) {
-      message.error("Image must be smaller than 1MB!");
+      message.error('Image must be smaller than 1MB!');
     }
 
     return isImage && isLt1M;

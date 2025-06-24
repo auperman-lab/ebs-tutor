@@ -1,5 +1,5 @@
-import { Layout } from "antd";
-import { useStyles } from "./DashboardHeaderStyles";
+import { Layout } from 'antd';
+import { useStyles } from './styles';
 
 export const DashboardHeader = () => {
   const { Header } = Layout;

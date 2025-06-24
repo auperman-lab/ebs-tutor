@@ -10,7 +10,7 @@ import {
   ReferenceLine,
 } from 'recharts';
 import { CustomTooltip } from './CustomTooltip';
-import { useStyles } from './LineChartStyles';
+import { useStyles } from './styles';
 import type { LineChartProps } from './LineChartTypes';
 
 export const LineChart = ({

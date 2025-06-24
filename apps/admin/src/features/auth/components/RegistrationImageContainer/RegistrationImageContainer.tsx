@@ -1,6 +1,6 @@
 import saly from '@assets/auth/Saly-1.png';
 import { Flex } from 'antd';
-import { useStyles } from './RegistrationImageContainerStyles';
+import { useStyles } from './styles';
 
 export const RegistrationImageContainer = () => {
   const { styles } = useStyles();

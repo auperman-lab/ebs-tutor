@@ -1,5 +1,5 @@
-import { useStyles } from "./LineChartStyles";
-import type { CustomTooltipProps } from "./LineChartTypes";
+import { useStyles } from './styles';
+import type { CustomTooltipProps } from './LineChartTypes';
 
 export const CustomTooltip = ({
   active,
@@ -20,7 +20,7 @@ export const CustomTooltip = ({
             key={item.dataKey?.toString()}
             style={{ color: item.stroke, fontWeight: 500 }}
           >
-            {item.dataKey === primaryY ? primaryLabel : secondaryLabel}:{" "}
+            {item.dataKey === primaryY ? primaryLabel : secondaryLabel}:{' '}
             {(item.value as number).toLocaleString()}
           </div>
         ))}

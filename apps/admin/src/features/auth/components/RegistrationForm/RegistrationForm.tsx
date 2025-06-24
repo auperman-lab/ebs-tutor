@@ -1,11 +1,11 @@
-import type { FormProps } from "antd";
-import { Button, Checkbox, Form, Input, Flex, Typography } from "antd";
-import type { RegistrationFormProps } from "../../types";
-import { useMutation } from "@tanstack/react-query";
-import { api } from "@api";
-import { LoginOptions } from "../LoginOptions/LoginOptions";
-import { useStyles } from "./RegistrationFormStyles";
-import { regexPatterns } from "@const";
+import type { FormProps } from 'antd';
+import { Button, Checkbox, Form, Input, Flex, Typography } from 'antd';
+import type { RegistrationFormProps } from '../../types';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '@api';
+import { LoginOptions } from '../LoginOptions/LoginOptions';
+import { useStyles } from './styles';
+import { regexPatterns } from '@const';
 
 export const RegistrationForm = () => {
   const { styles } = useStyles();
@@ -16,15 +16,15 @@ export const RegistrationForm = () => {
     mutationFn: (data: RegistrationFormProps) => api.auth.register(data),
   });
 
-  const onFinish: FormProps<RegistrationFormProps>["onFinish"] = (values) => {
-    console.log("Success:", values);
+  const onFinish: FormProps<RegistrationFormProps>['onFinish'] = (values) => {
+    console.log('Success:', values);
     mutate(values);
   };
 
-  const onFinishFailed: FormProps<RegistrationFormProps>["onFinishFailed"] = (
+  const onFinishFailed: FormProps<RegistrationFormProps>['onFinishFailed'] = (
     errorInfo
   ) => {
-    console.log("Failed:", errorInfo);
+    console.log('Failed:', errorInfo);
   };
 
   return (
@@ -52,7 +52,7 @@ export const RegistrationForm = () => {
               label="First name"
               name="firstName"
               rules={[
-                { required: true, message: "Please input your username!" },
+                { required: true, message: 'Please input your username!' },
               ]}
             >
               <Input placeholder="First name" size="large" />
@@ -62,7 +62,7 @@ export const RegistrationForm = () => {
               label="Last name"
               name="lastName"
               rules={[
-                { required: true, message: "Please input your username!" },
+                { required: true, message: 'Please input your username!' },
               ]}
             >
               <Input placeholder="Last name" size="large" />
@@ -72,7 +72,7 @@ export const RegistrationForm = () => {
           <Form.Item<RegistrationFormProps>
             label="Email"
             name="email"
-            rules={[{ required: true, message: "Please input your username!" }]}
+            rules={[{ required: true, message: 'Please input your username!' }]}
           >
             <Input placeholder="Email adress" size="large" />
           </Form.Item>
@@ -81,11 +81,11 @@ export const RegistrationForm = () => {
             label="Password"
             name="password"
             rules={[
-              { required: true, message: "Please input your password!" },
+              { required: true, message: 'Please input your password!' },
               {
                 pattern: regexPatterns.password,
                 message:
-                  "Password must be 6+ characters with latin letters and numbers.",
+                  'Password must be 6+ characters with latin letters and numbers.',
               },
             ]}
           >
@@ -99,15 +99,15 @@ export const RegistrationForm = () => {
           <Form.Item<RegistrationFormProps>
             label="Confirm password"
             name="confirmPassword"
-            dependencies={["password"]}
+            dependencies={['password']}
             rules={[
-              { required: true, message: "Please confirm your password!" },
+              { required: true, message: 'Please confirm your password!' },
               ({ getFieldValue }) => ({
                 validator(_, value) {
-                  if (!value || getFieldValue("password") === value) {
+                  if (!value || getFieldValue('password') === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error("Passwords do not match!"));
+                  return Promise.reject(new Error('Passwords do not match!'));
                 },
               }),
             ]}
@@ -126,7 +126,7 @@ export const RegistrationForm = () => {
                       ? Promise.resolve()
                       : Promise.reject(
                           new Error(
-                            "You must agree to the terms and conditions"
+                            'You must agree to the terms and conditions'
                           )
                         ),
                 },
@@ -135,12 +135,12 @@ export const RegistrationForm = () => {
             >
               <Checkbox
                 style={{
-                  alignItems: "center",
-                  height: "32px",
-                  letterSpacing: "-1px",
+                  alignItems: 'center',
+                  height: '32px',
+                  letterSpacing: '-1px',
                 }}
               >
-                I Agree with all of your{" "}
+                I Agree with all of your{' '}
                 <Typography.Link
                   href="https://ant.design/components/typography#typography-demo-text"
                   target="_blank"
