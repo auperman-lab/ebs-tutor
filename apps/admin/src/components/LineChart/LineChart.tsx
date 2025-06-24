@@ -1,5 +1,5 @@
-import { useId } from "react";
-import { Flex } from "antd";
+import { useId } from 'react';
+import { Flex } from 'antd';
 import {
   XAxis,
   YAxis,
@@ -8,10 +8,10 @@ import {
   Area,
   ResponsiveContainer,
   ReferenceLine,
-} from "recharts";
-import { CustomTooltip } from "./CustomTooltip";
-import { useStyles } from "./LineChartStyles";
-import type { LineChartProps } from "./LineChartTypes";
+} from 'recharts';
+import { CustomTooltip } from './CustomTooltip';
+import { useStyles } from './LineChartStyles';
+import type { LineChartProps } from './LineChartTypes';
 
 export const LineChart = ({
   data,
@@ -68,7 +68,7 @@ export const LineChart = ({
               axisLine={false}
               tickLine={false}
               padding={{ left: 10 }}
-              ticks={["Aug 01", "Aug 11", "Aug 21", "Aug 31"]}
+              ticks={['Aug 01', 'Aug 11', 'Aug 21', 'Aug 31']}
             />
           )}
 
@@ -81,8 +81,8 @@ export const LineChart = ({
                 value >= 1000000
                   ? `${value / 1000000}m`
                   : value >= 1000
-                    ? `${value / 1000}k`
-                    : value
+                  ? `${value / 1000}k`
+                  : value
               }
             />
           )}

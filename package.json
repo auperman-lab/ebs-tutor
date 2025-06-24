@@ -2,7 +2,9 @@
   "name": "@./source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+     "lint": "eslint . --ext .ts,.tsx,.js,.jsx"
+  },
   "private": true,
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
