@@ -1,19 +1,17 @@
-export const api = "https://api-stage.escolalms.com/";
+export const api = 'https://api-stage.escolalms.com/';
 
 export const routes = {
-  main: "/",
-  login: "/login",
-  register: "/register",
-  settings: "/settings",
-  courses: "/courses",
-  course: "/course",
-  myCourses: "/my-courses",
+  main: '/',
+  login: '/login',
+  register: '/register',
+  settings: '/settings',
+  courses: '/courses',
 };
 
 export const apiEndpoints = {
-  changePassword: "/api/profile/password",
-  register: "/api/auth/register",
-  login: "/api/auth/login",
+  changePassword: '/api/profile/password',
+  register: '/api/auth/register',
+  login: '/api/auth/login',
 };
 
 export const regexPatterns = {
