@@ -23,7 +23,7 @@ export const LineChart = ({
   secondaryColor,
   referenceX,
   showAxis,
-}: LineChartProps) => {
+}: LineChartProps<null>) => {
   const { styles } = useStyles();
   const id = useId();
   const gradientPrimaryId = `colorPrimary-${id}`;

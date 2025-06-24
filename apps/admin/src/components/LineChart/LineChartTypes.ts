@@ -1,11 +1,11 @@
 import type {
   ValueType,
   NameType,
-} from "recharts/types/component/DefaultTooltipContent";
-import type { TooltipProps } from "recharts";
+} from 'recharts/types/component/DefaultTooltipContent';
+import type { TooltipProps } from 'recharts';
 
-export type LineChartProps = {
-  data: any[];
+export type LineChartProps<T> = {
+  data: T[];
   primaryY: string;
   primaryLabel: string;
   primaryColor: string;
