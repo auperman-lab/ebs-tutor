@@ -1,22 +1,70 @@
 export const theme = {
   token: {
-    colorPrimary: "#ff6636",
-    colorInfo: "#363b47",
-    colorPrimaryBgHover: "#ff6636",
-    colorBgBase: "#f5f7fa",
-    colorSuccess: "#23bd33",
+    colorBgBase: "#fff",
+    colorInfo: "#8C94A3",
     colorError: "#e34444",
-    colorWarning: "#fd8e1f",
+
     borderRadius: 0,
     wireframe: false,
     colorPrimaryBg: "#ff6636",
+
+    fontSizeXXL: 20,
     fontSizeXL: 18,
+    fontSizeLG: 16,
+    fontSize: 14,
+    fontSizeSM: 12,
+
+    fontSizeHeading1: 48,
+    fontSizeHeading2: 40,
+    fontSizeHeading3: 32,
+    fontSizeHeading4: 24,
+
+    colorPrimary9: "#33140B",
+    colorPrimary8: "#662916",
+    colorPrimary7: "#993D20",
+    colorPrimary6: "#CC522B",
+    colorPrimary: "#ff6636",
+    colorPrimary4: "#FF855E",
+    colorPrimary3: "#FFA386",
+    colorPrimary2: "#FFDDD1",
+    colorPrimary1: "#FFEEE8",
+
+    colorSecondary9: "#111033",
+    colorSecondary8: "#222065",
+    colorSecondary7: "#342F98",
+    colorSecondary6: "#453FCA",
+    colorSecondary: "#564FFD",
+    colorSecondary4: "#7872FD",
+    colorSecondary3: "#9A95FE",
+    colorSecondary2: "#CDCBFE",
+    colorSecondary1: "#EBEBFF",
+
+    colorSuccess9: "#07260A",
+    colorSuccess8: "#0E4C14",
+    colorSuccess7: "#15711F",
+    colorSuccess6: "#1C9729",
+    colorSuccess: "#23bd33",
+    colorSuccess4: "#4FCA5C",
+    colorSuccess3: "#7BD785",
+    colorSuccess2: "#C3E5C6",
+    colorSuccess1: "#E1F7E3",
+
+    colorWarning9: "#331D06",
+    colorWarning8: "#65390C",
+    colorWarning7: "#985613",
+    colorWarning6: "#CC7319",
+    colorWarning: "#fd8e1f",
+    colorWarning4: "#FDA44C",
+    colorWarning3: "#FEBB79",
+    colorWarning2: "#FED1A5",
+    colorWarning1: "#FFF2E5",
   },
   components: {
     Button: {
       defaultBg: "rgb(255,255,255)",
       defaultColor: "rgba(0,0,0,0.88)",
       defaultBorderColor: "rgb(233,234,240)",
+      primaryShadowColor: "rgb(233,234,240)",
       paddingBlock: 6,
       paddingInline: 16,
       marginXS: 0,
@@ -24,7 +72,7 @@ export const theme = {
     },
     Divider: {
       colorSplit: "rgb(233,234,240)",
-      marginLG: 0,
+      marginLG: 16,
     },
     Layout: {
       bodyBg: "rgb(245,247,250)",
@@ -61,6 +109,11 @@ export const theme = {
     Table: {
       footerBg: "rgb(245,247,250)",
       fontWeightStrong: 500,
+    },
+    Avatar: {
+      containerSize: 60,
+      containerSizeLG: 80,
+      containerSizeSM: 48,
     },
     Card: {
       paddingLG: 16,

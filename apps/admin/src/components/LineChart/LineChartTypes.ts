@@ -1,3 +1,9 @@
+import type {
+  ValueType,
+  NameType,
+} from "recharts/types/component/DefaultTooltipContent";
+import type { TooltipProps } from "recharts";
+
 export type LineChartProps = {
   data: any[];
   primaryY: string;
@@ -9,3 +15,10 @@ export type LineChartProps = {
   referenceX?: string;
   showAxis: boolean;
 };
+
+export interface CustomTooltipProps extends TooltipProps<ValueType, NameType> {
+  primaryY: string;
+  primaryLabel: string;
+  secondaryLabel?: string;
+  showAxis?: boolean;
+}

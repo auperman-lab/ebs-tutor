@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { Flex } from "antd";
 import {
   XAxis,
@@ -8,8 +9,8 @@ import {
   ResponsiveContainer,
   ReferenceLine,
 } from "recharts";
+import { CustomTooltip } from "./CustomTooltip";
 import { useStyles } from "./LineChartStyles";
-import { useId } from "react";
 import type { LineChartProps } from "./LineChartTypes";
 
 export const LineChart = ({
@@ -27,26 +28,6 @@ export const LineChart = ({
   const id = useId();
   const gradientPrimaryId = `colorPrimary-${id}`;
   const gradientSecondaryId = `colorSecondary-${id}`;
-
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className={styles.tooltip}>
-          {payload.map((item: any) => (
-            <div
-              key={item.dataKey}
-              style={{ color: item.stroke, fontWeight: 500 }}
-            >
-              {item.dataKey === primaryY ? primaryLabel : secondaryLabel}:{" "}
-              {item.value.toLocaleString()}
-            </div>
-          ))}
-          {showAxis && <div className={styles.label}>{label}</div>}
-        </div>
-      );
-    }
-    return null;
-  };
 
   return (
     <Flex
@@ -100,13 +81,22 @@ export const LineChart = ({
                 value >= 1000000
                   ? `${value / 1000000}m`
                   : value >= 1000
-                  ? `${value / 1000}k`
-                  : value
+                    ? `${value / 1000}k`
+                    : value
               }
             />
           )}
 
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip
+            content={
+              <CustomTooltip
+                primaryY={primaryY}
+                primaryLabel={primaryLabel}
+                secondaryLabel={secondaryLabel}
+                showAxis={showAxis}
+              />
+            }
+          />
 
           {referenceX && (
             <ReferenceLine
