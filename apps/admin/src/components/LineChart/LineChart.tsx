@@ -29,6 +29,12 @@ export const LineChart = ({
   const gradientPrimaryId = `colorPrimary-${id}`;
   const gradientSecondaryId = `colorSecondary-${id}`;
 
+  const formatYAxisTick = (value: number): string => {
+    if (value >= 1000000) return `${value / 1000000}m`;
+    if (value >= 1000) return `${value / 1000}k`;
+    return `${value}`;
+  };
+
   return (
     <Flex
       vertical
@@ -77,13 +83,7 @@ export const LineChart = ({
               axisLine={false}
               tickLine={false}
               ticks={[1000, 10000, 50000, 150000]}
-              tickFormatter={(value) =>
-                value >= 1000000
-                  ? `${value / 1000000}m`
-                  : value >= 1000
-                  ? `${value / 1000}k`
-                  : value
-              }
+              tickFormatter={formatYAxisTick}
             />
           )}
 
