@@ -1,9 +1,9 @@
 import { CardsHeader, LineChart } from "@components";
 import { Flex } from "antd";
 import { useStyles } from "./styles";
-import { useCustomToken } from "@hooks";
 import { useState } from "react";
 import { monthOverviewData, PeriodLabels, TimeRange, weekOverviewData, yearOverviewData } from "../../types";
+import { useTheme } from "antd-style";
 
 const options = Object.entries(PeriodLabels).map(([value, label]) => ({
   value,
@@ -12,7 +12,7 @@ const options = Object.entries(PeriodLabels).map(([value, label]) => ({
 
 export const RevenueCard = () => {
   const { styles } = useStyles();
-  const token = useCustomToken();
+  const palette = useTheme();
 
   const [selectedPeriod, setSelectedPeriod] = useState<TimeRange>(TimeRange.Month);
 
@@ -45,7 +45,7 @@ export const RevenueCard = () => {
       <div className={styles.chartContainer}>
         <LineChart
           data={getFilteredData()}
-          primaryColor={token.colorSecondary}
+          primaryColor={palette.colorSecondary}
           primaryLabel="Revenue"
           referenceX="Aug 30"
           showAxis={true}

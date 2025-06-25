@@ -3,8 +3,8 @@ import { useStyles } from "./styles";
 import { useState } from "react";
 import { RateItem } from "./RateItem";
 import { CardsHeader, LineChart } from "@components";
-import { useCustomToken } from "@hooks";
 import { weekRatingData, PeriodLabels, TimeRange, monthRatingData, yearRatingData } from "../../types";
+import { useTheme } from "antd-style";
 
 type RateItemProps = {
   percent: number;
@@ -18,7 +18,7 @@ const options = Object.entries(PeriodLabels).map(([value, label]) => ({
 
 export const RatingCard = () => {
   const { styles } = useStyles();
-  const token = useCustomToken();
+  const palette = useTheme();
 
   const [rating, setRating] = useState(4.6);
   const [selectedPeriod, setSelectedPeriod] = useState<TimeRange>(TimeRange.Month);
@@ -95,7 +95,7 @@ export const RatingCard = () => {
         <div className={styles.ratingGraph}>
           <LineChart
             data={getFilteredData()}
-            primaryColor={token.warning.warning500}
+            primaryColor={palette.warning.warning500}
             primaryLabel="Rating"
             showAxis={false}
           />

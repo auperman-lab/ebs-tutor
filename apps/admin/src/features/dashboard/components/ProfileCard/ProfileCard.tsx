@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { ArrowDown } from "@phosphor-icons/react";
 import { UserOutlined } from '@ant-design/icons';
 import { routes } from "@const";
-import { useCustomToken } from "@hooks";
 import { useStyles } from "./styles";
 import { useState } from "react";
+import { useTheme } from "antd-style";
 
 
 const opacityColor = "#FFFFFF0D"
 
 export const ProfileCard = () => {
   const { styles } = useStyles(opacityColor);
-  const token = useCustomToken()
+  const palette = useTheme();
   const navigate = useNavigate();
 
   const [email] = useState("email@email.com");
@@ -40,7 +40,7 @@ export const ProfileCard = () => {
             strokeLinecap="butt"
             percent={75}
             size={[500, 15]}
-            strokeColor={token.colorSuccess}
+            strokeColor={palette.colorSuccess}
             trailColor={opacityColor}
             format={(percent) => (
               <span className={styles.percentText}>{percent}% Completed</span>
