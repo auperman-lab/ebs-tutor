@@ -30,9 +30,7 @@ export const DashboardHeader = () => {
       >
         <Flex vertical>
           <Text type="secondary">Good Morning</Text>
-          <Title level={4} style={{ color: "#1D2026" }}>
-            {getPageTitle(location.pathname)}
-          </Title>
+          <Title level={4}>{getPageTitle(location.pathname)}</Title>
         </Flex>
         <Flex gap={16} align="center">
           <Input
@@ -44,7 +42,7 @@ export const DashboardHeader = () => {
 
           <Avatar
             className={styles.avatar}
-            src={"https://pbs.twimg.com/media/F9xhN65WQAATLoU.jpg"}
+            src="https://pbs.twimg.com/media/F9xhN65WQAATLoU.jpg"
           />
         </Flex>
       </Flex>
