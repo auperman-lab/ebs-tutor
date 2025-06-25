@@ -1,18 +1,16 @@
-import { Flex, Layout } from "antd";
+import { Flex } from 'antd';
 import {
   MyCoursesCards,
   MyCoursesFiltration,
-} from "../../components/MyCourses";
+}  from '../../components/MyCourses';
 
 export const MyCoursesPage = () => {
   const { Content } = Layout;
 
   return (
-    <Content>
-      <Flex vertical={true} justify="center" align="center" gap={40}>
-        <MyCoursesFiltration />
-        <MyCoursesCards />
-      </Flex>
-    </Content>
+    <Flex vertical={true} justify="center" align="center" gap={24}>
+      <MyCoursesFiltration />
+      <MyCoursesCards />
+    </Flex>
   );
 };

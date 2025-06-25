@@ -1,12 +1,8 @@
 import { createStyles } from "antd-style";
 
 export const useStyles = createStyles(({ token, responsive }) => ({
-  container: {
-    width: "80%",
-    marginTop: 40,
-  },
-
-  select: {
-    width: "100%",
+  footer: {
+    padding: `${token.paddingMD}px 10%`,
+    backgroundColor: token.colorBgBase,
   },
 }));
