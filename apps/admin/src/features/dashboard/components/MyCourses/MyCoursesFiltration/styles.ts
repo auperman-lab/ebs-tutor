@@ -1,12 +1,12 @@
-import { createStyles } from "antd-style";
+import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token, responsive }) => ({
   container: {
-    width: "80%",
+    width: '100%',
     marginTop: 40,
   },
 
   select: {
-    width: "100%",
+    width: '100%',
   },
 }));

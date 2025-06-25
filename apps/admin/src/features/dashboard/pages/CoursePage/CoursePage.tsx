@@ -1,4 +1,4 @@
-import { Col, Layout, Row, Flex } from 'antd';
+import { Col, Row, Flex } from 'antd';
 import { CoursePath, CourseDescription } from '../../components/Course';
 import { LineChart } from '@components';
 import { useParams } from 'react-router-dom';
@@ -37,48 +37,44 @@ const revenueData = [
   { name: 'Aug 31', up: 99000, uv: 89000 },
 ];
 export const CoursePage = () => {
-  const { Content } = Layout;
-
   const params = useParams();
   console.log(params);
 
   return (
-    <Content>
-      <Flex vertical className="main" justify="center" align="center" gap={24}>
-        <Row gutter={[24, 24]} style={{ width: '80%' }}>
-          <Col span={24}>
-            <CoursePath />
-          </Col>
-          <Col span={24}>
-            <CourseDescription />
-          </Col>
+    <Flex vertical className="main" justify="center" align="center" gap={24}>
+      <Row gutter={[24, 24]}>
+        <Col span={24}>
+          <CoursePath />
+        </Col>
+        <Col span={24}>
+          <CourseDescription />
+        </Col>
 
-          <Col xxl={9} span={24}>
-            <LineChart
-              data={revenueData}
-              primaryY="up"
-              primaryLabel="Revenue"
-              primaryColor="#58c41a"
-              referenceX="Aug 07"
-              showAxis={true}
-            />
-          </Col>
+        <Col xxl={9} span={24}>
+          <LineChart
+            data={revenueData}
+            primaryY="up"
+            primaryLabel="Revenue"
+            primaryColor="#58c41a"
+            referenceX="Aug 07"
+            showAxis={true}
+          />
+        </Col>
 
-          <Col xxl={15} span={24}>
-            <LineChart
-              data={revenueData}
-              primaryY="up"
-              primaryLabel="Comments"
-              primaryColor="#FF6636"
-              secondaryY="uv"
-              secondaryLabel="View"
-              secondaryColor="#564FFD"
-              referenceX="Aug 11"
-              showAxis={true}
-            />
-          </Col>
-        </Row>
-      </Flex>
-    </Content>
+        <Col xxl={15} span={24}>
+          <LineChart
+            data={revenueData}
+            primaryY="up"
+            primaryLabel="Comments"
+            primaryColor="#FF6636"
+            secondaryY="uv"
+            secondaryLabel="View"
+            secondaryColor="#564FFD"
+            referenceX="Aug 11"
+            showAxis={true}
+          />
+        </Col>
+      </Row>
+    </Flex>
   );
 };

@@ -17,7 +17,6 @@ export const SocialProfile = () => {
   return (
     <Flex vertical className={styles.mainPart} gap={24}>
       <h1 className={styles.heading}>Social Profile</h1>
-
       <Form>
         <Flex vertical gap={64}>
           <Form.Item

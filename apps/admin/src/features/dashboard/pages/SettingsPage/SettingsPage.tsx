@@ -1,4 +1,3 @@
-import { Layout } from 'antd';
 import { Flex } from 'antd';
 import {
   AccountSettings,
@@ -11,23 +10,14 @@ import { useStyles } from './styles';
 export const SettingsPage = () => {
   const { styles } = useStyles();
 
-  const { Content } = Layout;
   return (
-    <Content>
-      <Flex
-        vertical={true}
-        className="main"
-        justify="center"
-        align="center"
-        gap={24}
-      >
-        <AccountSettings />
-        <SocialProfile />
-        <Flex className={styles.bottomPart} gap={24}>
-          <NotificationsSettings />
-          <ChangePassword />
-        </Flex>
+    <Flex vertical={true} justify="center" align="center" gap={24}>
+      <AccountSettings />
+      <SocialProfile />
+      <Flex className={styles.bottomPart} gap={24}>
+        <NotificationsSettings />
+        <ChangePassword />
       </Flex>
-    </Content>
+    </Flex>
   );
 };

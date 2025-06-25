@@ -1138,56 +1138,54 @@ export const MyCoursesCards = () => {
   let navigate = useNavigate();
 
   return (
-    <Flex vertical className={styles.container}>
-      <Row gutter={[24, 24]}>
-        {data.map((item) => (
-          <Col key={item.id} className="gutter-row" md={12} lg={8} xl={6}>
-            <Card
-              hoverable
-              cover={
-                <img
-                  alt="example"
-                  src={item.link}
-                  onClick={() => {
-                    navigate(routes.courses + `/${item.id}`);
-                  }}
-                />
-              }
-            >
-              <Flex vertical>
-                <Tag color="geekblue" className={styles.tag}>
-                  {item.category}
-                </Tag>
-                <Title level={5}>{item.title}</Title>
-                <Divider className={styles.divider} />
-                <Flex justify="space-between" align="center" gap={24}>
-                  <Flex align="center" gap={6}>
-                    <img src={Star} />
-                    <Text className={styles.text}>{item.rating}</Text>
-                  </Flex>
-                  <Flex align="center" gap={6}>
-                    <img src={User} />
-                    {item.students}
-                    <Text type="secondary" color="#4E5566">
-                      {' '}
-                      students
-                    </Text>
-                  </Flex>
+    <Row gutter={[24, 24]}>
+      {data.map((item) => (
+        <Col key={item.id} className="gutter-row" md={12} lg={8} xl={6}>
+          <Card
+            hoverable
+            cover={
+              <img
+                alt="example"
+                src={item.link}
+                onClick={() => {
+                  navigate(routes.courses + `/${item.id}`);
+                }}
+              />
+            }
+          >
+            <Flex vertical>
+              <Tag color="geekblue" className={styles.tag}>
+                {item.category}
+              </Tag>
+              <Title level={5}>{item.title}</Title>
+              <Divider className={styles.divider} />
+              <Flex justify="space-between" align="center" gap={24}>
+                <Flex align="center" gap={6}>
+                  <img src={Star} />
+                  <Text className={styles.text}>{item.rating}</Text>
                 </Flex>
-                <Divider className={styles.divider} />
-                <Flex justify="space-between" align="center">
-                  <div className={styles.price}>${item.price}</div>
-                  <Dropdown menu={{ items }} trigger={['hover']} arrow>
-                    <div tabIndex={0}>
-                      <img src={DotsThree} alt="options" />
-                    </div>
-                  </Dropdown>
+                <Flex align="center" gap={6}>
+                  <img src={User} />
+                  {item.students}
+                  <Text type="secondary" color="#4E5566">
+                    {' '}
+                    students
+                  </Text>
                 </Flex>
               </Flex>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </Flex>
+              <Divider className={styles.divider} />
+              <Flex justify="space-between" align="center">
+                <div className={styles.price}>${item.price}</div>
+                <Dropdown menu={{ items }} trigger={['hover']} arrow>
+                  <div tabIndex={0}>
+                    <img src={DotsThree} alt="options" />
+                  </div>
+                </Dropdown>
+              </Flex>
+            </Flex>
+          </Card>
+        </Col>
+      ))}
+    </Row>
   );
 };

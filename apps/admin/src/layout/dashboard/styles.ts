@@ -1,8 +1,11 @@
 import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token }) => ({
-  mainPart: {
-    width: '100%',
-    marginTop: 24,
+  layout: {
+    minHeight: '100vh',
+  },
+  content: {
+    width: '80%',
+    margin: 'auto',
   },
 }));

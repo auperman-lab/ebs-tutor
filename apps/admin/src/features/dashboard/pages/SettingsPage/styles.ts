@@ -1,10 +1,10 @@
-import { createStyles } from "antd-style";
+import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token, responsive }) => ({
   bottomPart: {
-    width: "80%",
+    width: '100%',
     [responsive.lg]: {
-      flexDirection: "column",
+      flexDirection: 'column',
     },
   },
 }));
