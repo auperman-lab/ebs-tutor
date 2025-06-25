@@ -1,6 +1,6 @@
 import { createStyles } from "antd-style";
 
-export const useStyles = createStyles(({ token, responsive }, color: string) => ({
+export const useStyles = createStyles(({ token, responsive }) => ({
   wrapper: {
     backgroundColor: token.secondary.secondary900,
     height: "fit-content",
@@ -30,7 +30,7 @@ export const useStyles = createStyles(({ token, responsive }, color: string) => 
 
   downButton: {
     border: 0,
-    backgroundColor: color,
+    backgroundColor: "#FFFFFF1F",
     padding: 0,
     aspectRatio: 1,
   },

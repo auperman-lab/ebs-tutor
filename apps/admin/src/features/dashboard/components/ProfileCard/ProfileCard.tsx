@@ -8,10 +8,9 @@ import { useState } from "react";
 import { useTheme } from "antd-style";
 
 
-const opacityColor = "#FFFFFF0D"
 
 export const ProfileCard = () => {
-  const { styles } = useStyles(opacityColor);
+  const { styles } = useStyles();
   const palette = useTheme();
   const navigate = useNavigate();
 
@@ -41,7 +40,7 @@ export const ProfileCard = () => {
             percent={75}
             size={[500, 15]}
             strokeColor={palette.colorSuccess}
-            trailColor={opacityColor}
+            trailColor={"#FFFFFF1F"}
             format={(percent) => (
               <span className={styles.percentText}>{percent}% Completed</span>
             )}
