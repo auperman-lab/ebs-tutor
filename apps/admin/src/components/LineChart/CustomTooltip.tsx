@@ -6,7 +6,6 @@ import type {
 import type { TooltipProps } from 'recharts';
 
 type CustomTooltipProps = TooltipProps<ValueType, NameType> & {
-  primaryY: string;
   primaryLabel: string;
   secondaryLabel?: string;
   showAxis?: boolean;

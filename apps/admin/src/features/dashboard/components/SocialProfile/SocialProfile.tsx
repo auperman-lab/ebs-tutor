@@ -9,7 +9,7 @@ import {
   SocialWhatsapp,
   SocialYouTube,
   SociallinkedIn,
-} from '@assets/dashboard';
+} from '@assets';
 
 export const SocialProfile = () => {
   const { styles } = useStyles();

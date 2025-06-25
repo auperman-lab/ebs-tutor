@@ -1,6 +1,6 @@
 import { Flex } from 'antd';
 import { useStyles } from './LoginImageContainerStyles';
-import sally_login from '@assets/auth/sally_login.png';
+import { sally_login } from '@assets';
 
 export const LoginImageContainer = () => {
   const { styles } = useStyles();

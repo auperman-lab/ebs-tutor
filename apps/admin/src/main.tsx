@@ -7,9 +7,8 @@ import { QueryClientContext } from "@context";
 import "@ant-design/v5-patch-for-react-19";
 import "./styles.scss";
 import { GlobalStyle } from "./GlobalStyles";
-// import { customThemePalette } from "./styles/custom-theme";
-import { themeComponents } from "./styles/components";
-import { customThemePalette } from "./styles/token";
+import { themeComponents } from "./styles";
+import { customThemePalette } from "./styles";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

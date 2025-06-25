@@ -3,13 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 
 import { AuthUser, User } from "@types";
-import {
-  getUserByToken,
-  removeUser,
-  setTokens,
-  setUser as setUserInStorage
-} from '@utils';
+
 import { routes } from "@const";
+import { getUserByToken, removeUser, setTokens, setUser as setUserInStorage } from "@utils";
 
 type AuthContextProps  = {
   user: User | null;

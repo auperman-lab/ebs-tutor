@@ -20,7 +20,6 @@
     "baseUrl": ".",
     "paths": {
       "@api": ["apps/admin/src/api/api"],
-      "@assets/*": ["apps/admin/src/assets/*"],
       "@assets": ["apps/admin/src/assets/index.ts"],
       "@types/*": ["apps/admin/src/types/*"],
       "@types": ["apps/admin/src/types/index.ts"],

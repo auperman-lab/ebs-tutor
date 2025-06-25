@@ -1,6 +1,6 @@
 import { Card, Col, Divider, Dropdown, Flex, MenuProps, Row, Tag } from 'antd';
 import { useStyles } from './styles';
-import { Star, DotsThree, User } from '@assets/dashboard';
+import { Star, DotsThree, User } from '@assets';
 import { Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '@const';
