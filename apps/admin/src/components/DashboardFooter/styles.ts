@@ -2,7 +2,7 @@ import { createStyles } from "antd-style";
 
 export const useStyles = createStyles(({ token, responsive }) => ({
   footer: {
-    padding: `${token.paddingMD}px 10% ${token.paddingMD}px 10%`,
+    padding: `${token.paddingMD}px 10%`,
     backgroundColor: token.colorBgBase,
   },
 }));
