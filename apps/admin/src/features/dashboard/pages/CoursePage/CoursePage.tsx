@@ -1,5 +1,4 @@
-import { Col, Layout, Row } from 'antd';
-import { Flex } from 'antd';
+import { Col, Layout, Row, Flex } from 'antd';
 import { CoursePath, CourseDescription } from '../../components/Course';
 import { LineChart } from '@components';
 import { useParams } from 'react-router-dom';

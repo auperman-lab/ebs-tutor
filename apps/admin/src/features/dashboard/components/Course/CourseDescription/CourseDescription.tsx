@@ -4,33 +4,33 @@ import { DotsThree } from '@assets/dashboard';
 
 const { Text, Title } = Typography;
 
+const course = {
+  id: 1,
+  uploaded_at: 'Uploaded: Jan 21, 2020',
+  last_updated: 'Last Updated: Sep 11, 2021',
+  title: '2021 Complete Python Bootcamp From Zero to Hero in Python',
+  description:
+    '3 in 1 Course: Learn to design websites with Figma, build with Webflow, and make a living freelancing.',
+  authors: [
+    {
+      id: 1,
+      full_name: 'Kevin Gilbert',
+      avatar: 'https://media.2x2tv.ru/content/images/2021/04/spor.jpg',
+    },
+    {
+      id: 2,
+      full_name: 'Kristin Watson',
+      avatar: 'https://media.2x2tv.ru/content/images/2021/04/spor.jpg',
+    },
+  ],
+  rating: 4.8,
+  ratingsCounter: 451444,
+  price: 13.99,
+  revenue: 131800455.82,
+};
+
 export const CourseDescription = () => {
   const { styles } = useStyles();
-
-  const course = {
-    id: 1,
-    uploaded_at: 'Uploaded: Jan 21, 2020',
-    last_updated: 'Last Updated: Sep 11, 2021',
-    title: '2021 Complete Python Bootcamp From Zero to Hero in Python',
-    description:
-      '3 in 1 Course: Learn to design websites with Figma, build with Webflow, and make a living freelancing.',
-    authors: [
-      {
-        id: 1,
-        full_name: 'Kevin Gilbert',
-        avatar: 'https://media.2x2tv.ru/content/images/2021/04/spor.jpg',
-      },
-      {
-        id: 2,
-        full_name: 'Kristin Watson',
-        avatar: 'https://media.2x2tv.ru/content/images/2021/04/spor.jpg',
-      },
-    ],
-    rating: 4.8,
-    ratingsCounter: 451444,
-    price: 13.99,
-    revenue: 131800455.82,
-  };
 
   return (
     <Flex className={styles.mainPart} gap={24}>
