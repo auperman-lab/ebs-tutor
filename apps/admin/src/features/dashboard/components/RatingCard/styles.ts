@@ -1,8 +1,8 @@
 import { createStyles } from "antd-style";
 
-export const useStyles = createStyles(({ }) => ({
+export const useStyles = createStyles(({ token}) => ({
   wrapper: {
-    backgroundColor: "white",
+    backgroundColor: token.colorWhite,
     minHeight: 480,
     height: "100%",
     width: "100%",
@@ -13,7 +13,7 @@ export const useStyles = createStyles(({ }) => ({
     width: "100%",
     gap: 5,
     height: "100%",
-    backgroundColor: "#FFF2E5",
+    backgroundColor: token.warning.warning100,
   },
 
   ratingGraph: {
