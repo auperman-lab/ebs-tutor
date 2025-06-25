@@ -9,6 +9,7 @@ import Star from "./Star.png";
 import DotsThree from "./DotsThree.png";
 import User from "./User.png";
 import Bell from "./Bell.png";
+import MagnifyingGlass from "./MagnifyingGlass.svg";
 
 export {
   Globe,
@@ -22,4 +23,5 @@ export {
   DotsThree,
   User,
   Bell,
+  MagnifyingGlass,
 };

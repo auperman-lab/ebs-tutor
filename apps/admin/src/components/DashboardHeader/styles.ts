@@ -1,13 +1,12 @@
 import { createStyles } from "antd-style";
 
-export const useStyles = createStyles(({ token, responsive }) => ({
+export const useStyles = createStyles(({ token }) => ({
   header: {
     position: "sticky",
     top: 0,
     zIndex: 1,
     width: "100%",
-    paddingLeft: "10%",
-    paddingRight: "10%",
+    padding: `${token.paddingLG}px 10% ${token.paddingLG}px 10%`,
     height: 100,
   },
 

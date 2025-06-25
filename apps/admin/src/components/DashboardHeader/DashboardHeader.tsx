@@ -1,12 +1,11 @@
-import { Avatar, Button, Flex, Input, Layout } from "antd";
-import { useStyles } from "./DashboardHeaderStyles";
-import { Typography } from "antd";
+import { Avatar, Button, Flex, Input, Layout, Typography, Image } from "antd";
 import { useLocation } from "react-router-dom";
+import { useStyles } from "./styles";
 import { routes } from "@const";
-import { SearchOutlined } from "@ant-design/icons";
-import { Bell } from "@assets/dashboard";
+import { Bell, MagnifyingGlass } from "@assets/dashboard";
 
 const { Text, Title } = Typography;
+const { Header } = Layout;
 
 const pageTitles: Record<string, string> = {
   [routes.main]: "Dashboard",
@@ -20,7 +19,6 @@ const getPageTitle = (pathname: string): string => {
 
 export const DashboardHeader = () => {
   const location = useLocation();
-  const { Header } = Layout;
   const { styles } = useStyles();
 
   return (
@@ -38,7 +36,14 @@ export const DashboardHeader = () => {
         </Flex>
         <Flex gap={16} align="center">
           <Input
-            addonBefore={<SearchOutlined />}
+            addonBefore={
+              <Image
+                preview={false}
+                src={MagnifyingGlass}
+                width={24}
+                height={24}
+              />
+            }
             size="large"
             placeholder="Search"
           />
