@@ -5,6 +5,11 @@ import { useCustomToken } from "@hooks";
 import { useState } from "react";
 import { monthOverviewData, PeriodLabels, TimeRange, weekOverviewData, yearOverviewData } from "../../types";
 
+const options = Object.entries(PeriodLabels).map(([value, label]) => ({
+  value,
+  label,
+}));
+
 export const RevenueCard = () => {
   const { styles } = useStyles();
   const token = useCustomToken();
@@ -32,10 +37,7 @@ export const RevenueCard = () => {
 
       <CardsHeader
         title="Revenue"
-        options={Object.entries(PeriodLabels).map(([value, label]) => ({
-          value,
-          label,
-        }))}
+        options={options}
         defaultOption={selectedPeriod}
         onChange={onPeriodChange}
       />

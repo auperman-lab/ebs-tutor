@@ -10,11 +10,20 @@ export enum MetricLabel {
   Views = "Views",
 }
 
+const token = useCustomToken();
+
+const options = Object.entries(PeriodLabels).map(([value, label]) => ({
+  value,
+  label,
+}));
+
+const legend = [
+  { color: token.colorSecondary, name: MetricLabel.Comments },
+  { color: token.colorPrimary, name: MetricLabel.Views },
+];
 
 export const OverviewCard = () => {
   const { styles } = useStyles();
-  const token = useCustomToken();
-
   const [selectedPeriod, setSelectedPeriod] = useState<TimeRange>(TimeRange.Month);
 
   const getFilteredData = () => {
@@ -29,6 +38,7 @@ export const OverviewCard = () => {
         return monthOverviewData;
     }
   };
+
   const onPeriodChange = (value: string) => {
     setSelectedPeriod(value as TimeRange);
   };
@@ -38,15 +48,9 @@ export const OverviewCard = () => {
 
       <CardsHeader
         title={"Course Overview"}
-        options={Object.entries(PeriodLabels).map(([value, label]) => ({
-          value,
-          label,
-        }))}
+        options={options}
         defaultOption={selectedPeriod}
-        legend={[
-          { color: token.colorSecondary, name: MetricLabel.Comments },
-          { color: token.colorPrimary, name: MetricLabel.Views },
-        ]}
+        legend={legend}
         onChange={onPeriodChange}
       />
 

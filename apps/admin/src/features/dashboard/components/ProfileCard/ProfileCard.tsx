@@ -19,7 +19,7 @@ export const ProfileCard = () => {
   const [userName] = useState("John Doe");
 
 
-  const handleProfileNavigation = () => {
+  const onProfileNavigation = () => {
     navigate(routes.settings);
   }
 
@@ -52,7 +52,7 @@ export const ProfileCard = () => {
           <Button
             type="primary"
             size="large"
-            onClick={handleProfileNavigation}
+            onClick={onProfileNavigation}
           >
             Edit Biography
           </Button>

@@ -35,6 +35,12 @@ const items: NotificationItemProps[] = [
   },
 ];
 
+const options = Object.entries(PeriodLabels).map(([value, label]) => ({
+  value,
+  label,
+}));
+
+
 export const ActivityCard = () => {
   const { styles } = useStyles();
 
@@ -58,7 +64,8 @@ export const ActivityCard = () => {
       return true;
     });
   };
-  const handleRangeChange = (value: string) => {
+
+  const onRangeChange = (value: string) => {
     setSelectedRange(value as ActivityPeriod);
   };
 
@@ -67,11 +74,8 @@ export const ActivityCard = () => {
 
       <CardsHeader
         title="Recent activity"
-        options={Object.entries(PeriodLabels).map(([value, label]) => ({
-          value,
-          label,
-        }))}
-        onChange={handleRangeChange}
+        options={options}
+        onChange={onRangeChange}
       />
 
       <Flex vertical justify="start" align="center" className={styles.notificationContainer}>

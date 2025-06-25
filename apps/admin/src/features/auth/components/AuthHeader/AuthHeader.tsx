@@ -12,7 +12,7 @@ export const AuthHeader = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isLogin = location.pathname === '/login';
-  const handleRedirect = () => {
+  const onRedirect = () => {
     navigate(isLogin ? routes.register : routes.login);
   };
 
@@ -38,7 +38,7 @@ export const AuthHeader = () => {
               ? `Don't have an account?`
               : `Already have an account?`}
           </p>
-          <Button className={styles.createAccountButton} size="large" onClick={handleRedirect}>
+          <Button className={styles.createAccountButton} size="large" onClick={onRedirect}>
             {isLogin ? 'Sign Up' : 'Log In'}
           </Button>
         </Space>

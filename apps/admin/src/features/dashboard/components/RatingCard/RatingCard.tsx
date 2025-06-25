@@ -11,6 +11,11 @@ type RateItemProps = {
   rating: number;
 }
 
+const options = Object.entries(PeriodLabels).map(([value, label]) => ({
+  value,
+  label,
+}));
+
 export const RatingCard = () => {
   const { styles } = useStyles();
   const token = useCustomToken();
@@ -65,10 +70,7 @@ export const RatingCard = () => {
 
       <CardsHeader
         title="Overall Course Ratings"
-        options={Object.entries(PeriodLabels).map(([value, label]) => ({
-          value,
-          label,
-        }))}
+        options={options}
         defaultOption={selectedPeriod}
         onChange={onPeriodChange}
       />

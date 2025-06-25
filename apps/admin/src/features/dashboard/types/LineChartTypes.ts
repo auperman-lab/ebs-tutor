@@ -4,10 +4,6 @@ export enum TimeRange {
   Year = "year",
 }
 
-export enum MetricLabel {
-  Comments = "Comments",
-  Views = "Views",
-}
 export const PeriodLabels: Record<TimeRange, string> = {
   [TimeRange.Month]: "This Month",
   [TimeRange.Year]: "This Year",

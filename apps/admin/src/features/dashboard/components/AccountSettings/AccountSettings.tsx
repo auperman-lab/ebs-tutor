@@ -33,7 +33,7 @@ export const AccountSettings = () => {
     return isImage && isLt1M;
   };
 
-  const handleChange = (info: any) => {
+  const onChange = (info: any) => {
     const file = info.file.originFileObj;
     if (file) {
       const reader = new FileReader();
@@ -107,7 +107,7 @@ export const AccountSettings = () => {
               <Upload
                 showUploadList={false}
                 beforeUpload={beforeUpload}
-                onChange={handleChange}
+                onChange={onChange}
                 accept="image/*"
               >
                 <Button icon={<UploadOutlined />}>Upload Image</Button>

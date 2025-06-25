@@ -6,6 +6,11 @@ import { CardsHeader } from "@components";
 import { useCustomToken } from "@hooks";
 import { monthOverviewData, PeriodLabels, TimeRange, weekOverviewData, yearOverviewData } from "../../types";
 
+const options = Object.entries(PeriodLabels).map(([value, label]) => ({
+  value,
+  label,
+}));
+
 
 export const ProfileViewsCard = () => {
   const { styles } = useStyles();
@@ -40,10 +45,7 @@ export const ProfileViewsCard = () => {
     <Flex vertical className={styles.wrapper}>
       <CardsHeader
         title={"Profile Views"}
-        options={Object.entries(PeriodLabels).map(([value, label]) => ({
-          value,
-          label,
-        }))}
+        options={options}
         defaultOption={selectedPeriod}
         onChange={onPeriodChange}
       />

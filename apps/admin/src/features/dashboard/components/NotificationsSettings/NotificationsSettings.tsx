@@ -35,13 +35,13 @@ export const NotificationsSettings = () => {
 
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
-  const handleChange = (id: string) => {
+  const onChange = (id: string) => {
     setSelectedIds((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
   };
 
-  const handleSave = () => {
+  const onSave = () => {
     console.log("ыаыуааыа", selectedIds);
   };
 
@@ -60,7 +60,7 @@ export const NotificationsSettings = () => {
               <Form.Item key={id} noStyle>
                 <Checkbox
                   checked={selectedIds.includes(id)}
-                  onChange={() => handleChange(id)}
+                  onChange={() => onChange(id)}
                 >
                   {label}
                 </Checkbox>
@@ -68,7 +68,7 @@ export const NotificationsSettings = () => {
             ))}
           </Flex>
           <Form.Item noStyle>
-            <Button type="primary" style={{ width: 130 }} onClick={handleSave}>
+            <Button type="primary" style={{ width: 130 }} onClick={onSave}>
               Save Changes
             </Button>
           </Form.Item>
