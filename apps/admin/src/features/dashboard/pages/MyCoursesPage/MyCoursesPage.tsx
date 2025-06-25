@@ -7,7 +7,7 @@ import {
 export const MyCoursesPage = () => {
 
   return (
-    <Flex vertical={true} justify="center" align="center" gap={24}>
+    <Flex vertical justify="center" align="center" gap={24}>
       <MyCoursesFiltration />
       <MyCoursesCards />
     </Flex>
