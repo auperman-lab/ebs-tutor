@@ -11,7 +11,7 @@ const iconMap: Record<NotificationItemProps["type"], React.ReactElement> = {
 };
 
 export const NotificationItem = ({ name, type, content, date }: NotificationItemProps) => {
-  const styles = useStyles().styles;
+  const { styles } = useStyles();
 
   return (
     <Flex className={styles.notificationItemWrapper} gap="16px">
