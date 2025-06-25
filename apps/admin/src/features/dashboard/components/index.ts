@@ -7,3 +7,7 @@ export * from './SocialProfile';
 export * from './Course';
 export * from './NotificationsSettings';
 export * from './ChangePassword';
+export * from './MyCourses'
+export * from "./RevenueCard"
+export * from "./RatingCard"
+export * from "./OverviewCard"

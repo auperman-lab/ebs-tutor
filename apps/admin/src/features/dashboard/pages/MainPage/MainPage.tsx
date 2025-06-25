@@ -1,9 +1,6 @@
 import { Col, Flex, Row } from "antd";
-import { ActivityCard, ProfileCard, ProfileViewsCard, StatCard } from "../../components";
+import { ActivityCard, ProfileCard, ProfileViewsCard, StatCard, RatingCard, RevenueCard, OverviewCard  } from "@features/dashboard/components";
 import { ChartBar, ChatCircleDots, CreditCard, Gear } from "@phosphor-icons/react";
-import { RatingCard } from "../../components/RatingCard";
-import { RevenueCard } from "../../components/RevenueCard";
-import { OverviewCard } from "../../components/OverviewCard";
 import { useStyles } from "./styles";
 
 

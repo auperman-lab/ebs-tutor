@@ -1,8 +1,8 @@
 import { Button, Flex, Form, Input } from 'antd';
 import { useStyles } from './styles';
-import { ChangePasswordProps } from '../../types';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@api';
+import { ChangePasswordProps } from "@features/dashboard/types";
 
 export const ChangePassword = () => {
   const { styles } = useStyles();

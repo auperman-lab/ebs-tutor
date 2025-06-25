@@ -3,7 +3,7 @@ import { useStyles } from "./styles";
 import { useState } from "react";
 import { RateItem } from "./RateItem";
 import { CardsHeader, LineChart } from "@components";
-import { weekRatingData, PeriodLabels, TimeRange, monthRatingData, yearRatingData } from "../../types";
+import { weekRatingData, PeriodLabels, TimeRange, monthRatingData, yearRatingData } from "@features/dashboard/types";
 import { useTheme } from "antd-style";
 
 type RateItemProps = {

@@ -2,7 +2,7 @@ import { CardsHeader, LineChart } from "@components";
 import { Flex } from "antd";
 import { useStyles } from "./styles";
 import { useState } from "react";
-import { monthOverviewData, PeriodLabels, TimeRange, weekOverviewData, yearOverviewData } from "../../types";
+import { monthOverviewData, PeriodLabels, TimeRange, weekOverviewData, yearOverviewData } from "@features/dashboard/types";
 import { useTheme } from "antd-style";
 
 export enum MetricLabel {
