@@ -1,13 +1,14 @@
 import { Flex } from "antd";
-// @ts-ignore
-import { useStyles } from "./ActivityCardStyles";
+import { useStyles } from "./styles";
+import dayjs from "dayjs";
 
 import { useState } from "react";
-import { ActivityItem } from "./ActivityItem";
+import { NotificationItem } from "./NotificationItem";
 import { CardsHeader } from "@components";
+import { NotificationItemProps, ActivityPeriod, PeriodLabels } from "./types";
 
 
-const items: ActivityItemProps[] = [
+const items: NotificationItemProps[] = [
   {
     name: "Kevin",
     type: "purchase",
@@ -35,43 +36,47 @@ const items: ActivityItemProps[] = [
 ];
 
 export const ActivityCard = () => {
+  const { styles } = useStyles();
 
-  const [selectedRange, setSelectedRange] = useState("today");
+  const [selectedRange, setSelectedRange] = useState<ActivityPeriod>(ActivityPeriod.Today);
 
+  const setFilterNotifications = () => {
+    const now = dayjs();
 
-  const filterItems = () => {
-    const now = new Date();
     return items.filter(({ date }) => {
-      const diffMs = now.getTime() - date.getTime();
-      const diffMins = diffMs / (1000 * 60);
+      const itemDate = dayjs(date);
 
-      if (selectedRange === "today") return diffMins < 24 * 60;
-      if (selectedRange === "yesterday") return diffMins >= 24 * 60 && diffMins < 7 * 24 * 60;
-      if (selectedRange === "week") return diffMins < 7 * 24 * 60;
+      if (selectedRange === ActivityPeriod.Today) return itemDate.isAfter(now.startOf("day"));
+      if (selectedRange === ActivityPeriod.Yesterday) {
+        return (
+          itemDate.isAfter(now.subtract(1, "day").startOf("day")) &&
+          itemDate.isBefore(now.startOf("day"))
+        );
+      }
+      if (selectedRange === ActivityPeriod.Week) return itemDate.isAfter(now.subtract(7, "day").startOf("day"));
 
       return true;
     });
   };
+  const handleRangeChange = (value: string) => {
+    setSelectedRange(value as ActivityPeriod);
+  };
 
-  const { styles } = useStyles();
   return (
-    <Flex vertical={true} className={styles.wrapper}>
+    <Flex vertical className={styles.wrapper}>
 
       <CardsHeader
-        title={"Recent activity"}
-        options={[
-          {value: "today", label: "Today"},
-          {value: "yesterday", label: "Yesterday"},
-          {value: "week", label: "This Week"}
-        ]}
-        onChange={(value: string) => {
-          setSelectedRange(value);
-        }}
+        title="Recent activity"
+        options={Object.entries(PeriodLabels).map(([value, label]) => ({
+          value,
+          label,
+        }))}
+        onChange={handleRangeChange}
       />
 
-      <Flex vertical={true} justify={"start"} align={"center"} style={{ overflow: "hidden" }}>
-        {filterItems().map((item, index) => (
-          <ActivityItem key={index} {...item} />
+      <Flex vertical justify="start" align="center" className={styles.notificationContainer}>
+        {setFilterNotifications().map((item, index) => (
+          <NotificationItem key={index} {...item} />
         ))}
       </Flex>
     </Flex>
