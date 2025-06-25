@@ -55,7 +55,7 @@ export const RatingCard = () => {
       }))
       .sort((a, b) => b.rating - a.rating);
   };
-  const handlePeriodChange = (value: string) => {
+  const onPeriodChange = (value: string) => {
     setSelectedPeriod(value as TimeRange);
     setRating(getAverageRating());
   };
@@ -70,7 +70,7 @@ export const RatingCard = () => {
           label,
         }))}
         defaultOption={selectedPeriod}
-        onChange={handlePeriodChange}
+        onChange={onPeriodChange}
       />
 
       <Flex

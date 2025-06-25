@@ -23,7 +23,7 @@ export const RevenueCard = () => {
         return monthOverviewData;
     }
   };
-  const handlePeriodChange = (value: string) => {
+  const onPeriodChange = (value: string) => {
     setSelectedPeriod(value as TimeRange);
   };
 
@@ -37,7 +37,7 @@ export const RevenueCard = () => {
           label,
         }))}
         defaultOption={selectedPeriod}
-        onChange={handlePeriodChange}
+        onChange={onPeriodChange}
       />
 
       <div className={styles.chartContainer}>

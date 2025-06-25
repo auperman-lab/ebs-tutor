@@ -29,7 +29,7 @@ export const OverviewCard = () => {
         return monthOverviewData;
     }
   };
-  const handlePeriodChange = (value: string) => {
+  const onPeriodChange = (value: string) => {
     setSelectedPeriod(value as TimeRange);
   };
 
@@ -47,7 +47,7 @@ export const OverviewCard = () => {
           { color: token.colorSecondary, name: MetricLabel.Comments },
           { color: token.colorPrimary, name: MetricLabel.Views },
         ]}
-        onChange={handlePeriodChange}
+        onChange={onPeriodChange}
       />
 
       <div className={styles.chartContainer}>

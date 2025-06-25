@@ -30,7 +30,7 @@ export const ProfileViewsCard = () => {
   const setViewers = ()=> {
     setTotalViewers(getFilteredData().reduce((sum, item) => sum + item.primaryData, 0));
   };
-  const handlePeriodChange = (value: string) => {
+  const onPeriodChange = (value: string) => {
     setSelectedPeriod(value as TimeRange);
     setViewers()
   };
@@ -45,7 +45,7 @@ export const ProfileViewsCard = () => {
           label,
         }))}
         defaultOption={selectedPeriod}
-        onChange={handlePeriodChange}
+        onChange={onPeriodChange}
       />
       <Flex vertical align="center" justify="space-between" className={styles.chartSection}>
 
