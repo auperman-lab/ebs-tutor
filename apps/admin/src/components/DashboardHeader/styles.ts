@@ -18,6 +18,8 @@ export const useStyles = createStyles(({ token }) => ({
   button: {
     backgroundColor: token.colorBgBase,
     border: "none",
+    minWidth: 48,
+    minHeight: 48,
   },
   avatar: {
     minWidth: 48,

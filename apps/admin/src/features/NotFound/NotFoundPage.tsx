@@ -1,8 +1,8 @@
-import { Button, Flex } from 'antd';
-import notFound from '@assets/NotFound/notFound.png';
-import { useStyles } from './NotFoundPageStyles';
-import { useNavigate } from 'react-router-dom';
-import { routes } from '@const';
+import { Button, Flex } from "antd";
+import { NotFound } from "@assets";
+import { useStyles } from "./NotFoundPageStyles";
+import { useNavigate } from "react-router-dom";
+import { routes } from "@const";
 
 export const NotFoundPage = () => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ export const NotFoundPage = () => {
         </Button>
       </Flex>
 
-      <img src={notFound} alt="Not Found" className={styles.img} />
+      <NotFound className={styles.img} />
     </Flex>
   );
 };

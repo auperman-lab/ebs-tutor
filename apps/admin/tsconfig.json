@@ -8,6 +8,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "resolveJsonModule": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": ["vite-plugin-svgr/client"]
   }
 }

@@ -1,5 +1,5 @@
 import { Button, Divider, Flex } from "antd";
-import { google_logo, facebook_logo, apple_logo } from "@assets";
+import { Google, Facebook, Apple } from "@assets";
 import { LoginOptionsProps } from "./LoginOptionsTypes";
 import { useStyles } from "./LoginOptionStyles";
 
@@ -15,7 +15,7 @@ export const LoginOptions = ({ dividerText }: LoginOptionsProps) => {
             align="center"
             className={styles.logo_container}
           >
-            <img src={google_logo} alt="Google logo" className={styles.logo} />
+            <Google />
           </Flex>
           <Flex justify="center" align="center" className={styles.company}>
             Google
@@ -28,11 +28,7 @@ export const LoginOptions = ({ dividerText }: LoginOptionsProps) => {
             align="center"
             className={styles.logo_container}
           >
-            <img
-              src={facebook_logo}
-              alt="Facebook logo"
-              className={styles.logo}
-            />
+            <Facebook color="#4267B2" />
           </Flex>
           <Flex justify="center" align="center" className={styles.company}>
             Facebook
@@ -45,7 +41,7 @@ export const LoginOptions = ({ dividerText }: LoginOptionsProps) => {
             align="center"
             className={styles.logo_container}
           >
-            <img src={apple_logo} alt="Apple logo" className={styles.logo} />
+            <Apple />
           </Flex>
           <Flex justify="center" align="center" className={styles.company}>
             Apple
