@@ -10,7 +10,7 @@ import {
   MyCoursesPage,
   CoursePage,
 } from '../features/dashboard';
-import { NotFoundPage } from '../features/NotFound';
+import { NotFoundPage } from '../features/not-found';
 import { AuthProvider } from '@context';
 
 export const Router = () => {

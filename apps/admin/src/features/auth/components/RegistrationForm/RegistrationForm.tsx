@@ -17,14 +17,7 @@ export const RegistrationForm = () => {
   });
 
   const onFinish: FormProps<RegistrationFormProps>['onFinish'] = (values) => {
-    console.log('Success:', values);
     mutate(values);
-  };
-
-  const onFinishFailed: FormProps<RegistrationFormProps>['onFinishFailed'] = (
-    errorInfo
-  ) => {
-    console.log('Failed:', errorInfo);
   };
 
   return (
@@ -44,7 +37,6 @@ export const RegistrationForm = () => {
         layout="vertical"
         initialValues={{ remember: true }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
       >
         <Flex vertical={true} gap={24}>
           <Flex className={styles.fullname} gap={18}>

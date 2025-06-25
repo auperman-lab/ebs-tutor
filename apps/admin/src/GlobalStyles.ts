@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "antd-style";
+import { createGlobalStyle } from 'antd-style';
 
 export const GlobalStyle = createGlobalStyle(
   ({ theme }) => `
@@ -6,6 +6,10 @@ export const GlobalStyle = createGlobalStyle(
       .ant-form-item {
         margin-bottom: 0px;
       }
+    }
+    
+    .ant-breadcrumb-separator {
+      margin: 0px 8px 0px 8px !important
     }
   `
 );

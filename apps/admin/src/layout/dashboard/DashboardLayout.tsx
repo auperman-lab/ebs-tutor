@@ -3,8 +3,9 @@ import { DashboardFooter, DashboardHeader, DashboardSider } from '@components';
 import { Outlet } from 'react-router-dom';
 import { useStyles } from './styles';
 
+const { Content } = Layout;
+
 export const DashboardLayout = () => {
-  const { Content } = Layout;
   const { styles } = useStyles();
 
   return (

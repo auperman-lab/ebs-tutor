@@ -1,5 +1,16 @@
 import { useStyles } from './styles';
-import type { CustomTooltipProps } from './LineChartTypes';
+import type {
+  ValueType,
+  NameType,
+} from 'recharts/types/component/DefaultTooltipContent';
+import type { TooltipProps } from 'recharts';
+
+interface CustomTooltipProps extends TooltipProps<ValueType, NameType> {
+  primaryY: string;
+  primaryLabel: string;
+  secondaryLabel?: string;
+  showAxis?: boolean;
+}
 
 export const CustomTooltip = ({
   active,

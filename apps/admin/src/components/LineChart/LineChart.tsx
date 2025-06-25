@@ -11,7 +11,18 @@ import {
 } from 'recharts';
 import { CustomTooltip } from './CustomTooltip';
 import { useStyles } from './styles';
-import type { LineChartProps } from './LineChartTypes';
+
+type LineChartProps<T> = {
+  data: T[];
+  primaryY: string;
+  primaryLabel: string;
+  primaryColor: string;
+  secondaryY?: string;
+  secondaryLabel?: string;
+  secondaryColor?: string;
+  referenceX?: string;
+  showAxis: boolean;
+};
 
 export const LineChart = ({
   data,

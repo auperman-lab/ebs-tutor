@@ -3,8 +3,8 @@ import {
   AccountSettings,
   ChangePassword,
   NotificationsSettings,
+  SocialProfile,
 } from '../../components';
-import { SocialProfile } from '../../components/';
 import { useStyles } from './styles';
 
 export const SettingsPage = () => {
