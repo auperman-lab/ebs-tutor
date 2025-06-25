@@ -69,7 +69,7 @@ declare module "antd-style" {
 }
 
 export const customThemePalette: FullTokenCustom = {
-  fontFamily: "General Sans, sans-serif",
+  fontFamily: "Inter, sans-serif",
 
   colorPrimary: PRIMARY.primary500,
   colorSecondary: SECONDARY.secondary500,
