@@ -1,19 +1,15 @@
-import { createStyles } from "antd-style";
+import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token }) => ({
-  container: {
-    width: "80%",
-  },
-
   price: {
     color: token.colorPrimary,
     fontSize: token.fontSizeXL,
     fontWeight: token.fontWeightStrong,
-    textAlign: "center",
+    textAlign: 'center',
   },
 
   tag: {
-    width: "fit-content",
+    width: 'fit-content',
     marginBottom: 8,
   },
 
@@ -22,8 +18,8 @@ export const useStyles = createStyles(({ token }) => ({
   },
 
   divider: {
-    width: "calc(100% + 32px)",
-    marginInline: "-16px",
+    width: 'calc(100% + 32px)',
+    marginInline: '-16px',
   },
 
   text: {

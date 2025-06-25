@@ -1,6 +1,6 @@
 import { Button, Flex } from 'antd';
 import notFound from '@assets/NotFound/notFound.png';
-import { useStyles } from './NotFoundPageStyles';
+import { useStyles } from './styles';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '@const';
 
