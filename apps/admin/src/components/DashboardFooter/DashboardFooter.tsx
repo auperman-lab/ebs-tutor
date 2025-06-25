@@ -1,18 +1,18 @@
-import { Flex, Layout } from "antd";
-import { Typography } from "antd";
-import { useStyles } from "./DashboardFooterStyles";
+import { Flex, Layout, Typography } from "antd";
+import { useStyles } from "./styles";
+import dayjs from "dayjs";
 
 const { Text, Link } = Typography;
+const { Footer } = Layout;
 
 export const DashboardFooter = () => {
-  const { Footer } = Layout;
   const { styles } = useStyles();
 
   return (
     <Footer className={styles.footer}>
       <Flex justify="space-between">
         <Text type="secondary">
-          © 2021 - Eduguard. Designed by{" "}
+          © {dayjs().year()} - Eduguard. Designed by{" "}
           <Link href="https://ant.design" target="_blank">
             Templatecookie.
           </Link>{" "}
