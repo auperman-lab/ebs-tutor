@@ -3,10 +3,8 @@ import {
   MyCoursesCards,
   MyCoursesFiltration,
 } from "../../components/MyCourses";
-import { useStyles } from "./MyCoursesPageStyle";
 
 export const MyCoursesPage = () => {
-  const { styles } = useStyles();
   const { Content } = Layout;
 
   return (
