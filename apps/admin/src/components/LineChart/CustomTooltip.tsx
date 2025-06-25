@@ -16,7 +16,6 @@ export const CustomTooltip = ({
   active,
   payload,
   label,
-  primaryY,
   primaryLabel,
   secondaryLabel,
   showAxis,
@@ -31,7 +30,7 @@ export const CustomTooltip = ({
             key={item.dataKey?.toString()}
             style={{ color: item.stroke, fontWeight: 500 }}
           >
-            {item.dataKey === primaryY ? primaryLabel : secondaryLabel}:{' '}
+            {item.dataKey === 'primaryData' ? primaryLabel : secondaryLabel}
             {(item.value as number).toLocaleString()}
           </div>
         ))}
