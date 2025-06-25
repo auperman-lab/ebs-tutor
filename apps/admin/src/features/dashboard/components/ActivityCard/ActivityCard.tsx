@@ -13,25 +13,25 @@ const items: NotificationItemProps[] = [
     name: "Kevin",
     type: "purchase",
     content: "2021 UI/UX Design with Figma",
-    date: new Date(),
+    date: dayjs().toDate(),
   },
   {
     name: "Alice",
     type: "comment",
     content: "Typography Basics in Web Design",
-    date: new Date(Date.now() - 5 * 60 * 1000), // 5 minutes ago
+    date: dayjs().subtract(5, "minute").toDate(),
   },
   {
     name: "John",
     type: "rating",
     content: "Advanced CSS Animations Course",
-    date: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
+    date: dayjs().subtract(2, "hour").toDate(),
   },
   {
     name: "Emily",
     type: "purchase",
     content: "React Hooks in Depth",
-    date: new Date(Date.now() - 26 * 60 * 60 * 1000), // 26 hours ago
+    date: dayjs().subtract(26, "hour").toDate(),
   },
 ];
 
