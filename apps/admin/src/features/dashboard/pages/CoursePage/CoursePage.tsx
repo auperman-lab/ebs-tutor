@@ -1,7 +1,9 @@
-import { Col, Row, Flex } from 'antd';
-import { CoursePath, CourseDescription } from '../../components/Course';
+import { Col, Row, Breadcrumb } from 'antd';
+import { Link } from 'react-router-dom';
+import { routes } from '@const';
+import { CourseDescription } from '../../components/Course';
 import { LineChart } from '@components';
-import { useParams } from 'react-router-dom';
+import { useStyles } from './styles';
 
 const revenueData = [
   { name: 'Aug 01', up: 102300, uv: 114000 },
@@ -36,45 +38,60 @@ const revenueData = [
   { name: 'Aug 30', up: 104200, uv: 93500 },
   { name: 'Aug 31', up: 99000, uv: 89000 },
 ];
+
+const items = [
+  {
+    title: <Link to={routes.main}>Dashboard</Link>,
+  },
+  {
+    title: <Link to={routes.courses}>My Courses</Link>,
+  },
+  {
+    title: 'Development',
+  },
+  {
+    title: 'Web Development',
+  },
+  {
+    title: '2021 Complete Python Bootcamp From Zero to Hero in Python',
+  },
+];
+
 export const CoursePage = () => {
-  const params = useParams();
-  console.log(params);
-
+  const { styles } = useStyles();
   return (
-    <Flex vertical className="main" justify="center" align="center" gap={24}>
-      <Row gutter={[24, 24]}>
-        <Col span={24}>
-          <CoursePath />
-        </Col>
-        <Col span={24}>
-          <CourseDescription />
-        </Col>
+    <Row gutter={[24, 24]} className={styles.container}>
+      <Col span={24}>
+        <Breadcrumb items={items} />
+      </Col>
+      <Col span={24}>
+        <CourseDescription />
+      </Col>
 
-        <Col xxl={9} span={24}>
-          <LineChart
-            data={revenueData}
-            primaryY="up"
-            primaryLabel="Revenue"
-            primaryColor="#58c41a"
-            referenceX="Aug 07"
-            showAxis={true}
-          />
-        </Col>
+      <Col xxl={9} span={24}>
+        <LineChart
+          data={revenueData}
+          primaryY="up"
+          primaryLabel="Revenue"
+          primaryColor="#58c41a"
+          referenceX="Aug 07"
+          showAxis={true}
+        />
+      </Col>
 
-        <Col xxl={15} span={24}>
-          <LineChart
-            data={revenueData}
-            primaryY="up"
-            primaryLabel="Comments"
-            primaryColor="#FF6636"
-            secondaryY="uv"
-            secondaryLabel="View"
-            secondaryColor="#564FFD"
-            referenceX="Aug 11"
-            showAxis={true}
-          />
-        </Col>
-      </Row>
-    </Flex>
+      <Col xxl={15} span={24}>
+        <LineChart
+          data={revenueData}
+          primaryY="up"
+          primaryLabel="Comments"
+          primaryColor="#FF6636"
+          secondaryY="uv"
+          secondaryLabel="View"
+          secondaryColor="#564FFD"
+          referenceX="Aug 11"
+          showAxis={true}
+        />
+      </Col>
+    </Row>
   );
 };

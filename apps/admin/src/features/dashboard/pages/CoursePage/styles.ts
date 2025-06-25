@@ -1,8 +1,7 @@
 import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token }) => ({
-  mainPart: {
-    width: '100%',
-    marginTop: 24,
+  container: {
+    marginTop: token.marginLG,
   },
 }));

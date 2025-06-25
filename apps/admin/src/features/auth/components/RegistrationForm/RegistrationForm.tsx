@@ -1,5 +1,12 @@
-import type { FormProps } from 'antd';
-import { Button, Checkbox, Form, Input, Flex, Typography } from 'antd';
+import {
+  Button,
+  Checkbox,
+  Form,
+  Input,
+  Flex,
+  Typography,
+  FormProps,
+} from 'antd';
 import type { RegistrationFormProps } from '../../types';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@api';
@@ -43,9 +50,7 @@ export const RegistrationForm = () => {
             <Form.Item<RegistrationFormProps>
               label="First name"
               name="firstName"
-              rules={[
-                { required: true, message: 'Please input your username!' },
-              ]}
+              rules={[{ required: true, message: 'This field is required!' }]}
             >
               <Input placeholder="First name" size="large" />
             </Form.Item>
@@ -53,9 +58,7 @@ export const RegistrationForm = () => {
             <Form.Item<RegistrationFormProps>
               label="Last name"
               name="lastName"
-              rules={[
-                { required: true, message: 'Please input your username!' },
-              ]}
+              rules={[{ required: true, message: 'This field is required!' }]}
             >
               <Input placeholder="Last name" size="large" />
             </Form.Item>
@@ -64,7 +67,7 @@ export const RegistrationForm = () => {
           <Form.Item<RegistrationFormProps>
             label="Email"
             name="email"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            rules={[{ required: true, message: 'This field is required!' }]}
           >
             <Input placeholder="Email adress" size="large" />
           </Form.Item>

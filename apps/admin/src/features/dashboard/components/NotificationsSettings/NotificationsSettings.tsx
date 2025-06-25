@@ -41,10 +41,6 @@ export const NotificationsSettings = () => {
     );
   };
 
-  const handleSave = () => {
-    console.log('ыаыуааыа', selectedIds);
-  };
-
   return (
     <Flex
       vertical
@@ -68,7 +64,7 @@ export const NotificationsSettings = () => {
             ))}
           </Flex>
           <Form.Item noStyle>
-            <Button type="primary" style={{ width: 130 }} onClick={handleSave}>
+            <Button type="primary" style={{ width: 130 }}>
               Save Changes
             </Button>
           </Form.Item>

@@ -5,12 +5,12 @@ import type {
 } from 'recharts/types/component/DefaultTooltipContent';
 import type { TooltipProps } from 'recharts';
 
-interface CustomTooltipProps extends TooltipProps<ValueType, NameType> {
+type CustomTooltipProps = TooltipProps<ValueType, NameType> & {
   primaryY: string;
   primaryLabel: string;
   secondaryLabel?: string;
   showAxis?: boolean;
-}
+};
 
 export const CustomTooltip = ({
   active,
