@@ -1,39 +1,44 @@
 import { Divider, Flex, Select } from "antd";
-import { CardHeaderProps } from "./CardsHeaderTypes";
+import { CardHeaderProps } from "./types";
+import { useStyles } from "./styles";
 
 //this is used only for vertical direction of flex
-export const CardsHeader = ({title, options, legend, onChange}: CardHeaderProps) => {
+export const CardsHeader = ({ title, options, defaultOption, legend, onChange, width }: CardHeaderProps) => {
 
+  const resolvedMaxWidth = width || 120;
+  const { styles } = useStyles({ width: resolvedMaxWidth });
 
   return (
-    <Flex vertical={true} justify="space-between" >
+    <Flex vertical justify="space-between">
       <Flex
-        justify={"space-between"}
-        align={"center"}
-        style={{ padding: "16px 20px" }}
+        justify="space-between"
+        align="center"
+        className={styles.wrapper}
       >
-        <div style={{ fontSize: "16px" }}>{title}</div>
-        <Flex gap={"20px"} >
-
+        <div className={styles.title}>{title}</div>
+        <Flex gap="20px">
           {legend && (
             legend.map((item, index) => (
-              <Flex key={index} gap={"6px"} justify={"center"} align={"center"}>
-                <div style={{backgroundColor: item.color, borderRadius: "50%", width: 10, height: 10}}/>
-                <p style={{ fontSize: 12 }}>{item.name}</p>
+              <Flex key={index + item.name + item.color} gap="6px" justify="center" align="center">
+                <div
+                  className={styles.colorDot}
+                  style={{ backgroundColor: item.color }}
+                />
+                <p className={styles.text}>{item.name}</p>
               </Flex>
             ))
           )}
 
           <Select
-            defaultValue={options[0].value}
-            variant={"borderless"}
-            style={{ maxWidth: 120 }}
+            defaultValue={defaultOption || options[0].value}
+            variant="borderless"
             options={options}
             onChange={onChange}
+            className={styles.selectWidth}
           />
         </Flex>
       </Flex>
-      <Divider style={{ margin: "0px" }} />
+      <Divider className={styles.noMarginDivider} />
     </Flex>
-)
+  );
 };

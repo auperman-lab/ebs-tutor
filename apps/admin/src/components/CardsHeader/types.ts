@@ -3,8 +3,10 @@ import { SelectProps } from "antd";
 export type CardHeaderProps = {
   title:  string;
   options: CardHeaderOptions[]
+  defaultOption?: string;
   legend?: LegendPin[];
   onChange?: SelectProps["onChange"]
+  width?: number
 }
 
 type CardHeaderOptions = {
