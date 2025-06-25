@@ -66,5 +66,4 @@ export const themeComponents = {
     Breadcrumb: {
       separatorMargin: 8,
     },
-  },
 };
