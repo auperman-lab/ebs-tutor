@@ -9,16 +9,16 @@ interface CustomTooltipProps extends TooltipProps<ValueType, NameType> {
   primaryLabel: string;
   secondaryLabel?: string;
   showAxis?: boolean;
-}
+};
 
 export const CustomTooltip = ({
-                                active,
-                                payload,
-                                label,
-                                primaryLabel,
-                                secondaryLabel,
-                                showAxis,
-                              }: CustomTooltipProps) => {
+  active,
+  payload,
+  label,
+  primaryLabel,
+  secondaryLabel,
+  showAxis,
+}: CustomTooltipProps) => {
   const { styles } = useStyles();
 
   if (active && payload && payload.length) {
