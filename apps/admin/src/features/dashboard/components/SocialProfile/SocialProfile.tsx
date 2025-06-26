@@ -3,13 +3,13 @@ import { useStyles } from './styles';
 
 import {
   Globe,
-  SocialFacebook,
-  SocialInstagram,
-  SocialTwitter,
-  SocialWhatsapp,
-  SocialYouTube,
-  SociallinkedIn,
-} from '@assets/dashboard';
+  Facebook,
+  Instagram,
+  Twitter,
+  Whatsapp,
+  Youtube,
+  Linkedin,
+} from '@assets';
 
 export const SocialProfile = () => {
   const { styles } = useStyles();
@@ -25,7 +25,7 @@ export const SocialProfile = () => {
             style={{ flex: 1 }}
           >
             <Input
-              addonBefore={<img src={Globe} />}
+              addonBefore={<Globe />}
               placeholder="Personal website or portfolio url..."
               size="large"
             />
@@ -34,7 +34,7 @@ export const SocialProfile = () => {
             <Col className="gutter-row" span={24} xl={8}>
               <Form.Item layout="vertical" label="Facebook">
                 <Input
-                  addonBefore={<img src={SocialFacebook} />}
+                  addonBefore={<Facebook color="#FF6636" />}
                   placeholder="Username"
                   size="large"
                 />
@@ -43,7 +43,7 @@ export const SocialProfile = () => {
             <Col className="gutter-row" span={24} xl={8}>
               <Form.Item layout="vertical" label="Instagram">
                 <Input
-                  addonBefore={<img src={SocialInstagram} />}
+                  addonBefore={<Instagram />}
                   placeholder="Username"
                   size="large"
                 />
@@ -52,7 +52,7 @@ export const SocialProfile = () => {
             <Col className="gutter-row" span={24} xl={8}>
               <Form.Item layout="vertical" label="Linkedin">
                 <Input
-                  addonBefore={<img src={SociallinkedIn} />}
+                  addonBefore={<Linkedin />}
                   placeholder="Username"
                   size="large"
                 />
@@ -61,7 +61,7 @@ export const SocialProfile = () => {
             <Col className="gutter-row" span={24} xl={8}>
               <Form.Item layout="vertical" label="Twitter">
                 <Input
-                  addonBefore={<img src={SocialTwitter} />}
+                  addonBefore={<Twitter />}
                   placeholder="Username"
                   size="large"
                 />
@@ -70,7 +70,7 @@ export const SocialProfile = () => {
             <Col className="gutter-row" span={24} xl={8}>
               <Form.Item layout="vertical" label="Whatsapp">
                 <Input
-                  addonBefore={<img src={SocialWhatsapp} />}
+                  addonBefore={<Whatsapp />}
                   placeholder="Phone number"
                   size="large"
                 />
@@ -79,7 +79,7 @@ export const SocialProfile = () => {
             <Col className="gutter-row" span={24} xl={8}>
               <Form.Item layout="vertical" label="Youtube">
                 <Input
-                  addonBefore={<img src={SocialYouTube} />}
+                  addonBefore={<Youtube />}
                   placeholder="Username"
                   size="large"
                 />

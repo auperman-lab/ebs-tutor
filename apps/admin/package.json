@@ -9,5 +9,8 @@
   },
   "scripts": {
     "dev": "vite"
+  },
+  "devDependencies": {
+    "vite-plugin-svgr": "^4.3.0"
   }
 }

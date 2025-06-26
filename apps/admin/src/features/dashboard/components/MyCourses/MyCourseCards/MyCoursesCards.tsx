@@ -1,6 +1,6 @@
 import { Card, Col, Divider, Dropdown, Flex, MenuProps, Row, Tag } from 'antd';
 import { useStyles } from './styles';
-import { Star, DotsThree, User } from '@assets/dashboard';
+import { Star, DotsThree, User } from '@assets';
 import { Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '@const';
@@ -1161,11 +1161,11 @@ export const MyCoursesCards = () => {
               <Divider className={styles.divider} />
               <Flex justify="space-between" align="center" gap={24}>
                 <Flex align="center" gap={6}>
-                  <img src={Star} />
+                  <Star />
                   <Text className={styles.text}>{item.rating}</Text>
                 </Flex>
                 <Flex align="center" gap={6}>
-                  <img src={User} />
+                  <User />
                   {item.students}
                   <Text type="secondary" color="#4E5566">
                     {' '}
@@ -1178,7 +1178,7 @@ export const MyCoursesCards = () => {
                 <div className={styles.price}>${item.price}</div>
                 <Dropdown menu={{ items }} trigger={['hover']} arrow>
                   <div tabIndex={0}>
-                    <img src={DotsThree} alt="options" />
+                    <DotsThree />
                   </div>
                 </Dropdown>
               </Flex>
