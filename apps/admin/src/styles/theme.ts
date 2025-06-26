@@ -78,6 +78,7 @@ export const theme = {
     Layout: {
       bodyBg: 'rgb(245,247,250)',
       headerColor: 'rgba(253,252,252,0.88)',
+      footerBg: 'rgb(245,247,250)',
       headerBg: 'rgb(255,255,255)',
       siderBg: 'rgb(29,32,38)',
       triggerBg: 'rgb(255,255,255)',
