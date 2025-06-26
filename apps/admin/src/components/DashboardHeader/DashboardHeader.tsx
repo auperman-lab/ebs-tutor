@@ -1,16 +1,16 @@
-import { Avatar, Button, Flex, Input, Layout, Typography } from "antd";
-import { useLocation } from "react-router-dom";
-import { useStyles } from "./styles";
-import { routes } from "@const";
-import { MagnifyingGlass, Bell } from "@assets";
+import { Avatar, Button, Flex, Input, Layout, Typography } from 'antd';
+import { useLocation } from 'react-router-dom';
+import { useStyles } from './styles';
+import { routes } from '@const';
+import { MagnifyingGlass, Bell } from '@assets';
 
 const { Text, Title } = Typography;
 const { Header } = Layout;
 
 const pageTitles: Record<string, string> = {
-  [routes.main]: "Dashboard",
-  [routes.myCourses]: "My courses",
-  [routes.settings]: "Settings",
+  [routes.main]: 'Dashboard',
+  [routes.courses]: 'My courses',
+  [routes.settings]: 'Settings',
 };
 
 const getPageTitle = (pathname: string): string => {
@@ -43,6 +43,7 @@ export const DashboardHeader = () => {
           <Avatar
             className={styles.avatar}
             src="https://pbs.twimg.com/media/F9xhN65WQAATLoU.jpg"
+            size={48}
           />
         </Flex>
       </Flex>

@@ -1,8 +1,8 @@
-import { Button, Flex } from "antd";
-import { NotFound } from "@assets";
-import { useStyles } from "./NotFoundPageStyles";
-import { useNavigate } from "react-router-dom";
-import { routes } from "@const";
+import { Button, Flex } from 'antd';
+import { NotFound } from '@assets';
+import { useStyles } from './styles';
+import { useNavigate } from 'react-router-dom';
+import { routes } from '@const';
 
 export const NotFoundPage = () => {
   const navigate = useNavigate();

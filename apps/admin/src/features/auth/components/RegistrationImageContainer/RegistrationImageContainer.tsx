@@ -1,6 +1,6 @@
-import { SallyRegistration } from "@assets";
-import { Flex } from "antd";
-import { useStyles } from "./RegistrationImageContainerStyles";
+import { SallyRegistration } from '@assets';
+import { Flex } from 'antd';
+import { useStyles } from './styles';
 
 export const RegistrationImageContainer = () => {
   const { styles } = useStyles();

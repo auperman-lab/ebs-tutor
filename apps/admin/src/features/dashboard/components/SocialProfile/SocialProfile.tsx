@@ -1,5 +1,5 @@
-import { Button, Col, Flex, Form, Input, Row } from "antd";
-import { useStyles } from "./SocialProfileStyles";
+import { Button, Col, Flex, Form, Input, Row } from 'antd';
+import { useStyles } from './styles';
 
 import {
   Globe,
@@ -9,7 +9,7 @@ import {
   Whatsapp,
   Youtube,
   Linkedin,
-} from "@assets";
+} from '@assets';
 
 export const SocialProfile = () => {
   const { styles } = useStyles();
@@ -17,7 +17,6 @@ export const SocialProfile = () => {
   return (
     <Flex vertical className={styles.mainPart} gap={24}>
       <h1 className={styles.heading}>Social Profile</h1>
-
       <Form>
         <Flex vertical gap={64}>
           <Form.Item

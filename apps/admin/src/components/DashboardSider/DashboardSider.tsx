@@ -1,5 +1,5 @@
-import { Layout, Menu } from "antd";
-import React from "react";
+import { Layout, Menu } from 'antd';
+import React from 'react';
 import {
   ChartBar,
   PlusCircle,
@@ -7,8 +7,8 @@ import {
   CreditCard,
   ChatCircleDots,
   Gear,
-} from "@phosphor-icons/react";
-import { useStyles } from "./DashboardSiderStyles";
+} from '@phosphor-icons/react';
+import { useStyles } from './styles';
 
 const items = [
   ChartBar,
@@ -31,7 +31,7 @@ export const DashboardSider = () => {
       <Menu
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={["4"]}
+        defaultSelectedKeys={['4']}
         items={items}
       />
     </Sider>

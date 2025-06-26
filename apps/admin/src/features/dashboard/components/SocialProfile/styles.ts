@@ -1,11 +1,9 @@
-import { createStyles } from "antd-style";
+import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token }) => ({
-  mainBlock: {
-    backgroundColor: token.colorWhite,
-    width: "100%",
+  mainPart: {
     padding: 40,
-    marginBottom: token.marginLG,
+    backgroundColor: token.colorWhite,
   },
   heading: {
     fontSize: token.fontSizeHeading3,

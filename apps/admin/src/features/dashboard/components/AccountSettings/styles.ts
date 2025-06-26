@@ -1,8 +1,8 @@
-import { createStyles } from "antd-style";
+import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token, responsive }) => ({
   mainPart: {
-    width: "80%",
+    width: '100%',
     padding: 40,
     backgroundColor: token.colorWhite,
     marginTop: token.marginLG,
@@ -17,18 +17,18 @@ export const useStyles = createStyles(({ token, responsive }) => ({
 
   photoPart: {
     [responsive.lg]: {
-      flexDirection: "column",
+      flexDirection: 'column',
     },
   },
 
   accountSettings: {
-    width: "100%",
+    width: '100%',
   },
 
   fullName: {
-    width: "100%",
+    width: '100%',
     [responsive.lg]: {
-      flexDirection: "column",
+      flexDirection: 'column',
     },
   },
 
@@ -42,14 +42,13 @@ export const useStyles = createStyles(({ token, responsive }) => ({
 
   imageNote: {
     fontSize: token.fontSizeSM,
-    textAlign: "center",
+    textAlign: 'center',
     color: token.colorTextDescription,
     marginTop: token.marginXS,
-
   },
 
   avatar: {
-    backgroundColor: "#F5F7FA",
+    backgroundColor: '#F5F7FA',
     color: token.colorInfo,
   },
 
@@ -59,13 +58,11 @@ export const useStyles = createStyles(({ token, responsive }) => ({
     backgroundColor: token.colorPrimary,
     borderColor: token.colorPrimary,
     color: token.colorWhite,
-
   },
 
   textArea: {
     minHeight: 120,
     borderColor: token.colorBorder,
     borderRadius: token.borderRadiusLG,
-
   },
 }));

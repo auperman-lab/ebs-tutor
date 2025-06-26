@@ -2,7 +2,9 @@
   "name": "@./source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+     "lint": "eslint . --ext .ts,.tsx,.js,.jsx"
+  },
   "private": true,
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
@@ -10,6 +12,7 @@
     "antd": "^5.26.0",
     "antd-style": "^3.7.1",
     "axios": "^1.9.0",
+    "dayjs": "^1.11.13",
     "jwt-decode": "^4.0.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
