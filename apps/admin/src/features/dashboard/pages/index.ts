@@ -1,4 +1,3 @@
-export * from "./MainPage";
-export * from "./SettingsPage";
-export * from "./CoursePage";
-export * from "./MyCoursesPage";
+export * from './MainPage';
+export * from './CoursePage';
+export * from './MyCoursesPage';
