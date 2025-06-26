@@ -9,7 +9,7 @@ export const MyCoursesPage = () => {
   const { styles } = useStyles();
   return (
     <Flex
-      vertical={true}
+      vertical
       justify="center"
       align="center"
       gap={24}
