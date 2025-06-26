@@ -46,7 +46,12 @@ export const ChangePassword = () => {
             <Input.Password size="large" placeholder="Password" />
           </Form.Item>
           <Form.Item<ChangePasswordProps> noStyle>
-            <Button type="primary" htmlType="submit" style={{ width: 130 }}>
+            <Button
+              type="primary"
+              htmlType="submit"
+              size="large"
+              style={{ width: 130 }}
+            >
               Save Changes
             </Button>
           </Form.Item>

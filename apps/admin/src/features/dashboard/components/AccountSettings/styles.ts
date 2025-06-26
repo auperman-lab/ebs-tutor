@@ -53,7 +53,7 @@ export const useStyles = createStyles(({ token, responsive }) => ({
   },
 
   saveButton: {
-    marginTop: 124,
+    marginTop: 114,
     width: 130,
     backgroundColor: token.colorPrimary,
     borderColor: token.colorPrimary,
