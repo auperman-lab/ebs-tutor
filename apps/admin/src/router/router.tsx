@@ -4,12 +4,8 @@ import { routes } from '@const';
 import { LoginPage, RegistrationPage } from '../features/auth';
 import { DashboardLayout, AuthLayout } from '../layout';
 
-import {
-  MainPage,
-  SettingsPage,
-  MyCoursesPage,
-  CoursePage,
-} from '../features/dashboard';
+import { MainPage, MyCoursesPage, CoursePage } from '../features/dashboard';
+import { SettingsPage } from '../features/settings';
 import { NotFoundPage } from '../features/not-found';
 import { AuthProvider } from '@context';
 
