@@ -138,7 +138,7 @@ export const AccountSettings = () => {
           </Form.Item>
         </Flex>
         <Form.Item noStyle>
-          <Button className={styles.saveButton} type="primary">
+          <Button className={styles.saveButton} size="large" type="primary">
             Save Changes
           </Button>
         </Form.Item>

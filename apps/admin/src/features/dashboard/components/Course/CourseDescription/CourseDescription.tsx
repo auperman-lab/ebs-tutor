@@ -1,6 +1,6 @@
 import { useStyles } from './styles';
 import { Typography, Image, Flex, Divider, Button, Rate } from 'antd';
-import { DotsThree } from '@assets/dashboard';
+import { DotsThree } from '@assets';
 
 const { Text, Title } = Typography;
 
@@ -40,7 +40,7 @@ export const CourseDescription = () => {
         src="https://media.2x2tv.ru/content/images/2021/04/spor.jpg"
         preview={false}
       />
-      <Flex vertical gap={24} className={styles.desctiption}>
+      <Flex vertical gap={10} className={styles.desctiption}>
         <Flex vertical gap={12}>
           <Flex gap={16}>
             <Text type="secondary" className={styles.datelabels}>
@@ -96,7 +96,7 @@ export const CourseDescription = () => {
               Withdrew money
             </Button>
             <Button size="large">
-              <img src={DotsThree} />
+              <DotsThree />
             </Button>
           </Flex>
         </Flex>

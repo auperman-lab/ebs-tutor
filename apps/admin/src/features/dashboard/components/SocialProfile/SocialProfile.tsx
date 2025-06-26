@@ -87,7 +87,9 @@ export const SocialProfile = () => {
             </Col>
           </Row>
           <Form.Item>
-            <Button type="primary">Save Changes</Button>
+            <Button type="primary" size="large">
+              Save Changes
+            </Button>
           </Form.Item>
         </Flex>
       </Form>
