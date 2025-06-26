@@ -78,9 +78,8 @@ export const theme = {
     Layout: {
       bodyBg: 'rgb(245,247,250)',
       headerColor: 'rgba(253,252,252,0.88)',
-      footerBg: 'rgb(245,247,250)',
       headerBg: 'rgb(255,255,255)',
-      siderBg: 'rgb(29,32,38)',
+      siderBg: '#1D2026',
       triggerBg: 'rgb(255,255,255)',
     },
     Dropdown: {
@@ -133,6 +132,13 @@ export const theme = {
     },
     Breadcrumb: {
       separatorMargin: 8,
+    },
+    Menu: {
+      itemBg: '#1D2026',
+      colorText: 'rgb(140,148,163)',
+      itemMarginInline: 0,
+      lineWidth: 0,
+      itemSelectedColor: 'rgb(255,255,255)',
     },
   },
 };
