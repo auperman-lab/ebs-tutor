@@ -1,7 +1,7 @@
 import { Col, Row, Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
 import { routes } from '@const';
-import { CourseDescription } from "@features/dashboard";
+import { CourseDescription } from "@features/courses";
 import { useStyles } from './styles';
 
 

@@ -1,12 +1,5 @@
-export * from "./ProfileCard"
-export * from "./StatCard"
-export * from "./ActivityCard"
-export * from "./ProfileViewsCard"
 export * from './AccountSettings';
 export * from './SocialProfile';
 export * from './NotificationsSettings';
 export * from './ChangePassword';
-export * from './MyCourses'
-export * from "./RevenueCard"
-export * from "./RatingCard"
-export * from "./OverviewCard"
+

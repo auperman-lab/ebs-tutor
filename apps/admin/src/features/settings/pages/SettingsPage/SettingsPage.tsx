@@ -4,7 +4,7 @@ import {
   ChangePassword,
   NotificationsSettings,
   SocialProfile,
-} from "@features/dashboard";
+} from "@features/settings/components";
 import { useStyles } from './styles';
 
 export const SettingsPage = () => {
