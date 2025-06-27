@@ -1,13 +1,13 @@
 import { useRoutes } from 'react-router-dom';
 
 import { routes } from '@const';
-import { LoginPage, RegistrationPage } from '../features/auth';
+import { LoginPage, RegistrationPage } from "@features/auth";
 import { DashboardLayout, AuthLayout } from '../layout';
 
-import { MainPage } from '../features/dashboard';
-import { CoursePage, MyCoursesPage } from '../features/courses';
-import { SettingsPage } from '../features/settings';
-import { NotFoundPage } from '../features/not-found';
+import { MainPage } from '@features/dashboard';
+import { CoursePage, MyCoursesPage } from "@features/courses";
+import { SettingsPage } from "@features/settings";
+import { NotFoundPage } from "@features/not-found";
 import { AuthProvider } from '@context';
 
 export const Router = () => {

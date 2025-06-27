@@ -10,9 +10,9 @@ export const routes = {
 };
 
 export const apiEndpoints = {
-  changePassword: '/api/profile/password',
-  register: '/api/auth/register',
-  login: '/api/auth/login',
+  changePassword: '/profile/password',
+  register: '/auth/register',
+  login: '/auth/login',
   refreshToken: "/auth/refresh",
   getUser: "/admin/users"
 };

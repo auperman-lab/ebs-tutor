@@ -1,6 +1,6 @@
 export type User = {
-  id: string;
-  name: string;
+  id: number;
+  fullName: string;
   avatar: string;
   email: string;
   roles: string[];
@@ -19,6 +19,6 @@ export type DecodedToken = {
   iat: number;
   nbf: number;
   exp: number;
-  sub: string;
+  sub: number;
   scopes: string[];
 };

@@ -22,18 +22,18 @@ export const decodeToken = async (token: string): Promise<AuthUser | null> => {
   try {
     const decoded = jwtDecode<DecodedToken>(token);
 
-    if (!decoded.exp || decoded.exp < Date.now() / 1000) {
+    if (isExpiredToken(token)) {
       return null;
     }
     const data = await api.user.get(decoded.sub);
 
-    const user = {
+    const user: User = {
       id: data.id,
-      name: data.name,
+      fullName: data.first_name + " " + data.last_name,
       avatar: data.avatar,
       email: data.email,
       roles: data.roles,
-    }
+    };
 
     return {
       user,
@@ -44,12 +44,18 @@ export const decodeToken = async (token: string): Promise<AuthUser | null> => {
   }
 };
 
-export const setTokens = (token: string) => {
+export const setToken = (token: string, exp: string) => {
   try {
     localStorage.setItem("token", token);
+    localStorage.setItem("exp", exp);
   } catch (error) {
     console.error("Error setting tokens in local storage:", error);
   }
+};
+
+export const getTokenExpiration = (): number | null => {
+  const exp = localStorage.getItem("exp");
+  return exp ? new Date(exp).getTime() : null;
 };
 
 export const setUser = (user: User) => {
@@ -72,7 +78,7 @@ export const getUser = (): User | null => {
 };
 
 export const removeUser = () => {
-  localStorage.removeItem("accessToken");
-  localStorage.removeItem("refreshToken");
+  localStorage.removeItem("token");
+  localStorage.removeItem("exp");
   localStorage.removeItem("user");
 };

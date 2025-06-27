@@ -2,16 +2,22 @@ import { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 
-import { AuthUser, User } from "@types";
+import { LoginEndpointResponse, User } from "@types";
 
 import { routes } from "@const";
-import { getUserByToken, removeUser, setTokens, setUser as setUserInStorage } from "@utils";
+import {
+  decodeToken,
+  getUserByToken,
+  removeUser,
+  setToken,
+  setUser as setUserInStorage
+} from "@utils";
 
 type AuthContextProps  = {
   user: User | null;
   logout: () => void;
-  login: (data: AuthUser) => void;
-  refresh: (data: AuthUser) => void;
+  login: (data: LoginEndpointResponse) => void;
+  refresh: (data: LoginEndpointResponse) => void;
 }
 
 export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -28,15 +34,28 @@ export const AuthProvider = ({ children }: React.HTMLProps<HTMLElement>) => {
     navigate(routes.login);
   };
 
-  const login = (data: AuthUser) => {
-    refresh(data);
+  const login = async (data: LoginEndpointResponse) => {
+    const authUser = await refresh(data);
+    if (!authUser) {
+      logout();
+      return
+    }
     navigate(routes.main);
   };
 
-  const refresh = (data: AuthUser) => {
-    setTokens(data.accessToken, data.refreshToken);
-    setUserInStorage(data.user);
-    setUser(data.user);
+  const refresh = async (data: LoginEndpointResponse) :  Promise<User | null>=> {
+    console.log(data);
+    setToken(data.token, data.expires_at);
+    const authUser = await decodeToken(data.token);
+    if (!authUser) {
+      logout();
+      return null;
+    }
+    setUserInStorage(authUser.user);
+    setUser(authUser.user);
+
+    return authUser.user;
+
   };
 
 
