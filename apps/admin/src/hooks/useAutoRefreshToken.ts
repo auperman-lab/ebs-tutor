@@ -1,9 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import dayjs from 'dayjs';
-import { getTokenExpiration, setToken } from "@utils";
+import { getTokenExpiration } from "@utils";
 import { api } from "@api";
+import { useAuth } from "./useAuth";
 
 export const useAutoRefreshToken = () => {
+
+  const {refresh, logout} = useAuth();
 
   useEffect(() => {
     const checkAndRefresh = async () => {
@@ -18,8 +21,13 @@ export const useAutoRefreshToken = () => {
       if (diffInMin <= 4) {
         try {
           const data = await api.auth.refreshToken();
-          setToken(data.token, data.expires_at);
+          const authUser = await refresh(data);
+          if (!authUser) {
+            logout();
+            return
+          }
         } catch (e) {
+          logout()
         }
       }
     };

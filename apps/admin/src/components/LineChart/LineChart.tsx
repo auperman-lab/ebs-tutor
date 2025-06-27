@@ -1,7 +1,7 @@
 import { Area, AreaChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useId, useMemo } from "react";
 import type { LineChartProps } from "./types";
-import { CustomTooltip } from "./CustomToolTip";
+import { CustomTooltip } from "./CustomTooltip";
 
 export const LineChart = ({
                             data,

@@ -17,7 +17,7 @@ type AuthContextProps  = {
   user: User | null;
   logout: () => void;
   login: (data: LoginEndpointResponse) => void;
-  refresh: (data: LoginEndpointResponse) => void;
+  refresh: (data: LoginEndpointResponse) => Promise<User | null>;
 }
 
 export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
