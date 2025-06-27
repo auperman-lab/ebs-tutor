@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useStyles } from './styles';
 import { routes } from '@const';
 import { MagnifyingGlass, Bell } from '@assets';
+import { useAuth } from "@hooks";
 
 const { Text, Title } = Typography;
 const { Header } = Layout;
@@ -20,6 +21,10 @@ const getPageTitle = (pathname: string): string => {
 export const DashboardHeader = () => {
   const location = useLocation();
   const { styles } = useStyles();
+
+  const authContext = useAuth();
+
+  const avatar = authContext.user?.avatar;
 
   return (
     <Header className={styles.header}>
@@ -42,7 +47,7 @@ export const DashboardHeader = () => {
 
           <Avatar
             className={styles.avatar}
-            src="https://pbs.twimg.com/media/F9xhN65WQAATLoU.jpg"
+            src={avatar}
             size={48}
           />
         </Flex>

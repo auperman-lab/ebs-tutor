@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from "react";
 
 import {
   Flex,
@@ -12,10 +12,17 @@ import {
 } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { useStyles } from './styles';
+import { useAuth } from "@hooks";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "@api";
 
 export const AccountSettings = () => {
   const { styles } = useStyles();
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+  const authContext = useAuth();
+  const [imageUrl, setImageUrl] = useState<string | null>(authContext.user?.avatar!);
+  const [form] = Form.useForm();
+
 
   const options = [{ value: '+880', label: '+880' }];
 
@@ -44,8 +51,29 @@ export const AccountSettings = () => {
     }
   };
 
+  const { data: profileData } = useQuery({
+    queryKey: ["accountSettings"],
+    queryFn: () => api.user.get(authContext.user?.id!),
+  });
+
+  useEffect(() => {
+    if (profileData) {
+      console.log(profileData.phone)
+      form.setFieldsValue({
+        firstName: profileData.first_name,
+        lastName: profileData.last_name,
+        username: profileData.first_name + " " +  profileData.last_name,
+        phone: profileData.phone,
+        title: profileData.bio,
+        bio: profileData.bio,
+      });
+      setImageUrl(profileData.avatar);
+    }
+  }, [profileData]);
+
+
   return (
-    <Form className={styles.mainPart}>
+    <Form className={styles.mainPart} form={form}>
       <Flex vertical gap={24}>
         <Flex className={styles.photoPart} justify="space-between" gap={24}>
           <Flex vertical className={styles.accountSettings} gap={24}>
@@ -53,6 +81,7 @@ export const AccountSettings = () => {
             <Flex vertical gap={64}>
               <Flex className={styles.fullName} gap={64}>
                 <Form.Item
+                  name="firstName"
                   layout="vertical"
                   label="First name"
                   style={{ flex: 1 }}
@@ -60,6 +89,7 @@ export const AccountSettings = () => {
                   <Input size="large" placeholder="First name" />
                 </Form.Item>
                 <Form.Item
+                  name="lastName"
                   layout="vertical"
                   label="Last name"
                   style={{ flex: 1 }}
@@ -68,22 +98,25 @@ export const AccountSettings = () => {
                 </Form.Item>
               </Flex>
 
-              <Form.Item layout="vertical" label="Username">
+              <Form.Item layout="vertical" name="username" label="Username">
                 <Input size="large" placeholder="Enter your username" />
               </Form.Item>
               <Form.Item layout="vertical" label="Phone Number">
                 <Flex>
-                  <Select
-                    defaultValue="+880"
-                    options={options}
-                    style={{ width: 120 }}
-                    size="large"
-                  />
-                  <Input
-                    style={{ flex: 1 }}
-                    placeholder="Your Phone number..."
-                    size="large"
-                  />
+                  <Form.Item name="phonePrefix" noStyle initialValue="+880">
+                    <Select
+                      options={options}
+                      style={{ width: 120 }}
+                      size="large"
+                    />
+                  </Form.Item>
+                  <Form.Item name="phone" noStyle>
+                    <Input
+                      style={{ flex: 1 }}
+                      placeholder="Your phone number..."
+                      size="large"
+                    />
+                  </Form.Item>
                 </Flex>
               </Form.Item>
             </Flex>
@@ -119,7 +152,7 @@ export const AccountSettings = () => {
         </Flex>
 
         <Flex vertical gap={64}>
-          <Form.Item layout="vertical" label="Title">
+          <Form.Item layout="vertical" name="title" label="Title">
             <Input
               placeholder="Your tittle, proffesion or small biography"
               count={{
@@ -129,7 +162,7 @@ export const AccountSettings = () => {
               size="large"
             />
           </Form.Item>
-          <Form.Item layout="vertical" label="Biography">
+          <Form.Item layout="vertical" name="title" label="Biography">
             <Input.TextArea
               placeholder="Your tittle, proffesion or small biography"
               className={styles.textArea}

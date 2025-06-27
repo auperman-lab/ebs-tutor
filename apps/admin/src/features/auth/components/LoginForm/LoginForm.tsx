@@ -1,7 +1,6 @@
 import { Button, Checkbox, Flex, Form, Input } from "antd";
 import { LoginFormProps } from "@features/auth/types";
 import { useStyles } from "./LoginFormStyles";
-// @ts-ignore
 import { ArrowRight } from "@phosphor-icons/react";
 import { useMutation } from "@tanstack/react-query";
 import { api } from "@api";
@@ -20,7 +19,7 @@ export const LoginForm = () => {
 
   const { mutate } = useMutation({
     mutationFn: (data: LoginFormProps) => api.auth.login(data),
-    onSuccess: (data) => login(data.data.token),
+    onSuccess: (data) => login(data),
   });
 
   return (

@@ -1,11 +1,10 @@
 import { Avatar, Button, Flex, Progress } from "antd";
 import { useNavigate } from "react-router-dom";
 import { ArrowDown } from "@phosphor-icons/react";
-import { UserOutlined } from '@ant-design/icons';
 import { routes } from "@const";
 import { useStyles } from "./styles";
-import { useState } from "react";
 import { useTheme } from "antd-style";
+import { useAuth } from "@hooks";
 
 
 
@@ -13,9 +12,12 @@ export const ProfileCard = () => {
   const { styles } = useStyles();
   const palette = useTheme();
   const navigate = useNavigate();
+  const authContext = useAuth();
 
-  const [email] = useState("email@email.com");
-  const [userName] = useState("John Doe");
+
+  const email = authContext.user?.email;
+  const userName = authContext.user?.fullName;
+  const avatar = authContext.user?.avatar;
 
 
   const onProfileNavigation = () => {
@@ -26,7 +28,7 @@ export const ProfileCard = () => {
       <Flex align="center" justify="space-between" className={styles.wrapper}>
 
         <Flex gap="large" justify="start" align="center" className={styles.avatarWrapper}>
-          <Avatar size="large" icon={<UserOutlined />}/>
+          <Avatar size="large" src={avatar}/>
           <Flex vertical justify="center" align="start">
             <div className={styles.headerText}>{userName}</div>
             <div className={styles.secondaryText}>{email}</div>
