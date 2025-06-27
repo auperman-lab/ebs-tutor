@@ -70,6 +70,7 @@ export const theme = {
       marginXS: 0,
       paddingXS: 0,
       controlHeightLG: 48,
+      colorFill: 'rgb(255,238,232)',
     },
     Divider: {
       colorSplit: 'rgb(233,234,240)',
@@ -109,6 +110,9 @@ export const theme = {
     },
     Tabs: {
       colorText: 'rgb(110,116,133)',
+      titleFontSize: 16,
+      paddingSM: 0,
+      margin: 0,
     },
     Table: {
       footerBg: 'rgb(245,247,250)',
@@ -133,6 +137,9 @@ export const theme = {
     },
     Breadcrumb: {
       separatorMargin: 8,
+    },
+    InputNumber: {
+      controlHeightLG: 48,
     },
   },
 };

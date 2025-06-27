@@ -10,3 +10,7 @@ export { default as Bell } from './bell.svg?react';
 export { default as User } from './user.svg?react';
 export { default as DotsThree } from './dots-three.svg?react';
 export { default as Star } from './star.svg?react';
+export { default as Clipboard } from './clipboard-text.svg?react';
+export { default as MonitorPlay } from './monitor-play.svg?react';
+export { default as PlayCircle } from './play-circle.svg?react';
+export { default as ChevronDown } from './chevron-down.svg?react';
