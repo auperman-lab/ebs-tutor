@@ -4,7 +4,7 @@ import {
   ChangePassword,
   NotificationsSettings,
   SocialProfile,
-} from '../../components';
+} from "@features/settings/components";
 import { useStyles } from './styles';
 
 export const SettingsPage = () => {

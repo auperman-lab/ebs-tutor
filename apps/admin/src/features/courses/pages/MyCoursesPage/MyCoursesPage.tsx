@@ -2,7 +2,7 @@ import { Flex } from 'antd';
 import {
   MyCoursesCards,
   MyCoursesFiltration,
-} from '../../components/MyCourses';
+}  from "@features/courses/components";
 import { useStyles } from './styles';
 
 export const MyCoursesPage = () => {

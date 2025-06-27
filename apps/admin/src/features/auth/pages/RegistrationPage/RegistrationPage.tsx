@@ -1,6 +1,6 @@
-import { RegistrationForm, RegistrationImageContainer } from '../../components';
 import { Flex } from 'antd';
 import { useStyles } from './styles';
+import { RegistrationForm, RegistrationImageContainer } from "@features/auth/components";
 
 export const RegistrationPage = () => {
   const { styles } = useStyles();

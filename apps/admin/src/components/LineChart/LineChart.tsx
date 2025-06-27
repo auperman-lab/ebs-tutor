@@ -1,65 +1,74 @@
-import { useId } from 'react';
-import {
-  XAxis,
-  YAxis,
-  Tooltip,
-  AreaChart,
-  Area,
-  ResponsiveContainer,
-  ReferenceLine,
-} from 'recharts';
-import { CustomTooltip } from './CustomTooltip';
-import { useStyles } from './styles';
-
-type LineChartProps<T> = {
-  data: T[];
-  primaryY: string;
-  primaryLabel: string;
-  primaryColor: string;
-  secondaryY?: string;
-  secondaryLabel?: string;
-  secondaryColor?: string;
-  referenceX?: string;
-  showAxis: boolean;
-};
+import { Area, AreaChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { useId, useMemo } from "react";
+import type { LineChartProps } from "./types";
+import { CustomTooltip } from "./CustomToolTip";
 
 export const LineChart = ({
-  data,
-  primaryY,
-  primaryLabel,
-  primaryColor,
-  secondaryY,
-  secondaryLabel,
-  secondaryColor,
-  referenceX,
-  showAxis,
-}: LineChartProps<null>) => {
-  const { styles } = useStyles();
+                            data,
+                            primaryLabel,
+                            primaryColor,
+                            secondaryLabel,
+                            secondaryColor,
+                            referenceX,
+                            showAxis,
+                          }: LineChartProps) => {
   const id = useId();
+
   const gradientPrimaryId = `colorPrimary-${id}`;
   const gradientSecondaryId = `colorSecondary-${id}`;
 
-  const formatYAxisTick = (value: number): string => {
-    if (value >= 1000000) return `${value / 1000000}m`;
-    if (value >= 1000) return `${value / 1000}k`;
-    return `${value}`;
+  const ticksY = useMemo(() => {
+    const tickCount = 5;
+    const allValues = data.flatMap(d => [
+      d.primaryData,
+      ...(d.secondaryData !== undefined ? [d.secondaryData] : []),
+    ]);
+    const max = Math.max(...allValues);
+    const step = Math.ceil(max / (tickCount - 1));
+    return Array.from({ length: tickCount }, (_, i) => i * step);
+  }, [data]);
+
+  const ticksX = useMemo(() => {
+    const count = 4;
+    if (data.length <= count) return data.map(d => d.name);
+
+    const step = Math.floor((data.length - 1) / (count - 1));
+    const ticks: string[] = [];
+    for (let i = 0; i < count - 1; i++) {
+      ticks.push(data[i * step].name);
+    }
+    ticks.push(data[data.length - 1].name);
+    return ticks;
+  }, [data]);
+
+  const formatTickNumber = (value: number): string => {
+    if (value >= 1_000_000) {
+      return `${Math.round(value / 1_000_000)}m`;
+    }
+    if (value >= 1_000) {
+      return `${Math.round(value / 1_000)}k`;
+    }
+    return Math.round(value).toString();
   };
 
   return (
-    <ResponsiveContainer width="100%" height={400} className={styles.mainPart}>
-      <AreaChart data={data}>
+    <ResponsiveContainer width="100%" minHeight={100} height="100%">
+      <AreaChart
+        data={data}
+        margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+      >
         <defs>
-          <linearGradient id={gradientPrimaryId} x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id={gradientPrimaryId} x1="0" y1="0" x2="0" y2="2">
             <stop offset="25%" stopColor={primaryColor} stopOpacity={0.2} />
             <stop offset="75%" stopColor={primaryColor} stopOpacity={0} />
           </linearGradient>
-          {secondaryY && secondaryColor && (
+          {secondaryColor && (
             <linearGradient
               id={gradientSecondaryId}
               x1="0"
               y1="0"
               x2="0"
-              y2="1"
+              y2="2"
             >
               <stop offset="5%" stopColor={secondaryColor} stopOpacity={0.2} />
               <stop offset="95%" stopColor={secondaryColor} stopOpacity={0} />
@@ -72,30 +81,31 @@ export const LineChart = ({
             dataKey="name"
             axisLine={false}
             tickLine={false}
-            padding={{ left: 10 }}
-            ticks={['Aug 01', 'Aug 11', 'Aug 21', 'Aug 31']}
+            padding={{ left: 5 }}
+            ticks={ticksX}
           />
         )}
 
         {showAxis && (
           <YAxis
+            width={45}
             axisLine={false}
             tickLine={false}
-            ticks={[1000, 10000, 50000, 150000]}
-            tickFormatter={formatYAxisTick}
+            ticks={ticksY}
+            tickFormatter={formatTickNumber}
           />
         )}
 
         <Tooltip
           content={
             <CustomTooltip
-              primaryY={primaryY}
               primaryLabel={primaryLabel}
               secondaryLabel={secondaryLabel}
               showAxis={showAxis}
             />
           }
         />
+
 
         {referenceX && (
           <ReferenceLine
@@ -107,17 +117,17 @@ export const LineChart = ({
 
         <Area
           type="basis"
-          dataKey={primaryY}
+          dataKey="primaryData"
           stroke={primaryColor}
           fillOpacity={1}
           fill={`url(#${gradientPrimaryId})`}
           strokeWidth={3}
         />
 
-        {secondaryY && secondaryColor && (
+        {secondaryLabel && secondaryColor && (
           <Area
             type="monotone"
-            dataKey={secondaryY}
+            dataKey="secondaryData"
             stroke={secondaryColor}
             fillOpacity={1}
             fill={`url(#${gradientSecondaryId})`}
