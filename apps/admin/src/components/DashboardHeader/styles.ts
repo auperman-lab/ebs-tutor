@@ -1,13 +1,27 @@
-import { createStyles } from "antd-style";
+import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(({ token, responsive }) => ({
+export const useStyles = createStyles(({ token }) => ({
   header: {
-    position: "sticky",
+    position: 'sticky',
     top: 0,
     zIndex: 1,
-    display: "flex",
-    width: "100%",
-    alignItems: "center",
-    color: "black",
+    width: '100%',
+    padding: `${token.paddingLG}px 10% ${token.paddingLG}px 10%`,
+    height: 100,
+  },
+
+  headerWrapper: {
+    width: '100%',
+    height: '100%',
+  },
+
+  button: {
+    backgroundColor: token.colorBgBase,
+    minWidth: 48,
+    minHeight: 48,
+  },
+  avatar: {
+    minWidth: 48,
+    minHeight: 48,
   },
 }));

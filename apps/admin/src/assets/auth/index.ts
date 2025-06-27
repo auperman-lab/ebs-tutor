@@ -1,15 +1,5 @@
-import apple_logo from './apple_logo.png';
-import google_logo from './google_logo.png';
-import facebook_logo from './facebook_logo.png';
-import sally_login from './sally_login.png';
-import sally_register from './Saly-1.png';
-import logo from './GraduationCap.png';
-
-export {
-  apple_logo,
-  google_logo,
-  facebook_logo,
-  sally_login,
-  sally_register,
-  logo,
-};
+export { default as Google } from './google.svg?react';
+export { default as Apple } from './apple.svg?react';
+export { default as GraduationCap } from './graduation-cap.svg?react';
+export { default as SallyLogin } from './sally-login.svg?react';
+export { default as SallyRegistration } from './sally-registration.svg?react';

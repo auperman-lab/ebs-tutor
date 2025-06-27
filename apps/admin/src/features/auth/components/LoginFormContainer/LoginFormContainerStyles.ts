@@ -1,4 +1,4 @@
-import { createStyles } from "antd-style";
+import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token, css, responsive }) => ({
   loginFormContainer: css`
@@ -7,7 +7,7 @@ export const useStyles = createStyles(({ token, css, responsive }) => ({
   `,
 
   loginFormWrapper: css`
-    max-width: 400px;
+    max-width: 600px;
     width: 100%;
   `,
 

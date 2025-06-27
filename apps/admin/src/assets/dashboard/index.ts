@@ -1,23 +1,12 @@
-import Globe from './Globe.png';
-import SocialFacebook from './SocialFacebook.png';
-import SocialInstagram from './SocialInstagram.png';
-import SociallinkedIn from './SociallinkedIn.png';
-import SocialTwitter from './SocialTwitter.png';
-import SocialWhatsapp from './SocialWhatsapp.png';
-import SocialYouTube from './SocialYouTube.png';
-import Star from './Star.png';
-import DotsThree from './DotsThree.png';
-import User from './User.png';
-
-export {
-  Globe,
-  SocialFacebook,
-  SocialInstagram,
-  SocialTwitter,
-  SocialWhatsapp,
-  SocialYouTube,
-  SociallinkedIn,
-  Star,
-  DotsThree,
-  User,
-};
+export { default as MagnifyingGlass } from './magnifying-glass.svg?react';
+export { default as Globe } from './globe.svg?react';
+export { default as Facebook } from './facebook.svg?react';
+export { default as Instagram } from './instagram.svg?react';
+export { default as Linkedin } from './linkedin.svg?react';
+export { default as Twitter } from './twitter.svg?react';
+export { default as Whatsapp } from './whatsapp.svg?react';
+export { default as Youtube } from './youtube.svg?react';
+export { default as Bell } from './bell.svg?react';
+export { default as User } from './user.svg?react';
+export { default as DotsThree } from './dots-three.svg?react';
+export { default as Star } from './star.svg?react';

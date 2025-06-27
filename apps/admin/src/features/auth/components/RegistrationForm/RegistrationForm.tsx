@@ -110,7 +110,7 @@ export const RegistrationForm = () => {
             <Input.Password placeholder="Confirm password" size="large" />
           </Form.Item>
 
-          <Flex justify="space-between">
+          <Flex justify="space-between" align="center">
             <Form.Item
               name="agreement"
               valuePropName="checked"
@@ -128,13 +128,7 @@ export const RegistrationForm = () => {
               ]}
               style={{ marginBottom: 0 }}
             >
-              <Checkbox
-                style={{
-                  alignItems: 'center',
-                  height: '32px',
-                  letterSpacing: '-1px',
-                }}
-              >
+              <Checkbox>
                 I Agree with all of your{' '}
                 <Typography.Link
                   href="https://ant.design/components/typography#typography-demo-text"
@@ -145,7 +139,7 @@ export const RegistrationForm = () => {
               </Checkbox>
             </Form.Item>
             <Form.Item label={null}>
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" size="large" htmlType="submit">
                 Submit
               </Button>
             </Form.Item>

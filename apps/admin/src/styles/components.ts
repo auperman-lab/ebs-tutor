@@ -8,6 +8,7 @@ export const themeComponents = {
       paddingInline: 16,
       marginXS: 0,
       paddingXS: 0,
+      controlHeightLG: 48,
     },
     Divider: {
       colorSplit: 'rgb(233,234,240)',
@@ -16,6 +17,7 @@ export const themeComponents = {
     Layout: {
       bodyBg: 'rgb(245,247,250)',
       headerColor: 'rgba(253,252,252,0.88)',
+      footerBg: 'rgb(245,247,250)',
       headerBg: 'rgb(255,255,255)',
       siderBg: 'rgb(29,32,38)',
       triggerBg: 'rgb(255,255,255)',
@@ -31,6 +33,7 @@ export const themeComponents = {
       margin: 0,
       marginLG: 0,
       marginXXS: 0,
+      colorPrimary: 'rgb(255,255,255)',
     },
     Input: {
       lineWidth: 1,
@@ -38,6 +41,7 @@ export const themeComponents = {
       hoverBorderColor: 'rgb(255,102,54)',
       addonBg: 'rgb(255,255,255)',
       colorFillTertiary: 'rgb(255,255,255)',
+      controlHeightLG: 48,
     },
     Rate: {
       starColor: 'rgb(253,142,31)',
@@ -62,6 +66,9 @@ export const themeComponents = {
       titleMarginTop: '0',
       marginXS: 0,
       marginXXS: 0,
+    },
+    Select: {
+      controlHeightLG: 48,
     },
     Breadcrumb: {
       separatorMargin: 8,
