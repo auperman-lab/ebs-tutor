@@ -1,6 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 
-import { DecodedToken, User } from "@types";
+import { AuthUser, DecodedToken, User } from "@types";
+import { api } from "@api";
 
 export const isExpiredToken = (token: string): boolean => {
   try {
@@ -13,16 +14,39 @@ export const isExpiredToken = (token: string): boolean => {
 };
 
 export const getUserByToken = (): User | null => {
-  const accessToken = localStorage.getItem("accessToken");
-  const refreshToken = localStorage.getItem("refreshToken");
-
-  return accessToken && refreshToken && !isExpiredToken(accessToken) ? getUser() : null;
+  const token = localStorage.getItem("token");
+  return token && !isExpiredToken(token) ? getUser() : null;
 };
 
-export const setTokens = (accessToken: string, refreshToken: string) => {
+export const decodeToken = async (token: string): Promise<AuthUser | null> => {
   try {
-    localStorage.setItem("refreshToken", refreshToken);
-    localStorage.setItem("accessToken", accessToken);
+    const decoded = jwtDecode<DecodedToken>(token);
+
+    if (!decoded.exp || decoded.exp < Date.now() / 1000) {
+      return null;
+    }
+    const data = await api.user.get(decoded.sub);
+
+    const user = {
+      id: data.id,
+      name: data.name,
+      avatar: data.avatar,
+      email: data.email,
+      roles: data.roles,
+    }
+
+    return {
+      user,
+      token,
+    };
+  } catch (e) {
+    return null;
+  }
+};
+
+export const setTokens = (token: string) => {
+  try {
+    localStorage.setItem("token", token);
   } catch (error) {
     console.error("Error setting tokens in local storage:", error);
   }
