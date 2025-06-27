@@ -17,4 +17,9 @@ export type LoginEndpointResponse = {
   expires_at: string
 }
 
+export type ChangePasswordRequest = {
+  email: string;
+  password: string;
+};
+
 

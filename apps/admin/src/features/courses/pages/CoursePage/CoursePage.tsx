@@ -1,30 +1,26 @@
 import { Col, Row, Breadcrumb } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from "react-router-dom";
 import { routes } from '@const';
 import { CourseDescription } from "@features/courses";
 import { useStyles } from './styles';
 
-
-const items = [
-  {
-    title: <Link to={routes.main}>Dashboard</Link>,
-  },
-  {
-    title: <Link to={routes.courses}>My Courses</Link>,
-  },
-  {
-    title: 'Development',
-  },
-  {
-    title: 'Web Development',
-  },
-  {
-    title: '2021 Complete Python Bootcamp From Zero to Hero in Python',
-  },
-];
-
 export const CoursePage = () => {
   const { styles } = useStyles();
+  const { title }  = useParams();
+
+  const items = [
+    {
+      title: <Link to={routes.main}>Dashboard</Link>,
+    },
+    {
+      title: <Link to={routes.courses}>My Courses</Link>,
+    },
+    {
+      title: title,
+    },
+  ];
+  //todo: add course ratings card, revenue, overview and stat cards(actual info is provided by the endpoint)
+
   return (
     <Row gutter={[24, 24]} className={styles.container}>
       <Col span={24}>

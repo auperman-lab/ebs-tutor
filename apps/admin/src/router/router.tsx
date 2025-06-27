@@ -25,7 +25,7 @@ export const Router = () => {
           element: <SettingsPage />,
         },
         {
-          path: routes.courses + '/:id',
+          path: routes.courses + '/:title',
           element: <CoursePage />,
         },
         {

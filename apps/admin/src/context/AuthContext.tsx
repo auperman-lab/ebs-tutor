@@ -44,7 +44,6 @@ export const AuthProvider = ({ children }: React.HTMLProps<HTMLElement>) => {
   };
 
   const refresh = async (data: LoginEndpointResponse) :  Promise<User | null>=> {
-    console.log(data);
     setToken(data.token, data.expires_at);
     const authUser = await decodeToken(data.token);
     if (!authUser) {

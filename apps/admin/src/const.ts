@@ -14,7 +14,8 @@ export const apiEndpoints = {
   register: '/auth/register',
   login: '/auth/login',
   refreshToken: "/auth/refresh",
-  getUser: "/admin/users"
+  getUser: "/admin/users",
+  getAllCourses: "/admin/courses",
 };
 
 export const regexPatterns = {
