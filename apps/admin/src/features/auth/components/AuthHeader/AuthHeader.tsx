@@ -5,13 +5,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useStyles } from "./AuthHeaderStyles";
 import { routes } from "@const";
 
+
 export const AuthHeader = () => {
   const { styles } = useStyles();
 
   const location = useLocation();
   const navigate = useNavigate();
-  const isLogin = location.pathname === "/login";
-  const handleRedirect = () => {
+  const isLogin = location.pathname === '/login';
+  const onRedirect = () => {
     navigate(isLogin ? routes.register : routes.login);
   };
 
@@ -39,7 +40,7 @@ export const AuthHeader = () => {
           <Button
             className={styles.createAccountButton}
             size="large"
-            onClick={handleRedirect}
+            onClick={onRedirect}
           >
             {isLogin ? "Sign Up" : "Log In"}
           </Button>
