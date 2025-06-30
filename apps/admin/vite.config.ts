@@ -29,6 +29,7 @@ export default defineConfig(() => ({
       '@context': path.resolve(__dirname, 'src/context'),
       '@const': path.resolve(__dirname, 'src/const.ts'),
       '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
       '@components': path.resolve(__dirname, 'src/components'),
       '@features': path.resolve(__dirname, 'src/features'),
       '@layout': path.resolve(__dirname, 'src/layout'),
@@ -36,6 +37,9 @@ export default defineConfig(() => ({
         __dirname,
         'src/features/create-course/components'
       ),
+      
+   
+
     },
   },
   // Uncomment this if you are using workers.
