@@ -1,5 +1,4 @@
-import { Tabs, TabsProps, Flex, Form } from 'antd';
-import { useQueryClient } from '@tanstack/react-query';
+import { Tabs, TabsProps, Flex } from 'antd';
 import {
   BasicInformation,
   AdvanceInformation,
@@ -14,8 +13,6 @@ import { Clipboard, PlayCircle, MonitorPlay } from '@assets';
 export const CreateCoursePage = () => {
   const { styles } = useStyles();
   const [activeKey, setActiveKey] = useState('1');
-  const [form] = Form.useForm();
-  const queryClient = useQueryClient();
 
   const items: TabsProps['items'] = [
     {
@@ -59,15 +56,6 @@ export const CreateCoursePage = () => {
       children: <PublishCourse />,
     },
   ];
-
-  const handleSave = async () => {
-    try {
-      const value = await form.validateFields();
-      // queryClient.setQueriesData([''])
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   const handleNext = () => {
     setActiveKey((prev) => (Number(prev) + 1).toString());
