@@ -21,7 +21,7 @@ export const NavigationButtons = ({
       <Button size="large" onClick={isFirst ? () => {} : onBack}>
         {isFirst ? 'Cancel' : 'Back'}
       </Button>
-      <Flex gap={12}>
+      <Flex gap={12} justify="space-between">
         <Button size="large" variant="filled" className={styles.save}>
           Save
         </Button>

@@ -140,7 +140,7 @@ export const BasicInformation = () => {
       <Title level={4}>Basic Information</Title>
       <Divider orientationMargin={32} />
       <Form form={form}>
-        <Flex vertical gap={64}>
+        <Flex vertical className={styles.formContainer}>
           <Form.Item layout="vertical" label="Tittle">
             <Input
               size="large"
@@ -157,7 +157,7 @@ export const BasicInformation = () => {
               placeholder="You course subtittle"
             />
           </Form.Item>
-          <Flex justify="space-between" gap={24}>
+          <Flex justify="space-between" className={styles.category}>
             <Form.Item
               layout="vertical"
               label="Course Category"
@@ -187,7 +187,7 @@ export const BasicInformation = () => {
               placeholder="What is primarily taught in your course?"
             />
           </Form.Item>
-          <Flex justify="space-between" gap={24}>
+          <Flex justify="space-between" className={styles.options}>
             <Form.Item
               layout="vertical"
               label="Course Language"
