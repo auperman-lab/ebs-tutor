@@ -77,11 +77,14 @@ export const themeComponents = {
   },
   InputNumber: {
     controlHeightLG: 48,
+  },
   Menu: {
     itemBg: '#1D2026',
     colorText: 'rgb(140,148,163)',
     itemMarginInline: 0,
     lineWidth: 0,
     itemSelectedColor: 'rgb(255,255,255)',
+    itemSelectedBg: '#ff6636',
+    controlHeightLG: 48,
   },
 };
