@@ -17,3 +17,4 @@ export const useStyles = createStyles(({ token }) => ({
     fontWeight: 500,
   },
 }));
+

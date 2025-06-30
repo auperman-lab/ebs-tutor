@@ -15,3 +15,4 @@ export const useStyles = createStyles(({ token }) => ({
     borderRight: 'none',
   },
 }));
+
