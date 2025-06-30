@@ -1,11 +1,10 @@
 import { Button, Flex, Space, Layout } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GraduationCap } from '@assets';
-import { useStyles } from './AuthHeaderStyles';
 import { routes } from '@const';
+import { useStyles } from './styles';
 
 const { Header } = Layout;
-
 
 export const AuthHeader = () => {
   const { styles } = useStyles();
@@ -31,8 +30,10 @@ export const AuthHeader = () => {
           className={styles.headerLogo}
           onClick={() => navigate('/')}
         >
-          <GraduationCap />
-          <h1 className={styles.headerTitle}>E-tutor</h1>
+          <Flex gap={8}>
+            <GraduationCap />
+            <h1 className={styles.headerTitle}>E-tutor</h1>
+          </Flex>
         </Button>
 
         <Space className={styles.createAccountWrapper}>
