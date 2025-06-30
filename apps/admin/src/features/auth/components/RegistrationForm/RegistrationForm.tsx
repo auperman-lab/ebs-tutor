@@ -9,11 +9,10 @@ import {
 } from 'antd';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@api';
+import { useStyles } from './styles';
 import { regexPatterns } from '@const';
-import { ArrowRight } from '@assets';
 import { LoginOptions } from "@features/auth/components/";
 import { RegistrationFormProps } from "@features/auth/types";
-import { useStyles } from './styles';
 
 export const RegistrationForm = () => {
   const { styles } = useStyles();
@@ -48,7 +47,7 @@ export const RegistrationForm = () => {
       >
         <Flex vertical={true} gap={24}>
           <Flex className={styles.fullname} gap={18}>
-            <Form.Item
+            <Form.Item<RegistrationFormProps>
               label="First name"
               name="firstName"
               rules={[{ required: true, message: 'This field is required!' }]}
@@ -56,7 +55,7 @@ export const RegistrationForm = () => {
               <Input placeholder="First name" size="large" />
             </Form.Item>
 
-            <Form.Item
+            <Form.Item<RegistrationFormProps>
               label="Last name"
               name="lastName"
               rules={[{ required: true, message: 'This field is required!' }]}
@@ -65,7 +64,7 @@ export const RegistrationForm = () => {
             </Form.Item>
           </Flex>
 
-          <Form.Item
+          <Form.Item<RegistrationFormProps>
             label="Email"
             name="email"
             rules={[{ required: true, message: 'This field is required!' }]}
@@ -73,7 +72,7 @@ export const RegistrationForm = () => {
             <Input placeholder="Email adress" size="large" />
           </Form.Item>
 
-          <Form.Item
+          <Form.Item<RegistrationFormProps>
             label="Password"
             name="password"
             rules={[
@@ -92,7 +91,7 @@ export const RegistrationForm = () => {
             />
           </Form.Item>
 
-          <Form.Item
+          <Form.Item<RegistrationFormProps>
             label="Confirm password"
             name="confirmPassword"
             dependencies={['password']}
@@ -141,10 +140,7 @@ export const RegistrationForm = () => {
             </Form.Item>
             <Form.Item label={null}>
               <Button type="primary" size="large" htmlType="submit">
-                <Flex align="center" gap={12}>
-                  Create Account
-                  <ArrowRight />
-                </Flex>
+                Submit
               </Button>
             </Form.Item>
           </Flex>

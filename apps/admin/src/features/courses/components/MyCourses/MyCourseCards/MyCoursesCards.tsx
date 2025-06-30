@@ -1,16 +1,7 @@
-import {
-  Card,
-  Col,
-  Divider,
-  Dropdown,
-  Flex,
-  MenuProps,
-  Row,
-  Tag,
-  Typography,
-} from 'antd';
+import { Card, Col, Divider, Dropdown, Flex, MenuProps, Row, Tag } from 'antd';
 import { useStyles } from './styles';
 import { Star, DotsThree, User } from '@assets';
+import { Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '@const';
 
@@ -1149,7 +1140,7 @@ export const MyCoursesCards = () => {
   return (
     <Row gutter={[24, 24]}>
       {data.map((item) => (
-        <Col key={item.id} md={12} xl={8} xxl={6}>
+        <Col key={item.id} className="gutter-row" md={12} lg={8} xl={6}>
           <Card
             hoverable
             cover={
@@ -1166,11 +1157,7 @@ export const MyCoursesCards = () => {
               <Tag color="geekblue" className={styles.tag}>
                 {item.category}
               </Tag>
-              <Title level={5}>
-                {item.title.length < 50
-                  ? item.title
-                  : `${item.title.slice(0, 40)}...`}
-              </Title>
+              <Title level={5}>{item.title}</Title>
               <Divider className={styles.divider} />
               <Flex justify="space-between" align="center" gap={24}>
                 <Flex align="center" gap={6}>
@@ -1178,10 +1165,8 @@ export const MyCoursesCards = () => {
                   <Text className={styles.text}>{item.rating}</Text>
                 </Flex>
                 <Flex align="center" gap={6}>
-                  <Flex align="center" gap={6}>
-                    <User />
-                    {item.students}
-                  </Flex>
+                  <User />
+                  {item.students}
                   <Text type="secondary" color="#4E5566">
                     {' '}
                     students
@@ -1190,7 +1175,7 @@ export const MyCoursesCards = () => {
               </Flex>
               <Divider className={styles.divider} />
               <Flex justify="space-between" align="center">
-                <div className={styles.price}>${item.price}.00</div>
+                <div className={styles.price}>${item.price}</div>
                 <Dropdown menu={{ items }} trigger={['hover']} arrow>
                   <div tabIndex={0}>
                     <DotsThree />
