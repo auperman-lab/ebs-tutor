@@ -2,10 +2,10 @@ import { Button, Checkbox, Flex, Form, Input } from "antd";
 import { LoginFormProps } from "@features/auth/types";
 import { useStyles } from "./LoginFormStyles";
 // @ts-ignore
-import { ArrowRight } from "@phosphor-icons/react";
-import { useMutation } from "@tanstack/react-query";
-import { api } from "@api";
-import { useAuth } from "@hooks";
+import { ArrowRight } from '@assets';
+import { useStyles } from './LoginFormStyles';
+import { api } from '@api';
+import { useAuth } from '@hooks';
 
 export const LoginForm = () => {
   const [form] = Form.useForm();
@@ -16,7 +16,7 @@ export const LoginForm = () => {
   const onFinish = async () => {
     const values: LoginFormProps = await form.validateFields();
     mutate(values);
-    console.log("Success:", values);
+    console.log('Success:', values);
   };
 
   const { mutate } = useMutation({
@@ -34,25 +34,25 @@ export const LoginForm = () => {
         onFinish={onFinish}
       >
         <Flex vertical gap={24}>
-          <Form.Item<LoginFormProps>
+          <Form.Item
             label="Email"
             name="email"
             rules={[
               {
                 required: true,
-                message: "Please input your email!",
-                type: "email",
+                message: 'Please input your email!',
+                type: 'email',
               },
             ]}
           >
             <Input size="large" placeholder="Username or email address..." />
           </Form.Item>
 
-          <Form.Item<LoginFormProps>
+          <Form.Item
             label="Password"
             name="password"
             rules={[
-              { required: true, message: "Please input your password!" },
+              { required: true, message: 'Please input your password!' },
               // {
               //   pattern: regexPatterns.password,
               //   message:
@@ -70,11 +70,7 @@ export const LoginForm = () => {
           justify="space-between"
           className={styles.form_submit}
         >
-          <Form.Item<LoginFormProps>
-            name="remember"
-            valuePropName="checked"
-            label={null}
-          >
+          <Form.Item name="remember" valuePropName="checked" label={null}>
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
 
@@ -85,8 +81,10 @@ export const LoginForm = () => {
               size="large"
               className={styles.auth_button}
             >
-              Sign In
-              <ArrowRight />
+              <Flex align="center" gap={12}>
+                Sign In
+                <ArrowRight />
+              </Flex>
             </Button>
           </Form.Item>
         </Flex>

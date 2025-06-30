@@ -1,9 +1,10 @@
-import { Button, Flex, Space } from 'antd';
-import { GraduationCap } from '@assets';
-import { Header } from 'antd/lib/layout/layout';
+import { Button, Flex, Space, Layout } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useStyles } from './AuthHeaderStyles';
+import { GraduationCap } from '@assets';
 import { routes } from '@const';
+import { useStyles } from './styles';
+
+const { Header } = Layout;
 
 export const AuthHeader = () => {
   const { styles } = useStyles();

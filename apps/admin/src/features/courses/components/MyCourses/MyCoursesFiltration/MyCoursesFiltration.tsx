@@ -1,8 +1,6 @@
 import { Col, Form, Input, Row, Select } from 'antd';
 import { useStyles } from './styles';
-import { SearchOutlined } from '@ant-design/icons';
-
-const { Option } = Select;
+import { MagnifyingGlass } from '@assets';
 
 const sort = [
   {
@@ -62,10 +60,10 @@ export const MyCoursesFiltration = () => {
 
   return (
     <Form className={styles.container}>
-      <Row gutter={16}>
+      <Row gutter={[16, 16]}>
         <Col sm={24} lg={9}>
           <Input
-            addonBefore={<SearchOutlined />}
+            addonBefore={<MagnifyingGlass />}
             placeholder="Search in your courses..."
             size="large"
           />
@@ -87,7 +85,6 @@ export const MyCoursesFiltration = () => {
             className={styles.select}
             options={category}
           />
-          <Option value="all">All Category</Option>
         </Col>
 
         <Col className="gutter-row" sm={24} lg={5}>
