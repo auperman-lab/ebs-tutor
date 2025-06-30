@@ -1,11 +1,6 @@
 import { useRoutes } from 'react-router-dom';
 
 import { routes } from '@const';
-import { LoginPage, RegistrationPage } from "@features/auth";
-import { MainPage } from '@features/dashboard';
-import { CoursePage, CoursesPage } from "@features/courses";
-import { SettingsPage } from "@features/settings";
-import { NotFoundPage } from "@features/not-found";
 
 import { AuthProvider } from '@context';
 import { DashboardLayout, AuthLayout } from '@layout';
@@ -15,7 +10,7 @@ import {
   RegistrationPage,
   MainPage,
   CoursePage,
-  MyCoursesPage,
+  CoursesPage,
   SettingsPage,
   NotFoundPage,
   CreateCoursePage,
