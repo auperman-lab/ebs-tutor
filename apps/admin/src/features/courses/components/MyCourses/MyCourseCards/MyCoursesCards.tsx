@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { routes } from "@const";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@api";
-import { ParamsType } from "@features/courses/types";
 import { GetCoursesRequest } from "@types";
+import { ParamsType } from "@features/courses/types";
 
 const { Title, Text } = Typography;
 
@@ -79,7 +79,7 @@ export const MyCoursesCards = () => {
                 alt="example"
                 src={item.image_url}
                 onClick={() => {
-                  navigate(routes.courses + `/${item.title}`);
+                  navigate(routes.courses + `/${item.id}`);
                 }}
               />
             }

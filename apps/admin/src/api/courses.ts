@@ -9,11 +9,9 @@ export const courses = {
     });
     return data.data;
   },
-  getCourse: async (title:  string): Promise<Course> => {
-    const { data } = await axiosInstance.get(apiEndpoints.getAllCourses, {
-      params: { title },
-    });
-    return data.data[0];
+  getCourse: async (id:  string): Promise<Course> => {
+    const { data } = await axiosInstance.get(apiEndpoints.getAllCourses + `/${id}`);
+    return data.data;
   },
   getCategories: async (): Promise<CategoryResponse[]>=>{
     const { data } = await axiosInstance.get(apiEndpoints.getCategories + `?per_page=1000`);

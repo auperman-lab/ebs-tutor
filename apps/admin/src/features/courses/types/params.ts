@@ -1,4 +1,3 @@
-
 export type ParamsType = {
   search?: string;
   sort?: "ASC" |"DESC";

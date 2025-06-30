@@ -4,7 +4,7 @@ import {
   AdvanceInformation,
   Curriculum,
   PublishCourse,
-} from '@createcourse';
+} from '@features/create-course/components';
 
 const items: TabsProps['items'] = [
   {

@@ -28,12 +28,8 @@
       "@hooks": ["apps/admin/src/hooks/index.ts"],
       "@utils": ["apps/admin/src/utils/index.ts"],
       "@components": ["apps/admin/src/components/index.ts"],
-      "@features": ["apps/admin/src/features/index.ts"],
+      "@features/*": ["apps/admin/src/features/*"],
       "@layout": ["apps/admin/src/layout/index.ts"],
-      "@createcourse": [
-        "apps/admin/src/features/create-course/components/index.ts"
-      ]
-      
     }
   }
 }

@@ -12,14 +12,14 @@ const { Text, Title } = Typography;
 export const CourseDescription = () => {
   const { styles } = useStyles();
 
-  const { title }  = useParams();
+  const { id }  = useParams();
 
   const rating = 4.1;
   const ratingsReviewsNumber = 1231;
 
   const { data: course, isLoading, isError } = useQuery({
-    queryKey: ["course", title],
-    queryFn: () => api.courses.getCourse(title!),
+    queryKey: ["course", id],
+    queryFn: () => api.courses.getCourse(id!),
   });
 
   if (isLoading) return <Text>Loading course...</Text>;

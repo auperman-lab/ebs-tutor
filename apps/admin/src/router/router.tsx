@@ -4,17 +4,13 @@ import { routes } from '@const';
 
 import { AuthProvider } from '@context';
 import { DashboardLayout, AuthLayout } from '@layout';
+import { MainPage } from "@features/dashboard";
+import { SettingsPage } from "@features/settings";
+import { CoursePage, CoursesPage } from "@features/courses";
+import { CreateCoursePage } from "@features/create-course";
+import { LoginPage, RegistrationPage } from "@features/auth";
+import { NotFoundPage } from "@features/not-found";
 
-import {
-  LoginPage,
-  RegistrationPage,
-  MainPage,
-  CoursePage,
-  CoursesPage,
-  SettingsPage,
-  NotFoundPage,
-  CreateCoursePage,
-} from '@features';
 
 export const Router = () => {
   return useRoutes([
@@ -31,7 +27,7 @@ export const Router = () => {
           element: <SettingsPage />,
         },
         {
-          path: routes.courses + '/:title',
+          path: routes.courses + '/:id',
           element: <CoursePage />,
         },
         {
