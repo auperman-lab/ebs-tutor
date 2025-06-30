@@ -1,6 +1,7 @@
 import { Flex, Typography, Divider, Form } from 'antd';
 import { useStyles } from './styles';
 import { UploadFiles } from './UploadFiles';
+import { ImagePreview, VideoPreview } from '@assets';
 
 const { Title } = Typography;
 
@@ -12,13 +13,15 @@ export const AdvanceInformation = () => {
       <Title level={4}>Advance Information</Title>
       <Divider orientationMargin={32} />
       <Form>
-        <Flex gap={48}>
+        <Flex className={styles.uploadContainer}>
           <UploadFiles
             title="Course Thumbnail"
             description="Upload your course Thumbnail here. Important guidelines: 1200x800 pixels or 12:8 Ratio. Supported format: .jpg, .jpeg, or .png"
             acceptedTypes={['image/jpeg', 'image/png']}
             maxSizeMB={2}
             buttonText="Upload Image"
+            preview={true}
+            previewImage={<ImagePreview />}
           />
           <UploadFiles
             title="Course Trailer"
@@ -26,7 +29,8 @@ export const AdvanceInformation = () => {
             acceptedTypes={['video/mp4', 'video/webm', 'video/ogg']}
             maxSizeMB={50}
             buttonText="Upload Video"
-            preview={false}
+            preview={true}
+            previewImage={<VideoPreview />}
           />
         </Flex>
       </Form>
