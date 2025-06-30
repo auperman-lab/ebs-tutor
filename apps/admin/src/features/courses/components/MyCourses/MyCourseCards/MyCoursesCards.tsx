@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { routes } from "@const";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@api";
+import { ParamsType } from "@features/courses/types";
+import { GetCoursesRequest } from "@types";
 
 const { Title, Text } = Typography;
 
@@ -32,14 +34,31 @@ const items: MenuProps["items"] = [
 
 export const MyCoursesCards = () => {
   const { styles } = useStyles();
+  let navigate = useNavigate();
+
+
+  const getQueryParams = () : GetCoursesRequest => {
+    const searchParams = new URLSearchParams(location.search);
+    const categoryValueRaw = searchParams.get("category") ?? "all";
+    const categoryValue = categoryValueRaw === "all" ? undefined : Number(categoryValueRaw);
+    const params: GetCoursesRequest =  {
+      title: searchParams.get("search") || undefined,
+      order: (searchParams.get("sort") as ParamsType["sort"]) || "ASC",
+      order_by: "title",
+      tag: searchParams.get("tag") || undefined ,
+    };
+    if (categoryValue !== undefined) {
+      params.category_id = categoryValue;
+    }
+    return params;
+  };
+
+  const params = getQueryParams();
 
   const { data: courses, isLoading, isError } = useQuery({
-    queryKey: ["myCourses"],
-    queryFn: () => api.courses.getAllCourses(),
+    queryKey: ["myCourses", params],
+    queryFn: () => api.courses.getAllCourses(params),
   });
-
-
-  let navigate = useNavigate();
 
   // todo: make skeleton for the courses
   // todo: make fail component (reusable)

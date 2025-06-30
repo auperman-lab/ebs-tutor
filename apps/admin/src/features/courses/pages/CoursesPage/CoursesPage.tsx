@@ -5,7 +5,7 @@ import {
 }  from "@features/courses/components";
 import { useStyles } from './styles';
 
-export const MyCoursesPage = () => {
+export const CoursesPage = () => {
   const { styles } = useStyles();
   return (
     <Flex

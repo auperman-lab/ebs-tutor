@@ -1,10 +1,12 @@
 import { axiosInstance } from './axios/instance';
-import { CategoryResponse, Course } from "@types";
+import { CategoryResponse, Course, GetCoursesRequest } from "@types";
 import { apiEndpoints } from "@const";
 
 export const courses = {
-  getAllCourses: async (): Promise<Course[]> => {
-    const { data } = await axiosInstance.get(apiEndpoints.getAllCourses);
+  getAllCourses: async (params: GetCoursesRequest): Promise<Course[]> => {
+    const { data } = await axiosInstance.get(apiEndpoints.getAllCourses, {
+      params,
+    });
     return data.data;
   },
   getCourse: async (title:  string): Promise<Course> => {

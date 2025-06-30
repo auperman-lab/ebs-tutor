@@ -5,6 +5,7 @@ import { api } from "@api";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { ParamsType } from "@features/courses/types";
 
 const { Option } = Select;
 const sort = [
@@ -19,12 +20,6 @@ const sort = [
 
 ];
 
-type ParamsType = {
-  search: string;
-  sort: "ASC" |"DESC";
-  category: string;
-  tag: string
-}
 const initialValues: ParamsType = {
   search: "",
   sort: "ASC",
@@ -102,8 +97,6 @@ export const MyCoursesFiltration = () => {
     const categoryValue = categoryValueRaw === "all" ? "all" : Number(categoryValueRaw);
     const categoryOption = categoryOptions.find((c) => c.value === categoryValue);
 
-    console.log("categoryOptions", categoryOptions);
-    console.log("categoryOption", categoryOption);
 
     return {
       search: searchParams.get("search") || "",
