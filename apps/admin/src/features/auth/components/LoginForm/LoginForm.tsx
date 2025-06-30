@@ -1,6 +1,6 @@
-import { Button, Checkbox, Flex, Form, Input } from 'antd';
-import { useMutation } from '@tanstack/react-query';
-import { LoginFormProps } from '../../types';
+import { Button, Checkbox, Flex, Form, Input } from "antd";
+import { LoginFormProps } from "@features/auth/types";
+import { useStyles } from "./LoginFormStyles";
 // @ts-ignore
 import { ArrowRight } from '@assets';
 import { useStyles } from './LoginFormStyles';

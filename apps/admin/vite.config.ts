@@ -23,13 +23,16 @@ export default defineConfig(() => ({
   ],
   resolve: {
     alias: {
-      "@api": path.resolve(__dirname, "src/api/api"),
-      "@assets": path.resolve(__dirname, "src/assets"),
-      "@types": path.resolve(__dirname, "src/types"),
-      "@context": path.resolve(__dirname, "src/context"),
-      "@const": path.resolve(__dirname, "src/const.ts"),
-      "@hooks": path.resolve(__dirname, "src/hooks"),
-      "@components": path.resolve(__dirname, "src/components"),
+      '@api': path.resolve(__dirname, 'src/api/api'),
+      '@assets': path.resolve(__dirname, 'src/assets'),
+      '@types': path.resolve(__dirname, 'src/types'),
+      '@context': path.resolve(__dirname, 'src/context'),
+      '@const': path.resolve(__dirname, 'src/const.ts'),
+      '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+      '@components' : path.resolve(__dirname, 'src/components'),
+      '@features' : path.resolve(__dirname, 'src/features'),
+
     },
   },
   // Uncomment this if you are using workers.

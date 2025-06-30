@@ -11,8 +11,8 @@ import { useMutation } from '@tanstack/react-query';
 import { api } from '@api';
 import { regexPatterns } from '@const';
 import { ArrowRight } from '@assets';
-import type { RegistrationFormProps } from '../../types';
-import { LoginOptions } from '../LoginOptions/LoginOptions';
+import { LoginOptions } from "@features/auth/components/";
+import { RegistrationFormProps } from "@features/auth/types";
 import { useStyles } from './styles';
 
 export const RegistrationForm = () => {

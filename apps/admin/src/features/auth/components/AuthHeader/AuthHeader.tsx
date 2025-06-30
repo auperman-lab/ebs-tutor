@@ -6,13 +6,15 @@ import { routes } from '@const';
 
 const { Header } = Layout;
 
+
 export const AuthHeader = () => {
   const { styles } = useStyles();
 
   const location = useLocation();
   const navigate = useNavigate();
   const isLogin = location.pathname === '/login';
-  const handleRedirect = () => {
+
+  const onRedirect = () => {
     navigate(isLogin ? routes.register : routes.login);
   };
 
@@ -40,7 +42,7 @@ export const AuthHeader = () => {
           <Button
             className={styles.createAccountButton}
             size="large"
-            onClick={handleRedirect}
+            onClick={onRedirect}
           >
             {isLogin ? 'Sign Up' : 'Log In'}
           </Button>

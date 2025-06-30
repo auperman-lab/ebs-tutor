@@ -35,7 +35,7 @@ export const NotificationsSettings = () => {
 
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
-  const handleChange = (id: string) => {
+  const onChange = (id: string) => {
     setSelectedIds((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
@@ -56,7 +56,7 @@ export const NotificationsSettings = () => {
               <Form.Item key={id} noStyle>
                 <Checkbox
                   checked={selectedIds.includes(id)}
-                  onChange={() => handleChange(id)}
+                  onChange={() => onChange(id)}
                 >
                   {label}
                 </Checkbox>

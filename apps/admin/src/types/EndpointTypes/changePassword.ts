@@ -1,5 +1,5 @@
 export type ChangePasswordRequest = {
   currentPassword: string;
   newPassword: string;
-  newPonfirmPassword: string;
+  newConfirmPassword: string;
 };
