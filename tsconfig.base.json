@@ -33,7 +33,6 @@
       "@createcourse": [
         "apps/admin/src/features/create-course/components/index.ts"
       ]
-      
     }
   }
 }

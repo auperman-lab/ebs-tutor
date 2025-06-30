@@ -37,9 +37,6 @@ export default defineConfig(() => ({
         __dirname,
         'src/features/create-course/components'
       ),
-      
-   
-
     },
   },
   // Uncomment this if you are using workers.

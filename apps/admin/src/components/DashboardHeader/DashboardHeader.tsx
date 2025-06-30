@@ -11,6 +11,7 @@ const pageTitles: Record<string, string> = {
   [routes.main]: 'Dashboard',
   [routes.courses]: 'My courses',
   [routes.settings]: 'Settings',
+  [routes.create]: 'Create a new course',
 };
 
 const getPageTitle = (pathname: string): string => {

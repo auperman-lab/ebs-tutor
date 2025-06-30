@@ -47,6 +47,9 @@ export const themeComponents = {
   },
   Tabs: {
     colorText: 'rgb(110,116,133)',
+    titleFontSize: 16,
+    paddingSM: 0,
+    margin: 0,
   },
   Table: {
     footerBg: 'rgb(245,247,250)',
@@ -72,6 +75,8 @@ export const themeComponents = {
   Breadcrumb: {
     separatorMargin: 8,
   },
+  InputNumber: {
+    controlHeightLG: 48,
   Menu: {
     itemBg: '#1D2026',
     colorText: 'rgb(140,148,163)',
