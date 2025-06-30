@@ -57,11 +57,11 @@ export const CreateCoursePage = () => {
     },
   ];
 
-  const handleNext = () => {
+  const onHandleNext = () => {
     setActiveKey((prev) => (Number(prev) + 1).toString());
   };
 
-  const handleBack = () => {
+  const onHandleBack = () => {
     setActiveKey((prev) => (Number(prev) - 1).toString());
   };
 
@@ -75,8 +75,8 @@ export const CreateCoursePage = () => {
       />
       <NavigationButtons
         activeKey={activeKey}
-        onNext={handleNext}
-        onBack={handleBack}
+        onNext={onHandleNext}
+        onBack={onHandleBack}
       />
     </Flex>
   );

@@ -14,4 +14,9 @@ export const useStyles = createStyles(({ token }) => ({
   inputNumber: {
     borderRight: 'none',
   },
+
+  stretch: {
+    width: '100%',
+    flex: 1,
+  },
 }));

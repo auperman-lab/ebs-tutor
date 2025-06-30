@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import {
   Divider,
   Flex,
@@ -8,124 +7,21 @@ import {
   Select,
   InputNumber,
 } from 'antd';
-import { useQueryClient } from '@tanstack/react-query';
 import { useStyles } from './styles';
+import {
+  courseCategories,
+  courseLanguages,
+  courseLevels,
+  courseSubCategories,
+  duration,
+  subtitleLanguages,
+} from './data';
 
 const { Title } = Typography;
-
-const courseCategories = [
-  {
-    label: 'Technology',
-    value: 'technology',
-  },
-  {
-    label: 'Business',
-    value: 'business',
-  },
-  {
-    label: 'Arts',
-    value: 'arts',
-  },
-  {
-    label: 'Science',
-    value: 'science',
-  },
-];
-
-const courseSubCategories = [
-  {
-    label: 'Programming',
-    value: 'programming',
-  },
-  {
-    label: 'Marketing',
-    value: 'marketing',
-  },
-  {
-    label: 'Design',
-    value: 'design',
-  },
-  {
-    label: 'Biology',
-    value: 'biology',
-  },
-];
-
-const courseLanguages = [
-  {
-    label: 'English',
-    value: 'english',
-  },
-  {
-    label: 'Spanish',
-    value: 'spanish',
-  },
-  {
-    label: 'French',
-    value: 'french',
-  },
-  {
-    label: 'German',
-    value: 'german',
-  },
-];
-
-const subtitleLanguages = [
-  {
-    label: 'English',
-    value: 'english',
-  },
-  {
-    label: 'Spanish',
-    value: 'spanish',
-  },
-  {
-    label: 'None',
-    value: 'none',
-  },
-];
-
-const courseLevels = [
-  {
-    label: 'Beginner',
-    value: 'beginner',
-  },
-  {
-    label: 'Intermediate',
-    value: 'intermediate',
-  },
-  {
-    label: 'Advanced',
-    value: 'advanced',
-  },
-];
-
-const duration = [
-  {
-    label: 'Day',
-    value: 'day',
-  },
-  {
-    label: 'Week',
-    value: 'week',
-  },
-  {
-    label: 'Month',
-    value: 'month',
-  },
-];
 
 export const BasicInformation = () => {
   const { styles } = useStyles();
   const [form] = Form.useForm();
-  const queryClient = useQueryClient();
-
-  useEffect(() => {
-    const cached = queryClient.getQueryData(['course', 'basic-info']);
-    if (cached) {
-      form.setFieldsValue(cached);
-    }
-  }, []);
 
   const selectAfter = (
     <Select
@@ -161,7 +57,7 @@ export const BasicInformation = () => {
             <Form.Item
               layout="vertical"
               label="Course Category"
-              style={{ width: '100%', flex: 1 }}
+              className={styles.stretch}
             >
               <Select
                 size="large"
@@ -172,7 +68,7 @@ export const BasicInformation = () => {
             <Form.Item
               layout="vertical"
               label="Course Sub-category"
-              style={{ width: '100%', flex: 1 }}
+              className={styles.stretch}
             >
               <Select
                 size="large"
@@ -191,7 +87,7 @@ export const BasicInformation = () => {
             <Form.Item
               layout="vertical"
               label="Course Language"
-              style={{ width: '100%', flex: 1 }}
+              className={styles.stretch}
             >
               <Select
                 size="large"
@@ -202,7 +98,7 @@ export const BasicInformation = () => {
             <Form.Item
               layout="vertical"
               label="Subtitle Language (Optional)"
-              style={{ width: '100%', flex: 1 }}
+              className={styles.stretch}
             >
               <Select
                 size="large"
@@ -213,7 +109,7 @@ export const BasicInformation = () => {
             <Form.Item
               layout="vertical"
               label="Course Level"
-              style={{ width: '100%', flex: 1 }}
+              className={styles.stretch}
             >
               <Select
                 size="large"
@@ -224,7 +120,7 @@ export const BasicInformation = () => {
             <Form.Item
               layout="vertical"
               label="Durations"
-              style={{ width: '100%', flex: 1 }}
+              className={styles.stretch}
             >
               <InputNumber
                 size="large"
