@@ -12,8 +12,16 @@ export const user = {
     return data.data;
   },
 
-  changeSettings: async (settings: UserChangeSettingsRequest): Promise<any> => {
+  changeSettings: async (settings: UserChangeSettingsRequest): Promise<UserInfoEndpointResponse> => {
     const { data } = await axiosInstance.put(apiEndpoints.retrieveMyself, settings);
+    return data.data;
+  },
+
+  changeAvatar: async (formData: FormData): Promise<any> => {
+    const { data } = await axiosInstance.post(apiEndpoints.changeAvatar, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }});
     return data.data;
   },
 };

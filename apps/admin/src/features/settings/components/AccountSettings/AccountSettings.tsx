@@ -13,6 +13,7 @@ export const AccountSettings = () => {
 
   const authContext = useAuth();
   const [imageUrl, setImageUrl] = useState<string | null>(authContext.user?.avatar!);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [form] = Form.useForm();
 
   const options = [{ value: "+880", label: "+880" }];
@@ -39,6 +40,7 @@ export const AccountSettings = () => {
         setImageUrl(reader.result as string);
       };
       reader.readAsDataURL(file);
+      setImageFile(file);
     }
   };
 
@@ -50,10 +52,20 @@ export const AccountSettings = () => {
       phone: values.phone,
       bio: values.title
     }
-    mutate(data);
+    mutateInfo(data);
+
+    if(imageFile){
+      const formData = new FormData();
+      formData.append("avatar", imageFile);
+      mutateAvatar(formData);    }
   };
 
-  const { mutate } = useMutation({
+
+  const {mutate: mutateAvatar} = useMutation({
+    mutationFn: (data: FormData) => api.user.changeAvatar(data),
+  });
+
+  const { mutate: mutateInfo } = useMutation({
     mutationFn: (data: UserChangeSettingsRequest) => api.user.changeSettings(data),
   });
 
@@ -62,10 +74,8 @@ export const AccountSettings = () => {
     queryFn: () => api.user.retrieveMyself(),
   });
 
-
   useEffect(() => {
     if (profileData) {
-      console.log(profileData.phone);
       form.setFieldsValue({
         firstName: profileData.first_name,
         lastName: profileData.last_name,
@@ -77,7 +87,6 @@ export const AccountSettings = () => {
       setImageUrl(profileData.avatar);
     }
   }, [profileData]);
-
 
   return (
     <Form className={styles.mainPart} form={form}>
