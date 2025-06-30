@@ -5,7 +5,7 @@ import type {
 } from 'recharts/types/component/DefaultTooltipContent';
 import type { TooltipProps } from 'recharts';
 
-type CustomTooltipProps = TooltipProps<ValueType, NameType> & {
+interface CustomTooltipProps extends TooltipProps<ValueType, NameType> {
   primaryLabel: string;
   secondaryLabel?: string;
   showAxis?: boolean;
