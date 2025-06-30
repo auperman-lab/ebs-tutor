@@ -15,6 +15,8 @@ export const apiEndpoints = {
   login: '/auth/login',
   refreshToken: "/auth/refresh",
   getUser: "/admin/users",
+  retrieveMyself: "profile/me",
+  changeSettings: '/admin/users/',
   getAllCourses: "/admin/courses",
   getCategories: "/categories",
   getTags: "/tags",

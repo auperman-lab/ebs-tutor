@@ -20,12 +20,10 @@ export const getUserByToken = (): User | null => {
 
 export const decodeToken = async (token: string): Promise<AuthUser | null> => {
   try {
-    const decoded = jwtDecode<DecodedToken>(token);
-
     if (isExpiredToken(token)) {
       return null;
     }
-    const data = await api.user.get(decoded.sub);
+    const data = await api.user.retrieveMyself();
 
     const user: User = {
       id: data.id,

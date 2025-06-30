@@ -17,3 +17,12 @@ export type UserInfoEndpointResponse = {
   bio: string
   address: string
 }
+
+
+export type UserChangeSettingsRequest = {
+  first_name?: string;
+  last_name?: string;
+  phone?: string;
+  bio?: string;
+
+}

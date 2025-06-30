@@ -1,10 +1,19 @@
 import { axiosInstance } from "./axios/instance";
 import { apiEndpoints } from "@const";
-import { UserInfoEndpointResponse } from "@types";
+import { UserChangeSettingsRequest, UserInfoEndpointResponse } from "@types";
 
 export const user = {
-  get: async (id: number) : Promise<UserInfoEndpointResponse> => {
+  get: async (id: number): Promise<UserInfoEndpointResponse> => {
     const { data } = await axiosInstance.get(apiEndpoints.getUser + `/${id}`);
+    return data.data;
+  },
+  retrieveMyself: async (): Promise<UserInfoEndpointResponse> => {
+    const { data } = await axiosInstance.get(apiEndpoints.retrieveMyself);
+    return data.data;
+  },
+
+  changeSettings: async (settings: UserChangeSettingsRequest): Promise<any> => {
+    const { data } = await axiosInstance.put(apiEndpoints.retrieveMyself, settings);
     return data.data;
   },
 };
