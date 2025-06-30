@@ -19,9 +19,6 @@ const getPageTitle = (pathname: string): string => {
   return pageTitles[pathname === '/' ? '/' : '/' + segment[0]] || 'Page';
 };
 
-console.log(location.pathname);
-console.log(getPageTitle(location.pathname));
-
 export const DashboardHeader = () => {
   const location = useLocation();
   const { styles } = useStyles();
