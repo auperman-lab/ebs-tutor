@@ -7,6 +7,7 @@ export const routes = {
   register: '/register',
   settings: '/settings',
   courses: '/courses',
+  create: '/create-course',
 };
 
 export const apiEndpoints = {
