@@ -14,8 +14,7 @@ const pageTitles: Record<string, string> = {
 };
 
 const getPageTitle = (pathname: string): string => {
-  const segment = pathname.split('/').filter(Boolean);
-  return pageTitles['/' + segment[0]];
+  return pageTitles[pathname];
 };
 
 export const DashboardHeader = () => {

@@ -1,5 +1,5 @@
-import { Typography, Image, Flex, Divider, Button, Rate } from 'antd';
 import { useStyles } from './styles';
+import { Typography, Image, Flex, Divider, Button, Rate } from 'antd';
 import { DotsThree } from '@assets';
 
 const { Text, Title } = Typography;
