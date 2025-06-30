@@ -1,5 +1,5 @@
 import { axiosInstance } from './axios/instance';
-import { Course } from "@types";
+import { CategoryResponse, Course } from "@types";
 import { apiEndpoints } from "@const";
 
 export const courses = {
@@ -12,5 +12,14 @@ export const courses = {
       params: { title },
     });
     return data.data[0];
+  },
+  getCategories: async (): Promise<CategoryResponse[]>=>{
+    const { data } = await axiosInstance.get(apiEndpoints.getCategories + `?per_page=1000`);
+    return data.data;
+  },
+  getTags: async (): Promise<any>=>{
+    const { data } = await axiosInstance.get(apiEndpoints.getTags + `?per_page=1000`);
+    return data.data;
   }
+
 };

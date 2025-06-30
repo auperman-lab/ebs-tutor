@@ -16,6 +16,8 @@ export const apiEndpoints = {
   refreshToken: "/auth/refresh",
   getUser: "/admin/users",
   getAllCourses: "/admin/courses",
+  getCategories: "/categories",
+  getTags: "/tags",
 };
 
 export const regexPatterns = {

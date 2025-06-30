@@ -1,5 +1,6 @@
-import { Course } from "@types";
+import { CategoryResponse } from "@types";
 
-export type GetCoursesResponse = {
-  data : Course[]
+export type GetCategoriesResponse = {
+  data: CategoryResponse[]
 }
+

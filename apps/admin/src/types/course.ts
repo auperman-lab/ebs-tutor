@@ -64,6 +64,12 @@ export interface Category {
   pivot: Pivot
 }
 
+export interface CategoryResponse extends Category{
+  name_with_breadcrumbs: string
+  count: number
+  order: number
+}
+
 export interface Pivot {
   course_id: number
   category_id: number
