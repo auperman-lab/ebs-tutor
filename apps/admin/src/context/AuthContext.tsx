@@ -58,5 +58,5 @@ export const AuthProvider = ({ children }: React.HTMLProps<HTMLElement>) => {
   };
 
 
-  return <AuthContext value={{ user, logout, login, refresh }}>{children}</AuthContext>;
+  return <AuthContext.Provider value={{ user, logout, login, refresh }}>{children}</AuthContext.Provider>;
 };

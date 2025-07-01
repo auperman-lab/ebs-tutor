@@ -1,7 +1,7 @@
 import { Card, Col, Divider, Dropdown, Flex, Image, MenuProps, Row, Tag, Tooltip, Typography } from "antd";
 import { useStyles } from "./styles";
 import { DotsThree, Star, User } from "@assets";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { routes } from "@const";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@api";
@@ -37,24 +37,19 @@ export const CoursesCards = () => {
   const { styles } = useStyles();
   const navigate = useNavigate();
   const palette = useTheme();
-
+  const [searchParams] = useSearchParams();
 
   const getQueryParams = (): GetCoursesRequest => {
-    const searchParams = new URLSearchParams(location.search);
-    const categoryValueRaw = searchParams.get("category") ?? "all";
-    const categoryValue = categoryValueRaw === "all" ? undefined : Number(categoryValueRaw);
-    const params: GetCoursesRequest = {
+    return {
       title: searchParams.get("search") || undefined,
       order: (searchParams.get("sort") as ParamsType["sort"]) || "ASC",
       order_by: "title",
       tag: searchParams.get("tag") || undefined,
       page: searchParams.get("page") ? Number(searchParams.get("page")) : 1,
-      per_page: 4,
+      per_page: 12,
+      category_id: searchParams.get("category") ? Number(searchParams.get("category")) : undefined,
     };
-    if (categoryValue !== undefined) {
-      params.category_id = categoryValue;
-    }
-    return params;
+
   };
 
   const params = getQueryParams();
@@ -66,14 +61,13 @@ export const CoursesCards = () => {
 
   // todo: make skeleton for the courses
   // todo: make fail component (reusable)
-  // todo: make pagination
 
   if (isLoading) return <Text>Loading courses...</Text>;
   if (isError) return <Text type="danger">Failed to load courses.</Text>;
 
   return (
     <Row gutter={[24, 24]}>
-      {courses!.map((item) => (
+      {courses!.data.map((item) => (
         <Col key={item.id} md={12} lg={8} xl={6}>
           <Card
             hoverable
@@ -84,7 +78,7 @@ export const CoursesCards = () => {
                 onClick={() => {
                   navigate(routes.courses + `/${item.id}`);
                 }}
-                height={(courses?.length ?? 0) < 4 ? "100%" : 200}
+                height={(courses!.total ?? 0) < 4 ? "100%" : 200}
                 preview={false}
                 className={styles.cover}
               />

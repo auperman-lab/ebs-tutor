@@ -3,7 +3,7 @@ import { useStyles } from "./styles";
 import { SearchOutlined } from "@ant-design/icons";
 import { api } from "@api";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { ParamsType } from "@features/courses/types";
 
@@ -30,6 +30,7 @@ const initialValues: ParamsType = {
 export const CoursesFiltration = () => {
   const { styles } = useStyles();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams()
   const [form] = Form.useForm();
   const location = useLocation();
 
@@ -62,7 +63,7 @@ export const CoursesFiltration = () => {
   ];
 
   const filterParams = (allValues: ParamsType):  ParamsType => {
-    const result: Partial<ParamsType> = {};
+    const result: ParamsType = {};
 
     for (const [key, value] of Object.entries(allValues)) {
       const defaultValue = initialValues[key as keyof ParamsType];
@@ -91,12 +92,9 @@ export const CoursesFiltration = () => {
   };
 
   const getQueryParams = (): Partial<ParamsType> => {
-    const searchParams = new URLSearchParams(location.search);
-
     const categoryValueRaw = searchParams.get("category") ?? "all";
     const categoryValue = categoryValueRaw === "all" ? "all" : Number(categoryValueRaw);
     const categoryOption = categoryOptions.find((c) => c.value === categoryValue);
-
 
     return {
       search: searchParams.get("search") || "",
@@ -112,7 +110,7 @@ export const CoursesFiltration = () => {
       const params = getQueryParams();
       form.setFieldsValue(params);
     }
-  }, [isLoadingCategory, isLoadingTags]);
+  }, [isLoadingCategory, isLoadingTags, location.search]);
 
   return (
     <Form

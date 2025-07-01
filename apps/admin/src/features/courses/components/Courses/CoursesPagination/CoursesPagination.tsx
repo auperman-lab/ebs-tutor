@@ -1,34 +1,42 @@
 import { Pagination } from "antd";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ParamsType } from "@features/courses/types";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "@api";
+import { GetCoursesRequest } from "@types";
 
 export const CoursesPagination = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const per_page = 12;
-  const [page, setPage] = useState<number>(1);
+  const [searchParams] = useSearchParams();
+  const [page, setPage] = useState(Number(searchParams.get("page")) || 1);
+  const [params, setParams] = useState<GetCoursesRequest>({ page: 1 });
 
+  const { data: data } = useQuery({
+    queryKey: ["myCourses", params],
+    queryFn: () => api.courses.getAllCourses(params),
+  });
 
-  const getQueryParams = (): ParamsType => {
-    const searchParams = new URLSearchParams(location.search);
+  const getQueryParams = (): GetCoursesRequest => {
     return {
-      search: searchParams.get("search") || undefined,
-      sort: (searchParams.get("sort") as ParamsType["sort"]) || undefined,
-      category: searchParams.get("category") || undefined,
+      title: searchParams.get("search") || undefined,
+      order: (searchParams.get("sort") as ParamsType["sort"]) || "ASC",
+      order_by: "title",
+      category_id: searchParams.get("category") ? Number(searchParams.get("category")) : undefined,
       tag: searchParams.get("tag") || undefined,
       page: searchParams.get("page") ? Number(searchParams.get("page")) : 1,
+      per_page: per_page,
     };
   };
 
   const onPageChange = (newPage: number) => {
-    const currentParams = getQueryParams();
     const updatedParams: ParamsType = {
-      ...currentParams,
+      ...params,
       page: newPage,
     };
 
-    const searchParams = new URLSearchParams();
     Object.entries(updatedParams).forEach(([key, value]) => {
       if (value !== undefined && value !== "") {
         searchParams.set(key, String(value));
@@ -39,8 +47,8 @@ export const CoursesPagination = () => {
   };
 
   useEffect(() => {
-    const params = getQueryParams();
-    setPage(params.page || 1);
+    setParams(getQueryParams());
+    setPage(Number(searchParams.get("page")) || 1);
   }, [location.search]);
 
 
@@ -48,7 +56,7 @@ export const CoursesPagination = () => {
     <div>
       <Pagination
         current={page}
-        total={50}
+        total={data ? data.total : 12}
         pageSize={per_page}
         onChange={onPageChange}
       />
