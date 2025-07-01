@@ -1,10 +1,9 @@
-import { Breadcrumb, Typography } from "antd";
+import { Breadcrumb } from "antd";
 import { Link, useParams } from "react-router-dom";
 import { routes } from "@const";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@api";
-
-const { Text } = Typography;
+import { CourseBreadCrumbsSkeleton } from "./CourseBreadCrumbsSkeleton";
 
 export const CourseBreadCrumbs = () => {
 
@@ -15,7 +14,7 @@ export const CourseBreadCrumbs = () => {
     queryFn: () => api.courses.getCourse(id!),
   });
 
-  if (isLoading) return <Text>Loading course...</Text>;
+  if (isLoading) return <CourseBreadCrumbsSkeleton />;
 
   const items = [
     {
