@@ -2,6 +2,7 @@ import { Flex, Typography, Divider, Form } from 'antd';
 import { useStyles } from './styles';
 import { UploadFiles } from './UploadFiles';
 import { ImagePreview, VideoPreview } from '@assets';
+import { DescriptionEditor } from './DescriptionEditor';
 
 const { Title } = Typography;
 
@@ -35,6 +36,7 @@ export const AdvanceInformation = () => {
             />
           </Flex>
           <Divider orientationMargin={32} />
+          <DescriptionEditor />
         </Flex>
       </Form>
     </Flex>

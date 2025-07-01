@@ -12,7 +12,7 @@ import { Clipboard, PlayCircle, MonitorPlay } from '@assets';
 
 export const CreateCoursePage = () => {
   const { styles } = useStyles();
-  const [activeKey, setActiveKey] = useState('1');
+  const [activeKey, setActiveKey] = useState('2');
 
   const items: TabsProps['items'] = [
     {

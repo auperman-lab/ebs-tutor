@@ -5,6 +5,8 @@
   "dependencies": {
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@phosphor-icons/react": "^2.1.10",
+    "quill": "^2.0.3",
+    "react-quill": "^2.0.0",
     "recharts": "^2.15.3"
   },
   "scripts": {
