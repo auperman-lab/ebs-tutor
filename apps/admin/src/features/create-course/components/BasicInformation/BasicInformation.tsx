@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import {
   Divider,
   Flex,
@@ -8,7 +7,6 @@ import {
   Select,
   InputNumber,
 } from 'antd';
-import { useQueryClient } from '@tanstack/react-query';
 import { useStyles } from './styles';
 
 const { Title } = Typography;
@@ -117,15 +115,6 @@ const duration = [
 
 export const BasicInformation = () => {
   const { styles } = useStyles();
-  const [form] = Form.useForm();
-  const queryClient = useQueryClient();
-
-  useEffect(() => {
-    const cached = queryClient.getQueryData(['course', 'basic-info']);
-    if (cached) {
-      form.setFieldsValue(cached);
-    }
-  }, []);
 
   const selectAfter = (
     <Select
@@ -139,103 +128,107 @@ export const BasicInformation = () => {
     <Flex vertical className={styles.container}>
       <Title level={4}>Basic Information</Title>
       <Divider orientationMargin={32} />
-      <Form form={form}>
-        <Flex vertical className={styles.formContainer}>
-          <Form.Item layout="vertical" label="Tittle">
-            <Input
+      <Flex vertical className={styles.formContainer}>
+        <Form.Item layout="vertical" label="Tittle" name="title">
+          <Input
+            size="large"
+            showCount
+            maxLength={80}
+            placeholder="You course tittle"
+          />
+        </Form.Item>
+        <Form.Item layout="vertical" label="Subtittle" name="subtitle">
+          <Input
+            size="large"
+            showCount
+            maxLength={120}
+            placeholder="You course subtittle"
+          />
+        </Form.Item>
+        <Flex justify="space-between" className={styles.category}>
+          <Form.Item
+            layout="vertical"
+            label="Course Category"
+            style={{ width: '100%', flex: 1 }}
+            name="category"
+          >
+            <Select
               size="large"
-              showCount
-              maxLength={80}
-              placeholder="You course tittle"
+              placeholder="Select..."
+              options={courseCategories}
             />
           </Form.Item>
-          <Form.Item layout="vertical" label="Subtittle">
-            <Input
+          <Form.Item
+            layout="vertical"
+            label="Course Sub-category"
+            style={{ width: '100%', flex: 1 }}
+            name="sub_category"
+          >
+            <Select
               size="large"
-              showCount
-              maxLength={120}
-              placeholder="You course subtittle"
+              placeholder="Select..."
+              options={courseSubCategories}
             />
           </Form.Item>
-          <Flex justify="space-between" className={styles.category}>
-            <Form.Item
-              layout="vertical"
-              label="Course Category"
-              style={{ width: '100%', flex: 1 }}
-            >
-              <Select
-                size="large"
-                placeholder="Select..."
-                options={courseCategories}
-              />
-            </Form.Item>
-            <Form.Item
-              layout="vertical"
-              label="Course Sub-category"
-              style={{ width: '100%', flex: 1 }}
-            >
-              <Select
-                size="large"
-                placeholder="Select..."
-                options={courseSubCategories}
-              />
-            </Form.Item>
-          </Flex>
-          <Form.Item layout="vertical" label="Course Topic">
-            <Input
-              size="large"
-              placeholder="What is primarily taught in your course?"
-            />
-          </Form.Item>
-          <Flex justify="space-between" className={styles.options}>
-            <Form.Item
-              layout="vertical"
-              label="Course Language"
-              style={{ width: '100%', flex: 1 }}
-            >
-              <Select
-                size="large"
-                placeholder="Select..."
-                options={courseLanguages}
-              />
-            </Form.Item>
-            <Form.Item
-              layout="vertical"
-              label="Subtitle Language (Optional)"
-              style={{ width: '100%', flex: 1 }}
-            >
-              <Select
-                size="large"
-                placeholder="Select..."
-                options={subtitleLanguages}
-              />
-            </Form.Item>
-            <Form.Item
-              layout="vertical"
-              label="Course Level"
-              style={{ width: '100%', flex: 1 }}
-            >
-              <Select
-                size="large"
-                placeholder="Select..."
-                options={courseLevels}
-              />
-            </Form.Item>
-            <Form.Item
-              layout="vertical"
-              label="Durations"
-              style={{ width: '100%', flex: 1 }}
-            >
-              <InputNumber
-                size="large"
-                addonAfter={selectAfter}
-                placeholder="Course Duration"
-                className={styles.inputNumber}
-              />
-            </Form.Item>
-          </Flex>
         </Flex>
-      </Form>
+        <Form.Item layout="vertical" label="Course Topic" name="topic">
+          <Input
+            size="large"
+            placeholder="What is primarily taught in your course?"
+          />
+        </Form.Item>
+        <Flex justify="space-between" className={styles.options}>
+          <Form.Item
+            layout="vertical"
+            label="Course Language"
+            style={{ width: '100%', flex: 1 }}
+            name="course_language"
+          >
+            <Select
+              size="large"
+              placeholder="Select..."
+              options={courseLanguages}
+            />
+          </Form.Item>
+          <Form.Item
+            layout="vertical"
+            label="Subtitle Language (Optional)"
+            style={{ width: '100%', flex: 1 }}
+            name="subtitle_language"
+          >
+            <Select
+              size="large"
+              placeholder="Select..."
+              options={subtitleLanguages}
+            />
+          </Form.Item>
+          <Form.Item
+            layout="vertical"
+            label="Course Level"
+            style={{ width: '100%', flex: 1 }}
+            name="level"
+          >
+            <Select
+              size="large"
+              placeholder="Select..."
+              options={courseLevels}
+            />
+          </Form.Item>
+          <Form.Item
+            layout="vertical"
+            label="Durations"
+            style={{ width: '100%', flex: 1 }}
+            name="duration"
+          >
+            <InputNumber
+              size="large"
+              addonAfter={selectAfter}
+              placeholder="Course Duration"
+              className={styles.inputNumber}
+            />
+          </Form.Item>
+        </Flex>
+      </Flex>
     </Flex>
   );
 };

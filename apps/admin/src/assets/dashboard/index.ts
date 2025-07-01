@@ -16,3 +16,5 @@ export { default as PlayCircle } from './play-circle.svg?react';
 export { default as ChevronDown } from './chevron-down.svg?react';
 export { default as ImagePreview } from './image-preview.svg?react';
 export { default as VideoPreview } from './video-preview.svg?react';
+export { default as Delete } from './delete.svg?react';
+export { default as Add } from './add.svg?react';

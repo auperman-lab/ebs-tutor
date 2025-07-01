@@ -11,4 +11,14 @@ export const useStyles = createStyles(({ token, responsive }) => ({
       flexDirection: 'column',
     },
   },
+
+  title: {
+    fontSize: token.fontSizeXL,
+    fontWeight: 500,
+  },
+
+  stretch: {
+    width: '100%',
+    flex: 1,
+  },
 }));

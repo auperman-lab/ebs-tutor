@@ -1,4 +1,4 @@
-import { Tabs, TabsProps, Flex } from 'antd';
+import { Tabs, TabsProps, Flex, Form } from 'antd';
 import {
   BasicInformation,
   AdvanceInformation,
@@ -67,17 +67,25 @@ export const CreateCoursePage = () => {
 
   return (
     <Flex vertical className={styles.tabs} gap={24}>
-      <Tabs
-        defaultActiveKey="1"
-        activeKey={activeKey}
-        onChange={(key) => setActiveKey(key)}
-        items={items}
-      />
-      <NavigationButtons
-        activeKey={activeKey}
-        onNext={handleNext}
-        onBack={handleBack}
-      />
+      <Form
+        initialValues={{
+          promises: [{}],
+          target: [{}],
+          requirements: [{}],
+        }}
+      >
+        <Tabs
+          defaultActiveKey="1"
+          activeKey={activeKey}
+          onChange={(key) => setActiveKey(key)}
+          items={items}
+        />
+        <NavigationButtons
+          activeKey={activeKey}
+          onNext={handleNext}
+          onBack={handleBack}
+        />
+      </Form>
     </Flex>
   );
 };
