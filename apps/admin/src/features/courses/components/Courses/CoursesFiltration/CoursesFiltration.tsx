@@ -27,7 +27,7 @@ const initialValues: ParamsType = {
   tag: "all",
 };
 
-export const MyCoursesFiltration = () => {
+export const CoursesFiltration = () => {
   const { styles } = useStyles();
   const navigate = useNavigate();
   const [form] = Form.useForm();
@@ -61,7 +61,7 @@ export const MyCoursesFiltration = () => {
     })),
   ];
 
-  const filterParams = (allValues: ParamsType):  Partial<ParamsType> => {
+  const filterParams = (allValues: ParamsType):  ParamsType => {
     const result: Partial<ParamsType> = {};
 
     for (const [key, value] of Object.entries(allValues)) {
@@ -83,7 +83,7 @@ export const MyCoursesFiltration = () => {
   const toQueryString = (params:  Partial<ParamsType>) => {
     const searchParams = new URLSearchParams();
     Object.entries(params).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== "") {
+      if (value !== undefined && value !== null && value !== "" && value !== "All Categories") {
         searchParams.set(key, String(value));
       }
     });
@@ -103,6 +103,7 @@ export const MyCoursesFiltration = () => {
       sort: (searchParams.get("sort") as ParamsType["sort"]) || "ASC",
       category:  categoryOption?.label?.toString() ?? "all",
       tag: searchParams.get("tag") || "all",
+      page:  searchParams.get("page") ? Number(searchParams.get("page")) : 1,
     };
   };
 
@@ -121,11 +122,10 @@ export const MyCoursesFiltration = () => {
         const finalParams = filterParams(allValues);
         const queryString = toQueryString(finalParams);
         navigate(`${location.pathname}?${queryString}`, { replace: true });
-
       }}
       initialValues={initialValues}
     >
-      <Row gutter={16}>
+      <Row gutter={24}>
         <Col sm={24} lg={9}>
           <Form.Item name="search">
             <Input

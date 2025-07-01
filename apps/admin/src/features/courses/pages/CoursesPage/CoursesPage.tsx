@@ -1,8 +1,9 @@
 import { Flex } from 'antd';
 import {
-  MyCoursesCards,
-  MyCoursesFiltration,
-}  from "@features/courses/components";
+  CoursesPagination,
+  CoursesCards,
+  CoursesFiltration,
+} from "@features/courses/components";
 import { useStyles } from './styles';
 
 export const CoursesPage = () => {
@@ -15,8 +16,10 @@ export const CoursesPage = () => {
       gap={24}
       className={styles.container}
     >
-      <MyCoursesFiltration />
-      <MyCoursesCards />
+      <CoursesFiltration />
+      <CoursesCards />
+      <CoursesPagination/>
+
     </Flex>
   );
 };

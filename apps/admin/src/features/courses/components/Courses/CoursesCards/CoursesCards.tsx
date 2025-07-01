@@ -1,4 +1,4 @@
-import { Card, Col, Divider, Dropdown, Flex, MenuProps, Row, Tag, Typography, Image, Tooltip } from "antd";
+import { Card, Col, Divider, Dropdown, Flex, Image, MenuProps, Row, Tag, Tooltip, Typography } from "antd";
 import { useStyles } from "./styles";
 import { DotsThree, Star, User } from "@assets";
 import { useNavigate } from "react-router-dom";
@@ -33,21 +33,23 @@ const items: MenuProps["items"] = [
   },
 ];
 
-export const MyCoursesCards = () => {
+export const CoursesCards = () => {
   const { styles } = useStyles();
   const navigate = useNavigate();
   const palette = useTheme();
 
 
-  const getQueryParams = () : GetCoursesRequest => {
+  const getQueryParams = (): GetCoursesRequest => {
     const searchParams = new URLSearchParams(location.search);
     const categoryValueRaw = searchParams.get("category") ?? "all";
     const categoryValue = categoryValueRaw === "all" ? undefined : Number(categoryValueRaw);
-    const params: GetCoursesRequest =  {
+    const params: GetCoursesRequest = {
       title: searchParams.get("search") || undefined,
       order: (searchParams.get("sort") as ParamsType["sort"]) || "ASC",
       order_by: "title",
-      tag: searchParams.get("tag") || undefined ,
+      tag: searchParams.get("tag") || undefined,
+      page: searchParams.get("page") ? Number(searchParams.get("page")) : 1,
+      per_page: 4,
     };
     if (categoryValue !== undefined) {
       params.category_id = categoryValue;
@@ -72,20 +74,20 @@ export const MyCoursesCards = () => {
   return (
     <Row gutter={[24, 24]}>
       {courses!.map((item) => (
-        <Col key={item.id} className="gutter-row" md={12} lg={8} xl={6}>
+        <Col key={item.id} md={12} lg={8} xl={6}>
           <Card
             hoverable
             cover={
-                <Image
-                  alt="example"
-                  src={item.image_url}
-                  onClick={() => {
-                    navigate(routes.courses + `/${item.id}`);
-                  }}
-                  height="200px"
-                  preview={false}
-                  style={{objectFit:"cover"}}
-                />
+              <Image
+                alt="example"
+                src={item.image_url}
+                onClick={() => {
+                  navigate(routes.courses + `/${item.id}`);
+                }}
+                height={(courses?.length ?? 0) < 4 ? "100%" : 200}
+                preview={false}
+                className={styles.cover}
+              />
             }
           >
             <Flex vertical>
@@ -102,7 +104,7 @@ export const MyCoursesCards = () => {
                 )}
               </Flex>
 
-              <Tooltip title={item.title} placement="topRight" color={palette.common.black}   arrow={false}>
+              <Tooltip title={item.title} placement="topRight" color={palette.common.black} arrow={false}>
                 <div className={styles.title}>{item.title}</div>
               </Tooltip>
 
