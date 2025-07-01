@@ -1,6 +1,6 @@
 import { Card, Col, Divider, Dropdown, Flex, Image, MenuProps, Row, Tag, Tooltip, Typography } from "antd";
 import { useStyles } from "./styles";
-import { DotsThree, Star, User } from "@assets";
+import { DotsThree, NoImage, Star, User } from "@assets";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { routes } from "@const";
 import { useQuery } from "@tanstack/react-query";
@@ -8,6 +8,7 @@ import { api } from "@api";
 import { GetCoursesRequest } from "@types";
 import { ParamsType } from "@features/courses/types";
 import { useTheme } from "antd-style";
+import { CoursesCardSkeleton } from "@features/courses/components/Courses/CoursesCards/CoursesCardSkeleton";
 
 const { Text } = Typography;
 
@@ -49,7 +50,6 @@ export const CoursesCards = () => {
       per_page: 12,
       category_id: searchParams.get("category") ? Number(searchParams.get("category")) : undefined,
     };
-
   };
 
   const params = getQueryParams();
@@ -59,29 +59,32 @@ export const CoursesCards = () => {
     queryFn: () => api.courses.getAllCourses(params),
   });
 
-  // todo: make skeleton for the courses
   // todo: make fail component (reusable)
 
-  if (isLoading) return <Text>Loading courses...</Text>;
+  if (isLoading) return (<CoursesCardSkeleton quantity={8}/>);
   if (isError) return <Text type="danger">Failed to load courses.</Text>;
 
   return (
-    <Row gutter={[24, 24]}>
+    <Row gutter={[24, 24]} style={{width:"100%"}}>
       {courses!.data.map((item) => (
         <Col key={item.id} md={12} lg={8} xl={6}>
           <Card
             hoverable
             cover={
-              <Image
-                alt="example"
-                src={item.image_url}
-                onClick={() => {
-                  navigate(routes.courses + `/${item.id}`);
-                }}
-                height={(courses!.total ?? 0) < 4 ? "100%" : 200}
-                preview={false}
-                className={styles.cover}
-              />
+              item.image_url ? (
+                <Image
+                  alt="example"
+                  src={item.image_url}
+                  onClick={() => {
+                    navigate(routes.courses + `/${item.id}`);
+                  }}
+                  height={(courses!.total ?? 0) > 4 ? 200 : "100%"}
+                  preview={false}
+                  className={styles.cover}
+                />
+              ) : (
+                <NoImage  className={styles.cover} height={200}/>
+              )
             }
           >
             <Flex vertical>
