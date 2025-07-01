@@ -41,7 +41,7 @@ export const ListComponent = ({
             </Flex>
 
             {fields.map(({ key, name, ...restField }) => (
-              <Flex gap={24} align="center">
+              <Flex gap={24} align="center" key={key}>
                 <Form.Item
                   {...restField}
                   name={[name, keyItem]}

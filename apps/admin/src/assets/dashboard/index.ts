@@ -13,6 +13,7 @@ export { default as Star } from './star.svg?react';
 export { default as Clipboard } from './clipboard-text.svg?react';
 export { default as MonitorPlay } from './monitor-play.svg?react';
 export { default as PlayCircle } from './play-circle.svg?react';
+export { default as PlusCircle } from './plus-circle.svg?react';
 export { default as ChevronDown } from './chevron-down.svg?react';
 export { default as ImagePreview } from './image-preview.svg?react';
 export { default as VideoPreview } from './video-preview.svg?react';
