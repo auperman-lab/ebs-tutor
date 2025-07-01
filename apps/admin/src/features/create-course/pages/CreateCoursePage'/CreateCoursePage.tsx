@@ -57,11 +57,12 @@ export const CreateCoursePage = () => {
     },
   ];
 
-  const handleNext = () => {
+
+  const onHandleNext = () => {
     setActiveKey((prev) => (Number(prev) + 1).toString());
   };
 
-  const handleBack = () => {
+  const onHandleBack = () => {
     setActiveKey((prev) => (Number(prev) - 1).toString());
   };
 
@@ -74,17 +75,17 @@ export const CreateCoursePage = () => {
           requirements: [{}],
         }}
       >
-        <Tabs
-          defaultActiveKey="1"
-          activeKey={activeKey}
-          onChange={(key) => setActiveKey(key)}
-          items={items}
-        />
-        <NavigationButtons
-          activeKey={activeKey}
-          onNext={handleNext}
-          onBack={handleBack}
-        />
+      <Tabs
+        defaultActiveKey="1"
+        activeKey={activeKey}
+        onChange={(key) => setActiveKey(key)}
+        items={items}
+      />
+      <NavigationButtons
+        activeKey={activeKey}
+        onNext={onHandleNext}
+        onBack={onHandleBack}
+      />
       </Form>
     </Flex>
   );
