@@ -1,4 +1,4 @@
-import { Card, Col, Divider, Dropdown, Flex, MenuProps, Row, Tag, Typography } from "antd";
+import { Card, Col, Divider, Dropdown, Flex, MenuProps, Row, Tag, Typography, Image, Tooltip } from "antd";
 import { useStyles } from "./styles";
 import { DotsThree, Star, User } from "@assets";
 import { useNavigate } from "react-router-dom";
@@ -7,8 +7,9 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "@api";
 import { GetCoursesRequest } from "@types";
 import { ParamsType } from "@features/courses/types";
+import { useTheme } from "antd-style";
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 const items: MenuProps["items"] = [
   {
@@ -34,7 +35,8 @@ const items: MenuProps["items"] = [
 
 export const MyCoursesCards = () => {
   const { styles } = useStyles();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const palette = useTheme();
 
 
   const getQueryParams = () : GetCoursesRequest => {
@@ -63,7 +65,6 @@ export const MyCoursesCards = () => {
   // todo: make skeleton for the courses
   // todo: make fail component (reusable)
   // todo: make pagination
-  // todo: equalize components size
 
   if (isLoading) return <Text>Loading courses...</Text>;
   if (isError) return <Text type="danger">Failed to load courses.</Text>;
@@ -75,26 +76,36 @@ export const MyCoursesCards = () => {
           <Card
             hoverable
             cover={
-              <img
-                alt="example"
-                src={item.image_url}
-                onClick={() => {
-                  navigate(routes.courses + `/${item.id}`);
-                }}
-              />
+                <Image
+                  alt="example"
+                  src={item.image_url}
+                  onClick={() => {
+                    navigate(routes.courses + `/${item.id}`);
+                  }}
+                  height="200px"
+                  preview={false}
+                  style={{objectFit:"cover"}}
+                />
             }
           >
             <Flex vertical>
-              <Flex>
-                {item.categories?.map((category) => (
-                  <Tag key={category.id} color="geekblue" className={styles.tag}>
-                    {category.name}
-                  </Tag>
-                ))}
-
+              <Flex className={styles.tagContainer}>
+                {item.categories?.length ? (
+                  item.categories.map((category) => (
+                    <Tag key={category.id} bordered={false} className={styles.tag}>
+                      {(category.name).toUpperCase()}
+                    </Tag>
+                  ))
+                ) : (
+                  <div className={styles.emptyTag}>
+                  </div>
+                )}
               </Flex>
 
-              <Title level={5}>{item.title}</Title>
+              <Tooltip title={item.title} placement="topRight" color={palette.common.black}   arrow={false}>
+                <div className={styles.title}>{item.title}</div>
+              </Tooltip>
+
               <Divider className={styles.divider} />
               <Flex justify="space-between" align="center" gap={24}>
                 <Flex align="center" gap={6}>
