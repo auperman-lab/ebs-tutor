@@ -9,6 +9,7 @@ import { GetCoursesRequest } from "@types";
 import { ParamsType } from "@features/courses/types";
 import { useTheme } from "antd-style";
 import { CoursesCardSkeleton } from "@features/courses/components/Courses/CoursesCards/CoursesCardSkeleton";
+import { FailComponent } from "@features/not-found/componets";
 
 const { Text } = Typography;
 
@@ -59,10 +60,8 @@ export const CoursesCards = () => {
     queryFn: () => api.courses.getAllCourses(params),
   });
 
-  // todo: make fail component (reusable)
-
   if (isLoading) return (<CoursesCardSkeleton quantity={8}/>);
-  if (isError) return <Text type="danger">Failed to load courses.</Text>;
+  if (isError) return <FailComponent message="Failed to load courses" />;
 
   return (
     <Row gutter={[24, 24]} style={{width:"100%"}}>

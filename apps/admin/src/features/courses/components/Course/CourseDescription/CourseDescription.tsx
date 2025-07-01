@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "@api";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
+import { FailComponent } from "@features/not-found";
 
 const { Text, Title } = Typography;
 
@@ -23,9 +24,8 @@ export const CourseDescription = () => {
   });
 
   if (isLoading) return <Text>Loading course...</Text>;
-  if (isError) return <Text type="danger">Failed to load course.</Text>;
+  if (isError) return <FailComponent message="Failed to load courses" />;
   if (!course) return <Text type="danger">No course data found.</Text>;
-
 
   return (
     <Flex className={styles.mainPart} gap={24}>

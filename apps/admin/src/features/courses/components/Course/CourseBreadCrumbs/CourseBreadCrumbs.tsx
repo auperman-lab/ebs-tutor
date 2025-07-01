@@ -10,14 +10,12 @@ export const CourseBreadCrumbs = () => {
 
   const { id }  = useParams();
 
-  const { data: course, isLoading, isError} = useQuery({
+  const { data: course, isLoading} = useQuery({
     queryKey: ["course", id],
     queryFn: () => api.courses.getCourse(id!),
   });
 
   if (isLoading) return <Text>Loading course...</Text>;
-  if (isError) return <Text type="danger">Failed to load course.</Text>;
-  if (!course) return <Text type="danger">No course data found.</Text>;
 
   const items = [
     {
