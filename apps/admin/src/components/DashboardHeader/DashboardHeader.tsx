@@ -12,10 +12,12 @@ const pageTitles: Record<string, string> = {
   [routes.main]: 'Dashboard',
   [routes.courses]: 'My courses',
   [routes.settings]: 'Settings',
+  [routes.create]: 'Create a new course',
 };
 
 const getPageTitle = (pathname: string): string => {
-  return pageTitles[pathname];
+  const segment = pathname.split('/').filter(Boolean);
+  return pageTitles[pathname === '/' ? '/' : '/' + segment[0]] || 'Page';
 };
 
 export const DashboardHeader = () => {
