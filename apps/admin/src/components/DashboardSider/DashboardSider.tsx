@@ -24,7 +24,7 @@ const menuItems = [
   {
     key: 2,
     icon: <PlusCircle />,
-    label: <Link to={routes.main}>Create New Course</Link>,
+    label: <Link to={routes.create}>Create New Course</Link>,
   },
   {
     key: 3,
@@ -66,7 +66,12 @@ export const DashboardSider = () => {
             </Flex>
           </Link>
           <Divider className={styles.divider} />
-          <Menu mode="inline" defaultSelectedKeys={['1']} items={menuItems} />
+          <Menu
+            mode="inline"
+            defaultSelectedKeys={['1']}
+            items={menuItems}
+            theme="dark"
+          />
         </div>
         <Button className={styles.logOut} size="large" onClick={logout}>
           <Flex align="center" gap={12}>

@@ -9,10 +9,27 @@ import {
 import { useState } from 'react';
 import { useStyles } from './styles';
 import { Clipboard, PlayCircle, MonitorPlay } from '@assets';
+import { Section } from '@features/create-course/types';
 
 export const CreateCoursePage = () => {
   const { styles } = useStyles();
-  const [activeKey, setActiveKey] = useState('2');
+  const [activeKey, setActiveKey] = useState('3');
+
+  const [curriculum, setCurriculum] = useState<Section[]>([
+    {
+      id: 'section-1',
+      title: '',
+      lectures: [
+        {
+          id: 'lecture-1',
+          title: '',
+          active: false,
+          can_skip: false,
+          description: '',
+        },
+      ],
+    },
+  ]);
 
   const items: TabsProps['items'] = [
     {
@@ -43,7 +60,7 @@ export const CreateCoursePage = () => {
           <span>Curriculum</span>
         </Flex>
       ),
-      children: <Curriculum />,
+      children: <Curriculum value={curriculum} onChange={setCurriculum} />,
     },
     {
       key: '4',
@@ -56,7 +73,6 @@ export const CreateCoursePage = () => {
       children: <PublishCourse />,
     },
   ];
-
 
   const onHandleNext = () => {
     setActiveKey((prev) => (Number(prev) + 1).toString());
@@ -73,19 +89,20 @@ export const CreateCoursePage = () => {
           promises: [{}],
           target: [{}],
           requirements: [{}],
+          curriculum,
         }}
       >
-      <Tabs
-        defaultActiveKey="1"
-        activeKey={activeKey}
-        onChange={(key) => setActiveKey(key)}
-        items={items}
-      />
-      <NavigationButtons
-        activeKey={activeKey}
-        onNext={onHandleNext}
-        onBack={onHandleBack}
-      />
+        <Tabs
+          defaultActiveKey="1"
+          activeKey={activeKey}
+          onChange={(key) => setActiveKey(key)}
+          items={items}
+        />
+        <NavigationButtons
+          activeKey={activeKey}
+          onNext={onHandleNext}
+          onBack={onHandleBack}
+        />
       </Form>
     </Flex>
   );

@@ -80,12 +80,17 @@ export const themeComponents = {
     controlHeightLG: 48,
   },
   Menu: {
-    itemBg: '#1D2026',
+    darkItemBg: 'rgb(29,32,38)',
+    itemBg: 'rgb(245,247,250)',
     colorText: 'rgb(140,148,163)',
     itemMarginInline: 0,
     lineWidth: 0,
     itemSelectedColor: 'rgb(255,255,255)',
     itemSelectedBg: '#ff6636',
     controlHeightLG: 48,
+    itemActiveBg: 'rgb(245,247,250)',
+  },
+  Collapse: {
+    headerBg: 'rgb(245,247,250)',
   },
 };
