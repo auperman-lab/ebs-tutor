@@ -6,5 +6,8 @@ export const useStyles = createStyles(() => ({
     display: "flex",
     gap: 8,
   },
+  skeletonItem: {
+    width: 50,
+  },
 
 }));
