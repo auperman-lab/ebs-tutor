@@ -1,13 +1,12 @@
 import { Col, Row } from "antd";
 import { CourseDescription, CourseBreadCrumbs } from "@features/courses/components";
 import { useStyles } from './styles';
-
+import { OverviewCard, RatingCard, RevenueCard } from "@features/dashboard/components";
+import { CourseStats } from "@features/courses/components/Course/CourseStats";
 
 
 export const CoursePage = () => {
   const { styles } = useStyles();
-
-  //todo: add course ratings card, revenue, overview and stat cards(actual info is provided by the endpoint)
 
   return (
     <Row gutter={[24, 24]} className={styles.container}>
@@ -18,13 +17,23 @@ export const CoursePage = () => {
         <CourseDescription />
       </Col>
 
-      <Col xxl={9} span={24}>
+      <Row gutter={[24, 24]} style={{ width: "100%" }}>
+        <Col span={12}>
+          <CourseStats />
+        </Col>
+        <Col span={12}>
+          <RatingCard />
+        </Col>
+      </Row>
 
+      <Col span={10}>
+        <RevenueCard />
       </Col>
 
-      <Col xxl={15} span={24}>
-
+      <Col span={14}>
+        <OverviewCard />
       </Col>
+
     </Row>
   );
 };

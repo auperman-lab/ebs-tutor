@@ -1,5 +1,5 @@
 import { useStyles } from "./styles";
-import { Col, Flex } from "antd";
+import { Flex } from "antd";
 import React, { ReactElement, SVGProps } from "react";
 
 type StatCardProp = {
@@ -17,7 +17,6 @@ export const StatCard = ({ color, title, quantity, icon }: StatCardProp) => {
     : icon;
 
   return (
-    <Col span={6}>
       <Flex justify="space-between" align="center" className={styles.wrapper}>
         <Flex align="center" justify="center" className={styles.iconWrapper}>
           {styledIcon}
@@ -27,6 +26,5 @@ export const StatCard = ({ color, title, quantity, icon }: StatCardProp) => {
           <div className={styles.text}>{title}</div>
         </Flex>
       </Flex>
-    </Col>
   );
 };

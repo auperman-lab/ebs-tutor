@@ -19,13 +19,15 @@ export const MainPage = () => {
     <Flex className={styles.container} vertical align="center" justify="center">
       <Row gutter={[24, 24]}>
         {stats.map((item, index) => (
-          <StatCard
-            key={`${index}-${item.title}`}
-            color={item.color}
-            title={item.title}
-            quantity={item.quantity}
-            icon={item.icon}
-          />
+          <Col span={6}>
+            <StatCard
+              key={`${index}-${item.title}`}
+              color={item.color}
+              title={item.title}
+              quantity={item.quantity}
+              icon={item.icon}
+            />
+          </Col>
         ))}
         {/*row1*/}
         <Col span={24}>
