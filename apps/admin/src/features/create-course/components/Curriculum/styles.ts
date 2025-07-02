@@ -4,4 +4,8 @@ export const useStyles = createStyles(({ token }) => ({
   container: {
     padding: token.paddingXL,
   },
+
+  stretch: {
+    flex: 1,
+  },
 }));

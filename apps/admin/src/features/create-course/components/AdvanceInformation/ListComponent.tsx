@@ -5,7 +5,7 @@ import { Delete, Add } from '@assets';
 const { Text } = Typography;
 
 type ListComponentProps = {
-  name: string;
+  name: string | string[];
   title: string;
   keyItem: string;
   placeholder: string;
@@ -40,12 +40,15 @@ export const ListComponent = ({
               </Button>
             </Flex>
 
-            {fields.map(({ key, name, ...restField }) => (
+            {fields.map(({ key, name: fieldName, ...restField }) => (
               <Flex gap={24} align="center" key={key}>
                 <Form.Item
                   {...restField}
-                  name={[name, keyItem]}
+                  name={[fieldName, keyItem]}
                   className={styles.stretch}
+                  rules={[
+                    { required: true, message: `${title} item is required` },
+                  ]}
                 >
                   <Input
                     size="large"
@@ -58,7 +61,7 @@ export const ListComponent = ({
                 </Form.Item>
 
                 <Button type="dashed">
-                  <Delete onClick={() => remove(name)} />
+                  <Delete onClick={() => remove(fieldName)} />
                 </Button>
               </Flex>
             ))}

@@ -5,12 +5,14 @@ type NavigationButtonsProps = {
   activeKey: string;
   onNext: () => void;
   onBack: () => void;
+  onSave: () => void;
 };
 
 export const NavigationButtons = ({
   activeKey,
   onNext,
   onBack,
+  onSave,
 }: NavigationButtonsProps) => {
   const { styles } = useStyles();
   const isFirst = activeKey === '1';
@@ -22,12 +24,17 @@ export const NavigationButtons = ({
         {isFirst ? 'Cancel' : 'Back'}
       </Button>
       <Flex gap={12} justify="space-between">
-        <Button size="large" variant="filled" className={styles.save}>
+        <Button
+          size="large"
+          variant="filled"
+          className={styles.save}
+          onClick={onSave}
+        >
           Save
         </Button>
         {!isLast && (
           <Button size="large" type="primary" onClick={onNext}>
-            Save & next
+            Save & Next
           </Button>
         )}
       </Flex>

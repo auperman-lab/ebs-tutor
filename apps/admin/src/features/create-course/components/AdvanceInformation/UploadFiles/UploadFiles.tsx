@@ -1,5 +1,13 @@
-import { ReactElement, useState } from 'react';
-import { Flex, Typography, Upload, UploadProps, message, Button } from 'antd';
+import { ReactElement } from 'react';
+import {
+  Flex,
+  Typography,
+  Upload,
+  UploadProps,
+  message,
+  Button,
+  Form,
+} from 'antd';
 import { useStyles } from './styles';
 
 const { Text } = Typography;
@@ -24,20 +32,22 @@ export const UploadFiles = ({
   previewImage,
 }: UploadBlockProps) => {
   const { styles } = useStyles();
-  const [fileUrl, setFileUrl] = useState<string>();
+  const form = Form.useFormInstance();
 
   const beforeUpload = (file: File) => {
     const isAccepted = acceptedTypes.includes(file.type);
     if (!isAccepted) {
       message.error(`Supported formats: ${acceptedTypes.join(', ')}`);
+      return false;
     }
 
     const isWithinLimit = file.size / 1024 / 1024 < maxSizeMB;
     if (!isWithinLimit) {
       message.error(`File must be smaller than ${maxSizeMB}MB!`);
+      return false;
     }
 
-    return isAccepted && isWithinLimit;
+    return true;
   };
 
   const getBase64 = (file: File, callback: (url: string) => void) => {
@@ -48,12 +58,24 @@ export const UploadFiles = ({
 
   const handleChange: UploadProps['onChange'] = (info) => {
     const file = info.file.originFileObj;
-    if (file) {
-      getBase64(file as File, (url) => {
-        setFileUrl(url);
+    if (file && beforeUpload(file)) {
+      getBase64(file, (url) => {
+        form.setFieldsValue({
+          advanceInfo: {
+            ...form.getFieldValue('advanceInfo'),
+            [title.toLowerCase().includes('thumbnail')
+              ? 'thumbnail'
+              : 'trailer']: url,
+          },
+        });
       });
     }
   };
+
+  const fileUrl = form.getFieldValue([
+    'advanceInfo',
+    title.toLowerCase().includes('thumbnail') ? 'thumbnail' : 'trailer',
+  ]);
 
   const renderPreview = () => {
     if (!fileUrl || !preview) return null;

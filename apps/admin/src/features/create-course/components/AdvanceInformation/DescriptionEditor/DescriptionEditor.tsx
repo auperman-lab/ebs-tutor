@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Flex, Typography } from 'antd';
+import { Flex, Typography, Form } from 'antd';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useStyles } from './styles';
@@ -8,16 +7,25 @@ import { CustomToolbar } from './CustomToolbar';
 const { Text } = Typography;
 
 export const DescriptionEditor = () => {
-  const [value, setValue] = useState('');
   const { styles } = useStyles();
+  const form = Form.useFormInstance();
+
+  const handleChange = (value: string) => {
+    form.setFieldsValue({
+      advanceInfo: {
+        ...form.getFieldValue('advanceInfo'),
+        description: value,
+      },
+    });
+  };
 
   return (
     <Flex vertical gap={8}>
       <Text className={styles.title}>Course Description</Text>
       <div>
         <ReactQuill
-          value={value}
-          onChange={setValue}
+          value={form.getFieldValue(['advanceInfo', 'description']) || ''}
+          onChange={handleChange}
           placeholder="Enter your course descriptions"
           modules={{
             toolbar: '#custom-toolbar',

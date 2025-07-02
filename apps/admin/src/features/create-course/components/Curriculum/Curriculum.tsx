@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   PlusOutlined,
   DeleteOutlined,
@@ -6,7 +6,7 @@ import {
   CheckOutlined,
   CloseOutlined,
 } from '@ant-design/icons';
-import { Button, Input, Switch, Typography, Flex, Collapse, Form } from 'antd';
+import { Button, Input, Switch, Typography, Flex, Collapse } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import { useStyles } from './styles';
 import { Section, Lecture } from '@features/create-course/types';
@@ -35,14 +35,18 @@ export const Curriculum = ({
   onChange?: (sections: Section[]) => void;
 }) => {
   const { styles } = useStyles();
-  const sections = value || [];
-
+  const [sections, setSections] = useState<Section[]>(value);
   const [editingSectionId, setEditingSectionId] = useState<string | null>(null);
   const [editingLectureId, setEditingLectureId] = useState<string | null>(null);
   const [tempTitle, setTempTitle] = useState('');
 
+  useEffect(() => {
+    setSections(value || []);
+  }, [value]);
+
   const updateSections = (updater: (prev: Section[]) => Section[]) => {
     const newSections = updater(sections);
+    setSections(newSections);
     onChange?.(newSections);
   };
 
@@ -117,7 +121,7 @@ export const Curriculum = ({
       label: (
         <Flex justify="space-between" align="center" gap={8}>
           {editingLectureId === lecture.id ? (
-            <Flex style={{ flex: 1 }} gap={8}>
+            <Flex className={styles.stretch} gap={8}>
               <Input
                 autoFocus
                 value={tempTitle}
@@ -149,7 +153,7 @@ export const Curriculum = ({
             <Flex
               justify="space-between"
               align="center"
-              style={{ flex: 1 }}
+              className={styles.stretch}
               gap={4}
             >
               <Text>{lecture.title || 'Untitled Lecture'}</Text>
@@ -218,7 +222,7 @@ export const Curriculum = ({
     label: (
       <Flex justify="space-between" align="center" gap={8}>
         {editingSectionId === section.id ? (
-          <Flex align="center" style={{ flex: 1 }} gap={8}>
+          <Flex align="center" className={styles.stretch} gap={8}>
             <Input
               autoFocus
               value={tempTitle}
@@ -250,7 +254,7 @@ export const Curriculum = ({
           <Flex
             justify="space-between"
             align="center"
-            style={{ flex: 1 }}
+            className={styles.stretch}
             gap={8}
           >
             <Text>{section.title || 'Untitled Section'}</Text>
