@@ -6,6 +6,9 @@ import { api } from "@api";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import { FailComponent } from "@features/not-found";
+import {
+  CourseDescriptionSkeleton
+} from "./CourseDescriptionSkeleton";
 
 const { Text, Title } = Typography;
 
@@ -23,7 +26,7 @@ export const CourseDescription = () => {
     queryFn: () => api.courses.getCourse(id!),
   });
 
-  if (isLoading) return <Text>Loading course...</Text>;
+  if (isLoading) return <CourseDescriptionSkeleton />;
   if (isError) return <FailComponent message="Failed to load courses" />;
   if (!course) return <Text type="danger">No course data found.</Text>;
 
