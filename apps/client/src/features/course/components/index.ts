@@ -1,1 +1,1 @@
-// components index
+export * from "./CoursePage"
