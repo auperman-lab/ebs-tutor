@@ -1,6 +1,6 @@
 import { createStyles } from "antd-style";
 
-export const useStyles = createStyles(({ token, css, responsive }) => ({
+export const useStyles = createStyles(({ css, responsive }) => ({
   imageContainer: css`
     width: 100%;
     height: 100%;
