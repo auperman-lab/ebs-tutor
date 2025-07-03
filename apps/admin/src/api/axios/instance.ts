@@ -5,7 +5,7 @@ import { configInterceptor } from "./interceptor";
 export const axiosInstance = axios.create({
   baseURL: api,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 
