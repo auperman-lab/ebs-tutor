@@ -11,7 +11,7 @@ export type AuthUser = {
   token: string;
 }
 
-export type Roles = "admin" | "student" | "educator"
+export type roles = "admin" | "student" | "educator"
 
 export type DecodedToken = {
   aud: string;
