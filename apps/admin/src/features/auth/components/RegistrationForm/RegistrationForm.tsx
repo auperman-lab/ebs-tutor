@@ -1,11 +1,18 @@
-import type { FormProps } from 'antd';
-import { Button, Checkbox, Form, Input, Flex, Typography } from 'antd';
-import type { RegistrationFormProps } from '../../types';
+import {
+  Button,
+  Checkbox,
+  Form,
+  Input,
+  Flex,
+  Typography,
+  FormProps,
+} from 'antd';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@api';
-import { LoginOptions } from '../LoginOptions/LoginOptions';
-import { useStyles } from './RegistrationFormStyles';
+import { useStyles } from './styles';
 import { regexPatterns } from '@const';
+import { LoginOptions } from "@features/auth/components/";
+import { RegistrationFormProps } from "@features/auth/types";
 
 export const RegistrationForm = () => {
   const { styles } = useStyles();
@@ -17,14 +24,7 @@ export const RegistrationForm = () => {
   });
 
   const onFinish: FormProps<RegistrationFormProps>['onFinish'] = (values) => {
-    console.log('Success:', values);
     mutate(values);
-  };
-
-  const onFinishFailed: FormProps<RegistrationFormProps>['onFinishFailed'] = (
-    errorInfo
-  ) => {
-    console.log('Failed:', errorInfo);
   };
 
   return (
@@ -44,106 +44,106 @@ export const RegistrationForm = () => {
         layout="vertical"
         initialValues={{ remember: true }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
       >
-        <Flex className={styles.fullname} gap={18}>
+        <Flex vertical={true} gap={24}>
+          <Flex className={styles.fullname} gap={18}>
+            <Form.Item<RegistrationFormProps>
+              label="First name"
+              name="firstName"
+              rules={[{ required: true, message: 'This field is required!' }]}
+            >
+              <Input placeholder="First name" size="large" />
+            </Form.Item>
+
+            <Form.Item<RegistrationFormProps>
+              label="Last name"
+              name="lastName"
+              rules={[{ required: true, message: 'This field is required!' }]}
+            >
+              <Input placeholder="Last name" size="large" />
+            </Form.Item>
+          </Flex>
+
           <Form.Item<RegistrationFormProps>
-            label="First name"
-            name="firstName"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            label="Email"
+            name="email"
+            rules={[{ required: true, message: 'This field is required!' }]}
           >
-            <Input variant="outlined" placeholder="First name" />
+            <Input placeholder="Email adress" size="large" />
           </Form.Item>
 
           <Form.Item<RegistrationFormProps>
-            label="Last name"
-            name="lastName"
-            rules={[{ required: true, message: 'Please input your username!' }]}
-          >
-            <Input placeholder="Last name" />
-          </Form.Item>
-        </Flex>
-
-        <Form.Item<RegistrationFormProps>
-          label="Email"
-          name="email"
-          rules={[{ required: true, message: 'Please input your username!' }]}
-        >
-          <Input placeholder="Email adress" />
-        </Form.Item>
-
-        <Form.Item<RegistrationFormProps>
-          label="Password"
-          name="password"
-          rules={[
-            { required: true, message: 'Please input your password!' },
-            {
-              pattern: regexPatterns.password,
-              message:
-                'Password must be 6+ characters with latin letters and numbers.',
-            },
-          ]}
-        >
-          <Input.Password variant="outlined" placeholder="Create password" />
-        </Form.Item>
-
-        <Form.Item<RegistrationFormProps>
-          label="Confirm password"
-          name="confirmPassword"
-          dependencies={['password']}
-          rules={[
-            { required: true, message: 'Please confirm your password!' },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue('password') === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(new Error('Passwords do not match!'));
-              },
-            }),
-          ]}
-        >
-          <Input.Password placeholder="Confirm password" />
-        </Form.Item>
-
-        <Flex justify="space-between">
-          <Form.Item
-            name="agreement"
-            valuePropName="checked"
+            label="Password"
+            name="password"
             rules={[
+              { required: true, message: 'Please input your password!' },
               {
-                validator: (_, value) =>
-                  value
-                    ? Promise.resolve()
-                    : Promise.reject(
-                        new Error('You must agree to the terms and conditions')
-                      ),
+                pattern: regexPatterns.password,
+                message:
+                  'Password must be 6+ characters with latin letters and numbers.',
               },
             ]}
-            style={{ marginBottom: 0 }}
           >
-            <Checkbox
-              style={{
-                alignItems: 'center',
-                height: '32px',
-                letterSpacing: '-1px',
-              }}
+            <Input.Password
+              variant="outlined"
+              placeholder="Create password"
+              size="large"
+            />
+          </Form.Item>
+
+          <Form.Item<RegistrationFormProps>
+            label="Confirm password"
+            name="confirmPassword"
+            dependencies={['password']}
+            rules={[
+              { required: true, message: 'Please confirm your password!' },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error('Passwords do not match!'));
+                },
+              }),
+            ]}
+          >
+            <Input.Password placeholder="Confirm password" size="large" />
+          </Form.Item>
+
+          <Flex justify="space-between" align="center">
+            <Form.Item
+              name="agreement"
+              valuePropName="checked"
+              rules={[
+                {
+                  validator: (_, value) =>
+                    value
+                      ? Promise.resolve()
+                      : Promise.reject(
+                          new Error(
+                            'You must agree to the terms and conditions'
+                          )
+                        ),
+                },
+              ]}
+              style={{ marginBottom: 0 }}
             >
-              I Agree with all of your{' '}
-              <Typography.Link
-                href="https://ant.design/components/typography#typography-demo-text"
-                target="_blank"
-              >
-                Terms & Conditions
-              </Typography.Link>
-            </Checkbox>
-          </Form.Item>
-          <Form.Item label={null}>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </Form.Item>
+              <Checkbox>
+                I Agree with all of your{' '}
+                <Typography.Link
+                  href="https://ant.design/components/typography#typography-demo-text"
+                  target="_blank"
+                >
+                  Terms & Conditions
+                </Typography.Link>
+              </Checkbox>
+            </Form.Item>
+            <Form.Item label={null}>
+              <Button type="primary" size="large" htmlType="submit">
+                Submit
+              </Button>
+            </Form.Item>
+          </Flex>
         </Flex>
         <LoginOptions dividerText="SIGN UP" />
       </Form>

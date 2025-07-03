@@ -27,6 +27,9 @@ export default [
           ],
         },
       ],
+
+      'no-console': 'warn',
+      'no-unused-expressions': ['error'],
     },
   },
   {

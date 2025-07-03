@@ -3,11 +3,11 @@ import { createStyles } from 'antd-style';
 export const useStyles = createStyles(({ token, css, responsive }) => ({
   loginFormContainer: css`
     width: 100%;
-    background: ${token.colorBgBase};
+    background: ${token.colorWhite};
   `,
 
   loginFormWrapper: css`
-    max-width: 400px;
+    max-width: 600px;
     width: 100%;
   `,
 

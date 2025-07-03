@@ -1,10 +1,10 @@
-import { Button, Checkbox, Flex, Form, Input } from 'antd';
-import { LoginFormProps } from '../../types';
-import { useStyles } from './LoginFormStyles';
+import { Button, Checkbox, Flex, Form, Input } from "antd";
+import { LoginFormProps } from "@features/auth/types";
+import { useStyles } from "./LoginFormStyles";
 // @ts-ignore
-import { ArrowRight } from '@phosphor-icons/react';
-import { useMutation } from '@tanstack/react-query';
-import { api } from '@api';
+import { ArrowRight } from "@phosphor-icons/react";
+import { useMutation } from "@tanstack/react-query";
+import { api } from "@api";
 import { useAuth } from "@hooks";
 
 export const LoginForm = () => {
@@ -16,12 +16,12 @@ export const LoginForm = () => {
   const onFinish = async () => {
     const values: LoginFormProps = await form.validateFields();
     mutate(values);
-    console.log('Success:', values);
+    console.log("Success:", values);
   };
 
   const { mutate } = useMutation({
     mutationFn: (data: LoginFormProps) => api.auth.login(data),
-    onSuccess: (data) => login(data)
+    onSuccess: (data) => login(data),
   });
 
   return (
@@ -33,34 +33,36 @@ export const LoginForm = () => {
         initialValues={{ remember: true }}
         onFinish={onFinish}
       >
-        <Form.Item<LoginFormProps>
-          label="Email"
-          name="email"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your email!',
-              type: 'email',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+        <Flex vertical gap={24}>
+          <Form.Item<LoginFormProps>
+            label="Email"
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: "Please input your email!",
+                type: "email",
+              },
+            ]}
+          >
+            <Input size="large" placeholder="Username or email address..." />
+          </Form.Item>
 
-        <Form.Item<LoginFormProps>
-          label="Password"
-          name="password"
-          rules={[
-            { required: true, message: 'Please input your password!' },
-            // {
-            //   pattern: regexPatterns.password,
-            //   message:
-            //     'Password must be at least 6 characters long and contain both letters and numbers.',
-            // },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
+          <Form.Item<LoginFormProps>
+            label="Password"
+            name="password"
+            rules={[
+              { required: true, message: "Please input your password!" },
+              // {
+              //   pattern: regexPatterns.password,
+              //   message:
+              //     'Password must be at least 6 characters long and contain both letters and numbers.',
+              // },
+            ]}
+          >
+            <Input.Password size="large" placeholder="Password" />
+          </Form.Item>
+        </Flex>
 
         <Flex
           align="center"

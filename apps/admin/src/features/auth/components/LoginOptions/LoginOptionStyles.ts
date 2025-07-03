@@ -1,8 +1,11 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(() => ({
+export const useStyles = createStyles(({ responsive }) => ({
   login_options: {
     marginTop: 24,
+    [responsive.xs]: {
+      flexDirection: 'column',
+    },
   },
 
   auth_button: {
@@ -11,7 +14,7 @@ export const useStyles = createStyles(() => ({
   },
 
   logo_container: {
-    width: 40,
+    width: 48,
     height: '100%',
     border: '1px solid rgb(233, 234, 240)',
   },

@@ -1,0 +1,80 @@
+import { Layout, Menu, Flex, Divider, Button } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import {
+  ChartBar,
+  PlusCircle,
+  Stack,
+  CreditCard,
+  ChatCircle,
+  Gear,
+  GraduationCap,
+  SignOut,
+} from '@assets';
+import { useStyles } from './styles';
+import { routes } from '@const';
+
+const { Sider } = Layout;
+
+const menuItems = [
+  {
+    key: 1,
+    icon: <ChartBar />,
+    label: <Link to={routes.main}>Dashboard</Link>,
+  },
+  {
+    key: 2,
+    icon: <PlusCircle />,
+    label: <Link to={routes.main}>Create New Course</Link>,
+  },
+  {
+    key: 3,
+    icon: <Stack />,
+    label: <Link to={routes.courses}>My Courses</Link>,
+  },
+  {
+    key: 4,
+    icon: <CreditCard />,
+    label: <Link to={routes.main}>Earnings</Link>,
+  },
+  {
+    key: 5,
+    icon: <ChatCircle />,
+    label: <Link to={routes.main}>Message</Link>,
+  },
+  {
+    key: 6,
+    icon: <Gear />,
+    label: <Link to={routes.settings}>Settings</Link>,
+  },
+];
+
+export const DashboardSider = () => {
+  const { styles } = useStyles();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    navigate(routes.login);
+  };
+  return (
+    <Sider width="280px" className={styles.sidebar} breakpoint="lg">
+      <Flex vertical justify="space-between" className={styles.flexContainer}>
+        <div>
+          <Link to={routes.main}>
+            <Flex gap={6} align="center" className={styles.logoContainer}>
+              <GraduationCap width={30} height={30} />
+              <h1 className={styles.logo}>E-tutor</h1>
+            </Flex>
+          </Link>
+          <Divider className={styles.divider} />
+          <Menu mode="inline" defaultSelectedKeys={['1']} items={menuItems} />
+        </div>
+        <Button className={styles.logOut} size="large" onClick={logout}>
+          <Flex align="center" gap={12}>
+            <SignOut />
+            <p> Sign-Out</p>
+          </Flex>
+        </Button>
+      </Flex>
+    </Sider>
+  );
+};

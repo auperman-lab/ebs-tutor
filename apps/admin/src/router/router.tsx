@@ -1,12 +1,44 @@
 import { useRoutes } from 'react-router-dom';
+
 import { routes } from '@const';
-import { LoginPage, RegistrationPage } from '../features/auth';
-import { NotFoundPage } from '../features/NotFound';
-import { AuthLayout } from '../layout';
-import { AuthProvider } from "@context";
+import { AuthProvider } from '@context';
+import { DashboardLayout, AuthLayout } from '@layout';
+import { MainPage } from "@features/dashboard";
+import { SettingsPage } from "@features/settings";
+import { CoursePage, MyCoursesPage } from "@features/courses";
+import { CreateCoursePage } from "@features/create-course";
+import { LoginPage, RegistrationPage } from "@features/auth";
+import { NotFoundPage } from "@features/not-found";
+
 
 export const Router = () => {
   return useRoutes([
+    {
+      path: routes.main,
+      element: <DashboardLayout />,
+      children: [
+        {
+          index: true,
+          element: <MainPage />,
+        },
+        {
+          path: routes.settings,
+          element: <SettingsPage />,
+        },
+        {
+          path: routes.courses + '/:id',
+          element: <CoursePage />,
+        },
+        {
+          path: routes.courses,
+          element: <MyCoursesPage />,
+        },
+        {
+          path: routes.create,
+          element: <CreateCoursePage />,
+        },
+      ],
+    },
     {
       path: routes.main,
 
@@ -15,7 +47,6 @@ export const Router = () => {
           <AuthLayout />
         </AuthProvider>
       ),
-
 
       children: [
         {
@@ -30,7 +61,6 @@ export const Router = () => {
           path: '*',
           element: <NotFoundPage />,
         },
-
       ],
     },
   ]);
