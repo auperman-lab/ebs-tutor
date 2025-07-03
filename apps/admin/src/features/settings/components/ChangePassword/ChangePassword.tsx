@@ -2,9 +2,9 @@ import { Button, Flex, Form, Input } from 'antd';
 import { useStyles } from './styles';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@api';
-import { ChangePasswordProps } from "@features/settings/types";
-import { ChangePasswordRequest } from "@types";
-import { useAuth } from "@hooks";
+import { ChangePasswordProps } from '@features/settings/types';
+import { ChangePasswordRequest } from '@types';
+import { useAuth } from '@hooks';
 
 export const ChangePassword = () => {
   const { styles } = useStyles();
@@ -12,8 +12,7 @@ export const ChangePassword = () => {
   const authContext = useAuth();
 
   const { mutate } = useMutation({
-    mutationFn: (data: ChangePasswordRequest) =>
-      api.auth.changePassword(data),
+    mutationFn: (data: ChangePasswordRequest) => api.auth.changePassword(data),
   });
 
   const onFinish = async () => {
@@ -23,7 +22,6 @@ export const ChangePassword = () => {
       email: authContext.user?.email!,
       password: values.newConfirmPassword,
     });
-    console.log('Success:', values);
   };
 
   return (

@@ -5,7 +5,6 @@ import { Router } from './router/router';
 import { StyleProvider, ThemeProvider } from 'antd-style';
 import { AuthProvider, QueryClientContext } from '@context';
 import '@ant-design/v5-patch-for-react-19';
-import './styles.scss';
 import { GlobalStyle } from './GlobalStyles';
 import { customThemePalette, themeComponents } from './styles';
 import { useAutoRefreshToken } from './hooks/useAutoRefreshToken';

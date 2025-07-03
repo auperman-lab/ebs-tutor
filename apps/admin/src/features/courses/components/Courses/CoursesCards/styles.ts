@@ -55,4 +55,8 @@ export const useStyles = createStyles(({ token }) => ({
       display: 'none',
     },
   },
+
+  width: {
+    width: '100%',
+  },
 }));

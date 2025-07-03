@@ -1,7 +1,7 @@
 import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(() => ({
-  height: {
-    height: '100%',
+  margin: {
+    margin: '16px 0px',
   },
 }));

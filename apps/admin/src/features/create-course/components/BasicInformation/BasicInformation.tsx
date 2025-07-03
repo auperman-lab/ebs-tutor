@@ -99,7 +99,7 @@ export const BasicInformation = () => {
           <Form.Item
             layout="vertical"
             label="Course Category"
-            style={{ width: '100%', flex: 1 }}
+            className={styles.stretch}
             name={['basicInfo', 'category']}
             rules={[{ required: true, message: 'Category is required' }]}
           >
@@ -112,7 +112,7 @@ export const BasicInformation = () => {
           <Form.Item
             layout="vertical"
             label="Course Sub-category"
-            style={{ width: '100%', flex: 1 }}
+            className={styles.stretch}
             name={['basicInfo', 'sub_category']}
             rules={[{ required: true, message: 'Sub-category is required' }]}
           >
@@ -138,7 +138,7 @@ export const BasicInformation = () => {
           <Form.Item
             layout="vertical"
             label="Course Language"
-            style={{ width: '100%', flex: 1 }}
+            className={styles.stretch}
             name={['basicInfo', 'course_language']}
             rules={[{ required: true, message: 'Course language is required' }]}
           >
@@ -151,7 +151,7 @@ export const BasicInformation = () => {
           <Form.Item
             layout="vertical"
             label="Subtitle Language (Optional)"
-            style={{ width: '100%', flex: 1 }}
+            className={styles.stretch}
             name={['basicInfo', 'subtitle_language']}
           >
             <Select
@@ -163,7 +163,7 @@ export const BasicInformation = () => {
           <Form.Item
             layout="vertical"
             label="Course Level"
-            style={{ width: '100%', flex: 1 }}
+            className={styles.stretch}
             name={['basicInfo', 'level']}
             rules={[{ required: true, message: 'Course level is required' }]}
           >
@@ -176,7 +176,7 @@ export const BasicInformation = () => {
           <Form.Item
             layout="vertical"
             label="Duration"
-            style={{ width: '100%', flex: 1 }}
+            className={styles.stretch}
             name={['basicInfo', 'duration']}
             rules={[{ required: true, message: 'Duration is required' }]}
           >

@@ -1,32 +1,43 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { Avatar, Button, Flex, Form, Input, message, Select, Upload } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
-import { useStyles } from "./styles";
-import { useAuth } from "@hooks";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { api } from "@api";
-import { UserChangeSettingsRequest } from "@types";
+import {
+  Avatar,
+  Button,
+  Flex,
+  Form,
+  Input,
+  message,
+  Select,
+  Upload,
+} from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import { useStyles } from './styles';
+import { useAuth } from '@hooks';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { api } from '@api';
+import { UserChangeSettingsRequest } from '@types';
 
 export const AccountSettings = () => {
   const { styles } = useStyles();
 
   const authContext = useAuth();
-  const [imageUrl, setImageUrl] = useState<string | null>(authContext.user?.avatar!);
+  const [imageUrl, setImageUrl] = useState<string | null>(
+    authContext.user?.avatar!
+  );
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [form] = Form.useForm();
 
-  const options = [{ value: "+880", label: "+880" }];
+  const options = [{ value: '+880', label: '+880' }];
 
   const beforeUpload = (file: File) => {
-    const isImage = file.type.startsWith("image/");
+    const isImage = file.type.startsWith('image/');
     const isLt1M = file.size / 1024 / 1024 < 1;
 
     if (!isImage) {
-      message.error("You can only upload image files!");
+      message.error('You can only upload image files!');
     }
     if (!isLt1M) {
-      message.error("Image must be smaller than 1MB!");
+      message.error('Image must be smaller than 1MB!');
     }
 
     return isImage && isLt1M;
@@ -50,27 +61,28 @@ export const AccountSettings = () => {
       first_name: values.firstName,
       last_name: values.lastName,
       phone: values.phone,
-      bio: values.title
-    }
+      bio: values.title,
+    };
     mutateInfo(data);
 
-    if(imageFile){
+    if (imageFile) {
       const formData = new FormData();
-      formData.append("avatar", imageFile);
-      mutateAvatar(formData);    }
+      formData.append('avatar', imageFile);
+      mutateAvatar(formData);
+    }
   };
 
-
-  const {mutate: mutateAvatar} = useMutation({
+  const { mutate: mutateAvatar } = useMutation({
     mutationFn: (data: FormData) => api.user.changeAvatar(data),
   });
 
   const { mutate: mutateInfo } = useMutation({
-    mutationFn: (data: UserChangeSettingsRequest) => api.user.changeSettings(data),
+    mutationFn: (data: UserChangeSettingsRequest) =>
+      api.user.changeSettings(data),
   });
 
   const { data: profileData } = useQuery({
-    queryKey: ["accountSettings"],
+    queryKey: ['accountSettings'],
     queryFn: () => api.user.retrieveMyself(),
   });
 
@@ -79,7 +91,7 @@ export const AccountSettings = () => {
       form.setFieldsValue({
         firstName: profileData.first_name,
         lastName: profileData.last_name,
-        username: profileData.first_name + " " + profileData.last_name,
+        username: profileData.first_name + ' ' + profileData.last_name,
         phone: profileData.phone,
         title: profileData.bio,
         bio: profileData.bio,
@@ -100,7 +112,7 @@ export const AccountSettings = () => {
                   name="firstName"
                   layout="vertical"
                   label="First name"
-                  style={{ flex: 1 }}
+                  className={styles.stretch}
                 >
                   <Input size="large" placeholder="First name" />
                 </Form.Item>
@@ -108,7 +120,7 @@ export const AccountSettings = () => {
                   name="lastName"
                   layout="vertical"
                   label="Last name"
-                  style={{ flex: 1 }}
+                  className={styles.stretch}
                 >
                   <Input size="large" placeholder="Last name" />
                 </Form.Item>
@@ -122,13 +134,13 @@ export const AccountSettings = () => {
                   <Form.Item name="phonePrefix" noStyle initialValue="+880">
                     <Select
                       options={options}
-                      style={{ width: 120 }}
                       size="large"
+                      className={styles.select}
                     />
                   </Form.Item>
                   <Form.Item name="phone" noStyle>
                     <Input
-                      style={{ flex: 1 }}
+                      className={styles.stretch}
                       placeholder="Your phone number..."
                       size="large"
                     />
@@ -187,7 +199,12 @@ export const AccountSettings = () => {
           </Form.Item>
         </Flex>
         <Form.Item noStyle>
-          <Button className={styles.saveButton} size="large" type="primary" onClick={onFinish}>
+          <Button
+            className={styles.saveButton}
+            size="large"
+            type="primary"
+            onClick={onFinish}
+          >
             Save Changes
           </Button>
         </Form.Item>

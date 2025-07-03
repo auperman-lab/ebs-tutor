@@ -13,4 +13,8 @@ export const useStyles = createStyles(({ token }) => ({
     color: token.colorTextHeading,
     lineHeight: token.lineHeightHeading1,
   },
+
+  button: {
+    width: 130,
+  },
 }));

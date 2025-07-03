@@ -82,7 +82,7 @@ export const CoursesCards = () => {
   if (isError) return <FailComponent message="Failed to load courses" />;
 
   return (
-    <Row gutter={[24, 24]} style={{ width: '100%' }}>
+    <Row gutter={[24, 24]} className={styles.width}>
       {courses!.data.map((item) => (
         <Col key={item.id} md={12} lg={8} xl={6}>
           <Card

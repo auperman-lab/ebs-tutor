@@ -46,4 +46,9 @@ export const useStyles = createStyles(({ token, responsive }) => ({
       gap: 24,
     },
   },
+
+  stretch: {
+    width: '100%',
+    flex: 1,
+  },
 }));

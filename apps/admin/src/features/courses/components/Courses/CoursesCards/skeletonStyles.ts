@@ -10,10 +10,9 @@ const shimmer = keyframes`
 `;
 
 export const useStyles = createStyles(() => ({
-
-  wrapper:{
+  wrapper: {
     height: '400px',
-    padding: '0'
+    padding: '0',
   },
   imageSkeleton: {
     width: '100%',
@@ -23,7 +22,7 @@ export const useStyles = createStyles(() => ({
     animation: `${shimmer} 3s ease-in-out infinite`,
   },
   spaceVertical: {
-    width: "100%",
+    width: '100%',
     marginTop: 12,
   },
   spaceTags: {
@@ -50,7 +49,7 @@ export const useStyles = createStyles(() => ({
     borderRadius: 10,
   },
   skeletonInputDefault: {
-    width: "80%",
+    width: '80%',
     height: 24,
     borderRadius: 4,
   },
@@ -58,17 +57,21 @@ export const useStyles = createStyles(() => ({
     margin: 0,
   },
   spaceBetweenButtons: {
-    width: "100%",
-    justifyContent: "space-between",
+    width: '100%',
+    justifyContent: 'space-between',
   },
   spaceBetweenInputs: {
-    width: "100%",
-    justifyContent: "space-between",
-    alignItems: "center",
+    width: '100%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   skeletonInputSmall: {
     width: 60,
     height: 24,
     borderRadius: 6,
+  },
+
+  width: {
+    width: '100%',
   },
 }));

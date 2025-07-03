@@ -65,8 +65,8 @@ export const themeComponents = {
     paddingLG: 16,
   },
   Typography: {
-    titleMarginBottom: '0',
-    titleMarginTop: '0',
+    titleMarginBottom: 0,
+    titleMarginTop: 0,
     marginXS: 0,
     marginXXS: 0,
   },

@@ -11,8 +11,8 @@ import { useMutation } from '@tanstack/react-query';
 import { api } from '@api';
 import { useStyles } from './styles';
 import { regexPatterns } from '@const';
-import { LoginOptions } from "@features/auth/components/";
-import { RegistrationFormProps } from "@features/auth/types";
+import { LoginOptions } from '@features/auth/components/';
+import { RegistrationFormProps } from '@features/auth/types';
 
 export const RegistrationForm = () => {
   const { styles } = useStyles();
@@ -126,7 +126,6 @@ export const RegistrationForm = () => {
                         ),
                 },
               ]}
-              style={{ marginBottom: 0 }}
             >
               <Checkbox>
                 I Agree with all of your{' '}
