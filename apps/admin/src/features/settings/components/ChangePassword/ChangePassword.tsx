@@ -2,20 +2,27 @@ import { Button, Flex, Form, Input } from 'antd';
 import { useStyles } from './styles';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@api';
-import { ChangePasswordProps } from "@features/dashboard/types";
+import { ChangePasswordProps } from "@features/settings/types";
+import { ChangePasswordRequest } from "@types";
+import { useAuth } from "@hooks";
 
 export const ChangePassword = () => {
   const { styles } = useStyles();
   const [form] = Form.useForm();
+  const authContext = useAuth();
 
   const { mutate } = useMutation({
-    mutationFn: (data: ChangePasswordProps) =>
-      api.changePassword.changePassword(data),
+    mutationFn: (data: ChangePasswordRequest) =>
+      api.auth.changePassword(data),
   });
 
   const onFinish = async () => {
     const values: ChangePasswordProps = await form.validateFields();
-    mutate(values);
+
+    mutate({
+      email: authContext.user?.email!,
+      password: values.newConfirmPassword,
+    });
     console.log('Success:', values);
   };
 

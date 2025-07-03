@@ -25,3 +25,4 @@ export { default as ChatCircle } from './chat-circle.svg?react';
 export { default as Gear } from './gear.svg?react';
 export { default as ChartBar } from './chart-bar.svg?react';
 export { default as SignOut } from './sign-out.svg?react';
+export {default as NoImage} from './no-image.svg?react';

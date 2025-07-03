@@ -1,11 +1,12 @@
 import { Flex } from 'antd';
 import {
-  MyCoursesCards,
-  MyCoursesFiltration,
-}  from "@features/courses/components";
+  CoursesPagination,
+  CoursesCards,
+  CoursesFiltration,
+} from "@features/courses/components";
 import { useStyles } from './styles';
 
-export const MyCoursesPage = () => {
+export const CoursesPage = () => {
   const { styles } = useStyles();
   return (
     <Flex
@@ -15,8 +16,10 @@ export const MyCoursesPage = () => {
       gap={24}
       className={styles.container}
     >
-      <MyCoursesFiltration />
-      <MyCoursesCards />
+      <CoursesFiltration />
+      <CoursesCards />
+      <CoursesPagination/>
+
     </Flex>
   );
 };

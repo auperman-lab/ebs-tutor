@@ -1,4 +1,4 @@
-import { StrictMode } from 'react';
+import { ReactNode, StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Router } from './router/router';
@@ -7,29 +7,36 @@ import { AuthProvider, QueryClientContext } from '@context';
 import '@ant-design/v5-patch-for-react-19';
 import './styles.scss';
 import { GlobalStyle } from './GlobalStyles';
-import { themeComponents } from './styles';
-import { customThemePalette } from './styles';
+import { customThemePalette, themeComponents } from './styles';
+import { useAutoRefreshToken } from './hooks/useAutoRefreshToken';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const AppWithHooks = ({ children }: { children: ReactNode }) => {
+  useAutoRefreshToken();
+  return <>{children}</>;
+};
 
 root.render(
   <StrictMode>
     <BrowserRouter>
       <QueryClientContext>
         <AuthProvider>
-          <StyleProvider>
-            <ThemeProvider
-              theme={{
-                token: customThemePalette,
-                components: themeComponents,
-              }}
-            >
-              <GlobalStyle />
-              <Router />
-            </ThemeProvider>
-          </StyleProvider>
+          <AppWithHooks>
+            <StyleProvider>
+              <ThemeProvider
+                theme={{
+                  token: customThemePalette,
+                  components: themeComponents,
+                }}
+              >
+                <GlobalStyle />
+                <Router />
+              </ThemeProvider>
+            </StyleProvider>
+          </AppWithHooks>
         </AuthProvider>
       </QueryClientContext>
     </BrowserRouter>

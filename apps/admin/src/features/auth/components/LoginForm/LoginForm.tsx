@@ -1,7 +1,6 @@
 import { Button, Checkbox, Flex, Form, Input } from "antd";
 import { LoginFormProps } from "@features/auth/types";
 import { useStyles } from "./LoginFormStyles";
-// @ts-ignore
 import { ArrowRight } from "@phosphor-icons/react";
 import { useMutation } from "@tanstack/react-query";
 import { api } from "@api";
@@ -16,7 +15,6 @@ export const LoginForm = () => {
   const onFinish = async () => {
     const values: LoginFormProps = await form.validateFields();
     mutate(values);
-    console.log("Success:", values);
   };
 
   const { mutate } = useMutation({

@@ -1,4 +1,5 @@
-export const api = 'https://api-stage.escolalms.com/';
+export const api = "https://demo.api.s.wellms.io/api";
+
 
 export const routes = {
   main: '/',
@@ -10,9 +11,16 @@ export const routes = {
 };
 
 export const apiEndpoints = {
-  changePassword: '/api/profile/password',
-  register: '/api/auth/register',
-  login: '/api/auth/login',
+  changePassword: '/profile/password',
+  register: '/auth/register',
+  login: '/auth/login',
+  refreshToken: "/auth/refresh",
+  getUser: "/admin/users",
+  retrieveMyself: "profile/me",
+  changeAvatar: '/profile/upload-avatar',
+  getAllCourses: "/admin/courses",
+  getCategories: "/categories",
+  getTags: "/tags",
 };
 
 export const regexPatterns = {

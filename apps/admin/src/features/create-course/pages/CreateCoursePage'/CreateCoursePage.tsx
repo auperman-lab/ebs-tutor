@@ -3,12 +3,12 @@ import { Tabs, TabsProps, Flex, Form } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import merge from 'lodash.merge';
 import {
-  BasicInformation,
   AdvanceInformation,
+  BasicInformation,
   Curriculum,
-  PublishCourse,
   NavigationButtons,
-} from '@createcourse';
+  PublishCourse,
+} from '@features/create-course/components';
 import { Clipboard, PlayCircle, MonitorPlay } from '@assets';
 import { Section } from '@features/create-course/types';
 import { useStyles } from './styles';
@@ -128,7 +128,6 @@ export const CreateCoursePage = () => {
   const onHandleBack = () => {
     setActiveKey((prev) => (Number(prev) - 1).toString());
   };
-
   const items: TabsProps['items'] = [
     {
       key: '1',

@@ -30,9 +30,6 @@
       "@components": ["apps/admin/src/components/index.ts"],
       "@features/*": ["apps/admin/src/features/*"],
       "@layout": ["apps/admin/src/layout/index.ts"],
-      "@createcourse": [
-        "apps/admin/src/features/create-course/components/index.ts"
-      ]
     }
   }
 }

@@ -1,7 +1,9 @@
 import { auth } from "./auth";
-import { changePassword } from "./changePassword";
+import { user } from "./user";
+import { courses } from "./courses";
 
 export const api = {
   auth,
-  changePassword,
+  user,
+  courses
 };
