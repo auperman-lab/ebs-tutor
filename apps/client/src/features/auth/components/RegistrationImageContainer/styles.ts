@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(({ token, responsive }) => ({
+export const useStyles = createStyles(({ responsive }) => ({
   salyPhoto: {
     width: '100%',
     backgroundColor: '#ebebff',
