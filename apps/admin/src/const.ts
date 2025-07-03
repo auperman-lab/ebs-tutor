@@ -8,6 +8,7 @@ export const routes = {
   settings: '/settings',
   courses: '/courses',
   create: '/create-course',
+  notFound: '/not-found',
 };
 
 export const apiEndpoints = {
@@ -22,6 +23,11 @@ export const apiEndpoints = {
   getCategories: "/categories",
   getTags: "/tags",
 };
+
+export enum Roles {
+  ADMIN = 'admin',
+  USER = 'student',
+}
 
 export const regexPatterns = {
   password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
