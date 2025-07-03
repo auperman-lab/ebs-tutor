@@ -3,19 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@ant-design/v5-patch-for-react-19": "^1.0.3",
-    "@phosphor-icons/react": "^2.1.10",
-    "@types/lodash.merge": "^4.6.9",
-    "lodash.merge": "^4.6.2",
-    "quill": "^2.0.3",
-    "react-quill": "^2.0.0",
-    "recharts": "^2.15.3",
-    "uuid": "^11.1.0"
+    "recharts": "^2.15.3"
   },
   "scripts": {
     "dev": "vite"
-  },
-  "devDependencies": {
-    "vite-plugin-svgr": "^4.3.0"
   }
 }
