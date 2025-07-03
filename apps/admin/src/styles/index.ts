@@ -1,3 +1,3 @@
-export { customThemePalette  } from "./token";
+export { customThemePalette } from "./token";
 export { themeComponents } from "./components";
 

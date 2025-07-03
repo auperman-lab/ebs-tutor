@@ -4,6 +4,6 @@ import { api } from "@const";
 export const axiosInstance = axios.create({
   baseURL: api,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
