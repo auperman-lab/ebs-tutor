@@ -1,1 +1,1 @@
-// pages index
+export * from "./CourseListPage"

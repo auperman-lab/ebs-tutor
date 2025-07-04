@@ -1,1 +1,2 @@
-// pages index
+export * from "./CoursePage";
+export * from "./CousePagePaid";
