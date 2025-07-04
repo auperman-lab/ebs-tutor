@@ -16,7 +16,6 @@ export const LoginForm = () => {
   const onFinish = async () => {
     const values: LoginFormProps = await form.validateFields();
     mutate(values);
-    console.log("Success:", values);
   };
 
   const { mutate } = useMutation({

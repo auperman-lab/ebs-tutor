@@ -13,7 +13,8 @@ export type LoginEndpointRequest = {
 }
 
 export type LoginEndpointResponse = {
-  jwt:string
+  token:string
+  expires_at: string
 }
 
 
