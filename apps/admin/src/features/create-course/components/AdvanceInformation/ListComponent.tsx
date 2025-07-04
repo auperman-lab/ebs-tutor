@@ -46,9 +46,6 @@ export const ListComponent = ({
                   {...restField}
                   name={[fieldName, keyItem]}
                   className={styles.stretch}
-                  rules={[
-                    { required: true, message: `${title} item is required` },
-                  ]}
                 >
                   <Input
                     size="large"

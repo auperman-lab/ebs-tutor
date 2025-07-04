@@ -12,7 +12,7 @@ import {
 } from '@assets';
 import { useStyles } from './styles';
 import { routes } from '@const';
-import { useAuth } from "@hooks";
+import { useAuth } from '@hooks';
 
 const { Sider } = Layout;
 
@@ -54,8 +54,7 @@ export const DashboardSider = () => {
   const authContext = useAuth();
 
   const onLogout = () => {
-    authContext.logout()
-
+    authContext.logout();
   };
   return (
     <Sider width="280px" className={styles.sidebar} breakpoint="lg">
@@ -68,12 +67,7 @@ export const DashboardSider = () => {
             </Flex>
           </Link>
           <Divider className={styles.divider} />
-          <Menu
-            mode="inline"
-            defaultSelectedKeys={['1']}
-            items={menuItems}
-            theme="dark"
-          />
+          <Menu mode="inline" items={menuItems} theme="dark" />
         </div>
         <Button className={styles.logOut} size="large" onClick={onLogout}>
           <Flex align="center" gap={12}>

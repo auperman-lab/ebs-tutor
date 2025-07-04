@@ -20,7 +20,7 @@ export const AdvanceInformation = () => {
         <Flex vertical gap={12}>
           <Flex className={styles.uploadContainer}>
             <Form.Item
-              name={['advanceInfo', 'thumbnail']}
+              name="thumbnail"
               rules={[
                 { required: true, message: 'Course thumbnail is required' },
               ]}
@@ -36,7 +36,7 @@ export const AdvanceInformation = () => {
               />
             </Form.Item>
             <Form.Item
-              name={['advanceInfo', 'trailer']}
+              name="trailer"
               rules={[
                 { required: true, message: 'Course trailer is required' },
               ]}
@@ -54,7 +54,7 @@ export const AdvanceInformation = () => {
           </Flex>
           <Divider orientationMargin={32} />
           <Form.Item
-            name={['advanceInfo', 'description']}
+            name="description"
             rules={[
               { required: true, message: 'Course description is required' },
             ]}
@@ -63,13 +63,13 @@ export const AdvanceInformation = () => {
           </Form.Item>
           <Divider orientationMargin={32} />
           <Form.Item
-            name={['advanceInfo', 'promises']}
+            name="promises"
             rules={[
               { required: true, message: 'At least one promise is required' },
             ]}
           >
             <ListComponent
-              name={['advanceInfo', 'promises']}
+              name="promises"
               title="What you will teach in this course"
               keyItem="promise"
               placeholder="What you will teach in this course..."
@@ -77,7 +77,7 @@ export const AdvanceInformation = () => {
           </Form.Item>
           <Divider orientationMargin={32} />
           <Form.Item
-            name={['advanceInfo', 'target']}
+            name="target"
             rules={[
               {
                 required: true,
@@ -86,7 +86,7 @@ export const AdvanceInformation = () => {
             ]}
           >
             <ListComponent
-              name={['advanceInfo', 'target']}
+              name="target"
               title="Target Audience"
               keyItem="target"
               placeholder="Who this course is for..."
@@ -94,7 +94,7 @@ export const AdvanceInformation = () => {
           </Form.Item>
           <Divider orientationMargin={32} />
           <Form.Item
-            name={['advanceInfo', 'requirements']}
+            name="requirements"
             rules={[
               {
                 required: true,
@@ -103,7 +103,7 @@ export const AdvanceInformation = () => {
             ]}
           >
             <ListComponent
-              name={['advanceInfo', 'requirements']}
+              name="requirements"
               title="Course requirements"
               keyItem="require"
               placeholder="What is your course requirements..."

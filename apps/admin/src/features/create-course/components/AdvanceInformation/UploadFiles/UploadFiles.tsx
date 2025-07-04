@@ -61,21 +61,16 @@ export const UploadFiles = ({
     if (file && beforeUpload(file)) {
       getBase64(file, (url) => {
         form.setFieldsValue({
-          advanceInfo: {
-            ...form.getFieldValue('advanceInfo'),
-            [title.toLowerCase().includes('thumbnail')
-              ? 'thumbnail'
-              : 'trailer']: url,
-          },
+          [title.toLowerCase().includes('thumbnail') ? 'thumbnail' : 'trailer']:
+            url,
         });
       });
     }
   };
 
-  const fileUrl = form.getFieldValue([
-    'advanceInfo',
-    title.toLowerCase().includes('thumbnail') ? 'thumbnail' : 'trailer',
-  ]);
+  const fileUrl = form.getFieldValue(
+    title.toLowerCase().includes('thumbnail') ? 'thumbnail' : 'trailer'
+  );
 
   const renderPreview = () => {
     if (!fileUrl || !preview) return null;

@@ -3,7 +3,7 @@ export interface Course {
   created_at: string; //important
   updated_at: string; //important
   title: string; //important
-  summary: any; //important
+  summary: any;
   image_path: string;
   video_path: any;
   duration: any;
@@ -17,7 +17,7 @@ export interface Course {
   categories: Category[];
   tags: Tag[];
   level: string; //important
-  lessons?: Lesson[]
+  lessons?: Lesson[];
   poster_path: any;
   active_from: string;
   active_to: string;
@@ -75,36 +75,35 @@ export interface Pivot {
   category_id: number;
 }
 
-
 export interface Lesson {
-  id: number
-  title: string
-  summary: any
-  duration: any
-  active: boolean
-  order: number
-  course_id: number
-  active_from: any
-  active_to: any
-  lessons: any[]
-  topics: Topic[]
+  id: number;
+  title: string;
+  summary: any;
+  duration: any;
+  active: boolean;
+  order: number;
+  course_id: number;
+  active_from: any;
+  active_to: any;
+  lessons: any[];
+  topics: Topic[];
 }
 
 export interface Topic {
-  id: number
-  title: string
-  lesson_id: number
-  active: boolean
-  preview: boolean
-  topicable_id: number
-  topicable_type: string
-  summary?: string
-  introduction?: string
-  description: any
-  order: number
-  json: any
-  can_skip: boolean
-  duration: any
+  id: number;
+  title: string;
+  lesson_id: number;
+  active: boolean;
+  preview: boolean;
+  topicable_id: number;
+  topicable_type: string;
+  summary?: string;
+  introduction?: string;
+  description: any;
+  order: number;
+  json: any;
+  can_skip: boolean;
+  duration: any;
 }
 
 export interface Tag {

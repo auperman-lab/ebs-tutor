@@ -12,10 +12,7 @@ export const DescriptionEditor = () => {
 
   const handleChange = (value: string) => {
     form.setFieldsValue({
-      advanceInfo: {
-        ...form.getFieldValue('advanceInfo'),
-        description: value,
-      },
+      description: value,
     });
   };
 
@@ -24,7 +21,7 @@ export const DescriptionEditor = () => {
       <Text className={styles.title}>Course Description</Text>
       <div>
         <ReactQuill
-          value={form.getFieldValue(['advanceInfo', 'description']) || ''}
+          value={form.getFieldValue('description') || ''}
           onChange={handleChange}
           placeholder="Enter your course descriptions"
           modules={{

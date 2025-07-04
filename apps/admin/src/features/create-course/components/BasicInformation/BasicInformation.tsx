@@ -26,10 +26,10 @@ const courseSubCategories = [
 ];
 
 const courseLanguages = [
-  { label: 'English', value: 'english' },
-  { label: 'Spanish', value: 'spanish' },
-  { label: 'French', value: 'french' },
-  { label: 'German', value: 'german' },
+  { label: 'English', value: 'en' },
+  { label: 'Spanish', value: 'sp' },
+  { label: 'French', value: 'fr' },
+  { label: 'German', value: 'de' },
 ];
 
 const subtitleLanguages = [
@@ -45,16 +45,16 @@ const courseLevels = [
 ];
 
 const duration = [
-  { label: 'Day', value: 'day' },
-  { label: 'Week', value: 'week' },
-  { label: 'Month', value: 'month' },
+  { label: 'Day(s)', value: 'day' },
+  { label: 'Week(s)', value: 'week' },
+  { label: 'Month(s)', value: 'month' },
 ];
 
 export const BasicInformation = () => {
   const { styles } = useStyles();
 
   const selectAfter = (
-    <Form.Item name={['basicInfo', 'durationUnit']} noStyle>
+    <Form.Item name="durationUnit" noStyle>
       <Select
         size="large"
         defaultValue="day"
@@ -72,7 +72,7 @@ export const BasicInformation = () => {
         <Form.Item
           layout="vertical"
           label="Title"
-          name={['basicInfo', 'title']}
+          name="title"
           rules={[{ required: true, message: 'Course title is required' }]}
         >
           <Input
@@ -85,7 +85,7 @@ export const BasicInformation = () => {
         <Form.Item
           layout="vertical"
           label="Subtitle"
-          name={['basicInfo', 'subtitle']}
+          name="subtitle"
           rules={[{ required: true, message: 'Course subtitle is required' }]}
         >
           <Input
@@ -100,7 +100,7 @@ export const BasicInformation = () => {
             layout="vertical"
             label="Course Category"
             className={styles.stretch}
-            name={['basicInfo', 'category']}
+            name="category"
             rules={[{ required: true, message: 'Category is required' }]}
           >
             <Select
@@ -113,7 +113,7 @@ export const BasicInformation = () => {
             layout="vertical"
             label="Course Sub-category"
             className={styles.stretch}
-            name={['basicInfo', 'sub_category']}
+            name="sub_category"
             rules={[{ required: true, message: 'Sub-category is required' }]}
           >
             <Select
@@ -126,7 +126,7 @@ export const BasicInformation = () => {
         <Form.Item
           layout="vertical"
           label="Course Topic"
-          name={['basicInfo', 'topic']}
+          name="topic"
           rules={[{ required: true, message: 'Topic is required' }]}
         >
           <Input
@@ -139,7 +139,7 @@ export const BasicInformation = () => {
             layout="vertical"
             label="Course Language"
             className={styles.stretch}
-            name={['basicInfo', 'course_language']}
+            name="course_language"
             rules={[{ required: true, message: 'Course language is required' }]}
           >
             <Select
@@ -152,7 +152,7 @@ export const BasicInformation = () => {
             layout="vertical"
             label="Subtitle Language (Optional)"
             className={styles.stretch}
-            name={['basicInfo', 'subtitle_language']}
+            name="subtitle_language"
           >
             <Select
               size="large"
@@ -164,7 +164,7 @@ export const BasicInformation = () => {
             layout="vertical"
             label="Course Level"
             className={styles.stretch}
-            name={['basicInfo', 'level']}
+            name="level"
             rules={[{ required: true, message: 'Course level is required' }]}
           >
             <Select
@@ -177,7 +177,7 @@ export const BasicInformation = () => {
             layout="vertical"
             label="Duration"
             className={styles.stretch}
-            name={['basicInfo', 'duration']}
+            name="duration"
             rules={[{ required: true, message: 'Duration is required' }]}
           >
             <InputNumber

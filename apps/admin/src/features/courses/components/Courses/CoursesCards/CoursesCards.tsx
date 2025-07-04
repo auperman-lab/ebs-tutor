@@ -100,7 +100,13 @@ export const CoursesCards = () => {
                   className={styles.cover}
                 />
               ) : (
-                <NoImage className={styles.cover} height={200} />
+                <NoImage
+                  className={styles.cover}
+                  height={200}
+                  onClick={() => {
+                    navigate(routes.courses + `/${item.id}`);
+                  }}
+                />
               )
             }
           >

@@ -6,6 +6,7 @@ type NavigationButtonsProps = {
   onNext: () => void;
   onBack: () => void;
   onSave: () => void;
+  onCreate: () => void;
 };
 
 export const NavigationButtons = ({
@@ -13,6 +14,7 @@ export const NavigationButtons = ({
   onNext,
   onBack,
   onSave,
+  onCreate,
 }: NavigationButtonsProps) => {
   const { styles } = useStyles();
   const isFirst = activeKey === '1';
@@ -23,21 +25,25 @@ export const NavigationButtons = ({
       <Button size="large" onClick={isFirst ? () => {} : onBack}>
         {isFirst ? 'Cancel' : 'Back'}
       </Button>
-      <Flex gap={12} justify="space-between">
-        <Button
-          size="large"
-          variant="filled"
-          className={styles.save}
-          onClick={onSave}
-        >
-          Save
+      {isLast ? (
+        <Button size="large" type="primary" onClick={onCreate}>
+          Create Course
         </Button>
-        {!isLast && (
+      ) : (
+        <Flex gap={12} justify="space-between">
+          <Button
+            size="large"
+            variant="filled"
+            className={styles.save}
+            onClick={onSave}
+          >
+            Save
+          </Button>
           <Button size="large" type="primary" onClick={onNext}>
             Save & Next
           </Button>
-        )}
-      </Flex>
+        </Flex>
+      )}
     </Flex>
   );
 };

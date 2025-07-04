@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Tabs, TabsProps, Flex, Form } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import merge from 'lodash.merge';
+import { useMutation } from '@tanstack/react-query';
 import {
   AdvanceInformation,
   BasicInformation,
@@ -11,6 +12,8 @@ import {
 } from '@features/create-course/components';
 import { Clipboard, PlayCircle, MonitorPlay } from '@assets';
 import { Section } from '@features/create-course/types';
+import type { CreateCourseRequest } from '@types';
+import { api } from '@api';
 import { useStyles } from './styles';
 
 const defaultSection: Section[] = [
@@ -61,73 +64,65 @@ export const CreateCoursePage = () => {
           duration: undefined,
           durationUnit: 'day',
         },
-        advanceInfo: {
-          thumbnail: '',
-          trailer: '',
-          description: '',
-          promises: [{}],
-          target: [{}],
-          requirements: [{}],
-        },
+        thumbnail: '',
+        trailer: '',
+        description: '',
         publishInfo: {},
       });
     }
   }, [form]);
 
-  const handleSave = () => {
-    form
-      .validateFields()
-      .then((values) => {
-        const existingData = localStorage.getItem('courseFormData');
-        let mergedData = {};
+  const onHandleSave = () => {
+    const values = form.getFieldsValue();
+    const existingData = localStorage.getItem('courseFormData');
+    let mergedData = {};
 
-        if (existingData) {
-          try {
-            mergedData = merge({}, JSON.parse(existingData), values);
-          } catch (error) {
-            console.error('Error parsing localStorage data:', error);
-            mergedData = values;
-          }
-        } else {
-          mergedData = values;
-        }
+    if (existingData) {
+      try {
+        mergedData = merge({}, JSON.parse(existingData), values);
+      } catch (error) {
+        console.error('Error parsing localStorage data:', error);
+        mergedData = values;
+      }
+    } else {
+      mergedData = values;
+    }
 
-        localStorage.setItem('courseFormData', JSON.stringify(mergedData));
-      })
-      .catch((error) => {
-        console.error('Validation failed:', error);
-      });
+    localStorage.setItem('courseFormData', JSON.stringify(mergedData));
   };
 
   const onHandleNext = () => {
-    form
-      .validateFields()
-      .then((values) => {
-        const existingData = localStorage.getItem('courseFormData');
-        let mergedData = {};
-
-        if (existingData) {
-          try {
-            mergedData = merge({}, JSON.parse(existingData), values);
-          } catch (error) {
-            console.error('Error parsing localStorage data:', error);
-            mergedData = values;
-          }
-        } else {
-          mergedData = values;
-        }
-
-        localStorage.setItem('courseFormData', JSON.stringify(mergedData));
-        setActiveKey((prev) => (Number(prev) + 1).toString());
-      })
-      .catch((error) => {
-        console.error('Validation failed:', error);
-      });
+    onHandleSave();
+    setActiveKey((prev) => (Number(prev) + 1).toString());
   };
 
   const onHandleBack = () => {
     setActiveKey((prev) => (Number(prev) - 1).toString());
   };
+
+  const { mutate } = useMutation({
+    mutationFn: (data: CreateCourseRequest) => api.courses.createCourse(data),
+    onSuccess: () => console.log('success'),
+    onError: (error) => console.log(error),
+  });
+
+  const onHandleCreate = () => {
+    const formData = form.getFieldsValue();
+    const courseData = {
+      title: formData.title,
+      image_url: formData.thumbnail,
+      video_url: formData.trailer,
+      duration: formData.duration + ' ' + formData.durationUnit,
+      subtitle: formData.subtitle,
+      language: formData.course_language,
+      description: formData.description,
+      level: formData.level,
+    };
+
+    // mutate(courseData);
+    console.log(courseData);
+  };
+
   const items: TabsProps['items'] = [
     {
       key: '1',
@@ -137,11 +132,7 @@ export const CreateCoursePage = () => {
           <span>Basic Information</span>
         </Flex>
       ),
-      children: (
-        <Form.Item name="basicInfo">
-          <BasicInformation />
-        </Form.Item>
-      ),
+      children: <BasicInformation />,
     },
     {
       key: '2',
@@ -151,11 +142,7 @@ export const CreateCoursePage = () => {
           <span>Advance Information</span>
         </Flex>
       ),
-      children: (
-        <Form.Item name="advanceInfo">
-          <AdvanceInformation />
-        </Form.Item>
-      ),
+      children: <AdvanceInformation />,
     },
     {
       key: '3',
@@ -166,10 +153,7 @@ export const CreateCoursePage = () => {
         </Flex>
       ),
       children: (
-        <Form.Item
-          name="curriculum"
-          rules={[{ required: true, message: 'Curriculum is required' }]}
-        >
+        <Form.Item name="curriculum">
           <Curriculum />
         </Form.Item>
       ),
@@ -203,7 +187,8 @@ export const CreateCoursePage = () => {
           activeKey={activeKey}
           onNext={onHandleNext}
           onBack={onHandleBack}
-          onSave={handleSave}
+          onSave={onHandleSave}
+          onCreate={onHandleCreate}
         />
       </Form>
     </Flex>
