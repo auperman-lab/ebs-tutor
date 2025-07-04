@@ -1,23 +1,24 @@
 export type User = {
-  id: string;
+  id: number;
+  fullName: string;
+  avatar: string;
   email: string;
-  role: string
+  roles: string[];
 }
 
 export type AuthUser = {
   user: User;
-  accessToken: string;
-  refreshToken: string;
+  token: string;
 }
 
-export type Roles = "admin" | "user" | "educator"
+export type Roles = "admin" | "student" | "educator"
 
-export interface DecodedToken {
-  user: {
-    id: number;
-    email: string;
-    role: Roles;
-  };
+export type DecodedToken = {
+  aud: string;
+  jti: string;
   iat: number;
-  exp?: number;
-}
+  nbf: number;
+  exp: number;
+  sub: number;
+  scopes: string[];
+};
