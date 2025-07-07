@@ -31,6 +31,7 @@ export const apiEndpoints = {
   refreshToken: "/auth/refresh",
   getCategories: "/categories",
   getTags: "/tags",
+  getAllCourses: "/courses"
 };
 
 export enum Roles {
