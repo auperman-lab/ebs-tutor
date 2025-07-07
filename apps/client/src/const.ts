@@ -12,7 +12,7 @@ export const routes = {
   //client
   about: '/about',
   contact: '/contact',
-  becomeInstructor: '/becomeInstructor',
+  becomeInstructor: '/become-instructor',
   cart: '/cart',
   profile: '/profile',
   teacher:  'teacher',

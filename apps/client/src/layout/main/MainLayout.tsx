@@ -1,5 +1,20 @@
-export const MainLayout = () =>  {
-  return(
-    <div></div>
-  )
-}
+import { Layout } from "antd";
+import { Outlet } from "react-router-dom";
+import { MainHeader, MainFooter } from "@clientComponents";
+import { useStyles } from "./styles";
+
+const { Content } = Layout;
+
+export const MainLayout = () => {
+  const {styles} = useStyles();
+
+  return (
+    <Layout className={styles.layout}>
+      <MainHeader />
+      <Content className={styles.content}>
+        <Outlet />
+      </Content>
+      <MainFooter />
+    </Layout>
+  );
+};
