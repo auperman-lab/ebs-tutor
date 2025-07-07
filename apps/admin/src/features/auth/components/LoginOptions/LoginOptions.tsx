@@ -1,7 +1,7 @@
-import { Button, Divider, Flex } from "antd";
-import { Google, Facebook, Apple } from "@assets";
-import { LoginOptionsProps } from "./LoginOptionsTypes";
-import { useStyles } from "./LoginOptionStyles";
+import { Button, Divider, Flex } from 'antd';
+import { Google, Facebook, Apple } from '@assets';
+import { LoginOptionsProps } from './types';
+import { useStyles } from './styles';
 
 export const LoginOptions = ({ dividerText }: LoginOptionsProps) => {
   const { styles } = useStyles();

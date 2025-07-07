@@ -21,7 +21,7 @@ import { GetCoursesRequest } from '@types';
 import { ParamsType } from '@features/courses/types';
 import { useTheme } from 'antd-style';
 import { CoursesCardSkeleton } from '@features/courses/components/Courses/CoursesCards/CoursesCardSkeleton';
-import { FailComponent } from '@features/not-found/componets';
+import { FailComponent } from '@features/not-found/components';
 
 const { Text } = Typography;
 
