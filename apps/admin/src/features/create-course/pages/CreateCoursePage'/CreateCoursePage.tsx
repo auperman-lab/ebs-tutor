@@ -119,8 +119,7 @@ export const CreateCoursePage = () => {
       level: formData.level,
     };
 
-    // mutate(courseData);
-    console.log(courseData);
+    mutate(courseData);
   };
 
   const items: TabsProps['items'] = [

@@ -1,1 +1,1 @@
-export type { ChangePasswordProps } from "./ChangePasswordProps";
+export type { ChangePasswordProps } from './ChangePasswordProps';

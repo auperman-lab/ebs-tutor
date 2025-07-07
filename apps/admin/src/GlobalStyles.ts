@@ -2,7 +2,6 @@ import { createGlobalStyle } from 'antd-style';
 
 export const GlobalStyle = createGlobalStyle(
   ({ theme }) => `
-
     .ql-formats {
       margin: 0px !important
     }

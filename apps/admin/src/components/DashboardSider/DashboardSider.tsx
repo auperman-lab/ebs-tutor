@@ -52,7 +52,6 @@ const menuItems = [
 export const DashboardSider = () => {
   const { styles } = useStyles();
   const authContext = useAuth();
-
   const onLogout = () => {
     authContext.logout();
   };

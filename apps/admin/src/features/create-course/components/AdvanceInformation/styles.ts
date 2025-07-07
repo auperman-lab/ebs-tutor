@@ -22,4 +22,3 @@ export const useStyles = createStyles(({ token, responsive }) => ({
     flex: 1,
   },
 }));
-

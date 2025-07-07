@@ -19,6 +19,7 @@ export const Router = () => {
           <DashboardLayout />
         </ProtectedRoute>
       ),
+
       children: [
         {
           index: true,

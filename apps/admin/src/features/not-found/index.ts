@@ -1,2 +1,2 @@
-export * from "./NotFoundPage";
-export * from "./componets";
+export * from './NotFoundPage';
+export * from './components';

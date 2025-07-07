@@ -4,14 +4,14 @@ export type User = {
   avatar: string;
   email: string;
   roles: string[];
-}
+};
 
 export type AuthUser = {
   user: User;
   token: string;
-}
+};
 
-export type roles = "admin" | "student" | "educator"
+export type roles = 'admin' | 'student' | 'educator';
 
 export type DecodedToken = {
   aud: string;

@@ -125,7 +125,6 @@ export const AccountSettings = () => {
                   <Input size="large" placeholder="Last name" />
                 </Form.Item>
               </Flex>
-
               <Form.Item layout="vertical" name="username" label="Username">
                 <Input size="large" placeholder="Enter your username" />
               </Form.Item>

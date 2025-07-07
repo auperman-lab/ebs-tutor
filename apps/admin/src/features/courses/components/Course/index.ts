@@ -1,2 +1,2 @@
 export * from './CourseDescription';
-export * from './CourseBreadCrumbs'
+export * from './CourseBreadCrumbs';

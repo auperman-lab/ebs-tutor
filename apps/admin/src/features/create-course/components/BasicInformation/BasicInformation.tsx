@@ -8,62 +8,28 @@ import {
   InputNumber,
 } from 'antd';
 import { useStyles } from './styles';
+import {
+  courseCategories,
+  courseLanguages,
+  courseLevels,
+  courseSubCategories,
+  duration,
+  subtitleLanguages,
+} from './data';
 
 const { Title } = Typography;
-
-const courseCategories = [
-  { label: 'Technology', value: 'technology' },
-  { label: 'Business', value: 'business' },
-  { label: 'Arts', value: 'arts' },
-  { label: 'Science', value: 'science' },
-];
-
-const courseSubCategories = [
-  { label: 'Programming', value: 'programming' },
-  { label: 'Marketing', value: 'marketing' },
-  { label: 'Design', value: 'design' },
-  { label: 'Biology', value: 'biology' },
-];
-
-const courseLanguages = [
-  { label: 'English', value: 'en' },
-  { label: 'Spanish', value: 'sp' },
-  { label: 'French', value: 'fr' },
-  { label: 'German', value: 'de' },
-];
-
-const subtitleLanguages = [
-  { label: 'English', value: 'english' },
-  { label: 'Spanish', value: 'spanish' },
-  { label: 'None', value: 'none' },
-];
-
-const courseLevels = [
-  { label: 'Beginner', value: 'beginner' },
-  { label: 'Intermediate', value: 'intermediate' },
-  { label: 'Advanced', value: 'advanced' },
-];
-
-const duration = [
-  { label: 'Day(s)', value: 'day' },
-  { label: 'Week(s)', value: 'week' },
-  { label: 'Month(s)', value: 'month' },
-];
 
 export const BasicInformation = () => {
   const { styles } = useStyles();
 
   const selectAfter = (
-    <Form.Item name="durationUnit" noStyle>
-      <Select
-        size="large"
-        defaultValue="day"
-        options={duration}
-        className={styles.selectDuration}
-      />
-    </Form.Item>
+    <Select
+      size="large"
+      defaultValue="Day"
+      options={duration}
+      className={styles.selectDuration}
+    />
   );
-
   return (
     <Flex vertical className={styles.container}>
       <Title level={4}>Basic Information</Title>

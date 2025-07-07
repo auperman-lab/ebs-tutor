@@ -36,6 +36,7 @@ export const CourseDescription = () => {
   return (
     <Flex className={styles.mainPart} gap={24}>
       <Image width={352} height={264} src={course.image_url} preview={false} />
+
       <Flex vertical gap={10} className={styles.desctiption}>
         <Flex vertical gap={12}>
           <Flex gap={16}>
@@ -91,6 +92,7 @@ export const CourseDescription = () => {
                   ? `$${course.product.price.toFixed(2)}`
                   : 'N/A'}
               </Text>
+
               <Text type="secondary">Course prices</Text>
             </Flex>
             <Divider className={styles.divider} size="large" type="vertical" />

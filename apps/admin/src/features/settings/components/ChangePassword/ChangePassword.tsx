@@ -17,7 +17,6 @@ export const ChangePassword = () => {
 
   const onFinish = async () => {
     const values: ChangePasswordProps = await form.validateFields();
-
     mutate({
       email: authContext.user?.email!,
       password: values.newConfirmPassword,
