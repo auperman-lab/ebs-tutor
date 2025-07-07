@@ -1,5 +1,7 @@
 export const CourseListPage = () => {
   return (
-    <div></div>
+    <div>
+      course list page
+    </div>
   )
 }
