@@ -46,4 +46,11 @@ export const courses = {
     );
     return data.data;
   },
+
+  deleteCourse: async (payload: number): Promise<unknown> => {
+    const { data } = await axiosInstance.delete(
+      apiEndpoints.deleteCourse + '/' + payload
+    );
+    return data;
+  },
 };

@@ -17,8 +17,6 @@ export type GetCoursesResponse = {
 
 export type CreateCourseRequest = {
   title: string;
-  image_url: string;
-  video_url: string;
   duration: string;
   subtitle: string;
   language: string;

@@ -42,6 +42,10 @@ export const Router = () => {
           element: <CreateCoursePage />,
         },
         {
+          path: routes.create + '/:id',
+          element: <CreateCoursePage />,
+        },
+        {
           path: '*',
           element: <NotFoundPage />,
         },

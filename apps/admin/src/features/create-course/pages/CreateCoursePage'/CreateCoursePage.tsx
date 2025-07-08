@@ -2,18 +2,15 @@ import { useEffect, useState } from 'react';
 import { Tabs, TabsProps, Flex, Form } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import merge from 'lodash.merge';
-import { useMutation } from '@tanstack/react-query';
 import {
   AdvanceInformation,
   BasicInformation,
   Curriculum,
-  NavigationButtons,
   PublishCourse,
 } from '@features/create-course/components';
-import { Clipboard, PlayCircle, MonitorPlay } from '@assets';
+import { Clipboard, PlayCircle, MonitorPlay, Stack } from '@assets';
 import { Section } from '@features/create-course/types';
-import type { CreateCourseRequest } from '@types';
-import { api } from '@api';
+
 import { useStyles } from './styles';
 
 const defaultSection: Section[] = [
@@ -100,38 +97,16 @@ export const CreateCoursePage = () => {
     setActiveKey((prev) => (Number(prev) - 1).toString());
   };
 
-  const { mutate } = useMutation({
-    mutationFn: (data: CreateCourseRequest) => api.courses.createCourse(data),
-    onSuccess: () => console.log('success'),
-    onError: (error) => console.log(error),
-  });
-
-  const onHandleCreate = () => {
-    const formData = form.getFieldsValue();
-    const courseData = {
-      title: formData.title,
-      image_url: formData.thumbnail,
-      video_url: formData.trailer,
-      duration: formData.duration + ' ' + formData.durationUnit,
-      subtitle: formData.subtitle,
-      language: formData.course_language,
-      description: formData.description,
-      level: formData.level,
-    };
-
-    mutate(courseData);
-  };
-
   const items: TabsProps['items'] = [
     {
       key: '1',
       label: (
         <Flex align="center" gap={8} className={styles.label}>
-          <Clipboard />
+          <Stack />
           <span>Basic Information</span>
         </Flex>
       ),
-      children: <BasicInformation />,
+      children: <BasicInformation onHandleNext={onHandleNext} />,
     },
     {
       key: '2',
@@ -175,21 +150,12 @@ export const CreateCoursePage = () => {
 
   return (
     <Flex vertical className={styles.tabs} gap={24}>
-      <Form form={form}>
-        <Tabs
-          defaultActiveKey="1"
-          activeKey={activeKey}
-          onChange={(key) => setActiveKey(key)}
-          items={items}
-        />
-        <NavigationButtons
-          activeKey={activeKey}
-          onNext={onHandleNext}
-          onBack={onHandleBack}
-          onSave={onHandleSave}
-          onCreate={onHandleCreate}
-        />
-      </Form>
+      <Tabs
+        defaultActiveKey="1"
+        activeKey={activeKey}
+        onChange={(key) => setActiveKey(key)}
+        items={items}
+      />
     </Flex>
   );
 };

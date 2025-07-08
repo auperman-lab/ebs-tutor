@@ -20,6 +20,7 @@ export const apiEndpoints = {
   getCategories: '/categories',
   getTags: '/tags',
   createCourse: '/admin/courses',
+  deleteCourse: '/admin/courses',
 };
 
 export const dateFormats = {
