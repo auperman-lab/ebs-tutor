@@ -87,4 +87,7 @@ export const themeComponents = {
     itemSelectedBg: '#ff6636',
     controlHeightLG: 48,
   },
+  Collapse: {
+    headerBg: 'rgb(252,252,252)',
+  }
 };

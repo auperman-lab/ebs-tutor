@@ -1,5 +1,7 @@
 export const api = "https://demo.api.s.wellms.io/api";
 
+export const perPage = 12;
+
 export const routes = {
   //common
   main: '/',
