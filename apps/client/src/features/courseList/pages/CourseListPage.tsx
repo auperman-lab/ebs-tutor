@@ -1,9 +1,10 @@
-import { Col, Row, Spin } from 'antd';
+import { Col, Flex, Row, Spin } from 'antd';
 import { CourseCard, Filter, ListHeader } from '@clientFeatures/courseList';
 import { api } from '@clientApi';
 import { useQuery } from '@tanstack/react-query';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useStyles } from './styles';
+import { PaginationComponent } from '@clientComponents';
 
 
 export const CourseListPage = () => {
@@ -43,6 +44,10 @@ export const CourseListPage = () => {
 						/>
 					))}
 				</Row>
+
+				<Flex justify="center" align="center" className={styles.pagination}>
+					<PaginationComponent/>
+				</Flex>
 			</Col>
 		</Row>
 	);

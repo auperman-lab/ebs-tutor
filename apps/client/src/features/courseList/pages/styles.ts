@@ -1,8 +1,11 @@
 import { createStyles } from "antd-style";
 
-export const useStyles = createStyles(({ token }) => ({
+export const useStyles = createStyles(( ) => ({
 	wrapper:{
-		paddingTop: 40,
+		marginTop: 40,
 		width: "100%",
+	},
+	pagination:{
+		margin: "40px 0",
 	}
 }));
