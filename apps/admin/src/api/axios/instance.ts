@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { api } from '@const';
 import { configInterceptor } from './interceptor';
 
 export const axiosInstance = axios.create({
-  baseURL: api,
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },

@@ -1,5 +1,3 @@
-export const api = 'https://demo.api.s.wellms.io/api';
-
 export const routes = {
   main: '/',
   login: '/login',
@@ -22,6 +20,10 @@ export const apiEndpoints = {
   getCategories: '/categories',
   getTags: '/tags',
   createCourse: '/admin/courses',
+};
+
+export const dateFormats = {
+  default: 'MMM D, YYYY',
 };
 
 export enum Roles {

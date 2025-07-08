@@ -20,7 +20,7 @@ import { api } from '@api';
 import { GetCoursesRequest } from '@types';
 import { ParamsType } from '@features/courses/types';
 import { useTheme } from 'antd-style';
-import { CoursesCardSkeleton } from '@features/courses/components/Courses/CoursesCards/CoursesCardSkeleton';
+import { CoursesCardSkeleton } from './CoursesCardSkeleton';
 import { FailComponent } from '@features/not-found/components';
 
 const { Text } = Typography;

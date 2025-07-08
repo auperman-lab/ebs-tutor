@@ -1,11 +1,6 @@
 import { Col, Flex, Row, Typography } from 'antd';
 import { StatCard } from '@features/dashboard/components';
-import {
-  ChartBar,
-  ChatCircleDots,
-  CreditCard,
-  Gear,
-} from '@phosphor-icons/react';
+import { ChartBar, ChatCircle, CreditCard, Gear } from '@assets';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@api';
 import { FailComponent } from '@features/not-found';
@@ -17,8 +12,9 @@ const { Text } = Typography;
 
 export const CourseStats = () => {
   const { id } = useParams();
-
   const { styles } = useStyles();
+
+  if (!id) return <FailComponent message="Invalid course ID" />;
 
   const {
     data: course,
@@ -26,7 +22,7 @@ export const CourseStats = () => {
     isError,
   } = useQuery({
     queryKey: ['course', id],
-    queryFn: () => api.courses.getCourse(id!),
+    queryFn: () => api.courses.getCourse(id),
   });
 
   if (isLoading) return <CourseStatsSkeleton />;
@@ -55,15 +51,15 @@ export const CourseStats = () => {
     {
       title: 'Duration',
       quantity: course.duration || 0,
-      icon: <ChatCircleDots />,
+      icon: <ChatCircle />,
       color: '#00FF00',
     },
   ];
 
   return (
-    <Row gutter={[24, 24]} className={styles.height}>
+    <Row gutter={[24, 24]} className={styles.fullHeight}>
       <Col span={12}>
-        <Flex justify="space-between" vertical className={styles.height}>
+        <Flex justify="space-between" vertical className={styles.fullHeight}>
           {stats.map((item, index) => (
             <StatCard
               key={`left-${index}-${item.title}`}
@@ -77,7 +73,7 @@ export const CourseStats = () => {
       </Col>
 
       <Col span={12}>
-        <Flex justify="space-between" vertical className={styles.height}>
+        <Flex justify="space-between" vertical className={styles.fullHeight}>
           {stats.map((item, index) => (
             <StatCard
               key={`right-${index}-${item.title}`}

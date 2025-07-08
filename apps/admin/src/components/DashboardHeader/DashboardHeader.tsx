@@ -24,8 +24,7 @@ export const DashboardHeader = () => {
   const location = useLocation();
   const { styles } = useStyles();
 
-  const authContext = useAuth();
-  const avatar = authContext.user?.avatar;
+  const { user } = useAuth();
 
   return (
     <Header className={styles.header}>
@@ -46,7 +45,7 @@ export const DashboardHeader = () => {
           />
           <Button size="large" className={styles.button} icon={<Bell />} />
 
-          <Avatar className={styles.avatar} src={avatar} size={48} />
+          <Avatar className={styles.avatar} src={user?.avatar} size={48} />
         </Flex>
       </Flex>
     </Header>

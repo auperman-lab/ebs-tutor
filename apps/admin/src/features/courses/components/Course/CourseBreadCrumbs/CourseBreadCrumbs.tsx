@@ -1,19 +1,22 @@
-import { Breadcrumb } from "antd";
-import { Link, useParams } from "react-router-dom";
-import { routes } from "@const";
-import { useQuery } from "@tanstack/react-query";
-import { api } from "@api";
-import { CourseBreadCrumbsSkeleton } from "./CourseBreadCrumbsSkeleton";
+import { Breadcrumb } from 'antd';
+import { Link, useParams } from 'react-router-dom';
+import { routes } from '@const';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '@api';
+import { CourseBreadCrumbsSkeleton } from './CourseBreadCrumbsSkeleton';
+import { FailComponent } from '@features/not-found';
 
 export const CourseBreadCrumbs = () => {
+  const { id } = useParams();
 
-  const { id }  = useParams();
+  if (!id) return <FailComponent message="Invalid course ID" />;
 
-  const { data: course, isLoading} = useQuery({
-    queryKey: ["course", id],
-    queryFn: () => api.courses.getCourse(id!),
+  const { data: course, isLoading } = useQuery({
+    queryKey: ['course', id],
+    queryFn: () => api.courses.getCourse(id),
   });
 
+  if (!course) return <FailComponent message="Invalid course data" />;
   if (isLoading) return <CourseBreadCrumbsSkeleton />;
 
   const items = [
@@ -24,13 +27,9 @@ export const CourseBreadCrumbs = () => {
       title: <Link to={routes.courses}>My Courses</Link>,
     },
     {
-      title: course!.title,
+      title: course.title,
     },
   ];
 
-  return (
-    <div>
-      <Breadcrumb items={items} />
-    </div>
-  );
-}
+  return <Breadcrumb items={items} />;
+};

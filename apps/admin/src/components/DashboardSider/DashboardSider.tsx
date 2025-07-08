@@ -51,10 +51,7 @@ const menuItems = [
 
 export const DashboardSider = () => {
   const { styles } = useStyles();
-  const authContext = useAuth();
-  const onLogout = () => {
-    authContext.logout();
-  };
+  const { logout } = useAuth();
   return (
     <Sider width="280px" className={styles.sidebar} breakpoint="lg">
       <Flex vertical justify="space-between" className={styles.flexContainer}>
@@ -68,7 +65,7 @@ export const DashboardSider = () => {
           <Divider className={styles.divider} />
           <Menu mode="inline" items={menuItems} theme="dark" />
         </div>
-        <Button className={styles.logOut} size="large" onClick={onLogout}>
+        <Button className={styles.logOut} size="large" onClick={logout}>
           <Flex align="center" gap={12}>
             <SignOut />
             <p> Sign-Out</p>

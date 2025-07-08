@@ -83,12 +83,7 @@ export const CoursesFiltration = () => {
   const toQueryString = (params: Partial<ParamsType>) => {
     const searchParams = new URLSearchParams();
     Object.entries(params).forEach(([key, value]) => {
-      if (
-        value !== undefined &&
-        value !== null &&
-        value !== '' &&
-        value !== 'All Categories'
-      ) {
+      if (!!value && value !== 'All Categories') {
         searchParams.set(key, String(value));
       }
     });

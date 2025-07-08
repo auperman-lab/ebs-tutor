@@ -1,14 +1,21 @@
-import { useStyles } from './styles';
 import { Typography, Image, Flex, Divider, Button, Rate } from 'antd';
-import { DotsThree } from '@assets';
+import dayjs from 'dayjs';
 import { useQuery } from '@tanstack/react-query';
+import { dateFormats } from '@const';
+import { DotsThree } from '@assets';
 import { api } from '@api';
 import { useParams } from 'react-router-dom';
-import dayjs from 'dayjs';
 import { FailComponent } from '@features/not-found';
 import { CourseDescriptionSkeleton } from './CourseDescriptionSkeleton';
+import { useStyles } from './styles';
 
 const { Text, Title } = Typography;
+
+function formatCoursePrice(price: number | null | undefined): string {
+  if (price === 0) return 'Free';
+  if (price != null) return `$${price.toFixed(2)}`;
+  return 'N/A';
+}
 
 export const CourseDescription = () => {
   const { styles } = useStyles();
@@ -27,8 +34,6 @@ export const CourseDescription = () => {
     queryFn: () => api.courses.getCourse(id!),
   });
 
-  console.log(course);
-
   if (isLoading) return <CourseDescriptionSkeleton />;
   if (isError) return <FailComponent message="Failed to load courses" />;
   if (!course) return <Text type="danger">No course data found.</Text>;
@@ -41,10 +46,12 @@ export const CourseDescription = () => {
         <Flex vertical gap={12}>
           <Flex gap={16}>
             <Text type="secondary" className={styles.datelabels}>
-              Uploaded: {dayjs(course.created_at).format('MMM D, YYYY')}
+              Uploaded: {dayjs(course.created_at).format(dateFormats.default)}
             </Text>
+
             <Text type="secondary" className={styles.datelabels}>
-              Last Update: {dayjs(course.updated_at).format('MMM D, YYYY')}
+              Last Update:{' '}
+              {dayjs(course.updated_at).format(dateFormats.default)}
             </Text>
           </Flex>
           <Title level={4}>{course.title}</Title>
@@ -86,11 +93,7 @@ export const CourseDescription = () => {
           <Flex gap={32}>
             <Flex vertical gap={4}>
               <Text className={styles.price}>
-                {course.product?.price === 0
-                  ? 'Free'
-                  : course.product?.price != null
-                  ? `$${course.product.price.toFixed(2)}`
-                  : 'N/A'}
+                {formatCoursePrice(course.product?.price)}
               </Text>
 
               <Text type="secondary">Course prices</Text>
