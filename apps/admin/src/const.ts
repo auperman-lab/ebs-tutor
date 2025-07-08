@@ -1,5 +1,3 @@
-export const api = 'https://api-stage.escolalms.com/';
-
 export const routes = {
   main: '/',
   login: '/login',
@@ -7,13 +5,31 @@ export const routes = {
   settings: '/settings',
   courses: '/courses',
   create: '/create-course',
+  notFound: '/not-found',
 };
 
 export const apiEndpoints = {
-  changePassword: '/api/profile/password',
-  register: '/api/auth/register',
-  login: '/api/auth/login',
+  changePassword: '/profile/password',
+  register: '/auth/register',
+  login: '/auth/login',
+  refreshToken: '/auth/refresh',
+  getUser: '/admin/users',
+  retrieveMyself: 'profile/me',
+  changeAvatar: '/profile/upload-avatar',
+  getAllCourses: '/admin/courses',
+  getCategories: '/categories',
+  getTags: '/tags',
+  createCourse: '/admin/courses',
 };
+
+export const dateFormats = {
+  default: 'MMM D, YYYY',
+};
+
+export enum Roles {
+  ADMIN = 'admin',
+  USER = 'student',
+}
 
 export const regexPatterns = {
   password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,

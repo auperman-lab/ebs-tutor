@@ -1,7 +1,7 @@
-import { Flex } from "antd";
-import { LoginForm } from "../LoginForm/LoginForm";
-import { useStyles } from "./LoginFormContainerStyles";
-import { LoginOptions } from "../LoginOptions/LoginOptions";
+import { Flex } from 'antd';
+import { LoginForm } from '../LoginForm/LoginForm';
+import { useStyles } from './styles';
+import { LoginOptions } from '../LoginOptions/LoginOptions';
 
 export const LoginFormContainer = () => {
   const { styles } = useStyles();

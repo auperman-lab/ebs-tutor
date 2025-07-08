@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useStyles } from './styles';
 import { routes } from '@const';
 import { MagnifyingGlass, Bell } from '@assets';
+import { useAuth } from '@hooks';
 
 const { Text, Title } = Typography;
 const { Header } = Layout;
@@ -23,6 +24,8 @@ export const DashboardHeader = () => {
   const location = useLocation();
   const { styles } = useStyles();
 
+  const { user } = useAuth();
+
   return (
     <Header className={styles.header}>
       <Flex
@@ -42,11 +45,7 @@ export const DashboardHeader = () => {
           />
           <Button size="large" className={styles.button} icon={<Bell />} />
 
-          <Avatar
-            className={styles.avatar}
-            src="https://pbs.twimg.com/media/F9xhN65WQAATLoU.jpg"
-            size={48}
-          />
+          <Avatar className={styles.avatar} src={user?.avatar} size={48} />
         </Flex>
       </Flex>
     </Header>

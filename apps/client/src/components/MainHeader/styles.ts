@@ -2,17 +2,11 @@ import { createStyles } from "antd-style";
 
 export const useStyles = createStyles(({ token }) => ({
   header: {
-    position: 'sticky',
+    position: 'fixed',
     top: 0,
     zIndex: 10,
     width: '100%',
     backgroundColor: token.colorBgContainer,
-    boxShadow: token.boxShadowSecondary,
-  },
-
-  headerWrapper: {
-    width: '100%',
-    flexDirection: 'column',
   },
 
   mainHeader:{
@@ -25,11 +19,6 @@ export const useStyles = createStyles(({ token }) => ({
     border: 0,
     boxShadow: 'none',
     padding: 0,
-    background: 'transparent',
-    '&:hover': {
-      background: 'none !important',
-      boxShadow: 'none !important',
-    },
   },
 
   headerTitle: {

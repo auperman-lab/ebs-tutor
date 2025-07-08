@@ -64,7 +64,7 @@ export const NotificationsSettings = () => {
             ))}
           </Flex>
           <Form.Item noStyle>
-            <Button type="primary" size="large" style={{ width: 130 }}>
+            <Button type="primary" size="large" className={styles.button}>
               Save Changes
             </Button>
           </Form.Item>
