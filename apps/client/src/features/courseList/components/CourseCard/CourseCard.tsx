@@ -28,7 +28,7 @@ export const CourseCard= ({title, id, users_count, image_url, price, categories}
     navigate(routes.courses + `/${id}`);
   }
   return (
-    <Col key={id} md={12} lg={8} xl={6}>
+    <Col key={id}  lg={12} xl={8}>
       <Card
         hoverable
         cover={
