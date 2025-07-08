@@ -1,21 +1,25 @@
 import { useRoutes } from 'react-router-dom';
-
 import { routes } from '@const';
-import { AuthProvider } from '@context';
 import { DashboardLayout, AuthLayout } from '@layout';
-import { MainPage } from "@features/dashboard";
-import { SettingsPage } from "@features/settings";
-import { CoursePage, MyCoursesPage } from "@features/courses";
-import { CreateCoursePage } from "@features/create-course";
-import { LoginPage, RegistrationPage } from "@features/auth";
-import { NotFoundPage } from "@features/not-found";
-
+import { MainPage } from '@features/dashboard';
+import { SettingsPage } from '@features/settings';
+import { CoursePage, CoursesPage } from '@features/courses';
+import { CreateCoursePage } from '@features/create-course';
+import { LoginPage, RegistrationPage } from '@features/auth';
+import { NotFoundPage } from '@features/not-found';
+import { ProtectedRoute } from './ProtectedRoute';
+import { GuestRoute } from './GuestRoute';
 
 export const Router = () => {
   return useRoutes([
     {
       path: routes.main,
-      element: <DashboardLayout />,
+      element: (
+        <ProtectedRoute>
+          <DashboardLayout />
+        </ProtectedRoute>
+      ),
+
       children: [
         {
           index: true,
@@ -31,21 +35,24 @@ export const Router = () => {
         },
         {
           path: routes.courses,
-          element: <MyCoursesPage />,
+          element: <CoursesPage />,
         },
         {
           path: routes.create,
           element: <CreateCoursePage />,
         },
+        {
+          path: '*',
+          element: <NotFoundPage />,
+        },
       ],
     },
     {
       path: routes.main,
-
       element: (
-        <AuthProvider>
+        <GuestRoute>
           <AuthLayout />
-        </AuthProvider>
+        </GuestRoute>
       ),
 
       children: [

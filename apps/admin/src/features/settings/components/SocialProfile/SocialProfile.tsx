@@ -22,7 +22,7 @@ export const SocialProfile = () => {
           <Form.Item
             layout="vertical"
             label="Personal website"
-            style={{ flex: 1 }}
+            className={styles.stretch}
           >
             <Input
               addonBefore={<Globe />}

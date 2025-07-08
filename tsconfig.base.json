@@ -29,8 +29,7 @@
       "@utils": ["apps/admin/src/utils/index.ts"],
       "@components": ["apps/admin/src/components/index.ts"],
       "@features/*": ["apps/admin/src/features/*"],
-      "@layout": ["apps/admin/src/layout/index.ts"],
-
+      "@layout": ["apps/admin/src/layout/index.ts"]
     }
   }
 }

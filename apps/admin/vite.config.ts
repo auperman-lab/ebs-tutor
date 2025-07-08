@@ -33,10 +33,6 @@ export default defineConfig(() => ({
       '@components': path.resolve(__dirname, 'src/components'),
       '@features': path.resolve(__dirname, 'src/features'),
       '@layout': path.resolve(__dirname, 'src/layout'),
-      '@createcourse': path.resolve(
-        __dirname,
-        'src/features/create-course/components'
-      ),
     },
   },
   // Uncomment this if you are using workers.

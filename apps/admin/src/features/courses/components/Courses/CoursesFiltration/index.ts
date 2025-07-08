@@ -1,0 +1,1 @@
+export { CoursesFiltration } from "./CoursesFiltration";

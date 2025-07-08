@@ -1,45 +1,43 @@
-import { Col, Row, Breadcrumb } from 'antd';
-import { Link } from 'react-router-dom';
-import { routes } from '@const';
-import { CourseDescription } from "@features/courses";
+import { Col, Row, Flex } from 'antd';
+import {
+  CourseDescription,
+  CourseBreadCrumbs,
+} from '@features/courses/components';
 import { useStyles } from './styles';
-
-
-const items = [
-  {
-    title: <Link to={routes.main}>Dashboard</Link>,
-  },
-  {
-    title: <Link to={routes.courses}>My Courses</Link>,
-  },
-  {
-    title: 'Development',
-  },
-  {
-    title: 'Web Development',
-  },
-  {
-    title: '2021 Complete Python Bootcamp From Zero to Hero in Python',
-  },
-];
+import {
+  OverviewCard,
+  RatingCard,
+  RevenueCard,
+} from '@features/dashboard/components';
+import { CourseStats } from '@features/courses/components/Course/CourseStats';
 
 export const CoursePage = () => {
   const { styles } = useStyles();
+
   return (
     <Row gutter={[24, 24]} className={styles.container}>
       <Col span={24}>
-        <Breadcrumb items={items} />
+        <CourseBreadCrumbs />
       </Col>
       <Col span={24}>
         <CourseDescription />
       </Col>
 
-      <Col xxl={9} span={24}>
+      <Flex className={styles.courseInfo}>
+        <Col span={12}>
+          <CourseStats />
+        </Col>
+        <Col span={12}>
+          <RatingCard />
+        </Col>
+      </Flex>
 
+      <Col span={10}>
+        <RevenueCard />
       </Col>
 
-      <Col xxl={15} span={24}>
-
+      <Col span={14}>
+        <OverviewCard />
       </Col>
     </Row>
   );
