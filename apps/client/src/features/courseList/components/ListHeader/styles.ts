@@ -21,7 +21,16 @@ export const useStyles = createStyles(({ token }) => ({
 	},
 	filterInsides: {
 		width: "100%"
-	}
+	},
+	dividerNoMargin:{
+		margin: 0
+	},
+	suggestion:{
+		color: token.colorPrimary
+	},
+	bold:{
+		fontWeight: token.fontWeightStrong
+	},
 
 
 }));
