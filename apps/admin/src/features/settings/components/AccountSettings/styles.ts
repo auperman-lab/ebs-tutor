@@ -65,4 +65,12 @@ export const useStyles = createStyles(({ token, responsive }) => ({
     borderColor: token.colorBorder,
     borderRadius: token.borderRadiusLG,
   },
+
+  stretch: {
+    flex: 1,
+  },
+
+  select: {
+    maxWidth: 120,
+  },
 }));

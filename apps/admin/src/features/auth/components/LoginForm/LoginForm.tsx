@@ -1,11 +1,11 @@
-import { Button, Checkbox, Flex, Form, Input } from "antd";
-import { LoginFormProps } from "@features/auth/types";
-import { useStyles } from "./LoginFormStyles";
+import { Button, Checkbox, Flex, Form, Input } from 'antd';
+import { LoginFormProps } from '@features/auth/types';
+import { useStyles } from './styles';
 // @ts-ignore
-import { ArrowRight } from "@phosphor-icons/react";
-import { useMutation } from "@tanstack/react-query";
-import { api } from "@api";
-import { useAuth } from "@hooks";
+import { ArrowRight } from '@phosphor-icons/react';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '@api';
+import { useAuth } from '@hooks';
 
 export const LoginForm = () => {
   const [form] = Form.useForm();
@@ -39,8 +39,8 @@ export const LoginForm = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your email!",
-                type: "email",
+                message: 'Please input your email!',
+                type: 'email',
               },
             ]}
           >
@@ -50,14 +50,7 @@ export const LoginForm = () => {
           <Form.Item<LoginFormProps>
             label="Password"
             name="password"
-            rules={[
-              { required: true, message: "Please input your password!" },
-              // {
-              //   pattern: regexPatterns.password,
-              //   message:
-              //     'Password must be at least 6 characters long and contain both letters and numbers.',
-              // },
-            ]}
+            rules={[{ required: true, message: 'Please input your password!' }]}
           >
             <Input.Password size="large" placeholder="Password" />
           </Form.Item>

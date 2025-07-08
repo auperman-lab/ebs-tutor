@@ -2,7 +2,7 @@ import { Button, Flex, Space } from 'antd';
 import { GraduationCap } from '@assets';
 import { Header } from 'antd/lib/layout/layout';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useStyles } from './AuthHeaderStyles';
+import { useStyles } from './styles';
 import { routes } from '@const';
 
 export const AuthHeader = () => {

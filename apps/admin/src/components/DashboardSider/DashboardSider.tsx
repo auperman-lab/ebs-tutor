@@ -1,5 +1,5 @@
 import { Layout, Menu, Flex, Divider, Button } from 'antd';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   ChartBar,
   PlusCircle,
@@ -12,6 +12,7 @@ import {
 } from '@assets';
 import { useStyles } from './styles';
 import { routes } from '@const';
+import { useAuth } from '@hooks';
 
 const { Sider } = Layout;
 
@@ -24,7 +25,7 @@ const menuItems = [
   {
     key: 2,
     icon: <PlusCircle />,
-    label: <Link to={routes.main}>Create New Course</Link>,
+    label: <Link to={routes.create}>Create New Course</Link>,
   },
   {
     key: 3,
@@ -50,11 +51,7 @@ const menuItems = [
 
 export const DashboardSider = () => {
   const { styles } = useStyles();
-  const navigate = useNavigate();
-
-  const logout = () => {
-    navigate(routes.login);
-  };
+  const { logout } = useAuth();
   return (
     <Sider width="280px" className={styles.sidebar} breakpoint="lg">
       <Flex vertical justify="space-between" className={styles.flexContainer}>
@@ -66,7 +63,7 @@ export const DashboardSider = () => {
             </Flex>
           </Link>
           <Divider className={styles.divider} />
-          <Menu mode="inline" defaultSelectedKeys={['1']} items={menuItems} />
+          <Menu mode="inline" items={menuItems} theme="dark" />
         </div>
         <Button className={styles.logOut} size="large" onClick={logout}>
           <Flex align="center" gap={12}>

@@ -1,17 +1,25 @@
-import { Area, AreaChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { useId, useMemo } from "react";
-import type { LineChartProps } from "./types";
-import { CustomTooltip } from "./CustomToolTip";
+import {
+  Area,
+  AreaChart,
+  ReferenceLine,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
+import { useId, useMemo } from 'react';
+import type { LineChartProps } from './types';
+import { CustomTooltip } from './CustomTooltip';
 
 export const LineChart = ({
-                            data,
-                            primaryLabel,
-                            primaryColor,
-                            secondaryLabel,
-                            secondaryColor,
-                            referenceX,
-                            showAxis,
-                          }: LineChartProps) => {
+  data,
+  primaryLabel,
+  primaryColor,
+  secondaryLabel,
+  secondaryColor,
+  referenceX,
+  showAxis,
+}: LineChartProps) => {
   const id = useId();
 
   const gradientPrimaryId = `colorPrimary-${id}`;
@@ -19,7 +27,7 @@ export const LineChart = ({
 
   const ticksY = useMemo(() => {
     const tickCount = 5;
-    const allValues = data.flatMap(d => [
+    const allValues = data.flatMap((d) => [
       d.primaryData,
       ...(d.secondaryData !== undefined ? [d.secondaryData] : []),
     ]);
@@ -30,7 +38,7 @@ export const LineChart = ({
 
   const ticksX = useMemo(() => {
     const count = 4;
-    if (data.length <= count) return data.map(d => d.name);
+    if (data.length <= count) return data.map((d) => d.name);
 
     const step = Math.floor((data.length - 1) / (count - 1));
     const ticks: string[] = [];
@@ -53,10 +61,7 @@ export const LineChart = ({
 
   return (
     <ResponsiveContainer width="100%" minHeight={100} height="100%">
-      <AreaChart
-        data={data}
-        margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
-      >
+      <AreaChart data={data} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
         <defs>
           <linearGradient id={gradientPrimaryId} x1="0" y1="0" x2="0" y2="2">
             <stop offset="25%" stopColor={primaryColor} stopOpacity={0.2} />
@@ -105,7 +110,6 @@ export const LineChart = ({
             />
           }
         />
-
 
         {referenceX && (
           <ReferenceLine
