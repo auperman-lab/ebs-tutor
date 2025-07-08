@@ -43,8 +43,8 @@ export interface Author {
   email: string;
   path_avatar: string;
   url_avatar: string;
-  interests: string[]; //todo
-  categories: string[]; //todo
+  interests: string[];
+  categories: string[];
   bio: string;
   address: string;
 }
