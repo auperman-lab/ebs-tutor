@@ -10,7 +10,6 @@ export const Instructor = () => {
   const { id } = useParams();
   const { styles } = useStyles();
 
-  // First query to get the course
   const { data: course, isLoading: isCourseLoading } = useQuery({
     queryKey: ['course', id],
     queryFn: () => api.courses.getCourse(id!),
@@ -19,13 +18,15 @@ export const Instructor = () => {
   if (isCourseLoading)
     return <Spin indicator={<LoadingOutlined spin />} size="large" />;
 
-  if (!course?.author)
+  if (!course?.authors)
     return <div>No instructor information available.</div>;
 
   return (
     <Flex vertical gap={20}>
       <div className={styles.instructorTitle}>Course Instructor</div>
-      <InstructorItem tutor={course.author} />
+      {course.authors.map((author) => (
+        <InstructorItem tutor={author} />
+      ))}
     </Flex>
   );
 };

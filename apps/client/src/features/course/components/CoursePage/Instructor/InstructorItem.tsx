@@ -1,7 +1,9 @@
 import { Avatar, Flex, Tooltip } from 'antd';
 import { useStyles } from './styles';
 import { Author } from '@clientTypes';
-import { NoImage, Star, User } from '@clientAssets';
+import { Star, User } from '@clientAssets';
+import { UserOutlined } from '@ant-design/icons';
+
 
 type InstructorItemProps = {
 	tutor: Author;
@@ -12,19 +14,12 @@ export const InstructorItem = ({ tutor }: InstructorItemProps) => {
 	return (
 
 		<Flex gap={24} className={styles.instructorWrapper}>
-			<div>
-				{
-					tutor.url_avatar ? (
-						<Avatar
-							alt="example"
-							src={tutor.url_avatar}
-							className={styles.avatar}
-						/>
-					) : (
-						<NoImage className={styles.avatar} />
-					)
-				}
-			</div>
+			<Avatar
+				alt="example"
+				src={tutor.url_avatar}
+				className={styles.avatar}
+				icon={<UserOutlined />}
+			/>
 
 			<Flex vertical gap={16} align="start" justify="start">
 				<Flex vertical gap={6} align="start" justify="start">
@@ -51,7 +46,7 @@ export const InstructorItem = ({ tutor }: InstructorItemProps) => {
 					<div className={styles.textBio}>
 						{tutor.bio}
 					</div>
-				</Tooltip>			</Flex>
+				</Tooltip> </Flex>
 
 
 		</Flex>
