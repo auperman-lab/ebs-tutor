@@ -107,15 +107,15 @@ export const courseLevels = [
 
 export const duration = [
   {
-    label: 'Day',
-    value: 'day',
+    label: 'Day(s)',
+    value: 'Day(s)',
   },
   {
-    label: 'Week',
-    value: 'week',
+    label: 'Week(s)',
+    value: 'Week(s)',
   },
   {
-    label: 'Month',
-    value: 'month',
+    label: 'Month(s)',
+    value: 'Month(s)',
   },
 ];

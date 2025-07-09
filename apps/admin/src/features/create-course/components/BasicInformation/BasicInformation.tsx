@@ -9,26 +9,19 @@ import {
   Button,
 } from 'antd';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import type { CreateCourseRequest } from '@types';
+import type { CreateCourseRequest, Course, Tag } from '@types';
 import { routes } from '@const';
 import { api } from '@api';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useStyles } from './styles';
-import {
-  courseCategories,
-  courseLanguages,
-  courseLevels,
-  courseSubCategories,
-  duration,
-  subtitleLanguages,
-} from './data';
+import { courseLanguages, courseLevels, duration } from './data';
 import { useEffect } from 'react';
 
 const { Title } = Typography;
 
 type BasicInformationProps = {
-  onHandleNext?: () => void;
+  onHandleNext: () => void;
 };
 
 export const BasicInformation = ({ onHandleNext }: BasicInformationProps) => {
@@ -37,45 +30,78 @@ export const BasicInformation = ({ onHandleNext }: BasicInformationProps) => {
   const params = useParams();
   const navigate = useNavigate();
 
-  const selectAfter = (
-    <Select
-      size="large"
-      defaultValue="Day"
-      options={duration}
-      className={styles.selectDuration}
-    />
-  );
-
   const { data: courseData, isSuccess } = useQuery({
     queryKey: ['course', params.id],
     queryFn: () => api.courses.getCourse(params.id ?? '0'),
     enabled: !!params.id,
   });
 
+  const { data: rawCategories = [] } = useQuery({
+    queryKey: ['categories'],
+    queryFn: api.courses.getCategories,
+    staleTime: Infinity,
+  });
+
+  const categories = rawCategories.map((cat) => ({
+    label: cat.name,
+    value: cat.id,
+  }));
+
+  const { data: rawTags = [] } = useQuery({
+    queryKey: ['tags'],
+    queryFn: api.courses.getTags,
+    staleTime: Infinity,
+  });
+
+  const tags = rawTags.map((tag: Tag) => ({
+    label: tag.title,
+    value: tag.id,
+  }));
+
   useEffect(() => {
     if (courseData && isSuccess) {
       try {
-        form.setFieldsValue(courseData);
+        const categoryIds = courseData.categories?.map((cat) => cat.id) || [];
+        const tagIds = courseData.tags?.map((tag) => tag.id) || [];
+        const language = courseData.language;
+
+        const [durationValue, durationUnit] = courseData.duration
+          ? courseData.duration.split(' ')
+          : [0, 'Day(s)'];
+
+        form.setFieldsValue({
+          ...courseData,
+          category: categoryIds,
+          tag: tagIds,
+          duration: Number(durationValue),
+          course_language: language,
+          durationUnit: durationUnit,
+        });
       } catch (error) {
-        console.error('Error setting data:', error);
+        console.error('Error setting course data:', error);
       }
     } else {
       form.setFieldsValue({
         title: '',
         subtitle: '',
-        category: 'select',
-        sub_category: 'select',
         topic: '',
-        course_language: 'select',
-        subtitle_language: 'select',
-        level: 'select',
         duration: 0,
-        durationUnit: 'day',
+        durationUnit: 'Day(s)',
+        course_language: undefined,
+        level: undefined,
+        category: [],
+        tag: [],
       });
     }
-  }, [form]);
+  }, [form, courseData, isSuccess]);
 
-  const { mutate } = useMutation({
+  const updateCourseMutation = useMutation({
+    mutationFn: (data: Course & { categories: number[] }) =>
+      api.courses.updateCourse(data),
+    onError: (err) => console.error('Create course error:', err),
+  });
+
+  const createCourse = useMutation({
     mutationFn: (data: CreateCourseRequest) => api.courses.createCourse(data),
     onSuccess: (response) => {
       navigate(`${routes.create}/${response.id}`);
@@ -83,22 +109,48 @@ export const BasicInformation = ({ onHandleNext }: BasicInformationProps) => {
     onError: (error) => console.log(error),
   });
 
-  const onSave = () => {
-    const formData = form.getFieldsValue();
-    const courseData = {
-      title: formData.title,
-      duration: `${formData.duration} ${formData.durationUnit}`,
-      subtitle: formData.subtitle,
-      language: formData.course_language,
-      description: formData.description,
-      level: formData.level,
-    };
-    mutate(courseData);
+  const onSave = async () => {
+    try {
+      const values = await form.validateFields();
+
+      const updateData: CreateCourseRequest = {
+        title: values.title,
+        duration: `${values.duration} ${values.durationUnit}`,
+        subtitle: values.subtitle,
+        language: values.course_language,
+        level: values.level,
+      };
+
+      const categories = values.category || [];
+      const tags = values.tag || [];
+
+      if (params.id) {
+        await updateCourseMutation.mutateAsync({
+          id: Number(params.id),
+          ...updateData,
+          categories,
+          tags,
+        });
+      } else {
+        const createdCourse = await createCourse.mutateAsync(updateData);
+        const courseId = createdCourse.id;
+
+        await updateCourseMutation.mutateAsync({
+          id: courseId,
+          ...updateData,
+          categories,
+        });
+
+        navigate(`${routes.create}/${courseId}`);
+      }
+    } catch (error) {
+      console.error('Error saving course:', error);
+    }
   };
 
   const onNext = () => {
     onSave();
-    onHandleNext;
+    onHandleNext();
   };
 
   return (
@@ -131,35 +183,31 @@ export const BasicInformation = ({ onHandleNext }: BasicInformationProps) => {
           <Flex justify="space-between" className={styles.category}>
             <Form.Item
               layout="vertical"
-              label="Course Category"
+              label="Course Categories"
               className={styles.stretch}
               name="category"
             >
               <Select
                 size="large"
                 placeholder="Select..."
-                options={courseCategories}
+                options={categories}
+                mode="multiple"
               />
             </Form.Item>
             <Form.Item
               layout="vertical"
-              label="Course Sub-category"
+              label="Course Tags"
               className={styles.stretch}
-              name="sub_category"
+              name="tag"
             >
               <Select
                 size="large"
                 placeholder="Select..."
-                options={courseSubCategories}
+                options={tags}
+                mode="multiple"
               />
             </Form.Item>
           </Flex>
-          <Form.Item layout="vertical" label="Course Topic" name="topic">
-            <Input
-              size="large"
-              placeholder="What is primarily taught in your course?"
-            />
-          </Form.Item>
           <Flex justify="space-between" className={styles.options}>
             <Form.Item
               layout="vertical"
@@ -175,18 +223,6 @@ export const BasicInformation = ({ onHandleNext }: BasicInformationProps) => {
             </Form.Item>
             <Form.Item
               layout="vertical"
-              label="Subtitle Language (Optional)"
-              className={styles.stretch}
-              name="subtitle_language"
-            >
-              <Select
-                size="large"
-                placeholder="Select..."
-                options={subtitleLanguages}
-              />
-            </Form.Item>
-            <Form.Item
-              layout="vertical"
               label="Course Level"
               className={styles.stretch}
               name="level"
@@ -197,40 +233,50 @@ export const BasicInformation = ({ onHandleNext }: BasicInformationProps) => {
                 options={courseLevels}
               />
             </Form.Item>
-            <Form.Item
-              layout="vertical"
-              label="Duration"
-              className={styles.stretch}
-              name="duration"
-            >
-              <InputNumber
-                size="large"
-                addonAfter={selectAfter}
-                placeholder="Course Duration"
-                className={styles.inputNumber}
-                min={0}
-              />
-            </Form.Item>
+            <Flex>
+              <Form.Item
+                layout="vertical"
+                label="Duration"
+                className={styles.stretch}
+                name="duration"
+              >
+                <InputNumber
+                  size="large"
+                  placeholder="Course Duration"
+                  className={styles.inputNumber}
+                  min={0}
+                />
+              </Form.Item>
+              <Form.Item name="durationUnit" className={styles.selectDuration}>
+                <Select
+                  size="large"
+                  defaultValue={'Day(s)'}
+                  options={duration}
+                />
+              </Form.Item>
+            </Flex>
           </Flex>
         </Flex>
-        <Flex className={styles.optionsButtons} gap={32} justify="end">
-          <Button
-            size="large"
-            variant="filled"
-            className={styles.save}
-            onClick={onSave}
-            htmlType="submit"
-          >
-            Save
-          </Button>
-          <Button
-            size="large"
-            htmlType="submit"
-            type="primary"
-            onClick={onNext}
-          >
-            Save & Next
-          </Button>
+        <Flex className={styles.optionsButtons} justify="end">
+          <Flex gap={32}>
+            <Button
+              size="large"
+              variant="filled"
+              className={styles.save}
+              onClick={onSave}
+              htmlType="submit"
+            >
+              {params.id ? 'Edit' : 'Save'}
+            </Button>
+            <Button
+              size="large"
+              htmlType="submit"
+              type="primary"
+              onClick={onNext}
+            >
+              {params.id ? 'Edit & Next' : 'Save & Next'}
+            </Button>
+          </Flex>
         </Flex>
       </Form>
     </Flex>

@@ -16,11 +16,10 @@ export const apiEndpoints = {
   getUser: '/admin/users',
   retrieveMyself: 'profile/me',
   changeAvatar: '/profile/upload-avatar',
-  getAllCourses: '/admin/courses',
+  courses: '/admin/courses',
   getCategories: '/categories',
   getTags: '/tags',
-  createCourse: '/admin/courses',
-  deleteCourse: '/admin/courses',
+  uploadFile: './admin/file/upload',
 };
 
 export const dateFormats = {

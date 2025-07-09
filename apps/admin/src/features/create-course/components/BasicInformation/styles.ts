@@ -17,9 +17,9 @@ export const useStyles = createStyles(({ token, responsive }) => ({
 
   selectDuration: {
     backgroundColor: token.colorBgBase,
-    border: '1px solid #d9d9d9',
     borderLeft: 'none',
     width: 100,
+    marginTop: 30,
   },
 
   inputNumber: {

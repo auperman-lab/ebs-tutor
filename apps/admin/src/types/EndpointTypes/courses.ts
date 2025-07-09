@@ -20,6 +20,5 @@ export type CreateCourseRequest = {
   duration: string;
   subtitle: string;
   language: string;
-  description: string;
   level: string;
 };
