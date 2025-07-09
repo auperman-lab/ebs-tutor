@@ -24,7 +24,7 @@ export const CourseDescription = () => {
 	if (!course) return <Text type="danger">No course data found.</Text>;
 
 	return (
-		<Flex vertical gap={10} className={styles.desctiption}>
+		<Flex vertical gap={40} className={styles.desctiption}>
 			<Flex vertical gap={12}>
 				<Title level={4}>{course.title}</Title>
 				<Text type="secondary">{course.subtitle}</Text>
@@ -34,6 +34,7 @@ export const CourseDescription = () => {
 					<Flex className={styles.avatarGroup}>
 						{course.authors?.map((author, id) => (
 							<img
+								alt={id}
 								key={id}
 								src={author.url_avatar}
 								className={styles.avatar}
