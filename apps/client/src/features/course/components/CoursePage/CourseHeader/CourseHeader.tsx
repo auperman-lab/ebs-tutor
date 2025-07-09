@@ -2,7 +2,7 @@ import { Anchor, Col, Row } from 'antd';
 import { useStyles } from './styles';
 import { CourseBreadCrumbs } from './CourseBreadCrumbs';
 import { CourseDescription } from './CourseDescription';
-import { Curriculum, Overview } from '@clientFeatures/course';
+import { Curriculum, Instructor, Overview } from '@clientFeatures/course';
 
 
 const sections = [
@@ -51,6 +51,9 @@ export const CourseHeader = () => {
 			</Col>
 			<Col span={24}>
 				<Curriculum />
+			</Col>
+			<Col span={24}>
+				<Instructor />
 			</Col>
 
 		</Row>
