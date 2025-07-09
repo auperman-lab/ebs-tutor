@@ -19,12 +19,7 @@ export const AdvanceInformation = () => {
 
         <Flex vertical gap={12}>
           <Flex className={styles.uploadContainer}>
-            <Form.Item
-              name="thumbnail"
-              rules={[
-                { required: true, message: 'Course thumbnail is required' },
-              ]}
-            >
+            <Form.Item name="thumbnail">
               <UploadFiles
                 title="Course Thumbnail"
                 description="Upload your course Thumbnail here. Important guidelines: 1200x800 pixels or 12:8 Ratio. Supported format: .jpg, .jpeg, or .png"
@@ -35,12 +30,7 @@ export const AdvanceInformation = () => {
                 previewImage={<ImagePreview />}
               />
             </Form.Item>
-            <Form.Item
-              name="trailer"
-              rules={[
-                { required: true, message: 'Course trailer is required' },
-              ]}
-            >
+            <Form.Item name="trailer">
               <UploadFiles
                 title="Course Trailer"
                 description="Students who watch a well-made promo video are 5X more likely to enroll in your course. We've seen that statistic go up to 10X for exceptionally awesome videos."
@@ -53,12 +43,7 @@ export const AdvanceInformation = () => {
             </Form.Item>
           </Flex>
           <Divider orientationMargin={32} />
-          <Form.Item
-            name="description"
-            rules={[
-              { required: true, message: 'Course description is required' },
-            ]}
-          >
+          <Form.Item name="description">
             <DescriptionEditor />
           </Form.Item>
           <Divider orientationMargin={32} />
@@ -76,15 +61,7 @@ export const AdvanceInformation = () => {
             />
           </Form.Item>
           <Divider orientationMargin={32} />
-          <Form.Item
-            name="target"
-            rules={[
-              {
-                required: true,
-                message: 'At least one target audience is required',
-              },
-            ]}
-          >
+          <Form.Item name="target">
             <ListComponent
               name="target"
               title="Target Audience"
@@ -93,15 +70,7 @@ export const AdvanceInformation = () => {
             />
           </Form.Item>
           <Divider orientationMargin={32} />
-          <Form.Item
-            name="requirements"
-            rules={[
-              {
-                required: true,
-                message: 'At least one requirement is required',
-              },
-            ]}
-          >
+          <Form.Item name="requirements">
             <ListComponent
               name="requirements"
               title="Course requirements"

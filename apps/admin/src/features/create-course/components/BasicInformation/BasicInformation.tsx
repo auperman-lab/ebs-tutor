@@ -12,6 +12,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import type { CreateCourseRequest, Course, Tag } from '@types';
 import { routes } from '@const';
 import { api } from '@api';
+import { useCourse } from '@context';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useStyles } from './styles';
@@ -29,6 +30,7 @@ export const BasicInformation = ({ onHandleNext }: BasicInformationProps) => {
   const [form] = Form.useForm();
   const params = useParams();
   const navigate = useNavigate();
+  const { setCourse } = useCourse();
 
   const { data: courseData, isSuccess } = useQuery({
     queryKey: ['course', params.id],
@@ -125,22 +127,25 @@ export const BasicInformation = ({ onHandleNext }: BasicInformationProps) => {
       const tags = values.tag || [];
 
       if (params.id) {
-        await updateCourseMutation.mutateAsync({
+        const updated = await updateCourseMutation.mutateAsync({
           id: Number(params.id),
           ...updateData,
           categories,
           tags,
         });
+
+        setCourse(updated);
       } else {
         const createdCourse = await createCourse.mutateAsync(updateData);
         const courseId = createdCourse.id;
 
-        await updateCourseMutation.mutateAsync({
+        const updated = await updateCourseMutation.mutateAsync({
           id: courseId,
           ...updateData,
           categories,
         });
 
+        setCourse(updated);
         navigate(`${routes.create}/${courseId}`);
       }
     } catch (error) {
