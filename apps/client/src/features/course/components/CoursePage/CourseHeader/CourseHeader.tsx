@@ -2,7 +2,7 @@ import { Anchor, Col, Row } from 'antd';
 import { useStyles } from './styles';
 import { CourseBreadCrumbs } from './CourseBreadCrumbs';
 import { CourseDescription } from './CourseDescription';
-import { Overview } from '@clientFeatures/course';
+import { Curriculum, Overview } from '@clientFeatures/course';
 
 
 const sections = [
@@ -39,7 +39,6 @@ export const CourseHeader = () => {
 			<Col span={24}>
 				<CourseDescription />
 			</Col>
-
 			<Col span={24}>
 				<Anchor
 					direction="horizontal"
@@ -47,12 +46,12 @@ export const CourseHeader = () => {
 					className={styles.anchorWrapper}
 				/>
 			</Col>
-
 			<Col span={24}>
-				<Overview/>
-
+				<Overview />
 			</Col>
-
+			<Col span={24}>
+				<Curriculum />
+			</Col>
 
 		</Row>
 	);

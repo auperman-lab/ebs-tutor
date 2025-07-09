@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@clientApi';
 import { useParams } from 'react-router-dom';
-import { Flex, List } from 'antd';
+import { Flex, List, Spin } from 'antd';
 import { ArrowRight, CircleCheck } from '@clientAssets';
 import { useStyles } from './styles';
+import { LoadingOutlined } from '@ant-design/icons';
 
 
 const learnData = [
@@ -56,11 +57,12 @@ export const Overview = () => {
 	const { id } = useParams();
 	const { styles } = useStyles();
 
-	const { data: course } = useQuery({
+	const { data: course, isLoading } = useQuery({
 		queryKey: ['course', id],
 		queryFn: () => api.courses.getCourse(id!),
 	});
 
+	if (isLoading) return (<Spin indicator={<LoadingOutlined spin />} size="large" />);
 	return (
 		<Flex vertical gap={40}>
 			<Flex gap={20} vertical className={styles.descriptionWrapper}>
