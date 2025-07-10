@@ -18,8 +18,9 @@ export const apiEndpoints = {
   changeAvatar: '/profile/upload-avatar',
   courses: '/admin/courses',
   getCategories: '/categories',
-  getTags: '/tags',
+  getTags: '/tags/unique',
   uploadFile: './admin/file/upload',
+  getTutors: '/tutors',
 };
 
 export const dateFormats = {

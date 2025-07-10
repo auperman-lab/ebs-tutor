@@ -42,17 +42,15 @@ export const courses = {
     return data.data;
   },
 
-  deleteCourse: async (payload: number): Promise<unknown> => {
+  deleteCourse: async (id: number): Promise<unknown> => {
     const { data } = await axiosInstance.delete(
-      apiEndpoints.courses + '/' + payload
+      apiEndpoints.courses + '/' + id
     );
     return data;
   },
 
-  updateCourse: async (
-    payload: Course & { categories?: number[] }
-  ): Promise<any> => {
-    const { id, categories, tags, ...rest } = payload;
+  updateCourse: async (payload: Course): Promise<any> => {
+    const { id, categories, tags, authors, ...rest } = payload;
 
     const searchParams = new URLSearchParams();
 
@@ -61,6 +59,10 @@ export const courses = {
     );
 
     tags?.forEach((tagId) => searchParams.append('tags[]', String(tagId)));
+
+    authors?.forEach((authorId) =>
+      searchParams.append('authors[]', String(authorId))
+    );
 
     const queryString = searchParams.toString();
 
@@ -82,6 +84,11 @@ export const courses = {
         },
       }
     );
+    return data.data;
+  },
+
+  getTutors: async (): Promise<any> => {
+    const { data } = await axiosInstance.get(apiEndpoints.getTutors);
     return data.data;
   },
 };

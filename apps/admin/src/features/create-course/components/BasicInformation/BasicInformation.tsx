@@ -10,6 +10,7 @@ import {
 } from 'antd';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import type { CreateCourseRequest, Course, Tag } from '@types';
+import type { TabsProps } from '@features/create-course/types';
 import { routes } from '@const';
 import { api } from '@api';
 import { useCourse } from '@context';
@@ -21,11 +22,11 @@ import { useEffect } from 'react';
 
 const { Title } = Typography;
 
-type BasicInformationProps = {
-  onHandleNext: () => void;
-};
-
-export const BasicInformation = ({ onHandleNext }: BasicInformationProps) => {
+export const BasicInformation = ({
+  onHandleNext,
+  onHandleBack,
+  activeKey,
+}: TabsProps) => {
   const { styles } = useStyles();
   const [form] = Form.useForm();
   const params = useParams();
@@ -57,14 +58,14 @@ export const BasicInformation = ({ onHandleNext }: BasicInformationProps) => {
 
   const tags = rawTags.map((tag: Tag) => ({
     label: tag.title,
-    value: tag.id,
+    value: tag.title,
   }));
 
   useEffect(() => {
     if (courseData && isSuccess) {
       try {
         const categoryIds = courseData.categories?.map((cat) => cat.id) || [];
-        const tagIds = courseData.tags?.map((tag) => tag.id) || [];
+        const tagTitle = courseData.tags?.map((tag) => tag.title) || [];
         const language = courseData.language;
 
         const [durationValue, durationUnit] = courseData.duration
@@ -74,11 +75,12 @@ export const BasicInformation = ({ onHandleNext }: BasicInformationProps) => {
         form.setFieldsValue({
           ...courseData,
           category: categoryIds,
-          tag: tagIds,
+          tag: tagTitle,
           duration: Number(durationValue),
           course_language: language,
           durationUnit: durationUnit,
         });
+        setCourse(courseData);
       } catch (error) {
         console.error('Error setting course data:', error);
       }
@@ -262,23 +264,26 @@ export const BasicInformation = ({ onHandleNext }: BasicInformationProps) => {
             </Flex>
           </Flex>
         </Flex>
-        <Flex className={styles.optionsButtons} justify="end">
+        <Flex className={styles.optionsButtons} justify="space-between">
+          <Button
+            size="large"
+            variant="filled"
+            className={styles.save}
+            onClick={onHandleBack}
+            style={activeKey === '1' ? { visibility: 'hidden' } : {}}
+          >
+            Back
+          </Button>
           <Flex gap={32}>
             <Button
               size="large"
               variant="filled"
               className={styles.save}
               onClick={onSave}
-              htmlType="submit"
             >
               {params.id ? 'Edit' : 'Save'}
             </Button>
-            <Button
-              size="large"
-              htmlType="submit"
-              type="primary"
-              onClick={onNext}
-            >
+            <Button size="large" type="primary" onClick={onNext}>
               {params.id ? 'Edit & Next' : 'Save & Next'}
             </Button>
           </Flex>

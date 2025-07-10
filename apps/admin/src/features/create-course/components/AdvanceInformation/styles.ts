@@ -21,4 +21,15 @@ export const useStyles = createStyles(({ token, responsive }) => ({
     width: '100%',
     flex: 1,
   },
+
+  save: {
+    border: 'none',
+    backgroundColor: token.primary.primary100,
+    color: token.colorPrimary,
+    width: 90,
+  },
+
+  optionsButtons: {
+    marginTop: 32,
+  },
 }));

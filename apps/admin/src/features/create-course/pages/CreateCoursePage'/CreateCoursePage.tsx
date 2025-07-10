@@ -18,9 +18,9 @@ export const CreateCoursePage = () => {
     setActiveKey((prev) => (Number(prev) + 1).toString());
   };
 
-  // const onHandleBack = () => {
-  //   setActiveKey((prev) => (Number(prev) - 1).toString());
-  // };
+  const onHandleBack = () => {
+    setActiveKey((prev) => (Number(prev) - 1).toString());
+  };
 
   const items: TabsProps['items'] = [
     {
@@ -31,7 +31,13 @@ export const CreateCoursePage = () => {
           <span>Basic Information</span>
         </Flex>
       ),
-      children: <BasicInformation onHandleNext={onHandleNext} />,
+      children: (
+        <BasicInformation
+          onHandleNext={onHandleNext}
+          onHandleBack={onHandleBack}
+          activeKey={activeKey}
+        />
+      ),
     },
     {
       key: '2',
@@ -41,7 +47,13 @@ export const CreateCoursePage = () => {
           <span>Advance Information</span>
         </Flex>
       ),
-      children: <AdvanceInformation />,
+      children: (
+        <AdvanceInformation
+          onHandleNext={onHandleNext}
+          onHandleBack={onHandleBack}
+          activeKey={activeKey}
+        />
+      ),
     },
     {
       key: '3',
