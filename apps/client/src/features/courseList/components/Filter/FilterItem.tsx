@@ -41,7 +41,6 @@ export const FilterItem = ({ options, label = "Filter", onChange }: FilterProps)
 
   return (
     <Collapse
-      defaultActiveKey={['1']}
       expandIconPosition="end"
       expandIcon={() => null}
       className={styles.collapse}

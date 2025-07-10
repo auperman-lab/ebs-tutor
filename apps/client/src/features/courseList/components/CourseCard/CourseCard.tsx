@@ -36,7 +36,6 @@ export const CourseCard= ({title, id, users_count, image_url, price, categories}
             <Image
               alt="example"
               src={image_url}
-              onClick={onClick}
               height={200}
               preview={false}
               className={styles.cover}
@@ -45,6 +44,7 @@ export const CourseCard= ({title, id, users_count, image_url, price, categories}
             <NoImage  className={styles.cover} height={200}/>
           )
         }
+        onClick={onClick}
       >
         <Flex vertical>
           <Flex justify="space-between" align="center">
