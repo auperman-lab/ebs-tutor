@@ -25,7 +25,7 @@ export const Instructor = () => {
     <Flex vertical gap={20}>
       <div className={styles.instructorTitle}>Course Instructor</div>
       {course.authors.map((author) => (
-        <InstructorItem tutor={author} />
+        <InstructorItem key={author.id} tutor={author} />
       ))}
     </Flex>
   );

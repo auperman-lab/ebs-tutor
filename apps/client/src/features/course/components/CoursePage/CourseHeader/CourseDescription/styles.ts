@@ -6,7 +6,7 @@ export const useStyles = createStyles(({ token }) => ({
 		padding: token.paddingLG,
 	},
 
-	desctiption: {
+	description: {
 		width: '100%',
 	},
 
@@ -52,5 +52,4 @@ export const useStyles = createStyles(({ token }) => ({
 		maxHeight: 400,
 		objectFit: 'cover'
 	},
-}))
-;
+}));

@@ -8,7 +8,6 @@ import { api } from '@clientApi';
 const { Text, Title } = Typography;
 export const CourseDescription = () => {
 	const { styles } = useStyles();
-
 	const { id } = useParams();
 
 	const {
@@ -24,7 +23,7 @@ export const CourseDescription = () => {
 	if (!course) return <Text type="danger">No course data found.</Text>;
 
 	return (
-		<Flex vertical gap={40} className={styles.desctiption}>
+		<Flex vertical gap={40} className={styles.description}>
 			<Flex vertical gap={12}>
 				<Title level={4}>{course.title}</Title>
 				<Text type="secondary">{course.subtitle}</Text>
@@ -34,7 +33,7 @@ export const CourseDescription = () => {
 					<Flex className={styles.avatarGroup}>
 						{course.authors?.map((author, id) => (
 							<img
-								alt={id}
+								alt={`${id}`}
 								key={id}
 								src={author.url_avatar}
 								className={styles.avatar}

@@ -5,12 +5,15 @@ import { useParams } from 'react-router-dom';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useStyles } from './styles';
 import { Play, File, PlayCircle, Clock, FolderNotchOpen } from '@clientAssets';
+import { useTheme } from 'antd-style';
 
 const { Panel } = Collapse;
 
 export const Curriculum = () => {
 	const { id } = useParams();
 	const { styles } = useStyles();
+	const palette = useTheme();
+
 
 	const { data: course, isLoading } = useQuery({
 		queryKey: ['course', id],
@@ -48,7 +51,7 @@ export const Curriculum = () => {
 						{totalLectures} Lectures
 					</Flex>
 					<Flex gap={8} align="center">
-						<Clock />
+						<Clock  stroke={palette.common.black}/>
 						{Math.floor(totalDuration / 60)}h {totalDuration % 60}m
 					</Flex>
 				</Flex>
@@ -68,7 +71,7 @@ export const Curriculum = () => {
 											{topics.length} lectures
 										</Flex>
 										<Flex gap={8}>
-											<Clock/>
+											<Clock  stroke={palette.common.black}/>
 											{getLessonDuration(lesson)}m
 										</Flex>
 									</Flex>
