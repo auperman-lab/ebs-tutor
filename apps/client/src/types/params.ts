@@ -1,7 +1,8 @@
 export type ParamsType = {
   search?: string;
   sort?: "ASC" |"DESC";
-  category?: string | number;
-  tag?: string;
+  category?: number[];
+  tag?: string[];
   page?: number;
+  perPage?: number;
 }

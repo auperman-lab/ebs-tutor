@@ -14,13 +14,16 @@ export const useStyles = createStyles(({ token }) => ({
 	sortText: {
 		color: token.colorInfo,
 		textWrap: "nowrap",
-		textAlign: "center"
+		textAlign: "center",
 	},
 	filterButton:{
 		minWidth: "150px",
 	},
-	filterInsides: {
-		width: "100%"
+	filterQuantity:{
+		backgroundColor: token.primary.primary100,
+		color: token.colorPrimary,
+		padding: "4px 6px"
+
 	},
 	dividerNoMargin:{
 		margin: 0

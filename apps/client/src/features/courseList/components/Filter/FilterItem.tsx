@@ -13,12 +13,13 @@ type FilterProps = {
   options: FilterOption[];
   label?: string;
   onChange?: (checked: string[]) => void;
+  checkedItems?: string[];
 };
 
-export const FilterItem = ({ options, label = "Filter", onChange }: FilterProps) => {
+export const FilterItem = ({ options, label = "Filter", onChange , checkedItems}: FilterProps) => {
 
   const { styles } = useStyles();
-  const [checkedValues, setCheckedValues] = useState<string[]>([]);
+  const [checkedValues, setCheckedValues] = useState<string[]>(checkedItems || []);
 
   const onCheckboxChange = (value: string, checked: boolean) => {
     const newChecked = checked
