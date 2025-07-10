@@ -21,6 +21,7 @@ export const useURLQuery = () => {
 			tag: searchParams.get('tag')?.split(',') || undefined,
 			page: parseInt(searchParams.get('page') || '') || defaultParams.page,
 			perPage: parseInt(searchParams.get('perPage') || '') || defaultParams.perPage,
+			tutor: searchParams.get('tutor')?.split(',').map(Number) || undefined,
 		};
 	};
 
@@ -34,7 +35,7 @@ export const useURLQuery = () => {
 			title: params.search || undefined,
 			'categories[]': params.category || undefined,
 			'tag[]': params.tag || undefined,
-			'authors[]': undefined
+			'authors[]': params.tutor || undefined,
 
 		};
 	};
