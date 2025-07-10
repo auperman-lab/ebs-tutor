@@ -1,3 +1,2 @@
-export * from "./CourseCard"
-export * from "./Filter"
-export * from "./ListHeader"
+export * from './Filter';
+export * from './ListHeader';

@@ -20,7 +20,7 @@ type ListHeaderProps = {
 	totalItems: number;
 };
 
-export const ListHeader = ({totalItems}: ListHeaderProps) => {
+export const ListHeader = ({ totalItems }: ListHeaderProps) => {
 	const { styles } = useStyles();
 	const { setParams, getParams } = useURLQuery();
 

@@ -1,10 +1,10 @@
 import { Col, Flex, Row, Spin } from 'antd';
-import { CourseCard, Filter, ListHeader } from '@clientFeatures/courseList';
+import { Filter, ListHeader } from '@clientFeatures/courseList';
 import { api } from '@clientApi';
 import { useQuery } from '@tanstack/react-query';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useStyles } from './styles';
-import { PaginationComponent } from '@clientComponents';
+import { CourseCard, PaginationComponent } from '@clientComponents';
 import { useURLQuery } from '@clientHooks';
 
 
@@ -25,7 +25,7 @@ export const CourseListPage = () => {
 		<Row gutter={[24, 24]} className={styles.wrapper}>
 
 			<Col span={24}>
-				<ListHeader  totalItems={courses?.total || 0}/>
+				<ListHeader totalItems={courses?.total || 0} />
 			</Col>
 
 			<Col span={6}>
@@ -51,7 +51,7 @@ export const CourseListPage = () => {
 						</Row>
 
 						<Flex justify="center" align="center" className={styles.pagination}>
-							<PaginationComponent  totalItems={courses?.total || 12}/>
+							<PaginationComponent totalItems={courses?.total || 12} />
 						</Flex>
 					</Col>
 			}

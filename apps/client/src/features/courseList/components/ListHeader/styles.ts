@@ -1,4 +1,4 @@
-import { createStyles } from "antd-style";
+import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token }) => ({
 	search: {
@@ -13,25 +13,25 @@ export const useStyles = createStyles(({ token }) => ({
 
 	sortText: {
 		color: token.colorInfo,
-		textWrap: "nowrap",
-		textAlign: "center",
+		textWrap: 'nowrap',
+		textAlign: 'center',
 	},
-	filterButton:{
-		minWidth: "150px",
+	filterButton: {
+		minWidth: '150px',
 	},
-	filterQuantity:{
+	filterQuantity: {
 		backgroundColor: token.primary.primary100,
 		color: token.colorPrimary,
-		padding: "4px 6px"
+		padding: '4px 6px'
 
 	},
-	dividerNoMargin:{
+	dividerNoMargin: {
 		margin: 0
 	},
-	suggestion:{
+	suggestion: {
 		color: token.colorPrimary
 	},
-	bold:{
+	bold: {
 		fontWeight: token.fontWeightStrong
 	},
 
