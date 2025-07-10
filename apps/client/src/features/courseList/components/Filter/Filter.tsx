@@ -1,10 +1,16 @@
-import { FilterItem } from '@clientFeatures/courseList/components/Filter/FilterItem';
+import { FilterItem } from './FilterItem';
 import { Flex, Spin } from 'antd';
 import { api } from '@clientApi';
 import { useQuery } from '@tanstack/react-query';
 import { LoadingOutlined } from '@ant-design/icons';
+import { useURLQuery } from '@clientHooks';
 
 export const Filter = () => {
+	const { setParams, getParams } = useURLQuery();
+
+	const params = getParams();
+	const selectedCategories = params.category ?? [];
+	const selectedTags = params.tag ?? [];
 
 	const { data: categories = [], isLoading: isLoadingCategory, isError } = useQuery({
 		queryKey: ['categories'],
@@ -29,9 +35,22 @@ export const Filter = () => {
 	const tagOptions = [
 		...tags.map((tag: any) => ({
 			label: tag.title,
-			value: tag.id,
+			value: tag.title,
 		})),
 	];
+
+
+	const onCategoryChange = (checked: string[]) => {
+		const ids = checked.map(Number);
+		setParams({ category: ids, page: 1 });
+	};
+
+	const onTagChange = (ids: string[]) => {
+		const titles = tagOptions
+			.filter((tagOption) => ids.includes(tagOption.value))
+			.map((tagOption) => tagOption.label);
+		setParams({ tag: titles, page: 1 });
+	};
 
 	if (isLoadingCategory || isLoadingTags) return (<Spin indicator={<LoadingOutlined spin />} size="large" />);
 	if (isError) return <div>error of course</div>;
@@ -41,12 +60,15 @@ export const Filter = () => {
 			<FilterItem
 				label="Categories"
 				options={categoryOptions}
+				onChange={onCategoryChange}
+				checkedItems={selectedCategories.map(String)}
 
 			/>
 			<FilterItem
 				label="Tags"
 				options={tagOptions}
-
+				onChange={onTagChange}
+				checkedItems={selectedTags}
 			/>
 		</Flex>
 	);

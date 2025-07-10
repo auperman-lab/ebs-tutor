@@ -32,7 +32,7 @@ export const apiEndpoints = {
   retrieveMyself: "profile/me",
   refreshToken: "/auth/refresh",
   getCategories: "/categories",
-  getTags: "/tags",
+  getTags: "/tags/unique",
   getAllCourses: "/courses"
 };
 

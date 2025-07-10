@@ -6,8 +6,9 @@ export type GetCoursesRequest = {
   page?: number;
   per_page?: number;
   title?: string;
-  category_id?: number;
-  tag?: string;
+  "categories[]"?: number[];
+  "tag[]"?: string[];
+  "authors[]"?: number[];
 }
 
 export type GetCoursesResponse = {
