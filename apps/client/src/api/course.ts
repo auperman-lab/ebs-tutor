@@ -1,5 +1,5 @@
 import { axiosInstance } from "./axios/instance";
-import { CategoryResponse, Course, GetCoursesRequest, GetCoursesResponse } from "@clientTypes";
+import { Author, CategoryResponse, Course, GetCoursesRequest, GetCoursesResponse } from '@clientTypes';
 import { apiEndpoints } from "@clientConst";
 
 export const courses = {
@@ -22,6 +22,10 @@ export const courses = {
   },
   getTags: async (): Promise<any>=>{
     const { data } = await axiosInstance.get(apiEndpoints.getTags + `?per_page=1000`);
+    return data.data;
+  },
+  getTutors: async () : Promise<Author[]>=>{
+    const {data} = await axiosInstance.get(apiEndpoints.getTutors + `?per_page=1000`);
     return data.data;
   }
 

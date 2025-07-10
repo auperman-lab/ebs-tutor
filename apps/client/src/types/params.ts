@@ -5,4 +5,5 @@ export type ParamsType = {
   tag?: string[];
   page?: number;
   perPage?: number;
+  tutor?: number[];
 }
