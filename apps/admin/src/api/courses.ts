@@ -5,6 +5,8 @@ import {
   GetCoursesRequest,
   GetCoursesResponse,
   CreateCourseRequest,
+  Lesson,
+  Topic,
 } from '@types';
 import { apiEndpoints } from '@const';
 
@@ -49,7 +51,7 @@ export const courses = {
     return data;
   },
 
-  updateCourse: async (payload: Course): Promise<any> => {
+  updateCourse: async (payload: Course): Promise<Course> => {
     const { id, categories, tags, authors, ...rest } = payload;
 
     const searchParams = new URLSearchParams();
@@ -90,5 +92,45 @@ export const courses = {
   getTutors: async (): Promise<any> => {
     const { data } = await axiosInstance.get(apiEndpoints.getTutors);
     return data.data;
+  },
+
+  createLesson: async (payload: Lesson): Promise<Lesson> => {
+    const { data } = await axiosInstance.post(apiEndpoints.lessons, payload);
+    return data.data;
+  },
+
+  deleteLesson: async (id: number): Promise<unknown> => {
+    const { data } = await axiosInstance.delete(
+      apiEndpoints.lessons + '/' + id
+    );
+    return data;
+  },
+
+  updateLesson: async (payload: Lesson): Promise<unknown> => {
+    const { id, ...rest } = payload;
+    const { data } = await axiosInstance.put(
+      apiEndpoints.lessons + '/' + id,
+      rest
+    );
+    return data;
+  },
+
+  createTopic: async (payload: Topic): Promise<Topic> => {
+    const { data } = await axiosInstance.post(apiEndpoints.topics, payload);
+    return data.data;
+  },
+
+  deleteTopic: async (id: number): Promise<unknown> => {
+    const { data } = await axiosInstance.delete(apiEndpoints.topics + '/' + id);
+    return data;
+  },
+
+  updateTopic: async (payload: Topic): Promise<unknown> => {
+    const { id, ...rest } = payload;
+    const { data } = await axiosInstance.put(
+      apiEndpoints.topics + '/' + id,
+      rest
+    );
+    return data;
   },
 };

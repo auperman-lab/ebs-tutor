@@ -151,7 +151,7 @@ export const AdvanceInformation = ({
   };
 
   return (
-    <Form form={form} component={false}>
+    <Form form={form}>
       <Flex vertical className={styles.container}>
         <Title level={4}>Advance Information</Title>
         <Divider orientationMargin={32} />

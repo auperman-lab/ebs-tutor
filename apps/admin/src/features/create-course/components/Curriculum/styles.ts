@@ -8,4 +8,15 @@ export const useStyles = createStyles(({ token }) => ({
   stretch: {
     flex: 1,
   },
+
+  save: {
+    border: 'none',
+    backgroundColor: token.primary.primary100,
+    color: token.colorPrimary,
+    width: 90,
+  },
+
+  optionsButtons: {
+    marginTop: 32,
+  },
 }));

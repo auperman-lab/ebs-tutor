@@ -43,8 +43,8 @@ export interface Author {
   email: string;
   path_avatar: string;
   url_avatar: string;
-  interests: string[]; //todo
-  categories: string[]; //todo
+  interests: string[];
+  categories: string[];
   bio: string;
   address: string;
 }
@@ -76,34 +76,35 @@ export interface Pivot {
 }
 
 export interface Lesson {
-  id: number;
+  id?: number;
   title: string;
-  summary: any;
-  duration: any;
-  active: boolean;
+  summary?: any;
+  duration?: string;
+  active?: boolean;
   order: number;
   course_id: number;
-  active_from: any;
-  active_to: any;
-  lessons: any[];
-  topics: Topic[];
+  active_from?: any;
+  active_to?: any;
+  lessons?: any[];
+  topics?: Topic[];
 }
 
 export interface Topic {
-  id: number;
+  id?: number;
   title: string;
-  lesson_id: number;
-  active: boolean;
-  preview: boolean;
-  topicable_id: number;
-  topicable_type: string;
+  lesson_id?: number;
+  active?: boolean;
+  preview?: boolean;
+  topicable_id?: number;
+  topicable_type?: string;
   summary?: string;
   introduction?: string;
-  description: any;
-  order: number;
-  json: any;
-  can_skip: boolean;
-  duration: any;
+  description?: string;
+  order?: number;
+  json?: any;
+  value: string;
+  can_skip?: boolean;
+  duration?: any;
 }
 
 export interface Tag {

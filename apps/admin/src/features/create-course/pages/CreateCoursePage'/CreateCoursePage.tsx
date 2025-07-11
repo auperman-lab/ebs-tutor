@@ -64,9 +64,11 @@ export const CreateCoursePage = () => {
         </Flex>
       ),
       children: (
-        <Form.Item name="curriculum">
-          <Curriculum />
-        </Form.Item>
+        <Curriculum
+          onHandleNext={onHandleNext}
+          onHandleBack={onHandleBack}
+          activeKey={activeKey}
+        />
       ),
     },
     {

@@ -21,6 +21,8 @@ export const apiEndpoints = {
   getTags: '/tags/unique',
   uploadFile: './admin/file/upload',
   getTutors: '/tutors',
+  lessons: '/admin/lessons',
+  topics: '/admin/topics',
 };
 
 export const dateFormats = {

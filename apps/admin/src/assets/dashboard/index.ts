@@ -26,3 +26,6 @@ export { default as Gear } from './gear.svg?react';
 export { default as ChartBar } from './chart-bar.svg?react';
 export { default as SignOut } from './sign-out.svg?react';
 export { default as NoImage } from './no-image.svg?react';
+export { default as PencilLine } from './pencil-line.svg?react';
+export { default as Trash } from './trash.svg?react';
+export { default as Check } from './check.svg?react';
