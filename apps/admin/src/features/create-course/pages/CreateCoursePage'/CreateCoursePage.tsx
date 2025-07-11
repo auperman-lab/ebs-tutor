@@ -81,7 +81,11 @@ export const CreateCoursePage = () => {
       ),
       children: (
         <Form.Item name="publishInfo">
-          <PublishCourse />
+          <PublishCourse
+            onHandleNext={onHandleNext}
+            onHandleBack={onHandleBack}
+            activeKey={activeKey}
+          />
         </Form.Item>
       ),
     },

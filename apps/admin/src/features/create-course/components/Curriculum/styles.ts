@@ -17,6 +17,6 @@ export const useStyles = createStyles(({ token }) => ({
   },
 
   optionsButtons: {
-    marginTop: 32,
+    marginTop: 8,
   },
 }));

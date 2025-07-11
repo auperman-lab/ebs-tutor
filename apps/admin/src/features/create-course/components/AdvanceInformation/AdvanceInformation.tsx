@@ -186,27 +186,29 @@ export const AdvanceInformation = ({
             <DescriptionEditor />
           </Form.Item>
           <Divider orientationMargin={32} />
-          <Form.Item layout="vertical" label="Target audience" name="target">
-            <Input
-              size="large"
-              showCount
-              maxLength={120}
-              placeholder="Your course target audience"
-            />
-          </Form.Item>
-          <Form.Item
-            layout="vertical"
-            label="Course Authors"
-            className={styles.stretch}
-            name="authors"
-          >
-            <Select
-              size="large"
-              placeholder="Select authors"
-              options={tutors}
-              mode="multiple"
-            />
-          </Form.Item>
+          <Flex vertical gap={64}>
+            <Form.Item layout="vertical" label="Target audience" name="target">
+              <Input
+                size="large"
+                showCount
+                maxLength={120}
+                placeholder="Your course target audience"
+              />
+            </Form.Item>
+            <Form.Item
+              layout="vertical"
+              label="Course Authors"
+              className={styles.stretch}
+              name="authors"
+            >
+              <Select
+                size="large"
+                placeholder="Select authors"
+                options={tutors}
+                mode="multiple"
+              />
+            </Form.Item>
+          </Flex>
         </Flex>
 
         <Flex className={styles.optionsButtons} justify="space-between">

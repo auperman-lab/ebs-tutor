@@ -30,6 +30,6 @@ export const useStyles = createStyles(({ token, responsive }) => ({
   },
 
   optionsButtons: {
-    marginTop: 32,
+    marginTop: 76,
   },
 }));

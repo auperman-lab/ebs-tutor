@@ -117,41 +117,38 @@ export interface Tag {
 }
 
 export interface Product {
-  id: number;
+  id?: number;
   type: string;
   name: string;
-  description: any;
+  description?: string;
   price: number;
-  price_old: number;
-  tax_rate: number;
-  extra_fees: number;
+  price_old?: number;
+  tax_rate?: number;
+  extra_fees?: number;
   purchasable: boolean;
-  duration: any;
-  calculated_duration: number;
+  duration?: string;
+  calculated_duration?: number;
   limit_per_user: number;
   limit_total: number;
   productables: Productable[];
-  teaser_url: any;
-  poster_path: any;
-  poster_url: any;
   buyable: boolean;
-  owned: boolean;
-  owned_quantity: number;
-  categories: any[];
-  tags: any[];
-  updated_at: string;
-  authors: Author[];
-  available_quantity: number;
-  sold_quantity: number;
-  gross_price: number;
-  subscription_period: any;
-  subscription_duration: any;
-  recursive: boolean;
-  has_trial: any;
-  trial_period: any;
-  trial_duration: any;
-  fields: any;
-  related_products: any[];
+  owned?: boolean;
+  owned_quantity?: number;
+  categories?: Category[];
+  tags?: Tag[];
+  updated_at?: string;
+  authors?: Author[];
+  available_quantity?: number;
+  sold_quantity?: number;
+  gross_price?: number;
+  subscription_period?: any;
+  subscription_duration?: any;
+  recursive?: boolean;
+  has_trial?: any;
+  trial_period?: any;
+  trial_duration?: any;
+  fields?: any;
+  related_products?: any[];
 }
 
 export interface Productable {
