@@ -1,5 +1,11 @@
+import { Flex } from 'antd';
+import { Hero } from '@clientFeatures/home/components';
+
 export const HomePage = ()=>{
   return (
-    <div></div>
+    <Flex vertical>
+      <Hero />
+
+    </Flex>
   )
 }
