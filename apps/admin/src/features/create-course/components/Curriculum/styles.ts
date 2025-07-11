@@ -7,6 +7,7 @@ export const useStyles = createStyles(({ token }) => ({
 
   stretch: {
     flex: 1,
+    width: '100%',
   },
 
   save: {
@@ -18,5 +19,9 @@ export const useStyles = createStyles(({ token }) => ({
 
   optionsButtons: {
     marginTop: 32,
+  },
+
+  addTopic: {
+    marginTop: 24,
   },
 }));

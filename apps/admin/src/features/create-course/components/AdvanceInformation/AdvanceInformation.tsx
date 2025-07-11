@@ -114,7 +114,6 @@ export const AdvanceInformation = ({
         const videoFormData = new FormData();
         videoFormData.append('target', `/course/videos/${course.id}`);
         videoFormData.append('file[]', files.trailer);
-        console.log(videoFormData);
 
         const videoUploadResponse = await uploadFilesMutation.mutateAsync(
           videoFormData

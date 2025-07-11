@@ -109,7 +109,7 @@ export const BasicInformation = ({
     onSuccess: (response) => {
       navigate(`${routes.create}/${response.id}`);
     },
-    onError: (error) => console.log(error),
+    onError: (error) => console.error(error),
   });
 
   const onSave = async () => {

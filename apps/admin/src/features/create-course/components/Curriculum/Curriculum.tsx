@@ -243,7 +243,6 @@ export function Curriculum({
                 type="dashed"
                 icon={<PlusOutlined />}
                 block
-                style={{ marginTop: 16 }}
                 onClick={() => addLesson({ title: '', topics: [] })}
               >
                 Add Lesson

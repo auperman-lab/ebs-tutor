@@ -1,4 +1,5 @@
 import { Button, Collapse, Form, Input, InputNumber, Switch, Flex } from 'antd';
+import { useStyles } from './styles';
 import { PlusOutlined } from '@ant-design/icons';
 import { FormInstance } from 'antd/es/form/Form';
 import { TopicItem } from './TopicItem';
@@ -25,6 +26,7 @@ export function TopicList({
   onCancelTopicEdit,
   onDeleteTopic,
 }: TopicListProps) {
+  const { styles } = useStyles();
   return (
     <Form.List name={[lessonName, 'topics']}>
       {(topicFields, { add, remove }) => {
@@ -64,7 +66,7 @@ export function TopicList({
                     min={1}
                     max={8}
                     placeholder="Topic duration"
-                    style={{ width: '100%' }}
+                    className={styles.stretch}
                   />
                 </Form.Item>
 
@@ -104,7 +106,7 @@ export function TopicList({
               }
               icon={<PlusOutlined />}
               block
-              style={{ marginTop: 8 }}
+              className={styles.addTopic}
             >
               Add Topic
             </Button>

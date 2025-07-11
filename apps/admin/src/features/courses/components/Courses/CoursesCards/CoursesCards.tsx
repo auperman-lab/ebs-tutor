@@ -59,7 +59,6 @@ export const CoursesCards = () => {
   const { mutate: deleteCourse } = useMutation({
     mutationFn: (id: number) => api.courses.deleteCourse(id),
     onSuccess: () => {
-      console.log('success');
       queryClient.invalidateQueries({ queryKey: ['myCourses'] });
     },
   });
