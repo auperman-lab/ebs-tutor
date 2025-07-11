@@ -7,6 +7,7 @@ import {
   CreateCourseRequest,
   Lesson,
   Topic,
+  Product,
 } from '@types';
 import { apiEndpoints } from '@const';
 
@@ -129,6 +130,20 @@ export const courses = {
     const { id, ...rest } = payload;
     const { data } = await axiosInstance.put(
       apiEndpoints.topics + '/' + id,
+      rest
+    );
+    return data;
+  },
+
+  createProduct: async (payload: Product): Promise<Product> => {
+    const { data } = await axiosInstance.post(apiEndpoints.products, payload);
+    return data.data;
+  },
+
+  updateProduct: async (payload: Product): Promise<Product> => {
+    const { id, ...rest } = payload;
+    const { data } = await axiosInstance.put(
+      apiEndpoints.products + '/' + id,
       rest
     );
     return data;

@@ -23,6 +23,7 @@ export const apiEndpoints = {
   getTutors: '/tutors',
   lessons: '/admin/lessons',
   topics: '/admin/topics',
+  products: '/admin/products',
 };
 
 export const dateFormats = {

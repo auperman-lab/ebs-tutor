@@ -153,10 +153,10 @@ export interface Product {
 
 export interface Productable {
   id: number;
-  morph_class: string;
+  class: string;
   productable_id: number;
   productable_type: string;
   quantity: number;
   name: string;
-  description: string;
+  description?: string;
 }

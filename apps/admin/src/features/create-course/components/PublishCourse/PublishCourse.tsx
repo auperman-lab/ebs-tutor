@@ -4,23 +4,21 @@ import {
   Divider,
   Form,
   Button,
-  Input,
+  Switch,
   Select,
   message,
   InputNumber,
 } from 'antd';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useStyles } from './styles';
 import { api } from '@api';
 import { useCourse } from '@context';
 import type { TabsProps } from '@features/create-course/types';
-import { Author } from '@types';
+import { Product } from '@types';
 
 const { Title } = Typography;
-
-type UploadedFile = { name: string; mime: string; url: string };
 
 export const PublishCourse = ({
   onHandleNext,
@@ -28,55 +26,35 @@ export const PublishCourse = ({
   activeKey,
 }: TabsProps) => {
   const { styles } = useStyles();
+  const queryClient = useQueryClient();
   const [form] = Form.useForm();
   const params = useParams();
-  const { setCourse, course, files } = useCourse();
-
-  const { data: rawTutors = [] } = useQuery({
-    queryKey: ['tutors'],
-    queryFn: api.courses.getTutors,
-    staleTime: Infinity,
-  });
-
-  const tutors = rawTutors.map((tutor: Author) => ({
-    label: `${tutor.first_name} ${tutor.last_name}`,
-    value: tutor.id,
-  }));
+  const { setCourse, course } = useCourse();
 
   useEffect(() => {
     if (course) {
-      try {
-        const authors = course.authors?.map((author) => author.id) || [];
-
-        form.setFieldsValue({
-          ...course,
-          thumbnail: course.image_url,
-          trailer: course.video_url,
-          authors: authors,
-          target: course.target_group,
-          description: course.description,
-        });
-      } catch (error) {
-        console.error('Error setting course data:', error);
-      }
-    } else {
       form.setFieldsValue({
-        image_url: '',
-        video_url: '',
-        description: '',
-        target_audience: 'Day(s)',
-        authors: [],
+        ...course,
+        price: course.product?.price,
+        price_old: course.product?.price_old,
+        tax_rate: course.product?.tax_rate,
+        limit_total: course.product?.limit_total,
+        limit_per_user: course.product?.limit_per_user,
+        type: course.product?.type,
+        purchasable: course.product?.purchasable,
+        buyable: course.product?.buyable,
       });
     }
   }, [form, course]);
 
-  const uploadFilesMutation = useMutation({
-    mutationFn: (formData: FormData) => api.courses.uploadFile(formData),
-    onError: (err) => console.error('Upload error:', err),
+  const createProductMutation = useMutation({
+    mutationFn: (data: Product) => api.courses.createProduct(data),
+    onError: (error) => console.error(error),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['course'] }),
   });
 
-  const updateCourseMutation = useMutation({
-    mutationFn: (data: any) => api.courses.updateCourse(data),
+  const updateProductMutation = useMutation({
+    mutationFn: (data: Product) => api.courses.updateProduct(data),
     onError: (err) => {
       console.error('Update course error:', err);
       message.error('Failed to update course.');
@@ -92,52 +70,48 @@ export const PublishCourse = ({
         return;
       }
 
-      let imageFile: UploadedFile | undefined;
-      let videoFile: UploadedFile | undefined;
-
-      if (files.thumbnail) {
-        const imageFormData = new FormData();
-        imageFormData.append('target', `/course/images/${course.id}`);
-        imageFormData.append('file[]', files.thumbnail);
-
-        const imageUploadResponse = await uploadFilesMutation.mutateAsync(
-          imageFormData
-        );
-
-        const uploadedImages = imageUploadResponse as UploadedFile[];
-        imageFile = uploadedImages.find((f) => f.mime.startsWith('image/'));
-      }
-
-      if (files.trailer) {
-        const videoFormData = new FormData();
-        videoFormData.append('target', `/course/videos/${course.id}`);
-        videoFormData.append('file[]', files.trailer);
-        console.log(videoFormData);
-
-        const videoUploadResponse = await uploadFilesMutation.mutateAsync(
-          videoFormData
-        );
-        const uploadedVideos = videoUploadResponse as UploadedFile[];
-        videoFile = uploadedVideos.find((f) => f.mime.startsWith('video/'));
-      }
-
-      const updateData = {
-        description: values.description,
-        target_group: values.target,
-        image_url: imageFile?.url ?? '',
-        image_path: imageFile?.name ?? '',
-        video_url: videoFile?.url ?? '',
-        video_path: videoFile?.name ?? '',
+      const productables = {
+        id: course.id,
+        class: 'EscolaLms\\Courses\\Models\\Course',
+        productable_id: course.id,
+        productable_type: 'App\\Models\\Course',
+        quantity: 1,
+        name: course.title,
+        description: course.description,
       };
 
-      const authors = values.authors || [];
-
-      const updated = await updateCourseMutation.mutateAsync({
+      const productBase: Product = {
         id: Number(params.id),
-        ...updateData,
-        authors,
-      });
-      setCourse(updated);
+        price: values.price,
+        name: course.title,
+        price_old: values.price_old,
+        tax_rate: values.tax_rate,
+        limit_total: values.limit_total,
+        limit_per_user: values.limit_per_user,
+        type: values.type,
+        purchasable: values.purchasable,
+        buyable: values.buyable,
+        productables: [productables],
+      };
+
+      if (course.product) {
+        const product: Product = {
+          ...productBase,
+          id: course.product.id,
+        };
+
+        await updateProductMutation.mutateAsync(product);
+        const updatedCourse = await api.courses.getCourse(params.id);
+        setCourse(updatedCourse);
+      } else {
+        const created = await createProductMutation.mutateAsync(
+          productBase as Product
+        );
+        setCourse({
+          ...course,
+          product: created,
+        });
+      }
     } catch (error) {
       console.error('Error saving advanced info:', error);
     }
@@ -158,37 +132,95 @@ export const PublishCourse = ({
             layout="vertical"
             label="Price"
             name="price"
-            style={{ width: '100%' }}
+            className={styles.stretch}
           >
             <InputNumber
               size="large"
               placeholder="Course price"
-              style={{ width: '100%' }}
+              className={styles.stretch}
             />
           </Form.Item>
           <Form.Item
             layout="vertical"
             label="Old price"
             name="price_old"
-            style={{ width: '100%' }}
+            className={styles.stretch}
           >
             <InputNumber
               size="large"
               placeholder="Old price"
-              style={{ width: '100%' }}
+              className={styles.stretch}
             />
           </Form.Item>
           <Form.Item
             layout="vertical"
-            label="Extra fees"
-            name="extra_fees"
-            style={{ width: '100%' }}
+            label="Tax Rate"
+            name="tax_rate"
+            className={styles.stretch}
           >
             <InputNumber
               size="large"
-              placeholder="Your course subtitle"
-              style={{ width: '100%' }}
+              placeholder="tax_rate"
+              className={styles.stretch}
             />
+          </Form.Item>
+        </Flex>
+
+        <Flex gap={32} style={{ marginTop: 64 }}>
+          <Form.Item
+            layout="vertical"
+            label="Limit total"
+            name="limit_total"
+            className={styles.stretch}
+          >
+            <InputNumber
+              size="large"
+              placeholder="Buyable quantity"
+              className={styles.stretch}
+            />
+          </Form.Item>{' '}
+          <Form.Item
+            layout="vertical"
+            label="Limit per user"
+            name="limit_per_user"
+            initialValue={1}
+            className={styles.stretch}
+          >
+            <InputNumber
+              size="large"
+              placeholder="Limit per user"
+              className={styles.stretch}
+            />
+          </Form.Item>
+          <Form.Item
+            layout="vertical"
+            label="Product type"
+            className={styles.stretch}
+            name="type"
+          >
+            <Select
+              size="large"
+              placeholder="Product type"
+              options={[
+                {
+                  label: 'Single',
+                  value: 'single',
+                },
+              ]}
+            />
+          </Form.Item>
+        </Flex>
+
+        <Flex style={{ marginTop: 64 }} gap={32}>
+          <Form.Item
+            name="purchasable"
+            label="Purchasable"
+            valuePropName="checked"
+          >
+            <Switch />
+          </Form.Item>
+          <Form.Item name="buyable" label="Buyable" valuePropName="checked">
+            <Switch />
           </Form.Item>
         </Flex>
 
@@ -213,7 +245,7 @@ export const PublishCourse = ({
               {params.id ? 'Edit' : 'Save'}
             </Button>
             <Button size="large" type="primary" onClick={onNext}>
-              {params.id ? 'Edit & Next' : 'Save & Next'}
+              Preview
             </Button>
           </Flex>
         </Flex>
