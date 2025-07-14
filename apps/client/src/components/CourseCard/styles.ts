@@ -43,18 +43,14 @@ export const useStyles = createStyles(({ token }) => ({
     fontWeight: 500,
   },
   tagContainer: {
-
-
     overflowX: "scroll",
     width: "100%",
     scrollbarWidth: "none",
     msOverflowStyle: "none",
-    paddingLeft: "10px",
 
     "&::-webkit-scrollbar": {
       display: "none",
     },
-
   },
 
 

@@ -1,4 +1,4 @@
-import { Card, Col, Divider, Flex, Tag, Tooltip, Typography, Image } from "antd";
+import { Card, Divider, Flex, Tag, Tooltip, Typography, Image } from "antd";
 import { useNavigate } from "react-router-dom";
 import { Category } from "@clientTypes";
 import { NoImage, Star, User } from "@clientAssets";
@@ -28,7 +28,6 @@ export const CourseCard= ({title, id, users_count, image_url, price, categories}
     navigate(routes.courses + `/${id}`);
   }
   return (
-    <Col key={id}  lg={12} xl={8}>
       <Card
         hoverable
         cover={
@@ -93,7 +92,6 @@ export const CourseCard= ({title, id, users_count, image_url, price, categories}
 
         </Flex>
       </Card>
-    </Col>
 
     )
 }
