@@ -1,4 +1,4 @@
-import { Col, Flex, Row, Spin } from 'antd';
+import { Col, Flex, Grid, Row, Spin } from 'antd';
 import { useStyles } from './styles';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@clientApi';
@@ -6,8 +6,12 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { CourseCard } from '@clientComponents';
 import { GetCoursesRequest } from '@clientTypes';
 
+const { useBreakpoint } = Grid;
+
 export const BestSubsection = () => {
 	const { styles } = useStyles();
+	const screens = useBreakpoint();
+
 
 	const params: GetCoursesRequest = {
 		per_page: 8,
@@ -16,6 +20,18 @@ export const BestSubsection = () => {
 		order_by: 'title',
 
 	};
+
+	let visibleCount = 4;
+
+	if (screens.xl) {
+		visibleCount = 8;
+	} else if (screens.lg) {
+		visibleCount = 8;
+	} else if (screens.md) {
+		visibleCount = 6;
+	}else if (screens.sm){
+		visibleCount = 4;
+	}
 
 	const { data: courses, isLoading, isError } = useQuery({
 		queryKey: ['myCourses', { params }],
@@ -31,8 +47,8 @@ export const BestSubsection = () => {
 				isLoading
 					? <Spin indicator={<LoadingOutlined spin />} size="large" />
 					: <Row gutter={[24, 24]} className={styles.coursesWrapper}>
-						{courses!.data.map((item) => (
-							<Col key={item.id} lg={12} xl={5}>
+						{(courses?.data?.slice(0, visibleCount))?.map((item) => (
+							<Col key={item.id} sm={12} md={8} lg={6} xl={5}>
 								<CourseCard
 									key={item.id}
 									image_url={item.image_url}

@@ -1,6 +1,5 @@
 import { Flex } from 'antd';
-import { HeroSection, TopCategorySection } from '@clientFeatures/home/components';
-import { CourseSection } from '@clientFeatures/home/components/HomePage/CoursesSection';
+import { HeroSection, TopCategorySection, CourseSection } from '@clientFeatures/home/components';
 
 export const HomePage = ()=>{
   return (
