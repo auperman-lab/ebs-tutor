@@ -1,2 +1,1 @@
-export {AuthLayout} from "./auth/AuthLayout"
-export {DashboardLayout} from "./dashboard/DashboardLayout"
+export { DashboardLayout } from './dashboard/DashboardLayout';
