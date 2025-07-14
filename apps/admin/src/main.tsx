@@ -15,6 +15,7 @@ const root = ReactDOM.createRoot(
 
 const AppWithHooks = ({ children }: { children: ReactNode }) => {
   useAutoRefreshToken();
+
   return <>{children}</>;
 };
 
