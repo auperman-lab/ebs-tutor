@@ -45,9 +45,6 @@ export const TopCategorySection = () => {
 		navigate(`${routes.courses}?category=${id}`);
 	};
 
-
-
-
 	if (isError) return <div>error of course</div>;
 
 	return (
@@ -56,12 +53,11 @@ export const TopCategorySection = () => {
 
 			<Row gutter={[24, 24]} className={styles.categoryWrapper}>
 				{(categories.slice(0, visibleCount)).map((item, index) => (
-					<Col xs={24} sm={12} md={6} lg={6} xl={6}>
+					<Col xs={24} sm={12} md={6} lg={6} xl={6} key={item.id ?? index}>
 						{
 							isLoading
 								? <StatCardSkeleton />
 								: <StatCard
-									key={item.id}
 									color={colors[index % colors.length]}
 									title={item.name}
 									subtitle={item.name}
