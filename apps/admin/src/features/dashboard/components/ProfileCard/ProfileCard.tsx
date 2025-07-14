@@ -1,6 +1,6 @@
 import { Avatar, Button, Flex, Progress } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { ArrowDown } from '@phosphor-icons/react';
+import { ArrowDown } from '@assets';
 import { routes } from '@const';
 import { useStyles } from './styles';
 import { useTheme } from 'antd-style';
@@ -59,7 +59,7 @@ export const ProfileCard = () => {
           Edit Biography
         </Button>
         <Button size="large" type="primary" className={styles.downButton}>
-          <ArrowDown size={24} />
+          <ArrowDown />
         </Button>
       </Flex>
     </Flex>

@@ -1,1 +1,1 @@
-export { CoursesFiltration } from "./CoursesFiltration";
+export * from './CoursesFiltration';

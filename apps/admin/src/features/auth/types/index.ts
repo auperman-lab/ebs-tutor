@@ -1,2 +1,2 @@
-export type { LoginFormProps } from "./LoginFormProps";
-export type { RegistrationFormProps } from "./RegistrationFormProps";
+export type * from './LoginFormProps';
+export type * from './RegistrationFormProps';
