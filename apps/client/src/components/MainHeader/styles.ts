@@ -1,4 +1,4 @@
-import { createStyles } from "antd-style";
+import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token }) => ({
   header: {
@@ -9,9 +9,9 @@ export const useStyles = createStyles(({ token }) => ({
     backgroundColor: token.colorBgContainer,
   },
 
-  mainHeader:{
+  mainHeader: {
     width: '100%',
-    height: "90px",
+    height: '90px',
     padding: `${token.paddingLG}px 3%`,
   },
 
@@ -44,5 +44,17 @@ export const useStyles = createStyles(({ token }) => ({
   menu: {
     borderBottom: 'none',
     lineHeight: '46px',
+  },
+
+  createAccount: {
+    backgroundColor: token.primary.primary100,
+    color: token.primary.primary500,
+    border: 0,
+    fontWeight: 600,
+    paddingInline: token.paddingLG,
+  },
+  signIn: {
+    fontWeight: 600,
+    paddingInline: token.paddingLG,
   },
 }));
