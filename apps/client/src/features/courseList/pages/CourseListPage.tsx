@@ -38,19 +38,23 @@ export const CourseListPage = () => {
 					: <Col span={18}>
 						<Row gutter={[24, 24]}>
 							{courses!.data.map((item) => (
-								<CourseCard
-									key={item.id}
-									image_url={item.image_url}
-									title={item.title}
-									id={item.id}
-									categories={item.categories}
-									users_count={item.users_count}
-									price={item.product?.price}
-								/>
-							))}
-						</Row>
+								<Col key={item.id} lg={12} xl={8}>
 
-						<Flex justify="center" align="center" className={styles.pagination}>
+									<CourseCard
+										key={item.id}
+										image_url={item.image_url}
+										title={item.title}
+										id={item.id}
+										categories={item.categories}
+										users_count={item.users_count}
+										price={item.product?.price}
+									/>
+									</Col>
+
+									))}
+								</Row>
+
+								<Flex justify="center" align="center" className={styles.pagination}>
 							<PaginationComponent totalItems={courses?.total || 12} />
 						</Flex>
 					</Col>
