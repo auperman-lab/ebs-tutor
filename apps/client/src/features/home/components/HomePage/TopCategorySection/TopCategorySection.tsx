@@ -11,7 +11,7 @@ import { useTheme } from 'antd-style';
 
 const { useBreakpoint } = Grid;
 
-export const TopCategory = () => {
+export const TopCategorySection = () => {
 	const { styles } = useStyles();
 	const navigate = useNavigate();
 	const screens = useBreakpoint();

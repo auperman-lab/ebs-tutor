@@ -39,7 +39,6 @@ export const useStyles = createStyles(({ token, responsive }) => ({
 	},
 
 	button: {
-		// maxWidth: '40%',
 		color: token.colorPrimary,
 		padding: '4px 0 ',
 

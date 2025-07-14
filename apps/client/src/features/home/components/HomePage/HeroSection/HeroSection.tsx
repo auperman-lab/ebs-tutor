@@ -4,7 +4,7 @@ import { useStyles } from './styles';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '@clientConst';
 
-export const Hero = () => {
+export const HeroSection = () => {
 	const { styles } = useStyles();
 	const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ export const Hero = () => {
 				</div>
 				<Button size="large" type="primary" className={styles.button} onClick={onButtonClick}>Create Account</Button>
 			</Flex>
-			<img className={styles.heroImage} src={HeroImg} alt="Hero" />
+			<img className={styles.heroImage} src={HeroImg} alt="HeroSection" />
 
 		</Flex>
 	);
