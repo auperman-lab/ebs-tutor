@@ -40,7 +40,7 @@ export const useStyles = createStyles(({ token, responsive }) => ({
     lineHeight: 1.6,
   },
 
-  Button: {
+  button: {
     width: 135,
     marginTop: 32,
   },
