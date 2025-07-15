@@ -1,8 +1,8 @@
 import { Button, Divider, Flex, Input, Select } from 'antd';
-import { Faders, MagnifyingGlass } from '@clientAssets';
+import { Faders, MagnifyingGlass } from '@client/assets';
 import { useStyles } from './styles';
 import { useState } from 'react';
-import { useURLQuery } from '@clientHooks';
+import { useURLQuery } from '@client/hooks';
 
 const sort = [
 	{
