@@ -143,7 +143,7 @@ export const RegistrationForm = () => {
                 type="primary"
                 size="large"
                 htmlType="submit"
-                className={styles.auth_button}
+                className={styles.authButton}
               >
                 Submit
                 <ArrowRight />

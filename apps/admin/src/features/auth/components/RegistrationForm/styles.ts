@@ -12,7 +12,7 @@ export const useStyles = createStyles(({ token, responsive }) => ({
       gap: '0px !important',
     },
   },
-  auth_button: {
+  authButton: {
     padding: '0 48px',
   },
 }));
