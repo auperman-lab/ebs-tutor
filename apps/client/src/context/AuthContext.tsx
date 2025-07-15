@@ -6,7 +6,7 @@ import { LoginEndpointResponse, User } from '@clientTypes';
 
 import { routes } from '@clientConst';
 import {
-  decodeToken,
+  decodeToken, getAdminPanelUrl,
   getUserByToken,
   removeUser,
   setToken,
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }: React.HTMLProps<HTMLElement>) => {
     }
 
     if (authUser.roles.includes('admin')) {
-      const url = new URL('http://localhost:4201');
+      const url = new URL(getAdminPanelUrl());
       url.searchParams.set('token', data.token);
       url.searchParams.set('expires_at', data.expires_at);
 
