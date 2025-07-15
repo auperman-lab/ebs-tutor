@@ -1,48 +1,44 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(({ css, responsive }) => ({
-  header: css`
-    border-bottom: 1px solid #eee;
-    padding: 0 15%;
-    height: 88px;
-    background-color: white;
-  `,
+export const useStyles = createStyles(({ token, responsive }) => ({
+  header: {
+    borderBottom: '1px solid #eee',
+    padding: '0 15%',
+    height: 88,
+    backgroundColor: token.colorWhite,
+  },
 
-  headerComponentsWrapper: css`
-    width: 100%;
-    height: 100%;
-  `,
+  headerComponentsWrapper: {
+    width: '100%',
+    height: '100%',
+  },
 
-  createAccountText: css`
-    display: block;
-    text-align: center;
+  createAccountText: {
+    display: 'block',
+    textAlign: 'center',
 
-    ${responsive.xs} {
-      display: none;
-    }
-  `,
+    [responsive.xs]: {
+      display: 'none',
+    },
+  },
 
-  headerLogo: css`
-    border: 0;
-    box-shadow: none;
+  headerLogo: {
+    border: 0,
+    boxShadow: 'none',
 
-    &:hover {
-      background: none !important;
-      box-shadow: none !important;
-    }
-  `,
+    '&:hover': {
+      background: 'none !important',
+      boxShadow: 'none !important',
+    },
+  },
 
-  headerTitle: css`
-    /* add styles as needed */
-  `,
+  createAccountWrapper: {
+    color: token.colorText,
+  },
 
-  createAccountWrapper: css`
-    color: black;
-  `,
-
-  createAccountButton: css`
-    background-color: #FFEEE8;
-    color: #FF6636;
-    border: 0;
-  `,
+  createAccountButton: {
+    backgroundColor: token.primary.primary100,
+    color:token.colorPrimary,
+    border: 0,
+  },
 }));
