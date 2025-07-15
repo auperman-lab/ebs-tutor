@@ -1,5 +1,5 @@
 import { jwtDecode } from 'jwt-decode';
-
+import { message } from 'antd';
 import { AuthUser, DecodedToken, User } from '@clientTypes';
 import { api } from '@clientApi';
 
@@ -47,7 +47,7 @@ export const setToken = (token: string, exp: string) => {
     localStorage.setItem('exp', exp);
     localStorage.setItem('token', token);
   } catch (error) {
-    console.error('Error setting tokens in local storage:', error);
+    message.error('Error setting tokens in local storage:');
   }
 };
 
@@ -60,7 +60,7 @@ export const setUser = (user: User) => {
   try {
     localStorage.setItem('user', JSON.stringify(user));
   } catch (error) {
-    console.error('Error setting user in local storage:', error);
+    message.error('Error setting user in local storage:');
   }
 };
 
@@ -70,7 +70,7 @@ export const getUser = (): User | null => {
     if (!user) return null;
     return JSON.parse(user);
   } catch (error) {
-    console.error('Error getting user from local storage:', error);
+    message.error('Error getting user from local storage:');
     return null;
   }
 };

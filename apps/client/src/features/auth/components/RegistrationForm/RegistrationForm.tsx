@@ -126,7 +126,6 @@ export const RegistrationForm = () => {
                         ),
                 },
               ]}
-              style={{ marginBottom: 0 }}
             >
               <Checkbox>
                 I Agree with all of your{' '}
