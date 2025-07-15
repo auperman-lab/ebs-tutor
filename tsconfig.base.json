@@ -30,16 +30,7 @@
       "@features/*": ["apps/admin/src/features/*"],
       "@layout": ["apps/admin/src/layout/index.ts"],
 
-      "@clientApi": ["apps/client/src/api/api"],
-      "@clientAssets": ["apps/client/src/assets/index.ts"],
-      "@clientHooks": ["apps/client/src/hooks/index.ts"],
-      "@clientUtils": ["apps/client/src/utils/index.ts"],
-      "@clientComponents": ["apps/client/src/components/index.ts"],
-      "@clientFeatures/*": ["apps/client/src/features/*"],
-      "@clientLayout": ["apps/client/src/layout/index.ts"],
-      "@clientConst": ["apps/client/src/const.ts"],
-      "@clientTypes": ["apps/client/src/types/index.ts"],
-      "@clientContext": ["apps/client/src/context/index.ts"]
+      "@client/*":  ["apps/client/src/*"],
     }
   }
 }
