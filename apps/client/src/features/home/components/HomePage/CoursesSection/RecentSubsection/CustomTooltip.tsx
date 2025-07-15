@@ -1,7 +1,7 @@
 import { useStyles } from './styles';
 import { Avatar, Button, Divider, Flex, List, Tag } from 'antd';
-import { Author, Category } from '@clientTypes';
-import { Heart, Star, User } from '@clientAssets';
+import { Author, Category } from '@client/types';
+import { Heart, Star, User } from '@client/assets';
 
 type CustomTooltipProps = {
 	title: string;

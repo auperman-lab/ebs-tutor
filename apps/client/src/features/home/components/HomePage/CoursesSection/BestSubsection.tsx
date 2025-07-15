@@ -1,10 +1,10 @@
 import { Col, Flex, Grid, Row, Spin } from 'antd';
 import { useStyles } from './styles';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '@clientApi';
+import { api } from '@client/api/api';
 import { LoadingOutlined } from '@ant-design/icons';
-import { CourseCard } from '@clientComponents';
-import { GetCoursesRequest } from '@clientTypes';
+import { CourseCard } from '@client/components';
+import { GetCoursesRequest } from '@client/types';
 
 const { useBreakpoint } = Grid;
 

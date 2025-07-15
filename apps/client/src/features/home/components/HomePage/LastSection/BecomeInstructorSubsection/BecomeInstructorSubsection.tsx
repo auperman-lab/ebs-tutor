@@ -1,8 +1,8 @@
 import { Button, Flex } from 'antd';
-import { ArrowRight, BecomeInstructorImg } from '@clientAssets';
+import { ArrowRight, BecomeInstructorImg } from '@client/assets';
 import { useStyles } from './styles';
 import { useNavigate } from 'react-router-dom';
-import { routes } from '@clientConst';
+import { routes } from '@client/const';
 
 export const BecomeInstructorSubsection = () => {
 	const { styles } = useStyles();

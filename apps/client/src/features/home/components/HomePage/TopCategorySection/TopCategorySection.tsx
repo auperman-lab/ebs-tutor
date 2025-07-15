@@ -1,11 +1,11 @@
 import { useStyles } from './styles';
 import { Button, Col, Flex, Row } from 'antd';
-import { ArrowRight } from '@clientAssets';
-import { routes } from '@clientConst';
+import { ArrowRight } from '@client/assets';
+import { routes } from '@client/const';
 import { useNavigate } from 'react-router-dom';
-import { StatCard, StatCardSkeleton } from '@clientComponents';
+import { StatCard, StatCardSkeleton } from '@client/components';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '@clientApi';
+import { api } from '@client/api/api';
 import { Grid } from 'antd';
 import { useTheme } from 'antd-style';
 

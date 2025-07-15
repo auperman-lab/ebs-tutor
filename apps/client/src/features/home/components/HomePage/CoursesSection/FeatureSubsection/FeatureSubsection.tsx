@@ -1,9 +1,9 @@
 import { useStyles } from './styles';
 import { Col, Flex, Grid, Row, Spin } from 'antd';
 import { CourseCardWide } from './CourseCardWide';
-import { GetCoursesRequest } from '@clientTypes';
+import { GetCoursesRequest } from '@client/types';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '@clientApi';
+import { api } from '@client/api/api';
 import { LoadingOutlined } from '@ant-design/icons';
 
 

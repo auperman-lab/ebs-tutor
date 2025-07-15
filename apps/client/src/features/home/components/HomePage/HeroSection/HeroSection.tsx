@@ -1,8 +1,8 @@
 import { Button, Flex } from 'antd';
-import { HeroImg } from '@clientAssets';
+import { HeroImg } from '@client/assets';
 import { useStyles } from './styles';
 import { useNavigate } from 'react-router-dom';
-import { routes } from '@clientConst';
+import { routes } from '@client/const';
 
 export const HeroSection = () => {
 	const { styles } = useStyles();

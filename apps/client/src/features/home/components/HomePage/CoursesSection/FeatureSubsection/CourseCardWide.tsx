@@ -1,9 +1,9 @@
-import { Author, Category } from '@clientTypes';
+import { Author, Category } from '@client/types';
 import { Avatar, Divider, Flex, Tag, Tooltip } from 'antd';
-import { routes } from '@clientConst';
+import { routes } from '@client/const';
 import { useNavigate } from 'react-router-dom';
 import { useStyles } from './styles';
-import { NoImage, Star, User } from '@clientAssets';
+import { NoImage, Star, User } from '@client/assets';
 
 
 type CourseCardWideProps = {

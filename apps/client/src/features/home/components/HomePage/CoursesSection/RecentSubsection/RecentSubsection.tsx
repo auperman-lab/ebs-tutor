@@ -1,14 +1,14 @@
 import { Button, Col, Flex, Grid, Row, Spin, Tooltip } from 'antd';
 import { useStyles } from './styles';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '@clientApi';
+import { api } from '@client/api/api';
 import { LoadingOutlined } from '@ant-design/icons';
-import { CourseCard } from '@clientComponents';
-import { GetCoursesRequest } from '@clientTypes';
-import { ArrowRight } from '@clientAssets';
+import { CourseCard } from '@client/components';
+import { GetCoursesRequest } from '@client/types';
+import { ArrowRight } from '@client/assets';
 import { CustomTooltip } from './CustomTooltip';
 import { useNavigate } from 'react-router-dom';
-import { routes } from '@clientConst';
+import { routes } from '@client/const';
 
 const { useBreakpoint } = Grid;
 
