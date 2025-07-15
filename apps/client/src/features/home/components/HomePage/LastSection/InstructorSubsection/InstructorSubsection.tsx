@@ -41,7 +41,7 @@ export const InstructorSubsection = () => {
 
 	return (
 		<Flex vertical gap={40} className={styles.wrapper} align="center" justify="center">
-			<Flex justify="space-between" align="center" className={styles.fullWidth}>
+			<Flex align="center" justify="center" className={styles.fullWidth}>
 				<div className={styles.title}>Top instructor of the month</div>
 			</Flex>
 

@@ -3,7 +3,6 @@ import { createStyles } from 'antd-style';
 export const useStyles = createStyles(({ token, responsive }) => ({
 	wrapper: {
 		background: token.colorWhite,
-		// background: 'orange',
 		width: '80%',
 		padding: '80px',
 		border: `solid 1px ${token.info.info100}`

@@ -1,11 +1,10 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(({ token, responsive }) => ({
+export const useStyles = createStyles(({ token }) => ({
 	wrapper: {
-		backgroundColor: token.colorWhite,
 		width: '100vw',
 		height: '200vh',
-		background: 'linear-gradient(to bottom, orange 0%, orange 50%, white 50%, white 100%)',
+		background: `linear-gradient(to bottom, ${token.common.gray} 0%, ${token.common.gray} 50%, ${token.common.white} 50%, ${token.common.white} 100%)`,
 
 	},
 

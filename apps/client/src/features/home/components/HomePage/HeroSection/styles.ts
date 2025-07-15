@@ -2,7 +2,7 @@ import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token, responsive }) => ({
 	wrapper: {
-		backgroundColor: 'orange',
+		backgroundColor: token.common.gray,
 		width: '100vw',
 		height: '50vh',
 	},
