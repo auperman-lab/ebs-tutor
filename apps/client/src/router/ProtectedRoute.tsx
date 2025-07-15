@@ -19,7 +19,6 @@ export const ProtectedRoute = ({ children }: Props) => {
   }
 
   if (user && user.roles.includes(Roles.ADMIN)) {
-    console.log("wtf", user.roles);
     return <>{children}</>;
   }
 
