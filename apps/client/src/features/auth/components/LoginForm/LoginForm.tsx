@@ -51,11 +51,6 @@ export const LoginForm = () => {
             name="password"
             rules={[
               { required: true, message: "Please input your password!" },
-              // {
-              //   pattern: regexPatterns.password,
-              //   message:
-              //     'Password must be at least 6 characters long and contain both letters and numbers.',
-              // },
             ]}
           >
             <Input.Password size="large" placeholder="Password" />
