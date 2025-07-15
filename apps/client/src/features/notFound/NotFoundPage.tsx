@@ -21,7 +21,7 @@ export const NotFoundPage = () => {
           onClick={() => {
             navigate(routes.main);
           }}
-          className={styles.Button}
+          className={styles.button}
           size="large"
         >
           Go Back
