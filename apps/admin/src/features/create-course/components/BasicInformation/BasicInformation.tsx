@@ -31,6 +31,7 @@ export const BasicInformation = ({
   const params = useParams();
   const navigate = useNavigate();
   const { setCourse } = useCourse();
+  const searchParams = new URLSearchParams();
 
   const { data: courseData, isSuccess } = useQuery({
     queryKey: ['course', params.id],
@@ -99,7 +100,7 @@ export const BasicInformation = ({
   }, [form, courseData, isSuccess]);
 
   const updateCourseMutation = useMutation({
-    mutationFn: (data: Course & { categories: number[] }) =>
+    mutationFn: (data: Course & { queryString: string }) =>
       api.courses.updateCourse(data),
     onError: (err) => console.error('Create course error:', err),
   });
@@ -127,12 +128,21 @@ export const BasicInformation = ({
       const categories = values.category || [];
       const tags = values.tag || [];
 
+      categories?.forEach((catId: number) =>
+        searchParams.append('categories[]', String(catId))
+      );
+
+      tags?.forEach((tagId: number) =>
+        searchParams.append('tags[]', String(tagId))
+      );
+
+      const queryString = searchParams.toString();
+
       if (params.id) {
         const updated = await updateCourseMutation.mutateAsync({
           id: Number(params.id),
           ...updateData,
-          categories,
-          tags,
+          queryString,
         });
 
         setCourse(updated);
@@ -143,7 +153,7 @@ export const BasicInformation = ({
         const updated = await updateCourseMutation.mutateAsync({
           id: courseId,
           ...updateData,
-          categories,
+          queryString,
         });
 
         setCourse(updated);

@@ -18,7 +18,7 @@ import { api } from '@api';
 import { useCourse } from '@context';
 import type { TabsProps } from '@features/create-course/types';
 import { DescriptionEditor } from './DescriptionEditor';
-import { Author } from '@types';
+import { Author, Course } from '@types';
 
 const { Title } = Typography;
 
@@ -33,6 +33,8 @@ export const AdvanceInformation = ({
   const [form] = Form.useForm();
   const params = useParams();
   const { setCourse, course, files } = useCourse();
+  const isEdit = Boolean(params.id);
+  const searchParams = new URLSearchParams();
 
   const { data: rawTutors = [] } = useQuery({
     queryKey: ['tutors'],
@@ -47,20 +49,16 @@ export const AdvanceInformation = ({
 
   useEffect(() => {
     if (course) {
-      try {
-        const authors = course.authors?.map((author) => author.id) || [];
+      const authors = course.authors?.map((author) => author.id) || [];
 
-        form.setFieldsValue({
-          ...course,
-          thumbnail: course.image_url,
-          trailer: course.video_url,
-          authors: authors,
-          target: course.target_group,
-          description: course.description,
-        });
-      } catch (error) {
-        console.error('Error setting course data:', error);
-      }
+      form.setFieldsValue({
+        ...course,
+        thumbnail: course.image_url,
+        trailer: course.video_url,
+        authors: authors,
+        target: course.target_group,
+        description: course.description,
+      });
     } else {
       form.setFieldsValue({
         image_url: '',
@@ -74,11 +72,20 @@ export const AdvanceInformation = ({
 
   const uploadFilesMutation = useMutation({
     mutationFn: (formData: FormData) => api.courses.uploadFile(formData),
-    onError: (err) => console.error('Upload error:', err),
+    onError: (err: unknown) => {
+      let errorMessage = 'Failed to upload file.';
+
+      if (err && typeof err === 'object' && 'message' in err) {
+        errorMessage = (err as { message: string }).message;
+      }
+
+      message.error(errorMessage);
+    },
   });
 
   const updateCourseMutation = useMutation({
-    mutationFn: (data: any) => api.courses.updateCourse(data),
+    mutationFn: (data: Course & { queryString: string }) =>
+      api.courses.updateCourse(data),
     onError: (err) => {
       console.error('Update course error:', err);
       message.error('Failed to update course.');
@@ -89,7 +96,7 @@ export const AdvanceInformation = ({
     try {
       const values = await form.validateFields();
 
-      if (!params.id || !course) {
+      if (isEdit === false || !course) {
         message.error('Course ID or course is misssing.');
         return;
       }
@@ -114,7 +121,6 @@ export const AdvanceInformation = ({
         const videoFormData = new FormData();
         videoFormData.append('target', `/course/videos/${course.id}`);
         videoFormData.append('file[]', files.trailer);
-        console.log(videoFormData);
 
         const videoUploadResponse = await uploadFilesMutation.mutateAsync(
           videoFormData
@@ -123,25 +129,32 @@ export const AdvanceInformation = ({
         videoFile = uploadedVideos.find((f) => f.mime.startsWith('video/'));
       }
 
-      const updateData = {
+      const authors = values.authors || [];
+
+      authors?.forEach((authorId: number) =>
+        searchParams.append('authors[]', String(authorId))
+      );
+
+      const queryString = searchParams.toString();
+
+      const commonData = {
         description: values.description,
         target_group: values.target,
-        image_url: imageFile?.url ?? '',
-        image_path: imageFile?.name ?? '',
-        video_url: videoFile?.url ?? '',
-        video_path: videoFile?.name ?? '',
+        image_url: imageFile?.url ?? (isEdit ? course.image_url : ''),
+        image_path: imageFile?.name ?? (isEdit ? course.image_path : ''),
+        video_url: videoFile?.url ?? (isEdit ? course.video_url : ''),
+        video_path: videoFile?.name ?? (isEdit ? course.video_path : ''),
       };
-
-      const authors = values.authors || [];
 
       const updated = await updateCourseMutation.mutateAsync({
         id: Number(params.id),
-        ...updateData,
-        authors,
+        ...commonData,
+        queryString,
       });
+
       setCourse(updated);
     } catch (error) {
-      console.error('Error saving advanced info:', error);
+      message.error('Error saving advanced info.');
     }
   };
 
@@ -229,10 +242,10 @@ export const AdvanceInformation = ({
               className={styles.save}
               onClick={onSave}
             >
-              {params.id ? 'Edit' : 'Save'}
+              {isEdit ? 'Edit' : 'Save'}
             </Button>
             <Button size="large" type="primary" onClick={onNext}>
-              {params.id ? 'Edit & Next' : 'Save & Next'}
+              {isEdit ? 'Edit & Next' : 'Save & Next'}
             </Button>
           </Flex>
         </Flex>

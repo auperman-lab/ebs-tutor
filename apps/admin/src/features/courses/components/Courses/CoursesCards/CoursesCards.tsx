@@ -59,10 +59,22 @@ export const CoursesCards = () => {
   const { mutate: deleteCourse } = useMutation({
     mutationFn: (id: number) => api.courses.deleteCourse(id),
     onSuccess: () => {
-      console.log('success');
       queryClient.invalidateQueries({ queryKey: ['myCourses'] });
     },
   });
+
+  const getDropdownItems = (itemId: number) => [
+    {
+      key: '1',
+      label: 'Edit',
+      onClick: () => navigate(routes.create + `/${itemId}`),
+    },
+    {
+      key: '2',
+      label: 'Delete',
+      onClick: () => deleteCourse(itemId),
+    },
+  ];
 
   if (isLoading) return <CoursesCardSkeleton quantity={8} />;
   if (isError) return <FailComponent message="Failed to load courses" />;
@@ -148,18 +160,7 @@ export const CoursesCards = () => {
                 </div>
                 <Dropdown
                   menu={{
-                    items: [
-                      {
-                        key: '1',
-                        label: 'Edit',
-                        onClick: () => navigate(routes.create + `/${item.id}`),
-                      },
-                      {
-                        key: '2',
-                        label: 'Delete',
-                        onClick: () => deleteCourse(item.id),
-                      },
-                    ],
+                    items: getDropdownItems(item.id),
                   }}
                   trigger={['click']}
                   arrow

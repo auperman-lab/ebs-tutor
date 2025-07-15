@@ -52,22 +52,10 @@ export const courses = {
     return data;
   },
 
-  updateCourse: async (payload: Course): Promise<Course> => {
-    const { id, categories, tags, authors, ...rest } = payload;
-
-    const searchParams = new URLSearchParams();
-
-    categories?.forEach((catId) =>
-      searchParams.append('categories[]', String(catId))
-    );
-
-    tags?.forEach((tagId) => searchParams.append('tags[]', String(tagId)));
-
-    authors?.forEach((authorId) =>
-      searchParams.append('authors[]', String(authorId))
-    );
-
-    const queryString = searchParams.toString();
+  updateCourse: async (
+    payload: Course & { queryString: string }
+  ): Promise<Course> => {
+    const { id, queryString, ...rest } = payload;
 
     const { data } = await axiosInstance.post(
       `${apiEndpoints.courses}/${id}?${queryString}`,

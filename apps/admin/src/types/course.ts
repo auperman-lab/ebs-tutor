@@ -2,7 +2,7 @@ export interface Course {
   id: number;
   created_at?: string;
   updated_at?: string;
-  title: string;
+  title?: string;
   summary?: string;
   image_path?: string;
   video_path?: string;
