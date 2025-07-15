@@ -62,6 +62,7 @@ export const BecomeInstructorSubsection = () => {
 				</Flex>
 
 				<img
+					alt='becomeInstructorImage'
 					className={styles.image}
 					src={BecomeInstructorImg}
 				/>

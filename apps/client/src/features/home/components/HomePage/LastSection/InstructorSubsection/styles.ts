@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(({ token, responsive }) => ({
+export const useStyles = createStyles(({ token }) => ({
 	wrapper: {
 		background: token.colorWhite,
 		width: '80%',
