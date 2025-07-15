@@ -1,9 +1,9 @@
 import { FilterItem } from './FilterItem';
 import { Flex, Spin } from 'antd';
-import { api } from '@clientApi';
+import { api } from '@client/api/api';
 import { useQuery } from '@tanstack/react-query';
 import { LoadingOutlined } from '@ant-design/icons';
-import { useURLQuery } from '@clientHooks';
+import { useURLQuery } from '@client/hooks';
 
 export const Filter = () => {
 	const { setParams, getParams } = useURLQuery();

@@ -1,7 +1,7 @@
 import { Checkbox, Collapse, Flex } from 'antd';
-import { useStyles } from '@clientFeatures/courseList/components/Filter/styles';
+import { useStyles } from './styles';
 import { useState } from 'react';
-import { ChevronDown } from '@clientAssets';
+import { ChevronDown } from '@client/assets';
 
 type FilterOption = {
 	label: string;
