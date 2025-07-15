@@ -1,11 +1,11 @@
 import { useRoutes } from "react-router-dom";
-import { routes } from "@clientConst";
-import { AuthLayout, MainLayout, StudentLayout } from "@clientLayout";
-import { LoginPage, RegistrationPage } from "@clientFeatures/auth";
-import { CourseListPage } from "@clientFeatures/courseList";
-import { CoursePage, CoursePagePaid } from "@clientFeatures/course";
-import { AboutPage, BecomeInstructorPage, ContactPage, HomePage } from "@clientFeatures/home";
-import { StudentPage, TeacherPage } from "@clientFeatures/student";
+import { routes } from "@client/const";
+import { AuthLayout, MainLayout, StudentLayout } from "@client/layout";
+import { LoginPage, RegistrationPage } from "@client/features/auth";
+import { CourseListPage } from "@client/features/courseList";
+import { CoursePage, CoursePagePaid } from "@client/features/course";
+import { AboutPage, BecomeInstructorPage, ContactPage, HomePage } from "@client/features/home";
+import { StudentPage, TeacherPage } from "@client/features/student";
 import { ProtectedRoute } from "./ProtectedRoute";
 
 export const Router = () => {

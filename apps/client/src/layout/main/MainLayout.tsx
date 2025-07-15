@@ -1,6 +1,6 @@
 import { Layout } from "antd";
 import { Outlet } from "react-router-dom";
-import { MainHeader, MainFooter } from "@clientComponents";
+import { MainHeader, MainFooter } from "@client/components";
 import { useStyles } from "./styles";
 
 const { Content } = Layout;

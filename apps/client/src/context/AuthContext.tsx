@@ -2,16 +2,16 @@ import { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 
-import { LoginEndpointResponse, User } from '@clientTypes';
+import { LoginEndpointResponse, User } from '@client/types';
 
-import { routes } from '@clientConst';
+import { routes } from '@client/const';
 import {
   decodeToken, getAdminPanelUrl,
   getUserByToken,
   removeUser,
   setToken,
   setUser as setUserInStorage,
-} from '@clientUtils';
+} from '@client/utils';
 
 type AuthContextProps = {
   user: User | null;

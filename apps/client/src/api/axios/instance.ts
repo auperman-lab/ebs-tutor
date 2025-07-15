@@ -1,5 +1,5 @@
 import axios from "axios";
-import { api } from "@clientConst";
+import { api } from "@client/const";
 import { configInterceptor } from "./interceptor";
 
 export const axiosInstance = axios.create({
