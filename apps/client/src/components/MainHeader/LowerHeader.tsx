@@ -6,10 +6,10 @@ import {
   GraduationCap,
   Heart,
   MagnifyingGlass,
-} from '@clientAssets';
+} from '@client/assets';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '@clientHooks';
-import { routes } from '@clientConst';
+import { useAuth } from '@client/hooks';
+import { routes } from '@client/const';
 
 export const LowerHeader = () => {
   const { styles } = useStyles();

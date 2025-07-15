@@ -1,7 +1,7 @@
 import { useStyles } from "./styles";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
-import { routes } from "@clientConst";
+import { routes } from "@client/const";
 
 const items = [
   { key: routes.main, label: 'Home' },

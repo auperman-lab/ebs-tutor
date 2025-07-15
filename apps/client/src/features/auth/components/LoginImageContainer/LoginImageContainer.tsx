@@ -1,6 +1,6 @@
 import { Flex } from "antd";
 import { useStyles } from "./styles";
-import { SallyLogin } from "@clientAssets";
+import { SallyLogin } from "@client/assets";
 
 export const LoginImageContainer = () => {
   const { styles } = useStyles();

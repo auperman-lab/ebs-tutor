@@ -1,7 +1,7 @@
 import { jwtDecode } from 'jwt-decode';
 import { message } from 'antd';
-import { AuthUser, DecodedToken, User } from '@clientTypes';
-import { api } from '@clientApi';
+import { AuthUser, DecodedToken, User } from '@client/types';
+import { api } from '@client/api/api';
 
 export const isExpiredToken = (token: string): boolean => {
   try {
