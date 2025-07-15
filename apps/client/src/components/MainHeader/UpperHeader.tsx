@@ -15,7 +15,7 @@ export const UpperHeader = () => {
   const { styles } = useStyles();
   const navigate = useNavigate();
 
-  const handleClick = ({ key }: { key: string }) => {
+  const onClick = ({ key }: { key: string }) => {
     navigate(key);
   };
 
@@ -24,7 +24,7 @@ export const UpperHeader = () => {
       mode="horizontal"
       items={items}
       className={styles.menu}
-      onClick={handleClick}
+      onClick={onClick}
     />
   );
 };
