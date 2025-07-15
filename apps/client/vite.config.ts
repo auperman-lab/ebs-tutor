@@ -23,16 +23,7 @@ export default defineConfig(() => ({
 
   resolve: {
     alias: {
-      '@clientApi': path.resolve(__dirname, 'src/api/api'),
-      '@clientAssets': path.resolve(__dirname, 'src/assets'),
-      '@clientTypes': path.resolve(__dirname, 'src/types'),
-      '@clientContext': path.resolve(__dirname, 'src/context'),
-      '@clientConst': path.resolve(__dirname, 'src/const.ts'),
-      '@clientHooks': path.resolve(__dirname, 'src/hooks'),
-      '@clientUtils': path.resolve(__dirname, 'src/utils'),
-      '@clientComponents': path.resolve(__dirname, 'src/components'),
-      '@clientFeatures': path.resolve(__dirname, 'src/features'),
-      '@clientLayout': path.resolve(__dirname, 'src/layout'),
+      '@client': path.resolve(__dirname, 'src/'),
     },
   },
   // Uncomment this if you are using workers.

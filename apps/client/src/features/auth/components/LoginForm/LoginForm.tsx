@@ -1,10 +1,10 @@
 import { Button, Checkbox, Flex, Form, Input } from "antd";
-import { LoginFormProps } from "@clientFeatures/auth/types";
+import { LoginFormProps } from "@client/features/auth/types";
 import { useStyles } from "./styles";
 import { ArrowRight } from "@phosphor-icons/react";
 import { useMutation } from "@tanstack/react-query";
-import { api } from "@clientApi";
-import { useAuth } from "@clientHooks";
+import { api } from "@client/api/api";
+import { useAuth } from "@client/hooks";
 
 export const LoginForm = () => {
   const [form] = Form.useForm();

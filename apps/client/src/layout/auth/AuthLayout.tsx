@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Layout } from "antd";
-import { AuthHeader } from "@clientFeatures/auth/components";
+import { AuthHeader } from "@client/features/auth/components";
 import { useStyles } from "./styles";
 
 export const AuthLayout = () => {

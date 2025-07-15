@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import dayjs from 'dayjs';
-import { getTokenExpiration } from "@clientUtils";
-import { api } from "@clientApi";
+import { getTokenExpiration } from "@client/utils";
+import { api } from "@client/api/api";
 import { useAuth } from "./useAuth";
 
 export const useAutoRefreshToken = () => {

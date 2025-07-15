@@ -1,5 +1,5 @@
 import { Button, Divider, Flex } from "antd";
-import { Google, Facebook, Apple } from "@clientAssets";
+import { Google, Facebook, Apple } from "@client/assets";
 import { LoginOptionsProps } from "./types";
 import { useStyles } from "./styles";
 
