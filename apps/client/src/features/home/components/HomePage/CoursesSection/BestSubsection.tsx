@@ -8,18 +8,17 @@ import { GetCoursesRequest } from '@clientTypes';
 
 const { useBreakpoint } = Grid;
 
+const params: GetCoursesRequest = {
+	per_page: 8,
+	page: 1,
+	order: 'ASC',
+	order_by: 'title',
+
+};
+
 export const BestSubsection = () => {
 	const { styles } = useStyles();
 	const screens = useBreakpoint();
-
-
-	const params: GetCoursesRequest = {
-		per_page: 8,
-		page: 1,
-		order: 'ASC',
-		order_by: 'title',
-
-	};
 
 	let visibleCount = 4;
 
