@@ -1,6 +1,6 @@
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { GetCoursesRequest, ParamsType } from '@clientTypes';
-import { perPage } from '@clientConst';
+import { GetCoursesRequest, ParamsType } from '@client/types';
+import { perPage } from '@client/const';
 
 export const useURLQuery = () => {
 	const [searchParams] = useSearchParams();

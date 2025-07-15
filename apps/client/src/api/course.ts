@@ -1,6 +1,6 @@
 import { axiosInstance } from "./axios/instance";
-import { Author, CategoryResponse, Course, GetCoursesRequest, GetCoursesResponse } from '@clientTypes';
-import { apiEndpoints } from "@clientConst";
+import { Author, CategoryResponse, Course, GetCoursesRequest, GetCoursesResponse } from '@client/types';
+import { apiEndpoints } from "@client/const";
 
 export const courses = {
   getAllCourses: async (params: GetCoursesRequest): Promise<GetCoursesResponse> => {

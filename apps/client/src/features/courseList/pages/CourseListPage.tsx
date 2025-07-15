@@ -1,11 +1,11 @@
 import { Col, Flex, Row, Spin } from 'antd';
-import { Filter, ListHeader } from '@clientFeatures/courseList';
-import { api } from '@clientApi';
+import { Filter, ListHeader } from '@client/features/courseList';
+import { api } from '@client/api/api';
 import { useQuery } from '@tanstack/react-query';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useStyles } from './styles';
-import { CourseCard, PaginationComponent } from '@clientComponents';
-import { useURLQuery } from '@clientHooks';
+import { CourseCard, PaginationComponent } from '@client/components';
+import { useURLQuery } from '@client/hooks';
 
 
 export const CourseListPage = () => {

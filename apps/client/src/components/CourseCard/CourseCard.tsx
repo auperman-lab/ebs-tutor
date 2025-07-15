@@ -1,8 +1,8 @@
 import { Card, Divider, Flex, Tag, Tooltip, Typography, Image } from "antd";
 import { useNavigate } from "react-router-dom";
-import { Category } from "@clientTypes";
-import { NoImage, Star, User } from "@clientAssets";
-import { routes } from "@clientConst";
+import { Category } from "@client/types";
+import { NoImage, Star, User } from "@client/assets";
+import { routes } from "@client/const";
 import { useStyles } from "./styles";
 import { useTheme } from "antd-style";
 
