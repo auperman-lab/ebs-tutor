@@ -3,3 +3,4 @@ export * from './MainHeader';
 export * from './PaginationComponent';
 export * from './CourseCard';
 export * from './StatCard';
+export * from './ProfileFilter';

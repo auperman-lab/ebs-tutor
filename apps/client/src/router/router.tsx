@@ -1,12 +1,17 @@
-import { useRoutes } from "react-router-dom";
-import { routes } from "@clientConst";
-import { AuthLayout, MainLayout, StudentLayout } from "@clientLayout";
-import { LoginPage, RegistrationPage } from "@clientFeatures/auth";
-import { CourseListPage } from "@clientFeatures/courseList";
-import { CoursePage, CoursePagePaid } from "@clientFeatures/course";
-import { AboutPage, BecomeInstructorPage, ContactPage, HomePage } from "@clientFeatures/home";
-import { StudentPage, TeacherPage } from "@clientFeatures/student";
-import { ProtectedRoute } from "./ProtectedRoute";
+import { useRoutes } from 'react-router-dom';
+import { routes } from '@clientConst';
+import { AuthLayout, MainLayout } from '@clientLayout';
+import { LoginPage, RegistrationPage } from '@clientFeatures/auth';
+import { CourseListPage } from '@clientFeatures/courseList';
+import { CoursePage, CoursePagePaid } from '@clientFeatures/course';
+import {
+  AboutPage,
+  BecomeInstructorPage,
+  ContactPage,
+  HomePage,
+} from '@clientFeatures/home';
+import { StudentPage } from '@clientFeatures/student';
+import { ProtectedRoute } from './ProtectedRoute';
 
 export const Router = () => {
   return useRoutes([
@@ -35,26 +40,21 @@ export const Router = () => {
           element: <CourseListPage />,
         },
         {
-          path: routes.courses + "/:id",
+          path: routes.courses + '/:id',
           element: <CoursePage />,
         },
-        {
-          path: routes.teacher + "/:id",
-          element: <TeacherPage />,
-        },
       ],
-
     },
     {
       path: routes.main,
       element: (
         <ProtectedRoute>
-          <StudentLayout />
+          <MainLayout />
         </ProtectedRoute>
       ),
       children: [
         {
-          path: routes.courses + "/:id",
+          path: routes.courses + '/:id',
           element: <CoursePagePaid />,
         },
         {
@@ -65,9 +65,7 @@ export const Router = () => {
     },
     {
       path: routes.main,
-      element: (
-        <AuthLayout />
-      ),
+      element: <AuthLayout />,
       children: [
         {
           path: routes.register,
@@ -77,7 +75,6 @@ export const Router = () => {
           path: routes.login,
           element: <LoginPage />,
         },
-
       ],
     },
   ]);

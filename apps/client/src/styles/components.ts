@@ -15,7 +15,7 @@ export const themeComponents = {
     marginLG: 16,
   },
   Layout: {
-    bodyBg: 'rgb(245,247,250)',
+    bodyBg: '#FFFFFF',
     headerColor: 'rgba(253,252,252,0.88)',
     headerBg: 'rgb(255,255,255)',
     siderBg: '#1D2026',
@@ -89,5 +89,5 @@ export const themeComponents = {
   },
   Collapse: {
     headerBg: 'rgb(252,252,252)',
-  }
+  },
 };

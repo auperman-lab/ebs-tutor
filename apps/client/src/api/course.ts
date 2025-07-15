@@ -1,9 +1,17 @@
-import { axiosInstance } from "./axios/instance";
-import { Author, CategoryResponse, Course, GetCoursesRequest, GetCoursesResponse } from '@clientTypes';
-import { apiEndpoints } from "@clientConst";
+import { axiosInstance } from './axios/instance';
+import {
+  Author,
+  CategoryResponse,
+  Course,
+  GetCoursesRequest,
+  GetCoursesResponse,
+} from '@clientTypes';
+import { apiEndpoints } from '@clientConst';
 
 export const courses = {
-  getAllCourses: async (params: GetCoursesRequest): Promise<GetCoursesResponse> => {
+  getAllCourses: async (
+    params?: GetCoursesRequest
+  ): Promise<GetCoursesResponse> => {
     const { data } = await axiosInstance.get(apiEndpoints.getAllCourses, {
       params,
     });
@@ -12,21 +20,28 @@ export const courses = {
       total: data.meta.total,
     };
   },
-  getCourse: async (id:  string): Promise<Course> => {
-    const { data } = await axiosInstance.get(apiEndpoints.getAllCourses + `/${id}`);
+  getCourse: async (id: string): Promise<Course> => {
+    const { data } = await axiosInstance.get(
+      apiEndpoints.getAllCourses + `/${id}`
+    );
     return data.data;
   },
-  getCategories: async (): Promise<CategoryResponse[]>=>{
-    const { data } = await axiosInstance.get(apiEndpoints.getCategories + `?per_page=1000`);
+  getCategories: async (): Promise<CategoryResponse[]> => {
+    const { data } = await axiosInstance.get(
+      apiEndpoints.getCategories + `?per_page=1000`
+    );
     return data.data;
   },
-  getTags: async (): Promise<any>=>{
-    const { data } = await axiosInstance.get(apiEndpoints.getTags + `?per_page=1000`);
+  getTags: async (): Promise<any> => {
+    const { data } = await axiosInstance.get(
+      apiEndpoints.getTags + `?per_page=1000`
+    );
     return data.data;
   },
-  getTutors: async () : Promise<Author[]>=>{
-    const {data} = await axiosInstance.get(apiEndpoints.getTutors + `?per_page=1000`);
+  getTutors: async (): Promise<Author[]> => {
+    const { data } = await axiosInstance.get(
+      apiEndpoints.getTutors + `?per_page=1000`
+    );
     return data.data;
-  }
-
+  },
 };

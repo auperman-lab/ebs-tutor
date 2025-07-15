@@ -38,7 +38,13 @@ export const useStyles = createStyles(({ token }) => ({
 
   avatar: {
     minWidth: 48,
+    border: '2px solid transparent',
     minHeight: 48,
+    transition: 'border-color 0.2s',
+    cursor: 'pointer',
+    '&:hover': {
+      borderColor: token.primary.primary500,
+    },
   },
 
   menu: {
