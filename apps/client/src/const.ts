@@ -17,7 +17,7 @@ export const routes = {
 	becomeInstructor: '/become-instructor',
 	cart: '/cart',
 	profile: '/profile',
-	teacher: 'teacher',
+	teacher: '/teacher',
 
 	//admin
 	create: '/create-course',
