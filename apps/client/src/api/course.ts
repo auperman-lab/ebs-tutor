@@ -27,6 +27,10 @@ export const courses = {
   getTutors: async () : Promise<Author[]>=>{
     const {data} = await axiosInstance.get(apiEndpoints.getTutors + `?per_page=1000`);
     return data.data;
+  },
+  getTutor: async (id : string) : Promise<Author>=>{
+    const {data} = await axiosInstance.get(apiEndpoints.getTutors + `/${id}` );
+    return data.data;
   }
 
 };
