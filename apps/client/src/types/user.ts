@@ -22,3 +22,21 @@ export type DecodedToken = {
   sub: number;
   scopes: string[];
 };
+
+export type UserChangeSettingsRequest = {
+  first_name?: string;
+  last_name?: string;
+  phone?: string;
+  bio?: string;
+  email?: string;
+};
+
+export type ChangeEmail = {
+  email: string;
+};
+
+export type ChangePasswordRequest = {
+  current_password: string;
+  new_password: string;
+  new_confirm_password: string;
+};

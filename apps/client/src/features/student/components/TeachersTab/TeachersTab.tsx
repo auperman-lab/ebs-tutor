@@ -49,7 +49,7 @@ export const TeachersTab = () => {
       />
 
       {isLoading ? (
-        <Spin size="large" />
+        <Spin size="large" className={styles.spinner} />
       ) : !filteredTutors.length ? (
         <Empty description="No tutors found" />
       ) : (

@@ -35,6 +35,8 @@ export const apiEndpoints = {
   getAllCourses: '/courses',
   getTutors: '/tutors',
   getMyCourses: '/courses/my',
+  changeAvatar: '/profile/upload-avatar',
+  changeEmail: '/profile/me-auth',
 };
 
 export enum Roles {

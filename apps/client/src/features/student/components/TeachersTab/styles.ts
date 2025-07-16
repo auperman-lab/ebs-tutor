@@ -11,4 +11,7 @@ export const useStyles = createStyles(({ token }) => ({
   searchInput: {
     width: 300,
   },
+  spinner: {
+    margin: '100px auto',
+  },
 }));
