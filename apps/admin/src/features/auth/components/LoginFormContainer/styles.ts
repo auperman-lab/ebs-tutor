@@ -1,24 +1,24 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(({ token, css, responsive }) => ({
-  loginFormContainer: css`
-    width: 100%;
-    background: ${token.colorWhite};
-  `,
+export const useStyles = createStyles(({ token, responsive }) => ({
+  loginFormContainer: {
+    width: '100%',
+    background: token.colorWhite,
+  },
 
-  loginFormWrapper: css`
-    max-width: 600px;
-    width: 100%;
-  `,
+  loginFormWrapper: {
+    maxWidth: '600px',
+    width: '100%',
+  },
 
-  heading: css`
-    text-align: center;
-    color: ${token.colorText};
-  `,
+  heading: {
+    textAlign: 'center',
+    color: token.colorText,
+  },
 
-  loginOptions: css`
-    ${responsive.xs} {
-      flex-direction: column;
-    }
-  `,
+  loginOptions: {
+    [responsive.xs]: {
+      flexDirection: 'column',
+    },
+  },
 }));
