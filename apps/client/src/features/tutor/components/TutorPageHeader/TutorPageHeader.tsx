@@ -1,6 +1,15 @@
 import { Avatar, Button, Flex } from 'antd';
 import { useStyles } from './styles';
-import { Facebook, NoImage, Star, User } from '@client/assets';
+import {
+  Facebook,
+  Instagram,
+  NoImage,
+  Star,
+  Twitter,
+  User,
+  Whatsapp,
+  Youtube,
+} from '@client/assets';
 
 type TutorPageHeaderProps = {
   image?: string;
@@ -17,37 +26,24 @@ export const TutorPageHeader = ({
 }: TutorPageHeaderProps) => {
   const { styles } = useStyles();
 
-  const onEmailShare = () => {
-    const subject = encodeURIComponent('Check out this course!');
-    const body = encodeURIComponent(
-      `I thought you might find this course interesting: ${window.location.href}`
-    );
-    window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+  const onRedirectFacebook = () => {
+    window.open('https://www.facebook.com', '_blank');
   };
 
-  const onTwitterShare = () => {
-    const text = encodeURIComponent('Check out this course!');
-    const url = encodeURIComponent(window.location.href);
-    window.open(
-      `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
-      '_blank'
-    );
+  const onRedirectTwitter = () => {
+    window.open('https://www.twitter.com', '_blank');
   };
 
-  const onFacebookShare = () => {
-    const url = encodeURIComponent(window.location.href);
-    window.open(
-      `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-      '_blank'
-    );
+  const onRedirectInstagram = () => {
+    window.open('https://www.instagram.com', '_blank');
   };
 
-  const onLinkedInShare = () => {
-    const url = encodeURIComponent(window.location.href);
-    window.open(
-      `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-      '_blank'
-    );
+  const onRedirectYoutube = () => {
+    window.open('https://www.youtube.com', '_blank');
+  };
+
+  const onRedirectWhatsapp = () => {
+    window.open('https://web.whatsapp.com', '_blank');
   };
 
   return (
@@ -94,30 +90,35 @@ export const TutorPageHeader = ({
           LinkToSomething
         </Button>
         <Flex gap={8}>
-          {/*todo: change icon upon coursepage merge*/}
           <Button
             size="large"
             className={styles.smallButton}
             icon={<Facebook />}
-            onClick={onEmailShare}
+            onClick={onRedirectFacebook}
           />
           <Button
             size="large"
             className={styles.smallButton}
-            icon={<Facebook />}
-            onClick={onTwitterShare}
+            icon={<Twitter />}
+            onClick={onRedirectTwitter}
           />
           <Button
             size="large"
             className={styles.smallButton}
-            icon={<Facebook />}
-            onClick={onFacebookShare}
+            icon={<Instagram />}
+            onClick={onRedirectInstagram}
           />
           <Button
             size="large"
             className={styles.smallButton}
-            icon={<Facebook />}
-            onClick={onLinkedInShare}
+            icon={<Youtube />}
+            onClick={onRedirectYoutube}
+          />
+          <Button
+            size="large"
+            className={styles.smallButton}
+            icon={<Whatsapp />}
+            onClick={onRedirectWhatsapp}
           />
         </Flex>
       </Flex>
