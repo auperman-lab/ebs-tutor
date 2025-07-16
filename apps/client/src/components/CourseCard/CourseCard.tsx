@@ -1,34 +1,54 @@
-import { Card, Col, Divider, Flex, Tag, Tooltip, Typography, Image } from "antd";
-import { useNavigate } from "react-router-dom";
-import { Category } from "@client/types";
-import { NoImage, Star, User } from "@client/assets";
-import { routes } from "@client/const";
-import { useStyles } from "./styles";
-import { useTheme } from "antd-style";
+import {
+  Card,
+  Col,
+  Divider,
+  Flex,
+  Image,
+  Tag,
+  Tooltip,
+  Typography,
+} from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { Category } from '@client/types';
+import { NoImage, Star, User } from '@client/assets';
+import { routes } from '@client/const';
+import { useStyles } from './styles';
+import { useTheme } from 'antd-style';
 
 const { Text } = Typography;
 
 type CourseCardProps = {
-  title: string,
-  id: number,
-  users_count: number
-  image_url: string
-  categories: Category[]
-  price?: number
+  title: string;
+  id: number;
+  users_count: number;
+  image_url: string;
+  categories: Category[];
+  price?: number;
+};
 
-}
-
-export const CourseCard= ({title, id, users_count, image_url, price, categories}:CourseCardProps ) => {
+export const CourseCard = ({
+  title,
+  id,
+  users_count,
+  image_url,
+  price,
+  categories,
+}: CourseCardProps) => {
   const navigate = useNavigate();
-  const {styles} = useStyles();
+  const { styles } = useStyles();
   const palette = useTheme();
 
+  const formatPrice = (price?: number) => {
+    if (price === 0) return 'Free';
+    if (price != null) return `$${price.toFixed(2)}`;
+    return 'N/A';
+  };
 
-  const onClick = () =>{
+  const onClick = () => {
     navigate(routes.courses + `/${id}`);
-  }
+  };
   return (
-    <Col key={id}  lg={12} xl={8}>
+    <Col key={id} lg={12} xl={8}>
       <Card
         hoverable
         cover={
@@ -41,7 +61,7 @@ export const CourseCard= ({title, id, users_count, image_url, price, categories}
               className={styles.cover}
             />
           ) : (
-            <NoImage  className={styles.cover} height={200}/>
+            <NoImage className={styles.cover} height={200} />
           )
         }
         onClick={onClick}
@@ -51,27 +71,28 @@ export const CourseCard= ({title, id, users_count, image_url, price, categories}
             <Flex className={styles.tagContainer}>
               {categories?.length ? (
                 categories.map((category) => (
-                  <Tag key={category.id} bordered={false} className={styles.tag}>
-                    {(category.name).toUpperCase()}
+                  <Tag
+                    key={category.id}
+                    bordered={false}
+                    className={styles.tag}
+                  >
+                    {category.name.toUpperCase()}
                   </Tag>
                 ))
               ) : (
-                <div className={styles.emptyTag}>
-                </div>
+                <div className={styles.emptyTag}></div>
               )}
             </Flex>
 
-            <div className={styles.price}>
-              {price === 0
-                ? "Free"
-                : price != null
-                  ? `$${price.toFixed(2)}`
-                  : "N/A"
-              }
-            </div>
+            <div className={styles.price}>{formatPrice(price)}</div>
           </Flex>
 
-          <Tooltip title={title} placement="topRight" color={palette.common.black} arrow={false}>
+          <Tooltip
+            title={title}
+            placement="topRight"
+            color={palette.common.black}
+            arrow={false}
+          >
             <div className={styles.title}>{title}</div>
           </Tooltip>
 
@@ -85,15 +106,13 @@ export const CourseCard= ({title, id, users_count, image_url, price, categories}
               <User />
               {users_count}
               <Text type="secondary" color="#4E5566">
-                {" "}
+                {' '}
                 students
               </Text>
             </Flex>
           </Flex>
-
         </Flex>
       </Card>
     </Col>
-
-    )
-}
+  );
+};
