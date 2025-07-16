@@ -16,9 +16,15 @@ export const useStyles = createStyles(({ token }) => ({
 		color: token.colorInfo
 	},
 	hobbies:{
-		fontSize: token.fontSize,
 		color: token.colorInfo,
-		minHeight: '14px',
+		WebkitLineClamp: 2,
+		WebkitBoxOrient: 'vertical',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
+		fontSize: token.fontSize,
+		lineHeight: '1.4',
+		height: `calc(1.4em * 2)`,
+
 	},
 	divider: {
 		margin: 0,

@@ -55,7 +55,7 @@ export const InstructorSubsection = () => {
 									key={item.id}
 									id={item.id}
 									name={`${item.first_name} ${item.last_name}`}
-									hobbies={item.interests}
+									bio={item.bio}
 									icon={item.url_avatar}
 
 								/>

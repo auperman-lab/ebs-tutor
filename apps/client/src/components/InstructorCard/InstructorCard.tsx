@@ -7,12 +7,12 @@ import { routes } from '@client/const';
 type InstructorCardProps = {
 	id: number,
 	name: string,
-	hobbies: string[],
+	bio: string,
 	icon: string,
 	isLoggedIn?: boolean,
 }
 
-export const InstructorCard = ({ id, name, hobbies, icon, isLoggedIn = false }: InstructorCardProps) => {
+export const InstructorCard = ({ id, name, bio, icon, isLoggedIn = false }: InstructorCardProps) => {
 	const { styles } = useStyles();
 
 	const navigate = useNavigate();
@@ -43,7 +43,7 @@ export const InstructorCard = ({ id, name, hobbies, icon, isLoggedIn = false }: 
 			<Flex vertical gap={12}>
 				<Flex vertical gap={4} align="center">
 					<div className={styles.title}>{name}</div>
-					<div className={styles.hobbies}>{hobbies}</div>
+					<div className={styles.hobbies}>{bio}</div>
 				</Flex>
 				<Divider className={styles.divider} />
 				<Flex justify="space-between" align="center" gap={24}>
