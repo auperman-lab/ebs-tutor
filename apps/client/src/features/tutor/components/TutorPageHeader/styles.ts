@@ -4,7 +4,7 @@ export const useStyles = createStyles(({token}) => ({
 	wrapper: {
 		padding: '40px',
 		width: '100%',
-		backgroundColor: token.colorWhite,
+		backgroundColor: token.primary.primary100,
 		border: `solid 1px ${token.info.info100}`
 	},
 	image:{
