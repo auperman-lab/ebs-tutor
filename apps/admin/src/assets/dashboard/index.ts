@@ -29,3 +29,7 @@ export { default as NoImage } from './no-image.svg?react';
 export { default as PencilLine } from './pencil-line.svg?react';
 export { default as Trash } from './trash.svg?react';
 export { default as Check } from './check.svg?react';
+export { default as ArrowRight } from './arrow-right.svg?react';
+export { default as Cards } from './cards.svg?react';
+export { default as ArrowDown } from './arrow-down.svg?react';
+export { default as UploadSimple } from './upload-simple.svg?react';

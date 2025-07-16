@@ -2,7 +2,7 @@ import { Button, Checkbox, Flex, Form, Input } from 'antd';
 import { LoginFormProps } from '@features/auth/types';
 import { useStyles } from './styles';
 // @ts-ignore
-import { ArrowRight } from '@phosphor-icons/react';
+import { ArrowRight } from '@assets';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@api';
 import { useAuth } from '@hooks';

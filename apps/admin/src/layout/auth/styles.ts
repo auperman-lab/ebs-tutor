@@ -1,7 +1,7 @@
-import { createStyles } from "antd-style";
+import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(({  css }) => ({
-  authLayout: css`
-    min-height: 100vh;
-  `,
+export const useStyles = createStyles(() => ({
+  authLayout: {
+    minHeight: '100vh',
+  },
 }));

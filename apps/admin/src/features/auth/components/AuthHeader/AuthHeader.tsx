@@ -31,7 +31,7 @@ export const AuthHeader = () => {
         >
           <Flex gap={8}>
             <GraduationCap />
-            <h1 className={styles.headerTitle}>E-tutor</h1>
+            <h1>E-tutor</h1>
           </Flex>
         </Button>
 

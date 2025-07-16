@@ -10,6 +10,7 @@ import {
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@api';
 import { useStyles } from './styles';
+import { ArrowRight } from '@assets';
 import { regexPatterns } from '@const';
 import { LoginOptions } from '@features/auth/components/';
 import { RegistrationFormProps } from '@features/auth/types';
@@ -137,9 +138,15 @@ export const RegistrationForm = () => {
                 </Typography.Link>
               </Checkbox>
             </Form.Item>
-            <Form.Item label={null}>
-              <Button type="primary" size="large" htmlType="submit">
+            <Form.Item>
+              <Button
+                type="primary"
+                size="large"
+                htmlType="submit"
+                className={styles.authButton}
+              >
                 Submit
+                <ArrowRight />
               </Button>
             </Form.Item>
           </Flex>

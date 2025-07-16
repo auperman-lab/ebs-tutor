@@ -1,7 +1,7 @@
-export {LoginForm} from "./LoginForm/LoginForm"
-export {LoginOptions} from "./LoginOptions/LoginOptions"
-export {AuthHeader} from "./AuthHeader/AuthHeader"
-export { LoginFormContainer } from './LoginFormContainer/LoginFormContainer';
-export { LoginImageContainer } from './LoginImageContainer/LoginImageContainer';
-export { RegistrationForm } from './RegistrationForm/RegistrationForm';
-export { RegistrationImageContainer } from './RegistrationImageContainer/RegistrationImageContainer';
+export * from './LoginForm/LoginForm';
+export * from './LoginOptions/LoginOptions';
+export * from './AuthHeader/AuthHeader';
+export * from './LoginFormContainer/LoginFormContainer';
+export * from './LoginImageContainer/LoginImageContainer';
+export * from './RegistrationForm/RegistrationForm';
+export * from './RegistrationImageContainer/RegistrationImageContainer';
