@@ -1,6 +1,6 @@
 import { Col, Form, Input, Row, Select } from 'antd';
 import { useStyles } from './styles';
-import { SearchOutlined } from '@ant-design/icons';
+import { MagnifyingGlass } from '@assets';
 import { api } from '@api';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
@@ -129,7 +129,7 @@ export const CoursesFiltration = () => {
         <Col sm={24} lg={9}>
           <Form.Item name="search">
             <Input
-              addonBefore={<SearchOutlined />}
+              addonBefore={<MagnifyingGlass />}
               placeholder="Search in your courses..."
               size="large"
             />

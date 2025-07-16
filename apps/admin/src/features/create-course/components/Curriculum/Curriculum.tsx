@@ -1,309 +1,283 @@
-import { useState, useEffect } from 'react';
-import {
-  PlusOutlined,
-  DeleteOutlined,
-  EditOutlined,
-  CheckOutlined,
-  CloseOutlined,
-} from '@ant-design/icons';
-import { Button, Input, Switch, Typography, Flex, Collapse } from 'antd';
-import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Form, Button, Collapse, Flex, Typography } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { useCourse } from '@context';
+import { api } from '@api';
+import { Lesson, Topic } from '@types';
+import { LessonItem } from './LessonItem';
+import { TopicList } from './TopicList';
 import { useStyles } from './styles';
-import { Section, Lecture } from '@features/create-course/types';
+import type { TabsProps } from '@features/create-course/types';
 
-const { Text } = Typography;
+const { Title } = Typography;
 
-const createEmptyLecture = (): Lecture => ({
-  id: uuidv4(),
-  title: '',
-  active: false,
-  can_skip: false,
-  description: '',
-});
-
-const createEmptySection = (): Section => ({
-  id: uuidv4(),
-  title: '',
-  lectures: [createEmptyLecture()],
-});
-
-export const Curriculum = ({
-  value = [],
-  onChange,
-}: {
-  value?: Section[];
-  onChange?: (sections: Section[]) => void;
-}) => {
+export function Curriculum({
+  onHandleNext,
+  onHandleBack,
+  activeKey,
+}: TabsProps) {
   const { styles } = useStyles();
-  const [sections, setSections] = useState<Section[]>(value);
-  const [editingSectionId, setEditingSectionId] = useState<string | null>(null);
-  const [editingLectureId, setEditingLectureId] = useState<string | null>(null);
-  const [tempTitle, setTempTitle] = useState('');
+  const [form] = Form.useForm();
+  const params = useParams();
+  const queryClient = useQueryClient();
+  const { setCourse, course } = useCourse();
+
+  const [editingLesson, setEditingLesson] = useState<number | null>(null);
+  const [editingTopic, setEditingTopic] = useState<{
+    lesson: number;
+    topic: number;
+  } | null>(null);
 
   useEffect(() => {
-    setSections(value || []);
-  }, [value]);
+    if (Array.isArray(course?.lessons)) {
+      form.setFieldsValue({ lessons: course.lessons });
+    } else {
+      form.setFieldsValue({ lessons: [] });
+    }
+  }, [form, course?.lessons]);
 
-  const updateSections = (updater: (prev: Section[]) => Section[]) => {
-    const newSections = updater(sections);
-    setSections(newSections);
-    onChange?.(newSections);
+  const createTopics = useMutation({
+    mutationFn: (data: Topic) => api.courses.createTopic(data),
+    onError: (error) => console.error(error),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['course'] }),
+  });
+
+  const updateTopics = useMutation({
+    mutationFn: (data: Topic) => api.courses.updateTopic(data),
+    onError: (error) => console.error(error),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['course'] }),
+  });
+
+  const deleteTopics = useMutation({
+    mutationFn: (id: number) => api.courses.deleteTopic(id),
+    onError: (error) => console.error(error),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['course'] }),
+  });
+
+  const createLessons = useMutation({
+    mutationFn: (data: Lesson) => api.courses.createLesson(data),
+    onError: (error) => console.error(error),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['course'] }),
+  });
+
+  const updateLessons = useMutation({
+    mutationFn: (data: Lesson) => api.courses.updateLesson(data),
+    onError: (error) => console.error(error),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['course'] }),
+  });
+
+  const deleteLesson = useMutation({
+    mutationFn: (id: number) => api.courses.deleteLesson(id),
+    onError: (error) => console.error(error),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['course'] }),
+  });
+
+  const onSave = async () => {
+    try {
+      const values = await form.validateFields();
+      if (!course) return;
+
+      const newLessons = values.lessons.filter((lesson: Lesson) => !lesson.id);
+      const existingLessons = values.lessons.filter(
+        (lesson: Lesson) => lesson.id
+      );
+
+      await Promise.all(
+        existingLessons.map((lesson: Lesson, index: number) =>
+          updateLessons.mutateAsync({
+            id: lesson.id,
+            title: lesson.title,
+            course_id: course.id,
+            order: lesson.order || index + 1,
+          })
+        )
+      );
+
+      const createdLessons = await Promise.all(
+        newLessons.map((lesson: Lesson, index: number) =>
+          createLessons.mutateAsync({
+            title: lesson.title,
+            course_id: course.id,
+            order: (course.lessons?.length ?? 0) + index + 1,
+          })
+        )
+      );
+
+      await Promise.all(
+        values.lessons.map(async (lesson: Lesson, lessonIndex: number) => {
+          const lessonId =
+            lesson.id ||
+            createdLessons[lessonIndex - existingLessons.length]?.id;
+          if (!lessonId) return;
+
+          const newTopics = lesson.topics?.filter((t: Topic) => !t.id) || [];
+          const existingTopics =
+            lesson.topics?.filter((t: Topic) => t.id) || [];
+
+          await Promise.all(
+            existingTopics.map((topic: Topic, topicIndex: number) =>
+              updateTopics.mutateAsync({
+                id: topic.id,
+                title: topic.title,
+                description: topic.description,
+                duration: `${topic.duration}`,
+                active: topic.active,
+                can_skip: topic.can_skip,
+                value: topic.title,
+                order: topic.order || topicIndex + 1,
+                topicable_type:
+                  'EscolaLms\\TopicTypes\\Models\\TopicContent\\RichText',
+              })
+            )
+          );
+
+          await Promise.all(
+            newTopics.map((topic: Topic, topicIndex: number) =>
+              createTopics.mutateAsync({
+                lesson_id: lessonId,
+                title: topic.title,
+                description: topic.description,
+                duration: `${topic.duration}`,
+                active: topic.active,
+                can_skip: topic.can_skip,
+                value: topic.title,
+                order: existingTopics.length + topicIndex + 1,
+                topicable_type:
+                  'EscolaLms\\TopicTypes\\Models\\TopicContent\\RichText',
+              })
+            )
+          );
+        })
+      );
+
+      const updatedCourse = await api.courses.getCourse(params.id!);
+      setCourse(updatedCourse);
+    } catch (error) {
+      console.error('Error saving curriculum:', error);
+    }
   };
 
-  const addSection = () => {
-    updateSections((prev) => [...prev, createEmptySection()]);
-  };
-
-  const deleteSection = (sectionId: string) => {
-    updateSections((prev) => prev.filter((s) => s.id !== sectionId));
-  };
-
-  const addLecture = (sectionId: string) => {
-    updateSections((prev) =>
-      prev.map((s) =>
-        s.id === sectionId
-          ? { ...s, lectures: [...s.lectures, createEmptyLecture()] }
-          : s
-      )
-    );
-  };
-
-  const deleteLecture = (sectionId: string, lectureId: string) => {
-    updateSections((prev) =>
-      prev.map((s) =>
-        s.id === sectionId
-          ? {
-              ...s,
-              lectures: s.lectures.filter((l) => l.id !== lectureId),
-            }
-          : s
-      )
-    );
-  };
-
-  const updateLectureField = (
-    sectionId: string,
-    lectureId: string,
-    field: keyof Lecture,
-    value: any
+  const onDeleteLesson = (
+    lessonIndex: number,
+    fieldName: number,
+    removeLesson: (name: number) => void
   ) => {
-    updateSections((prev) =>
-      prev.map((s) =>
-        s.id === sectionId
-          ? {
-              ...s,
-              lectures: s.lectures.map((l) =>
-                l.id === lectureId ? { ...l, [field]: value } : l
-              ),
-            }
-          : s
-      )
-    );
+    const lessonId = form.getFieldValue(['lessons', lessonIndex, 'id']);
+    if (lessonId) deleteLesson.mutate(lessonId);
+    removeLesson(fieldName);
   };
 
-  const updateSectionTitle = (sectionId: string, title: string) => {
-    updateSections((prev) =>
-      prev.map((s) => (s.id === sectionId ? { ...s, title } : s))
-    );
-  };
-
-  const updateLectureTitle = (
-    sectionId: string,
-    lectureId: string,
-    title: string
+  const onDeleteTopic = (
+    lessonIndex: number,
+    topicFieldName: number,
+    removeTopic: (name: number) => void
   ) => {
-    updateLectureField(sectionId, lectureId, 'title', title);
+    const topicId = form.getFieldValue([
+      'lessons',
+      lessonIndex,
+      'topics',
+      topicFieldName,
+      'id',
+    ]);
+    if (topicId) {
+      deleteTopics.mutate(topicId);
+    }
+    removeTopic(topicFieldName);
   };
 
-  const renderLectureCollapseItems = (section: Section) =>
-    section.lectures.map((lecture) => ({
-      key: lecture.id,
-      label: (
-        <Flex justify="space-between" align="center" gap={8}>
-          {editingLectureId === lecture.id ? (
-            <Flex className={styles.stretch} gap={8}>
-              <Input
-                autoFocus
-                value={tempTitle}
-                onChange={(e) => setTempTitle(e.target.value)}
-                onClick={(e) => e.stopPropagation()}
-              />
-              <Button
-                icon={<CheckOutlined />}
-                size="small"
-                type="primary"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  updateLectureTitle(section.id, lecture.id, tempTitle);
-                  setEditingLectureId(null);
-                  setTempTitle('');
-                }}
-              />
-              <Button
-                icon={<CloseOutlined />}
-                size="small"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setEditingLectureId(null);
-                  setTempTitle('');
-                }}
-              />
-            </Flex>
-          ) : (
-            <Flex
-              justify="space-between"
-              align="center"
-              className={styles.stretch}
-              gap={4}
-            >
-              <Text>{lecture.title || 'Untitled Lecture'}</Text>
-              <Flex gap={4}>
-                <Button
-                  icon={<EditOutlined />}
-                  size="small"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setEditingLectureId(lecture.id);
-                    setTempTitle(lecture.title);
-                  }}
-                />
-                <Button
-                  icon={<DeleteOutlined />}
-                  danger
-                  size="small"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    deleteLecture(section.id, lecture.id);
-                  }}
-                />
-              </Flex>
-            </Flex>
-          )}
-        </Flex>
-      ),
-      children: (
-        <Flex vertical gap={8}>
-          <Input
-            placeholder="Description"
-            value={lecture.description}
-            onChange={(e) =>
-              updateLectureField(
-                section.id,
-                lecture.id,
-                'description',
-                e.target.value
-              )
-            }
-          />
-          <Flex justify="space-between" align="center">
-            <Text>Active</Text>
-            <Switch
-              checked={lecture.active}
-              onChange={(checked) =>
-                updateLectureField(section.id, lecture.id, 'active', checked)
-              }
-            />
-          </Flex>
-          <Flex justify="space-between" align="center">
-            <Text>Can Skip</Text>
-            <Switch
-              checked={lecture.can_skip}
-              onChange={(checked) =>
-                updateLectureField(section.id, lecture.id, 'can_skip', checked)
-              }
-            />
-          </Flex>
-        </Flex>
-      ),
-    }));
+  const toggleLessonEdit = (index: number) => {
+    setEditingLesson((prev) => (prev === index ? null : index));
+  };
 
-  const sectionItems = sections.map((section) => ({
-    key: section.id,
-    label: (
-      <Flex justify="space-between" align="center" gap={8}>
-        {editingSectionId === section.id ? (
-          <Flex align="center" className={styles.stretch} gap={8}>
-            <Input
-              autoFocus
-              value={tempTitle}
-              onChange={(e) => setTempTitle(e.target.value)}
-              onClick={(e) => e.stopPropagation()}
-            />
-            <Button
-              icon={<CheckOutlined />}
-              size="small"
-              type="primary"
-              onClick={(e) => {
-                e.stopPropagation();
-                updateSectionTitle(section.id, tempTitle);
-                setEditingSectionId(null);
-                setTempTitle('');
-              }}
-            />
-            <Button
-              icon={<CloseOutlined />}
-              size="small"
-              onClick={(e) => {
-                e.stopPropagation();
-                setEditingSectionId(null);
-                setTempTitle('');
-              }}
-            />
-          </Flex>
-        ) : (
-          <Flex
-            justify="space-between"
-            align="center"
-            className={styles.stretch}
-            gap={8}
-          >
-            <Text>{section.title || 'Untitled Section'}</Text>
-            <Flex gap={4}>
-              <Button
-                icon={<EditOutlined />}
-                size="small"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setEditingSectionId(section.id);
-                  setTempTitle(section.title);
-                }}
-              />
-              <Button
-                icon={<PlusOutlined />}
-                size="small"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  addLecture(section.id);
-                }}
-              />
-              <Button
-                icon={<DeleteOutlined />}
-                danger
-                size="small"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  deleteSection(section.id);
-                }}
-              />
-            </Flex>
-          </Flex>
-        )}
-      </Flex>
-    ),
-    children: (
-      <Collapse items={renderLectureCollapseItems(section)} bordered={false} />
-    ),
-  }));
+  const toggleTopicEdit = (lessonIndex: number, topicIndex: number) => {
+    setEditingTopic((prev) =>
+      prev?.lesson === lessonIndex && prev?.topic === topicIndex
+        ? null
+        : { lesson: lessonIndex, topic: topicIndex }
+    );
+  };
 
   return (
-    <Flex vertical className={styles.container} gap={16}>
-      <Flex justify="space-between" align="center">
-        <Typography.Title level={4}>Curriculum</Typography.Title>
-        <Button type="dashed" icon={<PlusOutlined />} onClick={addSection}>
-          Add Section
-        </Button>
+    <Form form={form} className={styles.container} layout="vertical">
+      <Flex vertical gap={24}>
+        <Title level={4}>Curriculum</Title>
+        <Form.List name="lessons">
+          {(lessonFields, { add: addLesson, remove: removeLesson }) => (
+            <>
+              <Collapse
+                accordion
+                items={lessonFields.map((field, index) => ({
+                  key: field.key.toString(),
+                  label: (
+                    <LessonItem
+                      index={index}
+                      name={field.name}
+                      form={form}
+                      isEditing={editingLesson === index}
+                      onToggleEdit={toggleLessonEdit}
+                      onCancelEdit={() => setEditingLesson(null)}
+                      onDelete={() =>
+                        onDeleteLesson(index, field.name, removeLesson)
+                      }
+                    />
+                  ),
+                  children: (
+                    <TopicList
+                      form={form}
+                      lessonIndex={index}
+                      lessonName={field.name}
+                      editingTopic={editingTopic}
+                      onToggleTopicEdit={toggleTopicEdit}
+                      onCancelTopicEdit={() => setEditingTopic(null)}
+                      onDeleteTopic={(topicFieldName, remove) =>
+                        onDeleteTopic(index, topicFieldName, remove)
+                      }
+                    />
+                  ),
+                }))}
+              />
+
+              <Button
+                type="dashed"
+                icon={<PlusOutlined />}
+                block
+                style={{ marginTop: 16 }}
+                onClick={() => addLesson({ title: '', topics: [] })}
+              >
+                Add Lesson
+              </Button>
+            </>
+          )}
+        </Form.List>
+
+        <Flex className={styles.optionsButtons} justify="space-between">
+          <Button
+            size="large"
+            className={styles.save}
+            onClick={onHandleBack}
+            style={activeKey === '1' ? { visibility: 'hidden' } : {}}
+          >
+            Back
+          </Button>
+          <Flex gap={32}>
+            <Button size="large" className={styles.save} onClick={onSave}>
+              Save
+            </Button>
+            <Button
+              size="large"
+              type="primary"
+              onClick={async () => {
+                await onSave();
+                onHandleNext();
+              }}
+            >
+              Save & Next
+            </Button>
+          </Flex>
+        </Flex>
       </Flex>
-      <Collapse accordion items={sectionItems} />
-    </Flex>
+    </Form>
   );
-};
+}

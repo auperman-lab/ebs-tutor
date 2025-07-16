@@ -4,7 +4,7 @@ import { Flex } from 'antd';
 import React, { ReactElement, SVGProps } from 'react';
 
 type StatCardProp = {
-  quantity: number;
+  quantity: number | string;
   title: string;
   icon: ReactElement<SVGProps<SVGSVGElement>>;
   color: string;
