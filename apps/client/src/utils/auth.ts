@@ -47,6 +47,7 @@ export const setToken = (token: string, exp: string) => {
     localStorage.setItem('exp', exp);
     localStorage.setItem('token', token);
   } catch (error) {
+    message.error('Error setting tokens in local storage:');
   }
 };
 
