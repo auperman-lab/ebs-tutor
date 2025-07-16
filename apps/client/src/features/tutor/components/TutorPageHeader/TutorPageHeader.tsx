@@ -1,23 +1,17 @@
 import { Avatar, Button, Flex } from 'antd';
 import { useStyles } from './styles';
 import { Facebook, NoImage, Star, User } from '@client/assets';
-import { useQuery } from '@tanstack/react-query';
-import { api } from '@client/api/api';
-import { useParams } from 'react-router-dom';
 
-export const TutorPageHeader = () => {
+type TutorPageHeaderProps = {
+	image?: string;
+	name?: string;
+	email?: string;
+	coursesAmount?: number;
+}
+
+export const TutorPageHeader = ({image, name, email, coursesAmount}:TutorPageHeaderProps) => {
 	const {styles} = useStyles();
-	const { id } = useParams();
 
-
-	if (!id) return <div>No id provided</div>;
-
-	const { data: tutor, isLoading } = useQuery({
-		queryKey: ['tutors'],
-		queryFn: () => api.courses.getTutor(id),
-	});
-
-	if (isLoading) return <div>Loading</div>
 
 	const onEmailShare = () => {
 		const subject = encodeURIComponent('Check out this course!');
@@ -45,16 +39,15 @@ export const TutorPageHeader = () => {
 		<Flex  justify='space-between' align='center' className={styles.wrapper}>
 			<Flex gap={24} align='center'>
 				{
-					tutor?.path_avatar
-						? <Avatar src={tutor?.url_avatar} shape='circle' className={styles.image}/>
+					image
+						? <Avatar src={image} shape='circle' className={styles.image}/>
 						: <NoImage className={styles.image}/>
 
 				}
-
 				<Flex vertical gap={24} className={styles.infoWrapper} justify='space-evenly'>
 					<Flex vertical align='star' gap={10}>
-						<div className={styles.title}>{tutor?.first_name} {tutor?.last_name}</div>
-						<div className={styles.subtitle}>{tutor?.email}</div>
+						<div className={styles.title}>{name}</div>
+						<div className={styles.subtitle}>{email}</div>
 					</Flex>
 					<Flex justify="space-between" align='center'>
 						<Flex gap={6}>
@@ -70,7 +63,7 @@ export const TutorPageHeader = () => {
 						<Flex gap={6}>
 							{/*todo: change after course page merge*/}
 							<User />
-							<div className={styles.text}>99</div>
+							<div className={styles.text}>{coursesAmount}</div>
 							<div className={styles.text}>courses</div>
 						</Flex>
 					</Flex>
