@@ -2,7 +2,6 @@ import { Col, Flex, Row, Spin } from 'antd';
 import { Filter, ListHeader } from '@clientFeatures/courseList';
 import { api } from '@clientApi';
 import { useQuery } from '@tanstack/react-query';
-import { LoadingOutlined } from '@ant-design/icons';
 import { useStyles } from './styles';
 import { CourseCard, PaginationComponent } from '@clientComponents';
 import { useURLQuery } from '@clientHooks';
@@ -35,7 +34,7 @@ export const CourseListPage = () => {
       </Col>
 
       {isLoading ? (
-        <Spin indicator={<LoadingOutlined spin />} size="large" />
+        <Spin size="large" />
       ) : (
         <Col span={18}>
           <Row gutter={[24, 24]}>

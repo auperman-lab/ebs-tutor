@@ -4,7 +4,6 @@ import { api } from '@clientApi';
 import { useURLQuery } from '@clientHooks';
 import { useStyles } from './styles';
 import { InstructorCard } from '@clientComponents';
-import { LoadingOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { Author } from '@clientTypes';
 
@@ -50,7 +49,7 @@ export const TeachersTab = () => {
       />
 
       {isLoading ? (
-        <Spin indicator={<LoadingOutlined spin />} size="large" />
+        <Spin size="large" />
       ) : !filteredTutors.length ? (
         <Empty description="No tutors found" />
       ) : (
