@@ -1,4 +1,4 @@
 export * from './CoursesTab';
 export * from './DashboardTab';
 export * from './Settings';
-export * from './Teacher';
+export * from './TeachersTab';

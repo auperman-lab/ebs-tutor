@@ -1,9 +1,9 @@
 export interface Course {
-  id: number; //important
-  created_at: string; //important
-  updated_at: string; //important
-  title: string; //important
-  summary: any; //important
+  id: number;
+  created_at: string;
+  updated_at: string;
+  title: string;
+  summary: any;
   image_path: string;
   video_path: any;
   duration: any;
@@ -12,12 +12,12 @@ export interface Course {
   authors: Author[];
   status: string;
   subtitle: string;
-  language: any; //important
+  language: any;
   description: any;
   categories: Category[];
   tags: Tag[];
-  level: string; //important
-  lessons?: Lesson[]
+  level: string;
+  lessons?: Lesson[];
   poster_path: any;
   active_from: string;
   active_to: string;
@@ -25,8 +25,8 @@ export interface Course {
   findable: boolean;
   scorm_sco_id: any;
   target_group: any;
-  users_count: number; //important
-  image_url: string; //important
+  users_count: number;
+  image_url: string;
   video_url: any;
   poster_url: any;
   teaser_url: any;
@@ -75,36 +75,35 @@ export interface Pivot {
   category_id: number;
 }
 
-
 export interface Lesson {
-  id: number
-  title: string
-  summary: any
-  duration: any
-  active: boolean
-  order: number
-  course_id: number
-  active_from: any
-  active_to: any
-  lessons: any[]
-  topics: Topic[]
+  id: number;
+  title: string;
+  summary: any;
+  duration: any;
+  active: boolean;
+  order: number;
+  course_id: number;
+  active_from: any;
+  active_to: any;
+  lessons: any[];
+  topics: Topic[];
 }
 
 export interface Topic {
-  id: number
-  title: string
-  lesson_id: number
-  active: boolean
-  preview: boolean
-  topicable_id: number
-  topicable_type: string
-  summary?: string
-  introduction?: string
-  description: any
-  order: number
-  json: any
-  can_skip: boolean
-  duration: any
+  id: number;
+  title: string;
+  lesson_id: number;
+  active: boolean;
+  preview: boolean;
+  topicable_id: number;
+  topicable_type: string;
+  summary?: string;
+  introduction?: string;
+  description: any;
+  order: number;
+  json: any;
+  can_skip: boolean;
+  duration: any;
 }
 
 export interface Tag {

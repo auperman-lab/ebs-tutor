@@ -43,16 +43,6 @@ export const AuthProvider = ({ children }: React.HTMLProps<HTMLElement>) => {
       return;
     }
 
-    if (authUser.roles.includes('admin')) {
-      const url = new URL('http://localhost:4201');
-      url.searchParams.set('token', data.token);
-      url.searchParams.set('expires_at', data.expires_at);
-
-      window.location.href = url.toString();
-      logout();
-      return;
-    }
-
     navigate(routes.main);
   };
 

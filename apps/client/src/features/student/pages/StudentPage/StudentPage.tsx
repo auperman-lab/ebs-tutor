@@ -1,20 +1,23 @@
 import { useState } from 'react';
 import { Button, Flex, Avatar, Typography, Tabs, TabsProps } from 'antd';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '@clientApi';
 import { useStyles } from './styles';
 import { useAuth } from '@clientHooks';
 import { ArrowRight } from '@clientAssets';
 import {
   DashboardTab,
   CoursesTab,
-  TeacherTab,
+  TeachersTab,
   SettingsTab,
 } from '@clientFeatures/student/components';
+import { getTokenData } from '@clientUtils';
 
 const { Title, Text } = Typography;
 
 export const StudentPage = () => {
   const { styles } = useStyles();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [activeKey, setActiveKey] = useState('1');
 
   const items: TabsProps['items'] = [
@@ -31,7 +34,7 @@ export const StudentPage = () => {
     {
       key: '3',
       label: <span className={styles.label}>Teachers</span>,
-      children: <TeacherTab />,
+      children: <TeachersTab />,
     },
     {
       key: '4',
@@ -39,6 +42,23 @@ export const StudentPage = () => {
       children: <SettingsTab />,
     },
   ];
+
+  const onToAdmin = () => {
+    const tokenData = getTokenData();
+    if (user?.roles.includes('admin')) {
+      const url = new URL('http://localhost:4201');
+      url.searchParams.set('token', tokenData.token);
+      url.searchParams.set('expires_at', tokenData.exp);
+
+      window.location.href = url.toString();
+    }
+  };
+
+  const { data } = useQuery({
+    queryKey: ['bio'],
+    queryFn: api.user.retrieveMyself,
+    staleTime: Infinity,
+  });
 
   return (
     <Flex vertical className={styles.container}>
@@ -51,20 +71,46 @@ export const StudentPage = () => {
           <Avatar size={110} src={user?.avatar}></Avatar>
           <Flex vertical gap={14}>
             <Title level={4}>{user?.fullName}</Title>
-            <Text type="secondary">{user?.email}</Text>
+            <Text>{data?.bio}</Text>
           </Flex>
         </Flex>
-        <Button size="large" type="primary" className={styles.become}>
-          <Flex align="center" gap={8}>
-            Become Instructor
-            <ArrowRight />
-          </Flex>
-        </Button>
+        <Flex vertical gap={24}>
+          {user?.roles.includes('admin') ? (
+            <Button
+              size="large"
+              type="primary"
+              onClick={() => onToAdmin()}
+              className={styles.become}
+            >
+              Go to admin dashboard
+              <ArrowRight />
+            </Button>
+          ) : (
+            <Button size="large" type="primary" className={styles.become}>
+              <Flex align="center" gap={8}>
+                Become Instructor
+                <ArrowRight />
+              </Flex>
+            </Button>
+          )}
+          <Button
+            size="large"
+            type="primary"
+            onClick={() => logout()}
+            className={styles.logout}
+          >
+            <Flex align="center" gap={8}>
+              Logout
+              <ArrowRight />
+            </Flex>
+          </Button>
+        </Flex>
       </Flex>
       <Tabs
         size="large"
         defaultActiveKey="1"
         activeKey={activeKey}
+        destroyOnHidden={true}
         onChange={(key) => setActiveKey(key)}
         items={items}
       />

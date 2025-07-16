@@ -11,7 +11,6 @@ export const useStyles = createStyles(({ token }) => ({
   },
 
   become: {
-    border: 0,
     fontWeight: 600,
     paddingInline: token.paddingLG,
   },
@@ -21,5 +20,12 @@ export const useStyles = createStyles(({ token }) => ({
     width: 300,
     fontWeight: 500,
     textAlign: 'center',
+  },
+
+  logout: {
+    border: 0,
+    fontWeight: 600,
+    paddingInline: token.paddingLG,
+    backgroundColor: token.danger.danger500,
   },
 }));

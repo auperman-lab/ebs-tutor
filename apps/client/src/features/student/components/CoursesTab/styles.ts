@@ -7,4 +7,7 @@ export const useStyles = createStyles(({ token }) => ({
   pagination: {
     margin: '40px 0',
   },
+  spinner: {
+    margin: '100px auto',
+  },
 }));

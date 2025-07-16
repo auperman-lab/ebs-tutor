@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Button, Flex, Typography, Row, Col, Carousel } from 'antd';
+import { Button, Flex, Typography, Row, Col, Carousel, Spin } from 'antd';
 import type { CarouselRef } from 'antd/es/carousel';
 import { useTheme } from 'antd-style';
 import { useQuery } from '@tanstack/react-query';
@@ -71,12 +71,21 @@ export const DashboardTab = () => {
     },
   ];
 
-  const { data: courses } = useQuery({
-    queryKey: ['myCourses'],
-    queryFn: () => api.courses.getAllCourses(),
+  const { data: myCourseIdsData, isLoading: loadingCourseIds } = useQuery({
+    queryKey: ['myCourseIds'],
+    queryFn: () => api.courses.getMyCourses(),
   });
 
-  const slides = courses?.data ? chunkArray(courses.data, 4) : [];
+  const { data: myCourses, isLoading: loadingCourses } = useQuery({
+    queryKey: ['myCourses', myCourseIdsData?.ids],
+    queryFn: () =>
+      api.courses.getAllCourses({
+        'ids[]': myCourseIdsData?.ids || [],
+      }),
+    enabled: !!myCourseIdsData?.ids?.length,
+  });
+
+  const slides = myCourses?.data ? chunkArray(myCourses.data, 4) : [];
 
   return (
     <Flex vertical className={styles.container} gap={24}>
@@ -84,7 +93,7 @@ export const DashboardTab = () => {
 
       <Row gutter={[24, 24]}>
         {dataItems.map((item) => (
-          <Col xs={24} sm={12} md={6} lg={6} xl={6} key={item.id}>
+          <Col xs={24} sm={12} md={6} key={item.id}>
             <StatCard
               color={item.color}
               title={item.subtitle}
@@ -109,24 +118,28 @@ export const DashboardTab = () => {
         </Flex>
       </Flex>
 
-      <Carousel ref={carouselRef} dots={false}>
-        {slides.map((slide, index) => (
-          <div key={index}>
-            <Row gutter={[24, 24]} justify="start">
-              {slide.map((item) => (
-                <Col key={item.id} xs={24} sm={12} md={6}>
-                  <CourseCard
-                    image_url={item.image_url}
-                    title={item.title}
-                    id={item.id}
-                    isProfileCard={true}
-                  />
-                </Col>
-              ))}
-            </Row>
-          </div>
-        ))}
-      </Carousel>
+      {loadingCourseIds || loadingCourses ? (
+        <Spin size="large" className={styles.spinner} />
+      ) : (
+        <Carousel ref={carouselRef} dots={false}>
+          {slides.map((slide, index) => (
+            <div key={index}>
+              <Row gutter={[24, 24]} justify="start">
+                {slide.map((item) => (
+                  <Col key={item.id} xs={24} sm={12} md={6}>
+                    <CourseCard
+                      image_url={item.image_url}
+                      title={item.title}
+                      id={item.id}
+                      isProfileCard={true}
+                    />
+                  </Col>
+                ))}
+              </Row>
+            </div>
+          ))}
+        </Carousel>
+      )}
     </Flex>
   );
 };
