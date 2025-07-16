@@ -21,7 +21,6 @@
     "paths": {
       "@api": ["apps/admin/src/api/api"],
       "@assets": ["apps/admin/src/assets/index.ts"],
-      "@types/*": ["apps/admin/src/types/*"],
       "@types": ["apps/admin/src/types/index.ts"],
       "@context": ["apps/admin/src/context/index.ts"],
       "@const": ["apps/admin/src/const.ts"],
@@ -29,7 +28,9 @@
       "@utils": ["apps/admin/src/utils/index.ts"],
       "@components": ["apps/admin/src/components/index.ts"],
       "@features/*": ["apps/admin/src/features/*"],
-      "@layout": ["apps/admin/src/layout/index.ts"]
+      "@layout": ["apps/admin/src/layout/index.ts"],
+
+      "@client/*":  ["apps/client/src/*"],
     }
   }
 }
