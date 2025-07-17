@@ -4,6 +4,7 @@ import { api } from '@client/api/api';
 import { useQuery } from '@tanstack/react-query';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useURLQuery } from '@client/hooks';
+import { GetTagsResponse } from '@client/types';
 
 export const Filter = () => {
   const { setParams, getParams } = useURLQuery();
@@ -51,7 +52,7 @@ export const Filter = () => {
   ];
 
   const tagOptions = [
-    ...tags.map((tag: any) => ({
+    ...tags.map((tag: GetTagsResponse) => ({
       label: tag.title,
       value: tag.title,
     })),

@@ -14,14 +14,15 @@ import { NoImage, Star, User } from '@client/assets';
 import { routes } from '@client/const';
 import { useStyles } from './styles';
 import { useTheme } from 'antd-style';
+import { formatPrice } from '@client/utils';
 
 const { Text } = Typography;
 
 type CourseCardProps = {
   title: string;
   id: number;
-  users_count: number;
-  image_url: string;
+  usersCount: number;
+  imageUrl: string;
   categories: Category[];
   price?: number;
 };
@@ -29,20 +30,14 @@ type CourseCardProps = {
 export const CourseCard = ({
   title,
   id,
-  users_count,
-  image_url,
+  usersCount,
+  imageUrl,
   price,
   categories,
 }: CourseCardProps) => {
   const navigate = useNavigate();
   const { styles } = useStyles();
   const palette = useTheme();
-
-  const formatPrice = (price?: number) => {
-    if (price === 0) return 'Free';
-    if (price != null) return `$${price.toFixed(2)}`;
-    return 'N/A';
-  };
 
   const onClick = () => {
     navigate(routes.courses + `/${id}`);
@@ -52,10 +47,10 @@ export const CourseCard = ({
       <Card
         hoverable
         cover={
-          image_url ? (
+          imageUrl ? (
             <Image
               alt="example"
-              src={image_url}
+              src={imageUrl}
               height={200}
               preview={false}
               className={styles.cover}
@@ -104,7 +99,7 @@ export const CourseCard = ({
             </Flex>
             <Flex align="center" gap={6}>
               <User />
-              {users_count}
+              {usersCount}
               <Text type="secondary" color="#4E5566">
                 {' '}
                 students
