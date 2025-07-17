@@ -1,7 +1,7 @@
-import { Button, Divider, Flex, Spin } from 'antd';
+import { Button, Divider, Flex, message, Spin } from 'antd';
 import { useStyles } from './styles';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@client/api/api';
 import { LoadingOutlined } from '@ant-design/icons';
 import {
@@ -21,15 +21,42 @@ import {
   Users,
 } from '@client/assets';
 import { routes } from '@client/const';
+import { useState } from 'react';
 
 export const Sidebar = () => {
   const { id } = useParams();
   const { styles } = useStyles();
   const navigate = useNavigate();
 
+  const [inCart, setInCart] = useState(false);
+
   const { data: course, isLoading } = useQuery({
     queryKey: ['course', id],
     queryFn: () => api.courses.getCourse(id!),
+  });
+
+  const { mutate: addToCartMutation } = useMutation({
+    mutationFn: (payload: { product_id: number }) =>
+      api.cart.add({ product_id: payload.product_id }),
+    onSuccess: () => {
+      console.log('set in cart');
+      setInCart(true);
+      message.success('Added to cart');
+    },
+    onError: () => {
+      message.error('Failed to add to cart');
+    },
+  });
+
+  const { mutate: removeFromCartMutation } = useMutation({
+    mutationFn: () => api.cart.remove(course?.product.id || 0), // assuming product.id is used
+    onSuccess: () => {
+      setInCart(false);
+      message.success('Removed from cart');
+    },
+    onError: () => {
+      message.error('Failed to remove from cart');
+    },
   });
 
   const getPrice = (price: number | undefined | null): string => {
@@ -101,6 +128,17 @@ export const Sidebar = () => {
     return navigate(routes.cart);
   };
 
+  const onCartClick = () => {
+    if (!course?.product?.id) return;
+
+    if (inCart) {
+      removeFromCartMutation();
+    } else {
+      addToCartMutation({
+        product_id: course.product.id,
+      });
+    }
+  };
   if (isLoading)
     return <Spin indicator={<LoadingOutlined spin />} size="large" />;
 
@@ -166,8 +204,13 @@ export const Sidebar = () => {
       </Flex>
       <Divider className={styles.dividerNoMargin} />
       <Flex vertical gap={12}>
-        <Button size="large" type="primary">
-          Add To Cart
+        <Button
+          size="large"
+          type="primary"
+          onClick={onCartClick}
+          // loading={isAdding || isRemoving}
+        >
+          {inCart ? 'Delete from Cart' : 'Add To Cart'}
         </Button>
         <Button
           size="large"
