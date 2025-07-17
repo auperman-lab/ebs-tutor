@@ -33,15 +33,31 @@ export const Footer = () => {
               mattis odio at.
             </p>
             <Flex gap={12}>
-              <Button icon={<Facebook />} size="large" type="primary"></Button>
+              <Button
+                icon={<Facebook />}
+                size="large"
+                className={styles.customButton}
+              />
               <Button
                 icon={<Instagram color="white" />}
                 size="large"
-                type="primary"
-              ></Button>
-              <Button icon={<Linkedin />} size="large" type="primary"></Button>
-              <Button icon={<Twitter />} size="large" type="primary"></Button>
-              <Button icon={<YouTube />} size="large" type="primary"></Button>
+                className={styles.customButton}
+              />
+              <Button
+                icon={<Linkedin />}
+                size="large"
+                className={styles.customButton}
+              />
+              <Button
+                icon={<Twitter />}
+                size="large"
+                className={styles.customButton}
+              />
+              <Button
+                icon={<YouTube />}
+                size="large"
+                className={styles.customButton}
+              />
             </Flex>
           </Flex>
           <Row justify="space-evenly" className={styles.row}>
@@ -90,18 +106,18 @@ export const Footer = () => {
               <Flex vertical gap={32}>
                 <p className={styles.headings}>Downlaod our app</p>
                 <Flex vertical gap={21}>
-                  <Button size="large" type="primary">
+                  <Button size="large" className={styles.customButton}>
                     <Flex align="center" gap={12}>
-                      <Apple width={24} height={24} color="white" />
+                      <Apple width={24} height={24} />
                       <Flex vertical align="start">
                         <p className={styles.now}>Download now</p>
                         <p>App Store</p>
                       </Flex>
                     </Flex>
                   </Button>
-                  <Button size="large" type="primary">
+                  <Button size="large" className={styles.customButton}>
                     <Flex align="center" gap={12}>
-                      <GooglePlay width={24} height={24} color="white" />
+                      <GooglePlay width={24} height={24} />
                       <Flex vertical align="start">
                         <p className={styles.now}>Download now</p>
                         <p>Play Store</p>

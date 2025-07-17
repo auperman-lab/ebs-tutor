@@ -5,6 +5,11 @@ export const useStyles = createStyles(({ token }) => ({
     backgroundColor: '#1D2026',
     color: '#8C94A3',
   },
+  customButton: {
+    backgroundColor: '#FFFFFF0D',
+    border: 0,
+    color: token.colorWhite,
+  },
   container: {
     width: '80%',
     marginInline: 'auto',

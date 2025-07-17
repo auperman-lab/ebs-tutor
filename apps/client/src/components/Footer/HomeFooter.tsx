@@ -16,7 +16,9 @@ export const MainFooter = () => {
               <Button size="large" type="primary">
                 Join the Family
               </Button>
-              <Button size="large">Browse all courses</Button>
+              <Button size="large" className={styles.customButton}>
+                Browse all courses
+              </Button>
             </Flex>
           </Flex>
           <Row align="middle">
