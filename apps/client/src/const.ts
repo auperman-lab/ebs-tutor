@@ -34,6 +34,9 @@ export const apiEndpoints = {
   getTags: '/tags/unique',
   getAllCourses: '/courses',
   getTutors: '/tutors',
+  getCart: '/cart',
+  deleteCartItem: '/cart/products',
+  addCartItem: '/cart/add',
 };
 
 export enum Roles {
