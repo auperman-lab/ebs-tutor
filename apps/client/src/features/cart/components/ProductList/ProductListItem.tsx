@@ -25,7 +25,7 @@ export const ProductListItem = ({
     <List.Item
       className={styles.item}
       actions={[
-        <Button size="large" type="text" danger key="wishlist">
+        <Button size="large" type="text" className={styles.wishlist}>
           Move To Wishlist
         </Button>,
       ]}

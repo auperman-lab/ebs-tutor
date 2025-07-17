@@ -4,6 +4,7 @@ import { useStyles } from './styles';
 
 export const CartPage = () => {
   const { styles } = useStyles();
+
   return (
     <Flex
       gap={24}
@@ -12,8 +13,8 @@ export const CartPage = () => {
       align="center"
       className={styles.wrapper}
     >
-      <div>Shopping Cart</div>
-      <Flex gap={24}>
+      <div className={styles.title}>Shopping Cart ()</div>
+      <Flex gap={24} className={styles.container}>
         <ProductList />
         <Sider price={75} />
       </Flex>

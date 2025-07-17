@@ -6,12 +6,18 @@ export const useStyles = createStyles(({ token, responsive }) => ({
     alignItems: 'center',
     gap: 16,
     padding: 24,
+    minWidth: '150px',
     [responsive.md]: {
       flexDirection: 'column',
       alignItems: 'flex-start',
       gap: 12,
       padding: 16,
     },
+  },
+
+  wishlist: {
+    maxWidth: '150px',
+    color: token.colorPrimary,
   },
 
   image: {
@@ -94,7 +100,7 @@ export const useStyles = createStyles(({ token, responsive }) => ({
 
   priceContainer: {
     textAlign: 'right',
-    minWidth: 100,
+    minWidth: 50,
     [responsive.md]: {
       textAlign: 'left',
       width: '100%',
@@ -104,11 +110,13 @@ export const useStyles = createStyles(({ token, responsive }) => ({
   },
 
   price: {
+    textWrap: 'nowrap',
     color: token.colorPrimary,
     fontSize: token.fontSizeXL,
   },
 
   oldPrice: {
+    textWrap: 'nowrap',
     marginLeft: 8,
     color: token.colorInfo,
     fontSize: token.fontSizeXL,
