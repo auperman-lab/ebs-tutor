@@ -21,13 +21,11 @@ import {
   Users,
 } from '@client/assets';
 import { routes } from '@client/const';
-import { useAuth } from '@client/hooks';
 
 export const Sidebar = () => {
   const { id } = useParams();
   const { styles } = useStyles();
   const navigate = useNavigate();
-  const { user } = useAuth();
 
   const { data: course, isLoading } = useQuery({
     queryKey: ['course', id],
@@ -100,9 +98,6 @@ export const Sidebar = () => {
   };
 
   const onBuy = () => {
-    if (!user) {
-      return navigate(routes.login);
-    }
     return navigate(routes.cart);
   };
 

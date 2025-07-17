@@ -17,7 +17,11 @@ export const LowerHeader = () => {
   const { user } = useAuth();
 
   const onLogoClick = () => {
-    navigate('/');
+    navigate(routes.main);
+  };
+
+  const onCartClick = () => {
+    navigate(routes.cart);
   };
 
   return (
@@ -69,6 +73,7 @@ export const LowerHeader = () => {
             type="text"
             className={styles.button}
             icon={<Cart />}
+            onClick={onCartClick}
           />
 
           {user ? (
