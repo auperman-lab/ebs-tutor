@@ -1,7 +1,7 @@
-import { jwtDecode } from "jwt-decode";
-
-import { AuthUser, DecodedToken, User } from "@clientTypes";
-import { api } from "@clientApi";
+import { jwtDecode } from 'jwt-decode';
+import { message } from 'antd';
+import { AuthUser, DecodedToken, User } from '@client/types';
+import { api } from '@client/api/api';
 
 export const isExpiredToken = (token: string): boolean => {
   try {
@@ -14,7 +14,7 @@ export const isExpiredToken = (token: string): boolean => {
 };
 
 export const getUserByToken = (): User | null => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   return token && !isExpiredToken(token) ? getUser() : null;
 };
 
@@ -27,7 +27,7 @@ export const decodeToken = async (token: string): Promise<AuthUser | null> => {
 
     const user: User = {
       id: data.id,
-      fullName: data.first_name + " " + data.last_name,
+      fullName: data.first_name + ' ' + data.last_name,
       avatar: data.avatar,
       email: data.email,
       roles: data.roles,
@@ -44,40 +44,39 @@ export const decodeToken = async (token: string): Promise<AuthUser | null> => {
 
 export const setToken = (token: string, exp: string) => {
   try {
-    localStorage.setItem("token", token);
-    localStorage.setItem("exp", exp);
-    console.log("token set to localstorage", token, exp);
+    localStorage.setItem('exp', exp);
+    localStorage.setItem('token', token);
   } catch (error) {
-    console.error("Error setting tokens in local storage:", error);
+    message.error('Error setting tokens in local storage:');
   }
 };
 
 export const getTokenExpiration = (): number | null => {
-  const exp = localStorage.getItem("exp");
+  const exp = localStorage.getItem('exp');
   return exp ? new Date(exp).getTime() : null;
 };
 
 export const setUser = (user: User) => {
   try {
-    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
   } catch (error) {
-    console.error("Error setting user in local storage:", error);
+    message.error('Error setting user in local storage:');
   }
 };
 
 export const getUser = (): User | null => {
   try {
-    const user = localStorage.getItem("user");
+    const user = localStorage.getItem('user');
     if (!user) return null;
     return JSON.parse(user);
   } catch (error) {
-    console.error("Error getting user from local storage:", error);
+    message.error('Error getting user from local storage:');
     return null;
   }
 };
 
 export const removeUser = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("exp");
-  localStorage.removeItem("user");
+  localStorage.removeItem('token');
+  localStorage.removeItem('exp');
+  localStorage.removeItem('user');
 };

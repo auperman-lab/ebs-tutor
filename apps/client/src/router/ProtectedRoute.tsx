@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { useAuth } from "@clientHooks";
-import { Roles, routes } from "@clientConst";
+import { useAuth } from "@client/hooks";
+import { Roles, routes } from "@client/const";
 import { Navigate } from "react-router-dom";
 
 
@@ -18,8 +18,7 @@ export const ProtectedRoute = ({ children }: Props) => {
     return <Navigate to={routes.login} replace />;
   }
 
-  if (user && user.roles.includes(Roles.ADMIN)) {
-    console.log("wtf", user.roles);
+  if (user && user.roles.includes(Roles.USER)) {
     return <>{children}</>;
   }
 

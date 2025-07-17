@@ -1,53 +1,115 @@
-import { FilterItem } from '@clientFeatures/courseList/components/Filter/FilterItem';
+import { FilterItem } from './FilterItem';
 import { Flex, Spin } from 'antd';
-import { api } from '@clientApi';
+import { api } from '@client/api/api';
 import { useQuery } from '@tanstack/react-query';
 import { LoadingOutlined } from '@ant-design/icons';
+import { useURLQuery } from '@client/hooks';
 
 export const Filter = () => {
+  const { setParams, getParams } = useURLQuery();
 
-	const { data: categories = [], isLoading: isLoadingCategory, isError } = useQuery({
-		queryKey: ['categories'],
-		queryFn: api.courses.getCategories,
-		staleTime: Infinity,
-	});
+  const params = getParams();
+  const selectedCategories = params.category ?? [];
+  const selectedTags = params.tag ?? [];
+  const selectedTutors = params.tutor ?? [];
 
-	const { data: tags = [], isLoading: isLoadingTags } = useQuery({
-		queryKey: ['tags'],
-		queryFn: api.courses.getTags,
-		staleTime: Infinity,
-	});
+  const {
+    data: categories = [],
+    isLoading: isLoadingCategory,
+    isError,
+  } = useQuery({
+    queryKey: ['categories'],
+    queryFn: api.courses.getCategories,
+    staleTime: Infinity,
+  });
 
-	const categoryOptions = [
-		...categories.map((cat) => ({
-			label: cat.name,
-			value: cat.id.toString(),
-			icon: cat.icon,
-		})),
-	];
+  const { data: tags = [], isLoading: isLoadingTags } = useQuery({
+    queryKey: ['tags'],
+    queryFn: api.courses.getTags,
+    staleTime: Infinity,
+  });
 
-	const tagOptions = [
-		...tags.map((tag: any) => ({
-			label: tag.title,
-			value: tag.id,
-		})),
-	];
+  const { data: tutors = [], isLoading: isLoadingTutors } = useQuery({
+    queryKey: ['tutors'],
+    queryFn: api.courses.getTutors,
+    staleTime: Infinity,
+  });
 
-	if (isLoadingCategory || isLoadingTags) return (<Spin indicator={<LoadingOutlined spin />} size="large" />);
-	if (isError) return <div>error of course</div>;
+  const categoryOptions = [
+    ...categories.map((cat) => ({
+      label: cat.name,
+      value: cat.id.toString(),
+      icon: cat.icon,
+    })),
+  ];
 
-	return (
-		<Flex vertical gap={24}>
-			<FilterItem
-				label="Categories"
-				options={categoryOptions}
+  const tutorOptions = [
+    ...tutors.map((tutor) => ({
+      label: tutor.first_name + tutor.last_name,
+      value: tutor.id.toString(),
+    })),
+  ];
 
-			/>
-			<FilterItem
-				label="Tags"
-				options={tagOptions}
+  const tagOptions = [
+    ...tags.map((tag: any) => ({
+      label: tag.title,
+      value: tag.title,
+    })),
+  ];
 
-			/>
-		</Flex>
-	);
+  const onCategoryChange = (checked: string[]) => {
+    const ids = checked.map(Number);
+    setParams({ category: ids, page: 1 });
+  };
+
+  const onTutorChange = (checked: string[]) => {
+    const ids = checked.map(Number);
+    setParams({ tutor: ids, page: 1 });
+  };
+
+  const onTagChange = (ids: string[]) => {
+    const titles = tagOptions
+      .filter((tagOption) => ids.includes(tagOption.value))
+      .map((tagOption) => tagOption.label);
+    setParams({ tag: titles, page: 1 });
+  };
+
+  if (isError) return <div>error of course</div>;
+
+  return (
+    <Flex vertical gap={24}>
+      {isLoadingCategory ? (
+        <Spin indicator={<LoadingOutlined spin />} size="large" />
+      ) : (
+        <FilterItem
+          label="Categories"
+          options={categoryOptions}
+          onChange={onCategoryChange}
+          checkedItems={selectedCategories.map(String)}
+        />
+      )}
+
+      {isLoadingTags ? (
+        <Spin indicator={<LoadingOutlined spin />} size="large" />
+      ) : (
+        <FilterItem
+          label="Tags"
+          options={tagOptions}
+          onChange={onTagChange}
+          checkedItems={selectedTags}
+        />
+      )}
+
+      {isLoadingTutors ? (
+        <Spin indicator={<LoadingOutlined spin />} size="large" />
+      ) : (
+        <FilterItem
+          label="Tutors"
+          options={tutorOptions}
+          onChange={onTutorChange}
+          checkedItems={selectedTutors.map(String)}
+        />
+      )}
+    </Flex>
+  );
 };

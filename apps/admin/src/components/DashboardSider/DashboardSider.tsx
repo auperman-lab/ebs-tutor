@@ -1,5 +1,5 @@
 import { Layout, Menu, Flex, Divider, Button } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   ChartBar,
   PlusCircle,
@@ -18,32 +18,32 @@ const { Sider } = Layout;
 
 const menuItems = [
   {
-    key: 1,
+    key: routes.main,
     icon: <ChartBar />,
     label: <Link to={routes.main}>Dashboard</Link>,
   },
   {
-    key: 2,
+    key: routes.create,
     icon: <PlusCircle />,
     label: <Link to={routes.create}>Create New Course</Link>,
   },
   {
-    key: 3,
+    key: routes.courses,
     icon: <Stack />,
     label: <Link to={routes.courses}>My Courses</Link>,
   },
   {
-    key: 4,
+    key: '/earnings',
     icon: <CreditCard />,
     label: <Link to={routes.main}>Earnings</Link>,
   },
   {
-    key: 5,
+    key: '/message',
     icon: <ChatCircle />,
     label: <Link to={routes.main}>Message</Link>,
   },
   {
-    key: 6,
+    key: routes.settings,
     icon: <Gear />,
     label: <Link to={routes.settings}>Settings</Link>,
   },
@@ -52,6 +52,15 @@ const menuItems = [
 export const DashboardSider = () => {
   const { styles } = useStyles();
   const { logout } = useAuth();
+  const location = useLocation();
+
+  const selectedKey = menuItems.find((item) => {
+    if (item.key === '/') {
+      return location.pathname === '/';
+    }
+    return location.pathname.startsWith(item.key);
+  })?.key;
+
   return (
     <Sider width="280px" className={styles.sidebar} breakpoint="lg">
       <Flex vertical justify="space-between" className={styles.flexContainer}>
@@ -63,12 +72,17 @@ export const DashboardSider = () => {
             </Flex>
           </Link>
           <Divider className={styles.divider} />
-          <Menu mode="inline" items={menuItems} theme="dark" />
+          <Menu
+            mode="inline"
+            items={menuItems}
+            theme="dark"
+            selectedKeys={selectedKey ? [selectedKey] : []}
+          />
         </div>
         <Button className={styles.logOut} size="large" onClick={logout}>
           <Flex align="center" gap={12}>
             <SignOut />
-            <p> Sign-Out</p>
+            <p>Sign-Out</p>
           </Flex>
         </Button>
       </Flex>

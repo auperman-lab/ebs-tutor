@@ -14,7 +14,7 @@ export const ProtectedRoute = ({ children }: Props) => {
     return <Navigate to={routes.login} replace />;
   }
 
-  if (user && user.roles.includes(Roles.ADMIN)) {
+  if (user.roles.includes(Roles.ADMIN)) {
     return <>{children}</>;
   }
 

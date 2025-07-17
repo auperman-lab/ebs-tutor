@@ -1,4 +1,4 @@
-import { SallyRegistration } from '@clientAssets';
+import { SallyRegistration } from '@client/assets';
 import { Flex } from 'antd';
 import { useStyles } from './styles';
 

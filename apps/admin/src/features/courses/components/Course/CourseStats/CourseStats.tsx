@@ -32,19 +32,19 @@ export const CourseStats = () => {
   const stats = [
     {
       title: 'Course Level',
-      quantity: course.level,
+      quantity: course.level || 0,
       icon: <ChartBar />,
       color: '#00FF00',
     },
     {
       title: 'Course Language',
-      quantity: course.language,
+      quantity: course.language || 0,
       icon: <Gear />,
       color: '#FF0000',
     },
     {
       title: 'Students Enrolled',
-      quantity: course.users_count,
+      quantity: course.users_count || 0,
       icon: <CreditCard />,
       color: '#0000FF',
     },

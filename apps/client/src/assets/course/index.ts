@@ -17,5 +17,6 @@ export {default as Trophy} from './Trophy.svg?react';
 export {default as Envelope} from './Envelope.svg?react';
 export {default as Linkedin} from './Linkedin.svg?react';
 export {default as Twitter} from './Twitter.svg?react';
-
-
+export { default as Youtube } from './Youtube.svg?react';
+export { default as Instagram } from './Instagram.svg?react';
+export { default as Whatsapp } from './Whatsapp.svg?react';

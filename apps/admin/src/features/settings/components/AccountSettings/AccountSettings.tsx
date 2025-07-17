@@ -10,7 +10,7 @@ import {
   Select,
   Upload,
 } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import { UploadSimple } from '@assets';
 import { useStyles } from './styles';
 import { useAuth } from '@hooks';
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -61,7 +61,8 @@ export const AccountSettings = () => {
       first_name: values.firstName,
       last_name: values.lastName,
       phone: values.phone,
-      bio: values.title,
+      bio: values.bio,
+      address: values.address,
     };
     mutateInfo(data);
 
@@ -93,7 +94,7 @@ export const AccountSettings = () => {
         lastName: profileData.last_name,
         username: profileData.first_name + ' ' + profileData.last_name,
         phone: profileData.phone,
-        title: profileData.bio,
+        address: profileData.address,
         bio: profileData.bio,
       });
       setImageUrl(profileData.avatar);
@@ -169,7 +170,7 @@ export const AccountSettings = () => {
               onChange={onChange}
               accept="image/*"
             >
-              <Button icon={<UploadOutlined />}>Upload Image</Button>
+              <Button icon={<UploadSimple />}>Upload Image</Button>
             </Upload>
 
             <p className={styles.imageNote}>
@@ -179,9 +180,9 @@ export const AccountSettings = () => {
         </Flex>
 
         <Flex vertical gap={64}>
-          <Form.Item layout="vertical" name="title" label="Title">
+          <Form.Item layout="vertical" name="address" label="Address">
             <Input
-              placeholder="Your tittle, proffesion or small biography"
+              placeholder="Your address"
               count={{
                 show: true,
                 max: 50,
@@ -189,7 +190,7 @@ export const AccountSettings = () => {
               size="large"
             />
           </Form.Item>
-          <Form.Item layout="vertical" name="title" label="Biography">
+          <Form.Item layout="vertical" name="bio" label="Biography">
             <Input.TextArea
               placeholder="Your tittle, proffesion or small biography"
               className={styles.textArea}
