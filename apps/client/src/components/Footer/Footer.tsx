@@ -13,50 +13,15 @@ import {
 import { Link, useLocation } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { routes } from '@clientConst';
+import { MainFooter } from './HomeFooter';
 
-export const MainFooter = () => {
+export const Footer = () => {
   const { styles } = useStyles();
   const location = useLocation();
 
   return (
     <footer className={styles.footer}>
-      {location.pathname === routes.main ? (
-        <div className={styles.borderBottom}>
-          <Flex className={styles.container} gap={200}>
-            <Flex vertical gap={32}>
-              <p className={styles.startLearning}>
-                Start learning with 67.1k students around the world.
-              </p>
-              <Flex gap={16}>
-                <Button size="large" type="primary">
-                  Join the Family
-                </Button>
-                <Button size="large">Browse all courses</Button>
-              </Flex>
-            </Flex>
-            <Row align="middle">
-              <Col span={8}>
-                <Flex vertical gap={12}>
-                  <p className={styles.startLearning}>6.3k</p>
-                  <p>Online courses</p>
-                </Flex>
-              </Col>
-              <Col span={8}>
-                <Flex vertical gap={12}>
-                  <p className={styles.startLearning}>26k</p>
-                  <p>Certified Instructor</p>
-                </Flex>
-              </Col>
-              <Col span={8}>
-                <Flex vertical gap={12}>
-                  <p className={styles.startLearning}>99.9%</p>
-                  <p>Sucess Rate</p>
-                </Flex>
-              </Col>
-            </Row>
-          </Flex>
-        </div>
-      ) : null}
+      {location.pathname === routes.main ? <MainFooter /> : null}
       <div className={styles.borderBottom}>
         <Flex className={styles.container} gap={100}>
           <Flex vertical gap={26} className={styles.buttonsSegment}>

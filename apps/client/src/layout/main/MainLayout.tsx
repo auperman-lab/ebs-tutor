@@ -1,12 +1,12 @@
-import { Layout } from "antd";
-import { Outlet } from "react-router-dom";
-import { MainHeader, MainFooter } from "@clientComponents";
-import { useStyles } from "./styles";
+import { Layout } from 'antd';
+import { Outlet } from 'react-router-dom';
+import { MainHeader, Footer } from '@clientComponents';
+import { useStyles } from './styles';
 
 const { Content } = Layout;
 
 export const MainLayout = () => {
-  const {styles} = useStyles();
+  const { styles } = useStyles();
 
   return (
     <Layout className={styles.layout}>
@@ -14,7 +14,7 @@ export const MainLayout = () => {
       <Content className={styles.content}>
         <Outlet />
       </Content>
-      <MainFooter />
+      <Footer />
     </Layout>
   );
 };

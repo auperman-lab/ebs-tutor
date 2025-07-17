@@ -1,3 +1,3 @@
-export * from "./MainFooter"
-export * from "./MainHeader"
-export * from "./PaginationComponent"
+export * from './Footer';
+export * from './MainHeader';
+export * from './PaginationComponent';
