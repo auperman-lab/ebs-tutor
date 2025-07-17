@@ -15,7 +15,7 @@ export const CartPage = () => {
       <div>Shopping Cart</div>
       <Flex gap={24}>
         <ProductList />
-        <Sider />
+        <Sider price={75} />
       </Flex>
     </Flex>
   );
