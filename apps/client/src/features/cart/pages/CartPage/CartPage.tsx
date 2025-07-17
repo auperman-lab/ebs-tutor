@@ -1,3 +1,22 @@
+import { Flex } from 'antd';
+import { ProductList, Sider } from '@client/features/cart';
+import { useStyles } from './styles';
+
 export const CartPage = () => {
-  return <div>asdasd</div>;
+  const { styles } = useStyles();
+  return (
+    <Flex
+      gap={24}
+      vertical
+      justify="center"
+      align="center"
+      className={styles.wrapper}
+    >
+      <div>Shopping Cart</div>
+      <Flex gap={24}>
+        <ProductList />
+        <Sider />
+      </Flex>
+    </Flex>
+  );
 };
