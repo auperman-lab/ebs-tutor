@@ -2,7 +2,7 @@ import { Flex, Spin } from 'antd';
 import { useParams } from 'react-router-dom';
 import { useStyles } from './styles';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '@clientApi';
+import { api } from '@client/api/api';
 import { LoadingOutlined } from '@ant-design/icons';
 import { InstructorItem } from './InstructorItem';
 
@@ -18,8 +18,7 @@ export const Instructor = () => {
   if (isCourseLoading)
     return <Spin indicator={<LoadingOutlined spin />} size="large" />;
 
-  if (!course?.authors)
-    return <div>No instructor information available.</div>;
+  if (!course?.authors) return <div>No instructor information available.</div>;
 
   return (
     <Flex vertical gap={20}>

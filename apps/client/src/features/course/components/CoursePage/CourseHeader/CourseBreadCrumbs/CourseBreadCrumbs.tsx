@@ -2,8 +2,8 @@ import { Breadcrumb } from 'antd';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { CourseBreadCrumbsSkeleton } from './CourseBreadCrumbsSkeleton';
-import { api } from '@clientApi';
-import { routes } from '@clientConst';
+import { api } from '@client/api/api';
+import { routes } from '@client/const';
 
 export const CourseBreadCrumbs = () => {
   const { id } = useParams();
