@@ -5,7 +5,6 @@ import {
   Dropdown,
   Flex,
   Image,
-  MenuProps,
   Row,
   Tag,
   Tooltip,
@@ -15,7 +14,7 @@ import { useStyles } from './styles';
 import { DotsThree, NoImage, Star, User } from '@assets';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { routes } from '@const';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@api';
 import { GetCoursesRequest } from '@types';
 import { ParamsType } from '@features/courses/types';
@@ -25,29 +24,8 @@ import { FailComponent } from '@features/not-found/components';
 
 const { Text } = Typography;
 
-const items: MenuProps['items'] = [
-  {
-    key: '1',
-    label: 'My Account',
-  },
-  {
-    type: 'divider',
-  },
-  {
-    key: '2',
-    label: 'Profile',
-  },
-  {
-    key: '3',
-    label: 'Billing',
-  },
-  {
-    key: '4',
-    label: 'Settings',
-  },
-];
-
 export const CoursesCards = () => {
+  const queryClient = useQueryClient();
   const { styles } = useStyles();
   const navigate = useNavigate();
   const palette = useTheme();
@@ -77,6 +55,26 @@ export const CoursesCards = () => {
     queryKey: ['myCourses', params],
     queryFn: () => api.courses.getAllCourses(params),
   });
+
+  const { mutate: deleteCourse } = useMutation({
+    mutationFn: (id: number) => api.courses.deleteCourse(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['myCourses'] });
+    },
+  });
+
+  const getDropdownItems = (itemId: number) => [
+    {
+      key: '1',
+      label: 'Edit',
+      onClick: () => navigate(routes.create + `/${itemId}`),
+    },
+    {
+      key: '2',
+      label: 'Delete',
+      onClick: () => deleteCourse(itemId),
+    },
+  ];
 
   if (isLoading) return <CoursesCardSkeleton quantity={8} />;
   if (isError) return <FailComponent message="Failed to load courses" />;
@@ -160,7 +158,13 @@ export const CoursesCards = () => {
                     ? `$${item.product.price.toFixed(2)}`
                     : 'N/A'}
                 </div>
-                <Dropdown menu={{ items }} trigger={['hover']} arrow>
+                <Dropdown
+                  menu={{
+                    items: getDropdownItems(item.id),
+                  }}
+                  trigger={['click']}
+                  arrow
+                >
                   <div tabIndex={0}>
                     <DotsThree />
                   </div>

@@ -1,12 +1,18 @@
-import { useRoutes } from "react-router-dom";
-import { routes } from "@client/const";
-import { AuthLayout, MainLayout, StudentLayout } from "@client/layout";
-import { LoginPage, RegistrationPage } from "@client/features/auth";
-import { CourseListPage } from "@client/features/courseList";
-import { CoursePage, CoursePagePaid } from "@client/features/course";
-import { AboutPage, BecomeInstructorPage, ContactPage, HomePage } from "@client/features/home";
-import { StudentPage, TeacherPage } from "@client/features/student";
-import { ProtectedRoute } from "./ProtectedRoute";
+import { useRoutes } from 'react-router-dom';
+import { routes } from '@client/const';
+import { AuthLayout, MainLayout, StudentLayout } from '@client/layout';
+import { LoginPage, RegistrationPage } from '@client/features/auth';
+import { CourseListPage } from '@client/features/courseList';
+import { CoursePage, CoursePagePaid } from '@client/features/course';
+import {
+  AboutPage,
+  BecomeInstructorPage,
+  ContactPage,
+  HomePage,
+} from '@client/features/home';
+import { StudentPage } from '@client/features/student';
+import { ProtectedRoute } from './ProtectedRoute';
+import { TutorPage } from '@client/features/tutor';
 
 export const Router = () => {
   return useRoutes([
@@ -35,12 +41,12 @@ export const Router = () => {
           element: <CourseListPage />,
         },
         {
-          path: routes.courses + "/:id",
+          path: routes.courses + '/:id',
           element: <CoursePage />,
         },
         {
-          path: routes.teacher + "/:id",
-          element: <TeacherPage />,
+          path: routes.tutor + '/:id',
+          element: <TutorPage />,
         },
       ],
 
@@ -54,7 +60,7 @@ export const Router = () => {
       ),
       children: [
         {
-          path: routes.courses + "/:id",
+          path: routes.courses + '/:id',
           element: <CoursePagePaid />,
         },
         {
@@ -65,9 +71,7 @@ export const Router = () => {
     },
     {
       path: routes.main,
-      element: (
-        <AuthLayout />
-      ),
+      element: <AuthLayout />,
       children: [
         {
           path: routes.register,

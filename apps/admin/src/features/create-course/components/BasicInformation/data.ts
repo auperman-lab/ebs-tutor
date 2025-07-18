@@ -1,5 +1,9 @@
 export const courseCategories = [
   {
+    label: 'Select category',
+    value: 'select',
+  },
+  {
     label: 'Technology',
     value: 'technology',
   },
@@ -18,6 +22,10 @@ export const courseCategories = [
 ];
 
 export const courseSubCategories = [
+  {
+    label: 'Select sub-category',
+    value: 'select',
+  },
   {
     label: 'Programming',
     value: 'programming',
@@ -38,24 +46,32 @@ export const courseSubCategories = [
 
 export const courseLanguages = [
   {
+    label: 'Select language',
+    value: 'select',
+  },
+  {
     label: 'English',
-    value: 'english',
+    value: 'en',
   },
   {
     label: 'Spanish',
-    value: 'spanish',
+    value: 'sp',
   },
   {
     label: 'French',
-    value: 'french',
+    value: 'fr',
   },
   {
     label: 'German',
-    value: 'german',
+    value: 'ge',
   },
 ];
 
 export const subtitleLanguages = [
+  {
+    label: 'Select subtitle language',
+    value: 'select',
+  },
   {
     label: 'English',
     value: 'english',
@@ -72,6 +88,10 @@ export const subtitleLanguages = [
 
 export const courseLevels = [
   {
+    label: 'Select course level',
+    value: 'select',
+  },
+  {
     label: 'Beginner',
     value: 'beginner',
   },
@@ -87,15 +107,15 @@ export const courseLevels = [
 
 export const duration = [
   {
-    label: 'Day',
-    value: 'day',
+    label: 'Day(s)',
+    value: 'Day(s)',
   },
   {
-    label: 'Week',
-    value: 'week',
+    label: 'Week(s)',
+    value: 'Week(s)',
   },
   {
-    label: 'Month',
-    value: 'month',
+    label: 'Month(s)',
+    value: 'Month(s)',
   },
 ];

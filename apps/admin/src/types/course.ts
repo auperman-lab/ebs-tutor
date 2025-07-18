@@ -1,39 +1,39 @@
 export interface Course {
-  id: number; //important
-  created_at: string; //important
-  updated_at: string; //important
-  title: string; //important
-  summary: any;
-  image_path: string;
-  video_path: any;
-  duration: any;
-  author_id: number;
-  author: Author;
-  authors: Author[];
-  status: string;
-  subtitle: string;
-  language: any; //important
-  description: any;
-  categories: Category[];
-  tags: Tag[];
-  level: string; //important
+  id: number;
+  created_at?: string;
+  updated_at?: string;
+  title?: string;
+  summary?: string;
+  image_path?: string;
+  video_path?: string;
+  duration?: string;
+  author_id?: number;
+  author?: Author;
+  authors?: Author[];
+  status?: string;
+  subtitle?: string;
+  language?: string;
+  description?: string;
+  categories?: Category[];
+  tags?: Tag[];
+  level?: string;
   lessons?: Lesson[];
-  poster_path: any;
-  active_from: string;
-  active_to: string;
-  hours_to_complete: any;
-  findable: boolean;
-  scorm_sco_id: any;
-  target_group: any;
-  users_count: number; //important
-  image_url: string; //important
-  video_url: any;
-  poster_url: any;
-  teaser_url: any;
-  public: boolean;
-  fields: any;
-  product: Product;
-  related_product: any;
+  poster_path?: string;
+  active_from?: string;
+  active_to?: string;
+  hours_to_complete?: any;
+  findable?: boolean;
+  scorm_sco_id?: any;
+  target_group?: any;
+  users_count?: number;
+  image_url?: string;
+  video_url?: string;
+  poster_url?: any;
+  teaser_url?: any;
+  public?: boolean;
+  fields?: any;
+  product?: Product;
+  related_product?: any;
 }
 
 export interface Author {
@@ -43,8 +43,8 @@ export interface Author {
   email: string;
   path_avatar: string;
   url_avatar: string;
-  interests: string[]; //todo
-  categories: string[]; //todo
+  interests: string[];
+  categories: string[];
   bio: string;
   address: string;
 }
@@ -76,34 +76,35 @@ export interface Pivot {
 }
 
 export interface Lesson {
-  id: number;
+  id?: number;
   title: string;
-  summary: any;
-  duration: any;
-  active: boolean;
+  summary?: any;
+  duration?: string;
+  active?: boolean;
   order: number;
   course_id: number;
-  active_from: any;
-  active_to: any;
-  lessons: any[];
-  topics: Topic[];
+  active_from?: any;
+  active_to?: any;
+  lessons?: any[];
+  topics?: Topic[];
 }
 
 export interface Topic {
-  id: number;
+  id?: number;
   title: string;
-  lesson_id: number;
-  active: boolean;
-  preview: boolean;
-  topicable_id: number;
-  topicable_type: string;
+  lesson_id?: number;
+  active?: boolean;
+  preview?: boolean;
+  topicable_id?: number;
+  topicable_type?: string;
   summary?: string;
   introduction?: string;
-  description: any;
-  order: number;
-  json: any;
-  can_skip: boolean;
-  duration: any;
+  description?: string;
+  order?: number;
+  json?: any;
+  value: string;
+  can_skip?: boolean;
+  duration?: any;
 }
 
 export interface Tag {
@@ -116,49 +117,46 @@ export interface Tag {
 }
 
 export interface Product {
-  id: number;
+  id?: number;
   type: string;
   name: string;
-  description: any;
-  price: number; //important
-  price_old: number; //important
-  tax_rate: number;
-  extra_fees: number;
+  description?: string;
+  price: number;
+  price_old?: number;
+  tax_rate?: number;
+  extra_fees?: number;
   purchasable: boolean;
-  duration: any;
-  calculated_duration: number;
+  duration?: string;
+  calculated_duration?: number;
   limit_per_user: number;
   limit_total: number;
   productables: Productable[];
-  teaser_url: any;
-  poster_path: any;
-  poster_url: any;
   buyable: boolean;
-  owned: boolean;
-  owned_quantity: number;
-  categories: any[];
-  tags: any[];
-  updated_at: string;
-  authors: Author[];
-  available_quantity: number;
-  sold_quantity: number; //important
-  gross_price: number;
-  subscription_period: any;
-  subscription_duration: any;
-  recursive: boolean;
-  has_trial: any;
-  trial_period: any;
-  trial_duration: any;
-  fields: any;
-  related_products: any[];
+  owned?: boolean;
+  owned_quantity?: number;
+  categories?: Category[];
+  tags?: Tag[];
+  updated_at?: string;
+  authors?: Author[];
+  available_quantity?: number;
+  sold_quantity?: number;
+  gross_price?: number;
+  subscription_period?: any;
+  subscription_duration?: any;
+  recursive?: boolean;
+  has_trial?: any;
+  trial_period?: any;
+  trial_duration?: any;
+  fields?: any;
+  related_products?: any[];
 }
 
 export interface Productable {
   id: number;
-  morph_class: string;
+  class: string;
   productable_id: number;
   productable_type: string;
   quantity: number;
-  name: string; // important ?
-  description: string; //important ?
+  name: string;
+  description?: string;
 }

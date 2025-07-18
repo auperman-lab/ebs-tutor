@@ -6,7 +6,7 @@ import { LoginEndpointResponse, User } from '@client/types';
 
 import { routes } from '@client/const';
 import {
-  decodeToken, getAdminPanelUrl,
+  decodeToken,
   getUserByToken,
   removeUser,
   setToken,
@@ -44,12 +44,12 @@ export const AuthProvider = ({ children }: React.HTMLProps<HTMLElement>) => {
     }
 
     if (authUser.roles.includes('admin')) {
-      const url = new URL(getAdminPanelUrl());
+      const url = new URL(import.meta.env['VITE_ADMIN_PANEL_URL']);
       url.searchParams.set('token', data.token);
       url.searchParams.set('expires_at', data.expires_at);
 
-      window.location.href = url.toString();
       logout();
+      window.location.href = url.toString();
       return;
     }
 

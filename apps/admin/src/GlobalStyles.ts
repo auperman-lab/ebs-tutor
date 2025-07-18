@@ -14,6 +14,10 @@ export const GlobalStyle = createGlobalStyle(
       border-top: none !important
     }
 
+    .ant-collapse-expand-icon {
+      align-self: center !important
+    }
+
     body, 
     h1,
     h2,

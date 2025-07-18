@@ -1,9 +1,8 @@
-import axios from "axios";
-import { api } from "@client/const";
-import { configInterceptor } from "./interceptor";
+import axios from 'axios';
+import { configInterceptor } from './interceptor';
 
 export const axiosInstance = axios.create({
-  baseURL: api,
+  baseURL: import.meta.env['VITE_BACKEND'],
   headers: {
     'Content-Type': 'application/json',
   },

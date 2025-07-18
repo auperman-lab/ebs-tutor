@@ -1,19 +1,19 @@
-import { createStyles } from "antd-style";
+import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token }) => ({
   cover: {
-    objectFit: "cover",
+    objectFit: 'cover',
   },
 
   price: {
-    width: "50%",
+    width: '50%',
     color: token.colorPrimary,
     fontSize: token.fontSizeXL,
-    textAlign: "center",
+    textAlign: 'center',
   },
 
   tag: {
-    width: "fit-content",
+    width: 'fit-content',
     backgroundColor: token.secondary.secondary100,
     color: token.secondary.secondary700,
     fontSize: token.fontSizeSM,
@@ -21,11 +21,14 @@ export const useStyles = createStyles(({ token }) => ({
     border: 0,
   },
   emptyTag: {
-    height: "30px",
-    minHeight: "30px",
+    height: '30px',
+    minHeight: '30px',
   },
 
   title: {
+    overflowY: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
     WebkitLineClamp: 2,
     WebkitBoxOrient: 'vertical',
     overflow: 'hidden',
@@ -36,23 +39,21 @@ export const useStyles = createStyles(({ token }) => ({
   },
 
   divider: {
-    width: "calc(100% + 32px)",
-    marginInline: "-16px",
+    width: 'calc(100% + 32px)',
+    marginInline: '-16px',
   },
 
   text: {
     fontWeight: 500,
   },
   tagContainer: {
-    overflowX: "scroll",
-    width: "100%",
-    scrollbarWidth: "none",
-    msOverflowStyle: "none",
+    overflowX: 'scroll',
+    width: '100%',
+    scrollbarWidth: 'none',
+    msOverflowStyle: 'none',
 
-    "&::-webkit-scrollbar": {
-      display: "none",
+    '&::-webkit-scrollbar': {
+      display: 'none',
     },
   },
-
-
 }));

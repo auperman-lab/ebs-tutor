@@ -16,10 +16,14 @@ export const apiEndpoints = {
   getUser: '/admin/users',
   retrieveMyself: 'profile/me',
   changeAvatar: '/profile/upload-avatar',
-  getAllCourses: '/admin/courses',
+  courses: '/admin/courses',
   getCategories: '/categories',
-  getTags: '/tags',
-  createCourse: '/admin/courses',
+  getTags: '/tags/unique',
+  uploadFile: './admin/file/upload',
+  getTutors: '/tutors',
+  lessons: '/admin/lessons',
+  topics: '/admin/topics',
+  products: '/admin/products',
 };
 
 export const dateFormats = {

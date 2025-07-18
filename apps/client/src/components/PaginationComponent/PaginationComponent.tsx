@@ -6,7 +6,9 @@ type PaginationComponentProps = {
   totalItems: number;
 };
 
-export const PaginationComponent = ({ totalItems }: PaginationComponentProps) => {
+export const PaginationComponent = ({
+  totalItems,
+}: PaginationComponentProps) => {
   const { getParams, setParams } = useURLQuery();
   const params = getParams();
 
