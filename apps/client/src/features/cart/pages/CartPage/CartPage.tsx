@@ -45,7 +45,11 @@ export const CartPage = () => {
           }
         />
 
-        <Sider price={75} />
+        <Sider
+          price={cart?.total}
+          total={cart?.total_with_tax}
+          tax={cart?.tax}
+        />
       </Flex>
     </Flex>
   );

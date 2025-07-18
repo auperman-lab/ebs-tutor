@@ -5,13 +5,14 @@ import { useState } from 'react';
 
 const { Text } = Typography;
 type SiderProps = {
-  price: number;
+  price?: number;
+  tax?: number;
+  total?: number;
 };
 
-export const Sider = ({ price }: SiderProps) => {
+export const Sider = ({ price, tax, total }: SiderProps) => {
   const { styles } = useStyles();
   const [couponDiscount, setCouponDiscount] = useState(0);
-  const taxRate = 15;
 
   const onSubmitCoupon = (value: string) => {
     if (value.trim().toLowerCase() === 'vaniavernisi') {
@@ -22,12 +23,16 @@ export const Sider = ({ price }: SiderProps) => {
       message.error('Not valid coupon');
     }
   };
+
+  if (price === undefined || tax === undefined || total === undefined)
+    return <div>loading...</div>;
+
   return (
     <div className={styles.wrapper}>
       <Flex vertical gap={16}>
         <Flex justify="space-between">
           <Text type="secondary">Subtotal</Text>
-          <Text>$61.97 USD</Text>
+          <Text>${price} USD</Text>
         </Flex>
 
         <Flex justify="space-between">
@@ -37,7 +42,7 @@ export const Sider = ({ price }: SiderProps) => {
 
         <Flex justify="space-between">
           <Text type="secondary">Taxes</Text>
-          <Text>${price * taxRate * 0.01} USD</Text>
+          <Text>${tax} USD</Text>
         </Flex>
 
         <Divider />
@@ -45,7 +50,7 @@ export const Sider = ({ price }: SiderProps) => {
         <Flex justify="space-between" align="center">
           <Text>Total:</Text>
           <Text strong className={styles.total}>
-            ${price - price * couponDiscount * 0.01} USD
+            ${total} USD
           </Text>
         </Flex>
 
