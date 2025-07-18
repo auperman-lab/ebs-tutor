@@ -132,5 +132,7 @@ export const useStyles = createStyles(({ token, responsive }) => ({
   wrapper: {
     backgroundColor: token.colorWhite,
     border: `solid 1px ${token.info.info100}`,
+    height: 'fit-content',
+    minWidth: '700px',
   },
 }));

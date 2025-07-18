@@ -33,6 +33,7 @@ export const CartPage = () => {
           products={
             cart?.items.map((item: CartItem) => ({
               id: item.id,
+              productId: item.product.id,
               title: item.product.name,
               authors: item.product.authors.map(
                 (author) => `${author.last_name} ${author.last_name}`

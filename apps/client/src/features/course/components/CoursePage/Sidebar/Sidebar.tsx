@@ -1,7 +1,7 @@
 import { Button, Divider, Flex, message, Spin } from 'antd';
 import { useStyles } from './styles';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '@client/api/api';
 import { LoadingOutlined } from '@ant-design/icons';
 import {
@@ -28,6 +28,7 @@ export const Sidebar = () => {
   const { id } = useParams();
   const { styles } = useStyles();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const [inCart, setInCart] = useState(false);
 
@@ -40,9 +41,11 @@ export const Sidebar = () => {
     mutationFn: (payload: addCartItemEndpointRequest) => api.cart.add(payload),
     onSuccess: () => {
       setInCart(true);
+      queryClient.invalidateQueries({ queryKey: ['cart'] });
       message.success('Added to cart');
     },
     onError: () => {
+      queryClient.invalidateQueries({ queryKey: ['cart'] });
       message.error('Failed to add to cart');
     },
   });
@@ -51,6 +54,7 @@ export const Sidebar = () => {
     mutationFn: () => api.cart.remove(course?.product.id || 0),
     onSuccess: () => {
       setInCart(false);
+
       message.success('Removed from cart');
     },
     onError: () => {

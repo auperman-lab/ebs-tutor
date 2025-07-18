@@ -1,11 +1,14 @@
-import { Button, Flex, Image, List, Rate, Typography } from 'antd';
+import { Button, Flex, Image, List, message, Rate, Typography } from 'antd';
 import { NoImage, XCircle } from '@client/assets';
 import { useStyles } from './styles';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { api } from '@client/api/api';
 
 const { Text } = Typography;
 
-type ProductListItemProps = {
+type Props = {
   id: number;
+  productId: number;
   title: string;
   authors: string[];
   price: number;
@@ -14,15 +17,30 @@ type ProductListItemProps = {
 };
 
 export const ProductListItem = ({
+  productId,
   title,
   authors,
   price,
   oldPrice,
   image,
-}: ProductListItemProps) => {
+}: Props) => {
   const { styles } = useStyles();
+  const queryClient = useQueryClient();
 
-  const onRemoveItem = () => {};
+  const { mutate: removeFromCartMutation } = useMutation({
+    mutationFn: () => api.cart.remove(productId || 0),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['cart'] });
+      message.success('Removed from cart');
+    },
+    onError: () => {
+      message.error('Failed to remove from cart');
+    },
+  });
+
+  const onRemoveItem = () => {
+    removeFromCartMutation();
+  };
   return (
     <List.Item
       className={styles.item}

@@ -10,6 +10,7 @@ type Props = {
 
 type ProductItem = {
   id: number;
+  productId: number;
   title: string;
   authors: string[];
   price: number;
