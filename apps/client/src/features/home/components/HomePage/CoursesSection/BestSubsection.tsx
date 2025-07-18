@@ -9,59 +9,61 @@ import { GetCoursesRequest } from '@client/types';
 const { useBreakpoint } = Grid;
 
 const params: GetCoursesRequest = {
-	per_page: 8,
-	page: 1,
-	order: 'ASC',
-	order_by: 'title',
-
+  per_page: 8,
+  page: 1,
+  order: 'ASC',
+  order_by: 'title',
 };
 
 export const BestSubsection = () => {
-	const { styles } = useStyles();
-	const screens = useBreakpoint();
+  const { styles } = useStyles();
+  const screens = useBreakpoint();
 
-	let visibleCount = 4;
+  let visibleCount = 4;
 
-	if (screens.xl) {
-		visibleCount = 8;
-	} else if (screens.lg) {
-		visibleCount = 8;
-	} else if (screens.md) {
-		visibleCount = 6;
-	}else if (screens.sm){
-		visibleCount = 4;
-	}
+  if (screens.xl) {
+    visibleCount = 8;
+  } else if (screens.lg) {
+    visibleCount = 8;
+  } else if (screens.md) {
+    visibleCount = 6;
+  } else if (screens.sm) {
+    visibleCount = 4;
+  }
 
-	const { data: courses, isLoading, isError } = useQuery({
-		queryKey: ['myCourses', { params }],
-		queryFn: () => api.courses.getAllCourses(params),
-	});
+  const {
+    data: courses,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ['myCourses', { params }],
+    queryFn: () => api.courses.getAllCourses(params),
+  });
 
-	if (isError) return <div>error of course</div>;
+  if (isError) return <div>error of course</div>;
 
-	return (
-		<Flex gap={40} vertical align="center" justify="center">
-			<div className={styles.title}>Best selling courses</div>
-			{
-				isLoading
-					? <Spin indicator={<LoadingOutlined spin />} size="large" />
-					: <Row gutter={[24, 24]} className={styles.coursesWrapper}>
-						{(courses?.data?.slice(0, visibleCount))?.map((item) => (
-							<Col key={item.id} sm={12} md={8} lg={6} xl={5}>
-								<CourseCard
-									key={item.id}
-									image_url={item.image_url}
-									title={item.title}
-									id={item.id}
-									categories={item.categories}
-									users_count={item.users_count}
-									price={item.product?.price}
-								/>
-							</Col>
-						))}
-					</Row>
-			}
-
-		</Flex>
-	);
+  return (
+    <Flex gap={40} vertical align="center" justify="center">
+      <div className={styles.title}>Best selling courses</div>
+      {isLoading ? (
+        <Spin indicator={<LoadingOutlined spin />} size="large" />
+      ) : (
+        <Row gutter={[24, 24]} className={styles.coursesWrapper}>
+          {courses?.data?.slice(0, visibleCount)?.map((item) => (
+            <Col key={item.id} sm={12} md={8} lg={6} xl={5}>
+              <CourseCard
+                key={item.id}
+                imageUrl={item.image_url}
+                title={item.title}
+                id={item.id}
+                categories={item.categories}
+                usersCount={item.users_count}
+                price={item.product?.price}
+              />
+            </Col>
+          ))}
+        </Row>
+      )}
+    </Flex>
+  );
 };

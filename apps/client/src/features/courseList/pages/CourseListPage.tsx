@@ -40,15 +40,17 @@ export const CourseListPage = () => {
         <Col span={18}>
           <Row gutter={[24, 24]}>
             {courses!.data.map((item) => (
-              <CourseCard
-                key={item.id}
-                imageUrl={item.image_url}
-                title={item.title}
-                id={item.id}
-                categories={item.categories}
-                usersCount={item.users_count}
-                price={item.product?.price}
-              />
+              <Col span={6}>
+                <CourseCard
+                  key={item.id}
+                  imageUrl={item.image_url}
+                  title={item.title}
+                  id={item.id}
+                  categories={item.categories}
+                  usersCount={item.users_count}
+                  price={item.product?.price}
+                />
+              </Col>
             ))}
           </Row>
 

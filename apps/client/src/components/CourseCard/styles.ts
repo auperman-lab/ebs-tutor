@@ -32,7 +32,6 @@ export const useStyles = createStyles(({ token }) => ({
     WebkitLineClamp: 2,
     WebkitBoxOrient: 'vertical',
     overflow: 'hidden',
-    textOverflow: 'ellipsis',
     fontSize: token.fontSizeLG,
     lineHeight: '1.4',
     height: `calc(1.4em * 2)`,
