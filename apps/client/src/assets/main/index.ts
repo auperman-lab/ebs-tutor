@@ -7,4 +7,4 @@ export { default as Star } from './star.svg?react';
 export { default as NoImage } from './no-image.svg?react';
 export { default as ChevronDown } from './chevron-down.svg?react';
 export { default as Faders } from './faders.svg?react';
-export { default as XCircle } from './XCircle.svg?react';
+export { default as XCircle } from './x-circle.svg?react';
