@@ -1,4 +1,6 @@
-export const api = "https://demo.api.s.wellms.io/api";
+export const api = 'https://demo.api.s.wellms.io/api';
+
+export const perPage = 12;
 
 export const routes = {
   //common
@@ -15,29 +17,29 @@ export const routes = {
   becomeInstructor: '/become-instructor',
   cart: '/cart',
   profile: '/profile',
-  teacher:  'teacher',
+  tutor: '/tutors',
 
   //admin
   create: '/create-course',
-
 };
 
 export const apiEndpoints = {
   changePassword: '/profile/password',
   register: '/auth/register',
   login: '/auth/login',
-  getUser: "/admin/users",
-  retrieveMyself: "profile/me",
-  refreshToken: "/auth/refresh",
-  getCategories: "/categories",
-  getTags: "/tags",
+  getUser: '/admin/users',
+  retrieveMyself: 'profile/me',
+  refreshToken: '/auth/refresh',
+  getCategories: '/categories',
+  getTags: '/tags/unique',
+  getAllCourses: '/courses',
+  getTutors: '/tutors',
 };
 
 export enum Roles {
   ADMIN = 'admin',
   USER = 'student',
 }
-
 
 export const regexPatterns = {
   password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,

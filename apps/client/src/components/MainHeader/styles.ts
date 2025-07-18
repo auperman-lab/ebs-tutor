@@ -2,7 +2,7 @@ import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token }) => ({
   header: {
-    position: 'fixed',
+    position: 'sticky',
     top: 0,
     zIndex: 10,
     width: '100%',
