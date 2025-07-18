@@ -27,7 +27,7 @@ export const CartPage = () => {
       align="center"
       className={styles.wrapper}
     >
-      <div className={styles.title}>Shopping Cart ()</div>
+      <div className={styles.title}>Shopping Cart ({cart?.items.length})</div>
       <Flex gap={24} className={styles.container}>
         <ProductList
           products={
