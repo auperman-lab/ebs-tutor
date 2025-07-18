@@ -5,6 +5,7 @@ import { useStyles } from './styles';
 const { Text } = Typography;
 
 type ProductListItemProps = {
+  id: number;
   title: string;
   authors: string[];
   price: number;
@@ -21,6 +22,7 @@ export const ProductListItem = ({
 }: ProductListItemProps) => {
   const { styles } = useStyles();
 
+  const onRemoveItem = () => {};
   return (
     <List.Item
       className={styles.item}
@@ -30,10 +32,21 @@ export const ProductListItem = ({
         </Button>,
       ]}
     >
-      <Button type="link" icon={<XCircle />} className={styles.removeButton} />
+      <Button
+        type="link"
+        icon={<XCircle />}
+        className={styles.removeButton}
+        onClick={onRemoveItem}
+      />
 
       {image ? (
-        <Image width={120} height={80} className={styles.image} src={image} />
+        <Image
+          width={120}
+          height={80}
+          preview={false}
+          className={styles.image}
+          src={image}
+        />
       ) : (
         <NoImage width={120} height={80} className={styles.image} />
       )}

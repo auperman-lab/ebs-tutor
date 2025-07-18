@@ -4,29 +4,20 @@ import { useStyles } from './styles';
 
 const { Text } = Typography;
 
-const data = [
-  {
-    id: 1,
-    title: 'The Python Mega Course: Build 10 Real World Applications',
-    authors: ['Leslie Alexander', 'Guy Hawkins'],
-    price: 37.99,
-    oldPrice: 49.0,
-  },
-  {
-    id: 2,
-    title: 'Machine Learning A-Z™: Hands-On Python & R In Data Science',
-    authors: ['Bessie Cooper'],
-    price: 9.99,
-  },
-  {
-    id: 3,
-    title: 'Learn Ethical Hacking From Scratch',
-    authors: ['Marvin McKinney'],
-    price: 13.99,
-  },
-];
+type Props = {
+  products: ProductItem[];
+};
 
-export const ProductList = () => {
+type ProductItem = {
+  id: number;
+  title: string;
+  authors: string[];
+  price: number;
+  oldPrice?: number;
+  image?: string;
+};
+
+export const ProductList = ({ products }: Props) => {
   const { styles } = useStyles();
 
   return (
@@ -48,7 +39,7 @@ export const ProductList = () => {
         <Divider style={{ margin: '0' }} />
         <List
           itemLayout="horizontal"
-          dataSource={data}
+          dataSource={products}
           split={true}
           renderItem={(item) => <ProductListItem {...item} />}
         />

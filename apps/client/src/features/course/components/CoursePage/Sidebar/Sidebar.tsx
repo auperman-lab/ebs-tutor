@@ -22,6 +22,7 @@ import {
 } from '@client/assets';
 import { routes } from '@client/const';
 import { useState } from 'react';
+import { addCartItemEndpointRequest } from '@client/types';
 
 export const Sidebar = () => {
   const { id } = useParams();
@@ -36,10 +37,8 @@ export const Sidebar = () => {
   });
 
   const { mutate: addToCartMutation } = useMutation({
-    mutationFn: (payload: { product_id: number }) =>
-      api.cart.add({ product_id: payload.product_id }),
+    mutationFn: (payload: addCartItemEndpointRequest) => api.cart.add(payload),
     onSuccess: () => {
-      console.log('set in cart');
       setInCart(true);
       message.success('Added to cart');
     },
@@ -49,7 +48,7 @@ export const Sidebar = () => {
   });
 
   const { mutate: removeFromCartMutation } = useMutation({
-    mutationFn: () => api.cart.remove(course?.product.id || 0), // assuming product.id is used
+    mutationFn: () => api.cart.remove(course?.product.id || 0),
     onSuccess: () => {
       setInCart(false);
       message.success('Removed from cart');
@@ -135,7 +134,7 @@ export const Sidebar = () => {
       removeFromCartMutation();
     } else {
       addToCartMutation({
-        product_id: course.product.id,
+        id: course.product.id,
       });
     }
   };
