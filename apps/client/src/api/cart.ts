@@ -3,7 +3,8 @@ import { apiEndpoints } from '@client/const';
 import {
   addCartItemEndpointRequest,
   Course,
-  LoginEndpointResponse,
+  deleteCartItemEndpointResponse,
+  getCartEndpointResponse,
 } from '@client/types';
 
 export const cart = {
@@ -11,13 +12,13 @@ export const cart = {
     const { data } = await axiosInstance.post(apiEndpoints.cartItem, payload);
     return data.data;
   },
-  remove: async (id: number): Promise<LoginEndpointResponse> => {
+  remove: async (id: number): Promise<deleteCartItemEndpointResponse> => {
     const { data } = await axiosInstance.delete(
       apiEndpoints.cartItem + `/${id}`
     );
     return data.data;
   },
-  get: async (): Promise<LoginEndpointResponse> => {
+  get: async (): Promise<getCartEndpointResponse> => {
     const { data } = await axiosInstance.get(apiEndpoints.getCart);
     return data.data;
   },
