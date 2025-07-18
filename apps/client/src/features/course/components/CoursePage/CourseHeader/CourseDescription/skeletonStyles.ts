@@ -1,21 +1,19 @@
-import { createStyles, keyframes } from "antd-style";
+import { createStyles, keyframes } from 'antd-style';
 
 const shimmer = keyframes`
-  0% {
-    background-position: 100% 0;
-  }
-  100% {
-    background-position: -100% 0;
-  }
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
 `;
 
-
-export const useStyles = createStyles(({token}) => ({
+export const useStyles = createStyles(({ token }) => ({
   mainPart: {
-    width: "100%",
+    width: '100%',
     background: token.colorWhite,
-    padding: token.paddingLG
-
+    padding: token.paddingLG,
   },
   image: {
     width: 352,
@@ -32,11 +30,11 @@ export const useStyles = createStyles(({token}) => ({
     width: 160,
   },
   title: {
-    width: "60%",
+    width: '60%',
     height: 32,
   },
   avatarGroup: {
-    display: "flex",
+    display: 'flex',
     gap: 4,
   },
   metaText: {

@@ -1,18 +1,25 @@
 import { Flex, Image, Rate, Typography } from 'antd';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { CourseDescriptionSkeleton } from './CourseDescriptionSkeleton';
 import { useStyles } from './styles';
 import { api } from '@client/api/api';
+import { routes } from '@client/const';
 
 const { Text, Title } = Typography;
 export const CourseDescription = () => {
   const { styles } = useStyles();
   const { id } = useParams();
+  const navigate = useNavigate();
+
+  if (!id) {
+    navigate(routes.main);
+    return;
+  }
 
   const { data: course, isLoading } = useQuery({
     queryKey: ['course', id],
-    queryFn: () => api.courses.getCourse(id!),
+    queryFn: () => api.courses.getCourse(id),
   });
 
   if (isLoading) return <CourseDescriptionSkeleton />;

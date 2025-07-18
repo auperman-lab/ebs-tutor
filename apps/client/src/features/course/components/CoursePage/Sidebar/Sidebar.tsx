@@ -22,6 +22,7 @@ import {
 } from '@client/assets';
 import { routes } from '@client/const';
 import { useAuth } from '@client/hooks';
+import { formatDiscount, formatOldPrice, formatPrice } from '@client/utils';
 
 export const Sidebar = () => {
   const { id } = useParams();
@@ -33,34 +34,6 @@ export const Sidebar = () => {
     queryKey: ['course', id],
     queryFn: () => api.courses.getCourse(id!),
   });
-
-  const getPrice = (price: number | undefined | null): string => {
-    if (price === 0) return 'Free';
-    if (price != null) return `$${price.toFixed(2)}`;
-    return 'N/A';
-  };
-
-  const getOldPrice = (): string => {
-    if (
-      course?.product.price_old != null &&
-      course?.product.price_old !== course?.product.price
-    ) {
-      return `$${course?.product.price_old.toFixed(2)}`;
-    }
-    return '';
-  };
-  const getDiscount = (): string => {
-    if (
-      course?.product.price_old != null &&
-      course?.product.price_old !== course?.product.price
-    ) {
-      return `${
-        ((course?.product.price_old - course?.product.price) * 100) /
-        course?.product.price_old
-      }%`;
-    }
-    return '';
-  };
 
   const onCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -115,17 +88,20 @@ export const Sidebar = () => {
         <Flex justify="space-between" align="center">
           <Flex gap={18} align="center" justify="center">
             <div className={styles.price}>
-              {getPrice(course?.product?.price)}
+              {formatPrice(course?.product?.price)}
             </div>
-            <div className={styles.priceOld}>{getOldPrice()}</div>
+            <div className={styles.priceOld}>
+              {formatOldPrice(course?.product.price_old, course?.product.price)}
+            </div>
           </Flex>
-          {getDiscount() && (
+          {formatDiscount(course?.product.price_old, course?.product.price) && (
             <Flex gap={10} className={styles.discount}>
-              {getDiscount()} OFF
+              {formatDiscount(course?.product.price_old, course?.product.price)}{' '}
+              OFF
             </Flex>
           )}
         </Flex>
-        {getDiscount() && (
+        {formatDiscount(course?.product.price_old, course?.product.price) && (
           <Flex gap={8} className={styles.timer} align="center" justify="start">
             <Alarm />
             <div>2 days left at this price!</div>
