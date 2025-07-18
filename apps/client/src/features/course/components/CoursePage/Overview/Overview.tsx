@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@client/api/api';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Flex, List, Spin } from 'antd';
 import { ArrowRight, CircleCheck } from '@client/assets';
 import { useStyles } from './styles';
 import { LoadingOutlined } from '@ant-design/icons';
+import { routes } from '@client/const';
 
 const learnData = [
   {
@@ -65,10 +66,16 @@ const forData = [
 export const Overview = () => {
   const { id } = useParams();
   const { styles } = useStyles();
+  const navigate = useNavigate();
+
+  if (!id) {
+    navigate(routes.main);
+    return;
+  }
 
   const { data: course, isLoading } = useQuery({
     queryKey: ['course', id],
-    queryFn: () => api.courses.getCourse(id!),
+    queryFn: () => api.courses.getCourse(id),
   });
 
   if (isLoading)

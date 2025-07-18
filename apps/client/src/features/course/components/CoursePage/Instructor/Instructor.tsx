@@ -1,18 +1,25 @@
 import { Flex, Spin } from 'antd';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useStyles } from './styles';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@client/api/api';
 import { LoadingOutlined } from '@ant-design/icons';
 import { InstructorItem } from './InstructorItem';
+import { routes } from '@client/const';
 
 export const Instructor = () => {
   const { id } = useParams();
   const { styles } = useStyles();
+  const navigate = useNavigate();
+
+  if (!id) {
+    navigate(routes.main);
+    return;
+  }
 
   const { data: course, isLoading: isCourseLoading } = useQuery({
     queryKey: ['course', id],
-    queryFn: () => api.courses.getCourse(id!),
+    queryFn: () => api.courses.getCourse(id),
   });
 
   if (isCourseLoading)

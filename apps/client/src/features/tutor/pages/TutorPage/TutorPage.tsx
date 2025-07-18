@@ -55,14 +55,14 @@ export const TutorPage = () => {
             <Spin size="large" />
           ) : (
             <Row gutter={[24, 24]}>
-              {courses!.data.map((item) => (
+              {courses?.data.map((item) => (
                 <CourseCard
                   key={item.id}
-                  image_url={item.image_url}
+                  imageUrl={item.image_url}
                   title={item.title}
                   id={item.id}
                   categories={item.categories}
-                  users_count={item.users_count}
+                  usersCount={item.users_count}
                   price={item.product?.price}
                 />
               ))}

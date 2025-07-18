@@ -1,11 +1,12 @@
 import { Collapse, Flex, List, Spin } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@client/api/api';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useStyles } from './styles';
 import { Clock, File, FolderNotchOpen, Play, PlayCircle } from '@client/assets';
 import { useTheme } from 'antd-style';
+import { routes } from '@client/const';
 
 const { Panel } = Collapse;
 
@@ -13,10 +14,16 @@ export const Curriculum = () => {
   const { id } = useParams();
   const { styles } = useStyles();
   const palette = useTheme();
+  const navigate = useNavigate();
+
+  if (!id) {
+    navigate(routes.main);
+    return;
+  }
 
   const { data: course, isLoading } = useQuery({
     queryKey: ['course', id],
-    queryFn: () => api.courses.getCourse(id!),
+    queryFn: () => api.courses.getCourse(id),
   });
 
   const getLessonDuration = (lesson: any): number => {
