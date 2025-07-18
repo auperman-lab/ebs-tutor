@@ -5,14 +5,18 @@ import { RecentSubsection } from './RecentSubsection';
 import { FeatureSubsection } from './FeatureSubsection';
 
 export const CourseSection = () => {
-	const {styles} = useStyles();
+  const { styles } = useStyles();
 
-	return(
-		<Flex vertical className={styles.wrapper} justify="space-evenly" align="center">
-			<BestSubsection/>
-			<FeatureSubsection/>
-			<RecentSubsection/>
-
-		</Flex>
-	)
+  return (
+    <Flex
+      vertical
+      className={styles.wrapper}
+      justify="space-evenly"
+      align="center"
+    >
+      <BestSubsection />
+      <FeatureSubsection />
+      <RecentSubsection />
+    </Flex>
+  );
 };

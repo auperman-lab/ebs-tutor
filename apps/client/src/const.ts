@@ -41,7 +41,6 @@ export enum Roles {
   USER = 'student',
 }
 
-
 export const regexPatterns = {
   password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
 };

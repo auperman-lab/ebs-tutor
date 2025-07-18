@@ -40,7 +40,7 @@ export const RecentSubsection = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ['myCourses', { params }],
+    queryKey: ['recentCourses', { params }],
     queryFn: () => api.courses.getAllCourses(params),
   });
 
@@ -75,7 +75,7 @@ export const RecentSubsection = () => {
                     duration={item.duration}
                     level={item.level}
                     price={item.product?.price}
-                    price_old={item.product?.price_old}
+                    priceOld={item.product?.price_old}
                     categories={item.categories}
                     author={item.author}
                   />

@@ -4,7 +4,7 @@ import { NoImage, Star } from '@client/assets';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '@client/const';
 
-type InstructorCardProps = {
+type Props = {
   id: number;
   name: string;
   bio: string;
@@ -18,7 +18,7 @@ export const InstructorCard = ({
   bio,
   icon,
   isLoggedIn = false,
-}: InstructorCardProps) => {
+}: Props) => {
   const { styles } = useStyles();
 
   const navigate = useNavigate();

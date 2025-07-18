@@ -1,71 +1,68 @@
 import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token, responsive }) => ({
-	wrapper: {
-		backgroundColor: token.common.gray,
-		width: '100vw',
-		height: '50vh',
-	},
+  wrapper: {
+    backgroundColor: token.common.gray,
+    width: '100vw',
+    height: '50vh',
+  },
 
-	heroImage: {
-		aspectRatio: 2,
-		height: '100%',
-		maxWidth: '50%',
+  heroImage: {
+    aspectRatio: 2,
+    height: '100%',
+    maxWidth: '50%',
 
-		[responsive.md]: {
-			display: "none",
+    [responsive.md]: {
+      display: 'none',
+    },
+  },
 
-		},
+  heroTextWrapper: {
+    marginTop: '60px',
+    marginLeft: '150px',
 
-	},
+    [responsive.xxl]: {
+      marginLeft: '100px',
+      marginTop: '40px',
+    },
 
-	heroTextWrapper: {
-		marginTop: '60px',
-		marginLeft: '150px',
+    [responsive.lg]: {
+      marginLeft: 0,
+      marginTop: '20px',
+      textAlign: 'center',
+    },
+  },
 
-		[responsive.xxl]: {
-			marginLeft: '100px',
-			marginTop: '40px',
-		},
+  title: {
+    fontSize: '72px',
+    fontWeight: token.fontWeightStrong,
 
-		[responsive.lg]: {
-			marginLeft: 0,
-			marginTop: '20px',
-			textAlign: 'center',
-		},
-	},
+    [responsive.xl]: {
+      fontSize: '48px',
+    },
 
-	title: {
-		fontSize: '72px',
-		fontWeight: token.fontWeightStrong,
+    [responsive.lg]: {
+      fontSize: '36px',
+    },
+  },
 
-		[responsive.xl]: {
-			fontSize: '48px',
-		},
+  text: {
+    fontSize: token.fontSizeHeading3,
 
-		[responsive.lg]: {
-			fontSize: '36px',
-		},
-	},
+    [responsive.xl]: {
+      fontSize: token.fontSizeHeading4,
+    },
+    [responsive.lg]: {
+      fontSize: token.fontSizeHeading4,
+    },
+  },
 
-	text: {
-		fontSize: token.fontSizeHeading3,
+  button: {
+    maxWidth: '40%',
 
-		[responsive.xl]: {
-			fontSize: token.fontSizeHeading4,
-		},
-		[responsive.lg]: {
-			fontSize:token.fontSizeHeading4,
-		},
-	},
-
-	button: {
-		maxWidth: '40%',
-
-		[responsive.lg]: {
-			maxWidth: '100%',
-			margin: "10px",
-
-		},
-	},
+    [responsive.lg]: {
+      maxWidth: '100%',
+      margin: '10px',
+    },
+  },
 }));

@@ -49,7 +49,6 @@ export const Router = () => {
           element: <TutorPage />,
         },
       ],
-
     },
     {
       path: routes.main,
@@ -81,7 +80,6 @@ export const Router = () => {
           path: routes.login,
           element: <LoginPage />,
         },
-
       ],
     },
   ]);

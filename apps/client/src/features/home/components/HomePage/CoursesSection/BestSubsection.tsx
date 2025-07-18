@@ -36,7 +36,7 @@ export const BestSubsection = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ['myCourses', { params }],
+    queryKey: ['bestCourses', { params }],
     queryFn: () => api.courses.getAllCourses(params),
   });
 
