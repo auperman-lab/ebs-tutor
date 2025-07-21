@@ -40,7 +40,7 @@ export const ProductList = ({ products, loading }: Props) => {
         <Text>ACTION</Text>
       </Col>
       <Col span={24}>
-        <Divider style={{ margin: '0' }} />
+        <Divider className={styles.dividerNoMargin} />
         <List
           itemLayout="horizontal"
           split

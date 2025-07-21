@@ -30,7 +30,9 @@ export const useStyles = createStyles(({ token, responsive }) => ({
       height: 'auto',
     },
   },
-
+  dividerNoMargin: {
+    margin: 0,
+  },
   removeButton: {
     marginRight: -15,
     marginLeft: 10,

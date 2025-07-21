@@ -14,6 +14,5 @@ export const useStyles = createStyles(({ token, responsive }) => ({
     fontSize: token.fontSizeHeading3,
     fontWeight: token.fontWeightStrong,
     textAlign: 'start',
-    width: '100%',
   },
 }));
