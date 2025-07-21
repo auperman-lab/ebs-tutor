@@ -1,7 +1,7 @@
-import { Course } from '@client/types';
+import { Course, ParamsSortOption } from '@client/types';
 
 export type GetCoursesRequest = {
-  order?: 'ASC' | 'DESC';
+  order?: ParamsSortOption;
   order_by?: string;
   page?: number;
   per_page?: number;
