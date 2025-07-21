@@ -1,9 +1,8 @@
-import { Button, Divider, Flex, Spin } from 'antd';
+import { Button, Divider, Flex } from 'antd';
 import { useStyles } from './styles';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@client/api/api';
-import { LoadingOutlined } from '@ant-design/icons';
 import {
   Alarm,
   BarChart,
@@ -23,6 +22,7 @@ import {
 import { routes } from '@client/const';
 import { useAuth } from '@client/hooks';
 import { formatDiscount, formatOldPrice, formatPrice } from '@client/utils';
+import { CourseSidebarSkeleton } from './SidebarSkeleton';
 
 export const Sidebar = () => {
   const { id } = useParams();
@@ -79,8 +79,7 @@ export const Sidebar = () => {
     return navigate(routes.cart);
   };
 
-  if (isLoading)
-    return <Spin indicator={<LoadingOutlined spin />} size="large" />;
+  if (isLoading) return <CourseSidebarSkeleton />;
 
   return (
     <Flex vertical gap={24} className={styles.sidebarWrapper}>
