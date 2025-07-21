@@ -2,8 +2,8 @@ import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token }) => ({
   footer: {
-    backgroundColor: '#1D2026',
-    color: '#8C94A3',
+    backgroundColor: token.info.info900,
+    color: token.colorInfo,
   },
   customButton: {
     backgroundColor: '#FFFFFF0D',
@@ -17,7 +17,7 @@ export const useStyles = createStyles(({ token }) => ({
   },
 
   borderBottom: {
-    borderBottom: '1px solid #8C94A3',
+    borderBottom: `1px solid ${token.info.info800}`,
   },
 
   buttonsSegment: {
@@ -54,11 +54,7 @@ export const useStyles = createStyles(({ token }) => ({
 
   now: {
     fontSize: 10,
-    color: '#B7BAC7',
-  },
-
-  arrow: {
-    color: '#1D2026',
+    color: token.info.info300,
   },
 
   link: {
@@ -66,7 +62,7 @@ export const useStyles = createStyles(({ token }) => ({
     paddingBottom: 3,
     borderBottom: `2px solid transparent`,
     '&:hover': {
-      color: '#ffffff',
+      color: token.common.black,
       borderBottom: `2px solid ${token.primary.primary500}`,
       boxSizing: 'content-box',
     },
