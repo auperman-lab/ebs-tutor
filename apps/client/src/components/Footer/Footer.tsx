@@ -8,11 +8,11 @@ import {
   Instagram,
   Linkedin,
   Twitter,
-  YouTube,
-} from '@clientAssets';
+  YoutubeIcon,
+} from '@client/assets';
 import { Link, useLocation } from 'react-router-dom';
 import dayjs from 'dayjs';
-import { routes } from '@clientConst';
+import { routes } from '@client/const';
 import { MainFooter } from './HomeFooter';
 
 export const Footer = () => {
@@ -54,7 +54,7 @@ export const Footer = () => {
                 className={styles.customButton}
               />
               <Button
-                icon={<YouTube />}
+                icon={<YoutubeIcon />}
                 size="large"
                 className={styles.customButton}
               />
