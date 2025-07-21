@@ -18,7 +18,6 @@ export const CartPage = () => {
   });
 
   if (isError) return <div>error of course</div>;
-  if (isLoading) return <div> loading...</div>;
   return (
     <Flex
       gap={24}
@@ -43,12 +42,14 @@ export const CartPage = () => {
               image: item.product.poster_url,
             })) || []
           }
+          loading={false}
         />
 
         <Sider
           price={cart?.total}
           total={cart?.total_with_tax}
           tax={cart?.tax}
+          isLoading={isLoading}
         />
       </Flex>
     </Flex>

@@ -1,11 +1,13 @@
 import { Col, Divider, List, Row, Typography } from 'antd';
 import { ProductListItem } from './ProductListItem';
 import { useStyles } from './styles';
+import { ProductListItemSkeleton } from './ProductListItemSkeleton';
 
 const { Text } = Typography;
 
 type Props = {
   products: ProductItem[];
+  loading?: boolean;
 };
 
 type ProductItem = {
@@ -18,15 +20,16 @@ type ProductItem = {
   image?: string;
 };
 
-export const ProductList = ({ products }: Props) => {
+export const ProductList = ({ products, loading }: Props) => {
   const { styles } = useStyles();
 
+  const skeletonCount = 3;
+  const skeletonData = Array.from({ length: skeletonCount }).map((_, i) => ({
+    id: `skeleton-${i}`,
+  }));
+
   return (
-    <Row
-      className={styles.wrapper}
-      style={{ backgroundColor: 'white' }}
-      gutter={16}
-    >
+    <Row className={styles.wrapper} gutter={16}>
       <Col span={18} className={styles.columnTitle}>
         <Text>COURSE</Text>
       </Col>
@@ -40,9 +43,16 @@ export const ProductList = ({ products }: Props) => {
         <Divider style={{ margin: '0' }} />
         <List
           itemLayout="horizontal"
-          dataSource={products}
-          split={true}
-          renderItem={(item) => <ProductListItem {...item} />}
+          split
+          rowKey={(item) => (loading ? item.id : item.productId)}
+          dataSource={loading ? skeletonData : products}
+          renderItem={(item: any) =>
+            loading ? (
+              <ProductListItemSkeleton />
+            ) : (
+              <ProductListItem {...(item as ProductItem)} />
+            )
+          }
         />
       </Col>
     </Row>
