@@ -62,22 +62,24 @@ export const LowerHeader = () => {
             className={styles.button}
             icon={<Bell />}
           />
-          <Button
-            size="large"
-            type="text"
-            className={styles.button}
-            icon={<Heart />}
-          />
-          <Button
-            size="large"
-            type="text"
-            className={styles.button}
-            icon={<Cart />}
-            onClick={onCartClick}
-          />
 
           {user ? (
-            <Avatar className={styles.avatar} src={user?.avatar} size={48} />
+            <>
+              <Button
+                size="large"
+                type="text"
+                className={styles.button}
+                icon={<Heart />}
+              />
+              <Button
+                size="large"
+                type="text"
+                className={styles.button}
+                icon={<Cart />}
+                onClick={onCartClick}
+              />
+              <Avatar className={styles.avatar} src={user?.avatar} size={48} />
+            </>
           ) : (
             <Flex gap={12}>
               <Button
