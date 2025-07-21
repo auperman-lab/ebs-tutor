@@ -5,31 +5,31 @@ export interface Course {
   title: string; //important
   summary: any; //important
   image_path: string;
-  video_path: any;
-  duration: any;
+  video_path: string;
+  duration: number;
   author_id: number;
   author: Author;
   authors: Author[];
   status: string;
   subtitle: string;
-  language: any; //important
-  description: any;
+  language: string; //important
+  description: string;
   categories: Category[];
   tags: Tag[];
   level: string; //important
-  lessons?: Lesson[]
-  poster_path: any;
+  lessons?: Lesson[];
+  poster_path: string;
   active_from: string;
   active_to: string;
-  hours_to_complete: any;
+  hours_to_complete: number;
   findable: boolean;
   scorm_sco_id: any;
   target_group: any;
   users_count: number; //important
   image_url: string; //important
-  video_url: any;
-  poster_url: any;
-  teaser_url: any;
+  video_url: string;
+  poster_url: string;
+  teaser_url: string;
   public: boolean;
   fields: any;
   product: Product;
@@ -75,36 +75,35 @@ export interface Pivot {
   category_id: number;
 }
 
-
 export interface Lesson {
-  id: number
-  title: string
-  summary: any
-  duration: any
-  active: boolean
-  order: number
-  course_id: number
-  active_from: any
-  active_to: any
-  lessons: any[]
-  topics: Topic[]
+  id: number;
+  title: string;
+  summary: string;
+  duration: any;
+  active: boolean;
+  order: number;
+  course_id: number;
+  active_from: string;
+  active_to: string;
+  lessons: Lesson[];
+  topics: Topic[];
 }
 
 export interface Topic {
-  id: number
-  title: string
-  lesson_id: number
-  active: boolean
-  preview: boolean
-  topicable_id: number
-  topicable_type: string
-  summary?: string
-  introduction?: string
-  description: any
-  order: number
-  json: any
-  can_skip: boolean
-  duration: any
+  id: number;
+  title: string;
+  lesson_id: number;
+  active: boolean;
+  preview: boolean;
+  topicable_id: number;
+  topicable_type: string;
+  summary?: string;
+  introduction?: string;
+  description: any;
+  order: number;
+  json: any;
+  can_skip: boolean;
+  duration: any;
 }
 
 export interface Tag {

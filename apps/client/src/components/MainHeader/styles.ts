@@ -4,7 +4,7 @@ export const useStyles = createStyles(({ token }) => ({
   header: {
     position: 'sticky',
     top: 0,
-    zIndex: 10,
+    zIndex: 100,
     width: '100%',
     backgroundColor: token.colorBgContainer,
   },
