@@ -58,7 +58,7 @@ export const useStyles = createStyles(({ token }) => ({
   },
 
   stars: {
-    color: token.colorWarning, // orange stars
+    color: token.colorWarning,
     fontSize: 18,
   },
 
