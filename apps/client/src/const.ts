@@ -17,10 +17,11 @@ export const routes = {
   becomeInstructor: '/become-instructor',
   cart: '/cart',
   profile: '/profile',
-  teacher: 'teacher',
+  tutor: '/tutors',
 
   //admin
   create: '/create-course',
+
 };
 
 export const apiEndpoints = {
@@ -43,6 +44,7 @@ export enum Roles {
   ADMIN = 'admin',
   USER = 'student',
 }
+
 
 export const regexPatterns = {
   password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,

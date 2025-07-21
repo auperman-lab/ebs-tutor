@@ -2,7 +2,7 @@ import { useStyles } from './styles';
 import { Flex } from 'antd';
 import { ReactElement, isValidElement } from 'react';
 
-type StatCardProp = {
+type Prop = {
   subtitle: string;
   title: string;
   icon: string | ReactElement;
@@ -16,7 +16,7 @@ export const StatCard = ({
   subtitle,
   icon,
   onClick,
-}: StatCardProp) => {
+}: Prop) => {
   const { styles } = useStyles(color);
 
   const renderIcon = () => {

@@ -5,8 +5,4 @@ export const useStyles = createStyles(() => ({
     minHeight: '100vh',
   },
 
-  content: {
-    width: '80%',
-    marginInline: 'auto',
-  },
 }));

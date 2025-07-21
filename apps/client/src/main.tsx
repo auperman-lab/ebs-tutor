@@ -2,7 +2,7 @@ import { StrictMode, ReactNode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import * as ReactDOM from 'react-dom/client';
 import { StyleProvider, ThemeProvider } from 'antd-style';
-import { AuthProvider, QueryClientContext } from '@clientContext';
+import { AuthProvider, QueryClientContext } from '@client/context';
 import { customThemePalette, GlobalStyle, themeComponents } from './styles';
 import { Router } from './router/router';
 import '@ant-design/v5-patch-for-react-19';

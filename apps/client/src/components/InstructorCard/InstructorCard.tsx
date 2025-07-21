@@ -1,10 +1,10 @@
 import { useStyles } from './styles';
 import { Button, Card, Divider, Flex, Image } from 'antd';
-import { NoImage, Star } from '@clientAssets';
+import { NoImage, Star } from '@client/assets';
 import { useNavigate } from 'react-router-dom';
-import { routes } from '@clientConst';
+import { routes } from '@client/const';
 
-type InstructorCardProps = {
+type Props = {
   id: number;
   name: string;
   bio: string;
@@ -18,13 +18,13 @@ export const InstructorCard = ({
   bio,
   icon,
   isLoggedIn = false,
-}: InstructorCardProps) => {
+}: Props) => {
   const { styles } = useStyles();
 
   const navigate = useNavigate();
 
   const onClick = () => {
-    navigate(routes.teacher + `/${id}`);
+    navigate(routes.tutor + `/${id}`);
   };
 
   return (
@@ -63,7 +63,7 @@ export const InstructorCard = ({
         </Flex>
         {isLoggedIn && (
           <Button type="primary" className={styles.button}>
-            View Profile
+            Send Message
           </Button>
         )}
       </Flex>

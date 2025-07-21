@@ -1,9 +1,14 @@
 export type ParamsType = {
   search?: string;
-  sort?: "ASC" |"DESC";
+  sort?: ParamsSortOption;
   category?: number[];
   tag?: string[];
   page?: number;
   perPage?: number;
   tutor?: number[];
+};
+
+export enum ParamsSortOption {
+  asc = 'ASC',
+  desc = 'DESC',
 }

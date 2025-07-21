@@ -30,7 +30,7 @@ export const useStyles = createStyles(({ token }, color: string) => ({
 
   textWrapper: {
     height: '100%',
-    paddingLeft: '20px',
+    padding: '5px 0 5px 20px',
     width: '100%',
   },
 

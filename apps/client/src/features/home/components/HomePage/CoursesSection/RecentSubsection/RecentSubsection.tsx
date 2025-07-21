@@ -1,30 +1,52 @@
-import { Button, Col, Flex, Row, Spin, Tooltip } from 'antd';
+import { Button, Col, Flex, Grid, Row, Spin, Tooltip } from 'antd';
 import { useStyles } from './styles';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '@clientApi';
-import { CourseCard } from '@clientComponents';
-import { GetCoursesRequest } from '@clientTypes';
-import { ArrowRight } from '@clientAssets';
+import { api } from '@client/api/api';
+import { LoadingOutlined } from '@ant-design/icons';
+import { CourseCard } from '@client/components';
+import { GetCoursesRequest, ParamsSortOption } from '@client/types';
+import { ArrowRight } from '@client/assets';
 import { CustomTooltip } from './CustomTooltip';
+import { useNavigate } from 'react-router-dom';
+import { routes } from '@client/const';
+
+const { useBreakpoint } = Grid;
 
 export const RecentSubsection = () => {
   const { styles } = useStyles();
+  const screens = useBreakpoint();
+  const navigate = useNavigate();
 
   const params: GetCoursesRequest = {
     per_page: 4,
     page: 1,
-    order: 'ASC',
+    order: ParamsSortOption.asc,
     order_by: 'created_at',
   };
+  let visibleCount = 4;
+
+  if (screens.xl) {
+    visibleCount = 4;
+  } else if (screens.lg) {
+    visibleCount = 4;
+  } else if (screens.md) {
+    visibleCount = 3;
+  } else if (screens.sm) {
+    visibleCount = 2;
+  }
 
   const {
     data: courses,
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ['myCourses', { params }],
+    queryKey: ['recentCourses', { params }],
     queryFn: () => api.courses.getAllCourses(params),
   });
+
+  const onClick = () => {
+    navigate(routes.courses);
+  };
 
   if (isError) return <div>error of course</div>;
 
@@ -35,8 +57,8 @@ export const RecentSubsection = () => {
         <Spin size="large" />
       ) : (
         <Row gutter={[24, 24]} className={styles.coursesWrapper}>
-          {courses!.data.map((item) => (
-            <Col key={item.id} lg={12} xl={6}>
+          {courses?.data?.slice(0, visibleCount)?.map((item) => (
+            <Col key={item.id} sm={12} md={8} lg={6} xl={6}>
               <Tooltip
                 placement="right"
                 styles={{
@@ -53,7 +75,7 @@ export const RecentSubsection = () => {
                     duration={item.duration}
                     level={item.level}
                     price={item.product?.price}
-                    price_old={item.product?.price_old}
+                    priceOld={item.product?.price_old}
                     categories={item.categories}
                     author={item.author}
                   />
@@ -62,11 +84,11 @@ export const RecentSubsection = () => {
                 <div>
                   <CourseCard
                     key={item.id}
-                    image_url={item.image_url}
+                    imageUrl={item.image_url}
                     title={item.title}
                     id={item.id}
                     categories={item.categories}
-                    users_count={item.users_count}
+                    usersCount={item.users_count}
                     price={item.product?.price}
                   />
                 </div>
@@ -75,7 +97,12 @@ export const RecentSubsection = () => {
           ))}
         </Row>
       )}
-      <Button size="large" type="primary" className={styles.button}>
+      <Button
+        size="large"
+        type="primary"
+        className={styles.button}
+        onClick={onClick}
+      >
         <Flex gap={12} align="center" justify="center">
           <div>Browse all courses</div>
           <ArrowRight />

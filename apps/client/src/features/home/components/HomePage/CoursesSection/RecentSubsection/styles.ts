@@ -41,6 +41,13 @@ export const useStyles = createStyles(({ token, responsive }) => ({
     height: '30px',
     minHeight: '30px',
   },
+  tooltipWrapper: {
+    backgroundColor: token.colorWhite,
+    color: token.common.black,
+  },
+  fullwidth: {
+    width: '100%',
+  },
   tagContainer: {
     overflowX: 'scroll',
     width: '350px',
@@ -99,14 +106,5 @@ export const useStyles = createStyles(({ token, responsive }) => ({
     backgroundColor: token.primary.primary100,
     color: token.colorPrimary,
     padding: '8px 4px',
-  },
-
-  tooltipContainer: {
-    backgroundColor: token.colorWhite,
-    color: 'black',
-  },
-
-  fullWidth: {
-    width: '100%',
   },
 }));

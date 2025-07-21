@@ -26,16 +26,15 @@ export const useStyles = createStyles(({ token }) => ({
   },
 
   title: {
-    height: '24px',
     overflowY: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: 'vertical',
+    overflow: 'hidden',
     fontSize: token.fontSizeLG,
-    scrollbarWidth: 'none',
-    msOverflowStyle: 'none',
-    '&::-webkit-scrollbar': {
-      display: 'none',
-    },
+    lineHeight: '1.4',
+    height: `calc(1.4em * 2)`,
   },
 
   divider: {
@@ -46,7 +45,6 @@ export const useStyles = createStyles(({ token }) => ({
   text: {
     fontWeight: 500,
   },
-
   tagContainer: {
     overflowX: 'scroll',
     width: '100%',
@@ -56,14 +54,5 @@ export const useStyles = createStyles(({ token }) => ({
     '&::-webkit-scrollbar': {
       display: 'none',
     },
-  },
-
-  watchLecture: {
-    paddingInline: 16,
-    height: 40,
-    backgroundColor: token.primary.primary100,
-    color: token.primary.primary500,
-    border: 0,
-    fontWeight: token.fontWeightStrong,
   },
 }));

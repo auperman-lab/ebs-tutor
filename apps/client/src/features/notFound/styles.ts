@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(({ token, responsive }) => ({
+export const useStyles = createStyles(({ responsive }) => ({
   notFoundPage: {
     gap: '5%',
     width: '100%',
@@ -40,7 +40,7 @@ export const useStyles = createStyles(({ token, responsive }) => ({
     lineHeight: 1.6,
   },
 
-  Button: {
+  button: {
     width: 135,
     marginTop: 32,
   },

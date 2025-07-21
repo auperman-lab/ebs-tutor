@@ -1,10 +1,10 @@
 import { Col, Flex, Row, Spin } from 'antd';
-import { Filter, ListHeader } from '@clientFeatures/courseList';
-import { api } from '@clientApi';
+import { Filter, ListHeader } from '@client/features/courseList';
+import { api } from '@client/api/api';
 import { useQuery } from '@tanstack/react-query';
 import { useStyles } from './styles';
-import { CourseCard, PaginationComponent } from '@clientComponents';
-import { useURLQuery } from '@clientHooks';
+import { CourseCard, PaginationComponent } from '@client/components';
+import { useURLQuery } from '@client/hooks';
 
 export const CourseListPage = () => {
   const { styles } = useStyles();
@@ -42,11 +42,11 @@ export const CourseListPage = () => {
               <Col key={item.id} lg={12} xl={8}>
                 <CourseCard
                   key={item.id}
-                  image_url={item.image_url}
+                  imageUrl={item.image_url}
                   title={item.title}
                   id={item.id}
                   categories={item.categories}
-                  users_count={item.users_count}
+                  usersCount={item.users_count}
                   price={item.product?.price}
                 />
               </Col>

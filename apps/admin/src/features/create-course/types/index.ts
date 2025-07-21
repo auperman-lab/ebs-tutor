@@ -11,3 +11,9 @@ export type Section = {
   title: string;
   lectures: Lecture[];
 };
+
+export type TabsProps = {
+  onHandleNext: () => void;
+  onHandleBack: () => void;
+  activeKey: string;
+};

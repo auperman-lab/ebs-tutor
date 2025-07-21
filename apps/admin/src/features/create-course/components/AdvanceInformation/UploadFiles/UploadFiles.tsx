@@ -8,6 +8,7 @@ import {
   Button,
   Form,
 } from 'antd';
+import { useCourse } from '@context';
 import { useStyles } from './styles';
 
 const { Text } = Typography;
@@ -33,6 +34,7 @@ export const UploadFiles = ({
 }: UploadBlockProps) => {
   const { styles } = useStyles();
   const form = Form.useFormInstance();
+  const { setFile } = useCourse();
 
   const beforeUpload = (file: File) => {
     const isAccepted = acceptedTypes.includes(file.type);
@@ -59,11 +61,12 @@ export const UploadFiles = ({
   const handleChange: UploadProps['onChange'] = (info) => {
     const file = info.file.originFileObj;
     if (file && beforeUpload(file)) {
+      const isThumbnail = title.toLowerCase().includes('thumbnail');
+      const field = isThumbnail ? 'thumbnail' : 'trailer';
+      setFile(field, file);
+
       getBase64(file, (url) => {
-        form.setFieldsValue({
-          [title.toLowerCase().includes('thumbnail') ? 'thumbnail' : 'trailer']:
-            url,
-        });
+        form.setFieldsValue({ [field]: url });
       });
     }
   };

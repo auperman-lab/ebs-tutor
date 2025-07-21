@@ -5,8 +5,8 @@ export interface Course {
   title: string;
   summary: any;
   image_path: string;
-  video_path: any;
-  duration: any;
+  video_path: string;
+  duration: number;
   author_id: number;
   author: Author;
   authors: Author[];
@@ -21,7 +21,7 @@ export interface Course {
   poster_path: any;
   active_from: string;
   active_to: string;
-  hours_to_complete: any;
+  hours_to_complete: number;
   findable: boolean;
   scorm_sco_id: any;
   target_group: any;

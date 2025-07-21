@@ -1,17 +1,18 @@
 import { useRoutes } from 'react-router-dom';
-import { routes } from '@clientConst';
-import { AuthLayout, MainLayout } from '@clientLayout';
-import { LoginPage, RegistrationPage } from '@clientFeatures/auth';
-import { CourseListPage } from '@clientFeatures/courseList';
-import { CoursePage, CoursePagePaid } from '@clientFeatures/course';
+import { routes } from '@client/const';
+import { AuthLayout, MainLayout, StudentLayout } from '@client/layout';
+import { LoginPage, RegistrationPage } from '@client/features/auth';
+import { CourseListPage } from '@client/features/courseList';
+import { CoursePage, CoursePagePaid } from '@client/features/course';
 import {
   AboutPage,
   BecomeInstructorPage,
   ContactPage,
   HomePage,
-} from '@clientFeatures/home';
-import { StudentPage } from '@clientFeatures/student';
+} from '@client/features/home';
+import { StudentPage } from '@client/features/student';
 import { ProtectedRoute } from './ProtectedRoute';
+import { TutorPage } from '@client/features/tutor';
 
 export const Router = () => {
   return useRoutes([
@@ -43,7 +44,12 @@ export const Router = () => {
           path: routes.courses + '/:id',
           element: <CoursePage />,
         },
+        {
+          path: routes.tutor + '/:id',
+          element: <TutorPage />,
+        },
       ],
+
     },
     {
       path: routes.main,

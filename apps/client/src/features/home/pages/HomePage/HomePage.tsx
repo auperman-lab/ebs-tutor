@@ -1,13 +1,18 @@
 import { Flex } from 'antd';
-import { HeroSection, TopCategorySection } from '@clientFeatures/home/components';
-import { CourseSection } from '@clientFeatures/home/components/HomePage/CoursesSection';
+import {
+  CourseSection,
+  HeroSection,
+  LastSection,
+  TopCategorySection,
+} from '@client/features/home/components';
 
-export const HomePage = ()=>{
+export const HomePage = () => {
   return (
     <Flex align="center" justify="center" vertical>
       <HeroSection />
       <TopCategorySection />
       <CourseSection />
+      <LastSection />
     </Flex>
-  )
-}
+  );
+};

@@ -1,0 +1,37 @@
+import { Breadcrumb } from 'antd';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { CourseBreadCrumbsSkeleton } from './CourseBreadCrumbsSkeleton';
+import { api } from '@client/api/api';
+import { routes } from '@client/const';
+
+export const CourseBreadCrumbs = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  if (!id) {
+    navigate(routes.main);
+    return;
+  }
+
+  const { data: course, isLoading } = useQuery({
+    queryKey: ['course', id],
+    queryFn: () => api.courses.getCourse(id),
+  });
+
+  if (isLoading) return <CourseBreadCrumbsSkeleton />;
+
+  const items = [
+    {
+      title: <Link to={routes.main}>Dashboard</Link>,
+    },
+    {
+      title: <Link to={routes.courses}>My Courses</Link>,
+    },
+    {
+      title: course?.title,
+    },
+  ];
+
+  return <Breadcrumb items={items} />;
+};

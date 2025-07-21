@@ -1,7 +1,8 @@
 import { useStyles } from './styles';
 import { Avatar, Button, Divider, Flex, List, Tag } from 'antd';
-import { Author, Category } from '@clientTypes';
-import { Heart, Star, User } from '@clientAssets';
+import { Author, Category } from '@client/types';
+import { Heart, Star, User } from '@client/assets';
+import { formatDiscount, formatOldPrice, formatPrice } from '@client/utils';
 
 type CustomTooltipProps = {
   title: string;
@@ -9,8 +10,8 @@ type CustomTooltipProps = {
   duration?: number;
   level: string;
   usersCount: number;
-  price?: number | null;
-  price_old?: number | null;
+  price?: number;
+  priceOld?: number;
   categories: Category[];
 };
 
@@ -33,7 +34,7 @@ export const CustomTooltip = ({
   title,
   usersCount,
   price,
-  price_old,
+  priceOld,
   level,
   duration,
   author,
@@ -41,27 +42,8 @@ export const CustomTooltip = ({
 }: CustomTooltipProps) => {
   const { styles } = useStyles();
 
-  const getPrice = (): string => {
-    if (price === 0) return 'Free';
-    if (price != null) return `$${price.toFixed(2)}`;
-    return 'N/A';
-  };
-
-  const getOldPrice = (): string => {
-    if (price_old != null && price_old !== price) {
-      return `$${price_old.toFixed(2)}`;
-    }
-    return '';
-  };
-  const getDiscount = (): string => {
-    if (price_old != null && price != null && price_old !== price) {
-      return `${((price_old - price) * 100) / price_old}%`;
-    }
-    return '';
-  };
-
   return (
-    <Flex gap={20} vertical className={styles.tooltipContainer}>
+    <Flex gap={20} vertical className={styles.tooltipWrapper}>
       <Flex gap={16} vertical align="start" justify="center">
         <Flex gap={10} vertical>
           <Flex className={styles.tagContainer}>
@@ -77,7 +59,7 @@ export const CustomTooltip = ({
           </Flex>
           <div className={styles.tooltipTitle}>{title}</div>
         </Flex>
-        <Flex justify="space-evenly" className={styles.fullWidth}>
+        <Flex justify="space-evenly" className={styles.fullwidth}>
           {author ? (
             <Flex gap={8} align="center">
               <Avatar src={author.url_avatar} className={styles.avatar} />
@@ -123,11 +105,11 @@ export const CustomTooltip = ({
       </Flex>
       <Flex justify="space-between" className={styles.priceWrapper}>
         <Flex gap={8} align="center" justify="center">
-          <div className={styles.price}>{getPrice()}</div>
-          <div className={styles.priceOld}>{getOldPrice()}</div>
-          {getDiscount() && (
+          <div className={styles.price}>{formatPrice(price)}</div>
+          <div className={styles.priceOld}>{formatOldPrice(priceOld)}</div>
+          {formatDiscount(priceOld, price) && (
             <Flex gap={10} className={styles.discount}>
-              {getDiscount()} OFF
+              {formatDiscount(priceOld, price)} OFF
             </Flex>
           )}
         </Flex>

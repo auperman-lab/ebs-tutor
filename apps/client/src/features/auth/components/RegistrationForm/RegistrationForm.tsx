@@ -8,11 +8,11 @@ import {
   FormProps,
 } from 'antd';
 import { useMutation } from '@tanstack/react-query';
-import { api } from '@clientApi';
+import { api } from '@client/api/api';
 import { useStyles } from './styles';
-import { regexPatterns } from '@clientConst';
-import { RegistrationFormProps } from '@clientFeatures/auth/types';
-import { LoginOptions } from '@clientFeatures/auth/components';
+import { regexPatterns } from '@client/const';
+import { RegistrationFormProps } from "@client/features/auth/types";
+import { LoginOptions } from "@client/features/auth/components";
 
 export const RegistrationForm = () => {
   const { styles } = useStyles();

@@ -8,12 +8,7 @@ import {
   RevenueCard,
   OverviewCard,
 } from '@features/dashboard/components';
-import {
-  ChartBar,
-  ChatCircleDots,
-  CreditCard,
-  Gear,
-} from '@phosphor-icons/react';
+import { ChartBar, ChatCircle, CreditCard, Gear } from '@assets';
 import { useStyles } from './styles';
 
 const stats = [
@@ -23,7 +18,7 @@ const stats = [
   {
     title: 'Users',
     quantity: 1200,
-    icon: <ChatCircleDots />,
+    icon: <ChatCircle />,
     color: '#00FF00',
   },
 ];
@@ -35,7 +30,7 @@ export const MainPage = () => {
     <Flex className={styles.container} vertical align="center" justify="center">
       <Row gutter={[24, 24]}>
         {stats.map((item, index) => (
-          <Col span={6}>
+          <Col span={6} key={`${index}-${item.title}`}>
             <StatCard
               key={`${index}-${item.title}`}
               color={item.color}

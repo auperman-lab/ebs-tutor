@@ -1,7 +1,7 @@
 import { useStyles } from "./styles";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
-import { routes } from "@clientConst";
+import { routes } from "@client/const";
 
 const items = [
   { key: routes.main, label: 'Home' },
@@ -15,7 +15,7 @@ export const UpperHeader = () => {
   const { styles } = useStyles();
   const navigate = useNavigate();
 
-  const handleClick = ({ key }: { key: string }) => {
+  const onClick = ({ key }: { key: string }) => {
     navigate(key);
   };
 
@@ -24,7 +24,7 @@ export const UpperHeader = () => {
       mode="horizontal"
       items={items}
       className={styles.menu}
-      onClick={handleClick}
+      onClick={onClick}
     />
   );
 };

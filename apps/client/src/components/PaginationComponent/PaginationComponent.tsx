@@ -1,12 +1,14 @@
 import { Pagination } from 'antd';
-import { useURLQuery } from '@clientHooks';
-import { perPage } from '@clientConst';
+import { useURLQuery } from '@client/hooks';
+import { perPage } from '@client/const';
 
 type PaginationComponentProps = {
   totalItems: number;
 };
 
-export const PaginationComponent = ({ totalItems }: PaginationComponentProps) => {
+export const PaginationComponent = ({
+  totalItems,
+}: PaginationComponentProps) => {
   const { getParams, setParams } = useURLQuery();
   const params = getParams();
 

@@ -5,12 +5,13 @@ import {
   Course,
   GetCoursesRequest,
   GetCoursesResponse,
-} from '@clientTypes';
-import { apiEndpoints } from '@clientConst';
+  GetTagsResponse,
+} from '@client/types';
+import { apiEndpoints } from '@client/const';
 
 export const courses = {
   getAllCourses: async (
-    params?: GetCoursesRequest
+    params: GetCoursesRequest
   ): Promise<GetCoursesResponse> => {
     const { data } = await axiosInstance.get(apiEndpoints.getAllCourses, {
       params,
@@ -37,7 +38,7 @@ export const courses = {
     );
     return data.data;
   },
-  getTags: async (): Promise<any> => {
+  getTags: async (): Promise<GetTagsResponse[]> => {
     const { data } = await axiosInstance.get(
       apiEndpoints.getTags + `?per_page=1000`
     );
@@ -47,6 +48,10 @@ export const courses = {
     const { data } = await axiosInstance.get(
       apiEndpoints.getTutors + `?per_page=1000`
     );
+    return data.data;
+  },
+  getTutor: async (id: string): Promise<Author> => {
+    const { data } = await axiosInstance.get(apiEndpoints.getTutors + `/${id}`);
     return data.data;
   },
 };

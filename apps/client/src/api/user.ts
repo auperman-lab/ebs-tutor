@@ -1,10 +1,6 @@
-import { axiosInstance } from './axios/instance';
-import { apiEndpoints } from '@clientConst';
-import {
-  UserInfoEndpointResponse,
-  UserChangeSettingsRequest,
-  ChangeEmail,
-} from '@clientTypes';
+import { axiosInstance } from "./axios/instance";
+import { apiEndpoints } from "@client/const";
+import {UserInfoEndpointResponse } from "@client/types";
 
 export const user = {
   get: async (id: number): Promise<UserInfoEndpointResponse> => {

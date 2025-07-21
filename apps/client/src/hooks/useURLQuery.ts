@@ -1,6 +1,6 @@
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { GetCoursesRequest, ParamsType } from '@clientTypes';
-import { perPage } from '@clientConst';
+import { GetCoursesRequest, ParamsSortOption, ParamsType } from '@client/types';
+import { perPage } from '@client/const';
 
 export const useURLQuery = () => {
   const [searchParams] = useSearchParams();
@@ -8,7 +8,7 @@ export const useURLQuery = () => {
   const navigate = useNavigate();
 
   const defaultParams: ParamsType = {
-    sort: 'ASC',
+    sort: ParamsSortOption.asc,
     page: 1,
     perPage: perPage,
   };
@@ -31,7 +31,7 @@ export const useURLQuery = () => {
   const getRequestParams = (): GetCoursesRequest => {
     const params = getParams();
     return {
-      order: params.sort || 'ASC',
+      order: params.sort || ParamsSortOption.asc,
       order_by: 'title',
       page: params.page || 1,
       per_page: params.perPage || perPage,

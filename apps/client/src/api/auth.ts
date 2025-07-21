@@ -1,11 +1,11 @@
 import { axiosInstance } from './axios/instance';
-import { apiEndpoints } from '@clientConst';
+import { apiEndpoints } from '@client/const';
 import {
   RegisterEndpointRequest,
   LoginEndpointRequest,
   LoginEndpointResponse,
   ChangePasswordRequest,
-} from '@clientTypes';
+} from '@client/types';
 
 export const auth = {
   register: async (payload: RegisterEndpointRequest) => {
