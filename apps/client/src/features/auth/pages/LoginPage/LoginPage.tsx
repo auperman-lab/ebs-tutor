@@ -1,6 +1,6 @@
 import { Flex } from 'antd';
 import { useStyles } from './styles';
-import { LoginFormContainer, LoginImageContainer } from "@clientFeatures/auth/components";
+import { LoginFormContainer, LoginImageContainer } from "@client/features/auth/components";
 
 export const LoginPage = () => {
   const { styles } = useStyles();

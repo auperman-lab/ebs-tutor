@@ -1,9 +1,9 @@
 import { Button, Flex, Space } from 'antd';
-import { GraduationCap } from '@clientAssets';
+import { GraduationCap } from '@client/assets';
 import { Header } from 'antd/lib/layout/layout';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useStyles } from './styles';
-import { routes } from '@clientConst';
+import { routes } from '@client/const';
 
 export const AuthHeader = () => {
   const { styles } = useStyles();
@@ -31,7 +31,7 @@ export const AuthHeader = () => {
         >
           <Flex gap={8}>
             <GraduationCap />
-            <h1 className={styles.headerTitle}>E-tutor</h1>
+            <h1 >E-tutor</h1>
           </Flex>
         </Button>
 

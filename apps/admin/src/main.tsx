@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Router } from './router/router';
 import { StyleProvider, ThemeProvider } from 'antd-style';
-import { AuthProvider, QueryClientContext } from '@context';
+import { AuthProvider, QueryClientContext, CourseProvider } from '@context';
 import '@ant-design/v5-patch-for-react-19';
 import { GlobalStyle } from './GlobalStyles';
 import { customThemePalette, themeComponents } from './styles';
@@ -15,6 +15,7 @@ const root = ReactDOM.createRoot(
 
 const AppWithHooks = ({ children }: { children: ReactNode }) => {
   useAutoRefreshToken();
+
   return <>{children}</>;
 };
 
@@ -24,17 +25,19 @@ root.render(
       <QueryClientContext>
         <AuthProvider>
           <AppWithHooks>
-            <StyleProvider>
-              <ThemeProvider
-                theme={{
-                  token: customThemePalette,
-                  components: themeComponents,
-                }}
-              >
-                <GlobalStyle />
-                <Router />
-              </ThemeProvider>
-            </StyleProvider>
+            <CourseProvider>
+              <StyleProvider>
+                <ThemeProvider
+                  theme={{
+                    token: customThemePalette,
+                    components: themeComponents,
+                  }}
+                >
+                  <GlobalStyle />
+                  <Router />
+                </ThemeProvider>
+              </StyleProvider>
+            </CourseProvider>
           </AppWithHooks>
         </AuthProvider>
       </QueryClientContext>

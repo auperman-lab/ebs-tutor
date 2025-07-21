@@ -1,24 +1,31 @@
-import { Checkbox, Collapse, Flex} from "antd";
-import { useStyles } from "@clientFeatures/courseList/components/Filter/styles";
-import { useState } from "react";
-import { ChevronDown } from "@clientAssets";
+import { Checkbox, Collapse, Flex } from 'antd';
+import { useStyles } from './styles';
+import { useState } from 'react';
+import { ChevronDown } from '@client/assets';
 
 type FilterOption = {
   label: string;
   value: string;
-  icon? : string
+  icon?: string;
 };
 
 type FilterProps = {
   options: FilterOption[];
   label?: string;
   onChange?: (checked: string[]) => void;
+  checkedItems?: string[];
 };
 
-export const FilterItem = ({ options, label = "Filter", onChange }: FilterProps) => {
-
+export const FilterItem = ({
+  options,
+  label = 'Filter',
+  onChange,
+  checkedItems,
+}: FilterProps) => {
   const { styles } = useStyles();
-  const [checkedValues, setCheckedValues] = useState<string[]>([]);
+  const [checkedValues, setCheckedValues] = useState<string[]>(
+    checkedItems || []
+  );
 
   const onCheckboxChange = (value: string, checked: boolean) => {
     const newChecked = checked
@@ -35,13 +42,11 @@ export const FilterItem = ({ options, label = "Filter", onChange }: FilterProps)
         <span>{label?.toUpperCase()}</span>
       </Flex>
       <ChevronDown />
-
     </Flex>
   );
 
   return (
     <Collapse
-      defaultActiveKey={['1']}
       expandIconPosition="end"
       expandIcon={() => null}
       className={styles.collapse}
@@ -55,18 +60,18 @@ export const FilterItem = ({ options, label = "Filter", onChange }: FilterProps)
               checked={checkedValues.includes(option.value)}
               onChange={(e) => onCheckboxChange(option.value, e.target.checked)}
             >
-              <Flex justify={"space-between"} align={"center"} gap={10}>
-                {option.icon ?
-                  <img alt="icon" height={20} src={option.icon} />:
+              <Flex justify={'space-between'} align={'center'} gap={10}>
+                {option.icon ? (
+                  <img alt="icon" height={20} src={option.icon} />
+                ) : (
                   <div className={styles.optionIcon}></div>
-                }
+                )}
                 <div className={styles.optionLabel}>{option.label}</div>
-
               </Flex>
-
             </Checkbox>
           ))}
         </Flex>
       </Collapse.Panel>
-    </Collapse>  )
-}
+    </Collapse>
+  );
+};

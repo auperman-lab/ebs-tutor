@@ -1,16 +1,21 @@
-import { useStyles } from "./styles";
-import { Flex } from "antd";
-import { getRelativeTime } from "@utils";
-import { NotificationItemProps, typeTextMap } from "./types";
-import { Cards, ChatText, Star } from "@phosphor-icons/react";
+import { useStyles } from './styles';
+import { Flex } from 'antd';
+import { getRelativeTime } from '@utils';
+import { NotificationItemProps, typeTextMap } from './types';
+import { Star, ChatCircle, Cards } from '@assets';
 
-const iconMap: Record<NotificationItemProps["type"], React.ReactElement> = {
-  comment: <ChatText size={20} weight="fill" color="white" />,
-  rating: <Star size={20} weight="fill" color="white" />,
-  purchase: <Cards size={20} weight="fill" color="white" />,
+const iconMap: Record<NotificationItemProps['type'], React.ReactElement> = {
+  comment: <ChatCircle color="white" />,
+  rating: <Star color="white" />,
+  purchase: <Cards color="white" />,
 };
 
-export const NotificationItem = ({ name, type, content, date }: NotificationItemProps) => {
+export const NotificationItem = ({
+  name,
+  type,
+  content,
+  date,
+}: NotificationItemProps) => {
   const { styles } = useStyles();
 
   return (
@@ -22,8 +27,8 @@ export const NotificationItem = ({ name, type, content, date }: NotificationItem
       </Flex>
       <Flex vertical justify="space-between" align="start" gap="8px">
         <p className={styles.textParagraph}>
-          <span className={styles.nameText}>{name}</span>{" "}
-          <span className={styles.secondaryText}>{typeTextMap[type]}</span>{" "}
+          <span className={styles.nameText}>{name}</span>{' '}
+          <span className={styles.secondaryText}>{typeTextMap[type]}</span>{' '}
           &quot;{content}&quot;
         </p>
         <p className={styles.secondaryText}>{getRelativeTime(date)}</p>

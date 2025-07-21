@@ -2,25 +2,27 @@ import { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 
-import { LoginEndpointResponse, User } from "@clientTypes";
+import { LoginEndpointResponse, User } from '@client/types';
 
-import { routes } from "@clientConst";
+import { routes } from '@client/const';
 import {
   decodeToken,
   getUserByToken,
   removeUser,
   setToken,
-  setUser as setUserInStorage
-} from "@clientUtils";
+  setUser as setUserInStorage,
+} from '@client/utils';
 
-type AuthContextProps  = {
+type AuthContextProps = {
   user: User | null;
   logout: () => void;
   login: (data: LoginEndpointResponse) => void;
   refresh: (data: LoginEndpointResponse) => Promise<User | null>;
-}
+};
 
-export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
+export const AuthContext = createContext<AuthContextProps | undefined>(
+  undefined
+);
 
 export const AuthProvider = ({ children }: React.HTMLProps<HTMLElement>) => {
   const [user, setUser] = useState<User | null>(getUserByToken);
@@ -38,16 +40,24 @@ export const AuthProvider = ({ children }: React.HTMLProps<HTMLElement>) => {
     const authUser = await refresh(data);
     if (!authUser) {
       logout();
-      return
+      return;
     }
-    console.log("navigation to homepage =>");
+
+    if (authUser.roles.includes('admin')) {
+      const url = new URL(import.meta.env['VITE_ADMIN_PANEL_URL']);
+      url.searchParams.set('token', data.token);
+      url.searchParams.set('expires_at', data.expires_at);
+
+      logout();
+      window.location.href = url.toString();
+      return;
+    }
+
     navigate(routes.main);
   };
 
-  const refresh = async (data: LoginEndpointResponse) :  Promise<User | null>=> {
-    console.log(">>>start refresh");
+  const refresh = async (data: LoginEndpointResponse): Promise<User | null> => {
     setToken(data.token, data.expires_at);
-    console.log(">>>set token to storage");
     const authUser = await decodeToken(data.token);
     if (!authUser) {
       logout();
@@ -57,9 +67,11 @@ export const AuthProvider = ({ children }: React.HTMLProps<HTMLElement>) => {
     setUser(authUser.user);
 
     return authUser.user;
-
   };
 
-
-  return <AuthContext.Provider value={{ user, logout, login, refresh }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, logout, login, refresh }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };

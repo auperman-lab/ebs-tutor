@@ -33,7 +33,7 @@ type ColorPalette = {
 }
 
 type ThemeCommon = {
-  common: { black: string; white: string; }
+  common: { black: string; white: string; gray: string; }
   fontFamily: string
 }
 
@@ -95,6 +95,7 @@ export const customThemePalette: FullTokenCustom = {
   common: {
     black: "#000000",
     white: "#FFFFFF",
+    gray: "#F5F7FA"
   },
 
 

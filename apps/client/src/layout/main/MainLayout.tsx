@@ -1,6 +1,6 @@
 import { Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
-import { MainHeader, Footer } from '@clientComponents';
+import { MainHeader, Footer } from '@client/components';
 import { useStyles } from './styles';
 
 const { Content } = Layout;
@@ -11,7 +11,7 @@ export const MainLayout = () => {
   return (
     <Layout className={styles.layout}>
       <MainHeader />
-      <Content className={styles.content}>
+      <Content >
         <Outlet />
       </Content>
       <Footer />

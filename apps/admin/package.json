@@ -3,12 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@types/lodash.merge": "^4.6.9",
-    "lodash.merge": "^4.6.2",
-    "quill": "^2.0.3",
-    "react-quill": "^2.0.0",
-    "recharts": "^2.15.3",
-    "uuid": "^11.1.0"
+    "recharts": "^2.15.3"
   },
   "scripts": {
     "dev": "vite"

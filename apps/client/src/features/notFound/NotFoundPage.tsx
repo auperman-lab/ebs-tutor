@@ -1,8 +1,8 @@
 import { Button, Flex } from 'antd';
-import { NotFound } from '@clientAssets';
+import { NotFound } from '@client/assets';
 import { useStyles } from './styles';
 import { useNavigate } from 'react-router-dom';
-import { routes } from '@clientConst';
+import { routes } from '@client/const';
 
 export const NotFoundPage = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export const NotFoundPage = () => {
           onClick={() => {
             navigate(routes.main);
           }}
-          className={styles.Button}
+          className={styles.button}
           size="large"
         >
           Go Back

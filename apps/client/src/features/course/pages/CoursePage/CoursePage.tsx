@@ -1,15 +1,15 @@
 import { Col, Row } from 'antd';
-import { CourseHeader, Sidebar } from '@clientFeatures/course';
+import { CourseHeader, Sidebar } from '@client/features/course';
 
 export const CoursePage = () => {
-	return (
-	<Row gutter={[24, 24]}>
-		<Col span={16}>
-			<CourseHeader/>
-		</Col>
-		<Col span={8}>
-			<Sidebar/>
-		</Col>
-	</Row>
-	);
+  return (
+    <Row gutter={[24, 24]}>
+      <Col span={16}>
+        <CourseHeader />
+      </Col>
+      <Col span={8}>
+        <Sidebar />
+      </Col>
+    </Row>
+  );
 };
