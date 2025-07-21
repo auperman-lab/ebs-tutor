@@ -8,7 +8,7 @@ import {
   Twitter,
   User,
   Whatsapp,
-  Youtube,
+  YoutubeLogo,
 } from '@client/assets';
 
 type TutorPageHeaderProps = {
@@ -111,7 +111,7 @@ export const TutorPageHeader = ({
           <Button
             size="large"
             className={styles.smallButton}
-            icon={<Youtube />}
+            icon={<YoutubeLogo />}
             onClick={onRedirectYoutube}
           />
           <Button

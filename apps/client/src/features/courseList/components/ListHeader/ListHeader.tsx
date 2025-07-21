@@ -3,15 +3,16 @@ import { Faders, MagnifyingGlass } from '@client/assets';
 import { useStyles } from './styles';
 import { useState } from 'react';
 import { useURLQuery } from '@client/hooks';
+import { ParamsSortOption } from '@client/types';
 
 const sort = [
   {
     label: 'Descendant',
-    value: 'DESC',
+    value: ParamsSortOption.desc,
   },
   {
     label: 'Ascendant',
-    value: 'ASC',
+    value: ParamsSortOption.asc,
   },
 ];
 
@@ -37,7 +38,7 @@ export const ListHeader = ({ totalItems }: ListHeaderProps) => {
     setSearchText(e.target.value);
     setParams({ search: e.target.value, page: 1 });
   };
-  const onSortChange = (value: 'ASC' | 'DESC') => {
+  const onSortChange = (value: ParamsSortOption) => {
     setParams({ sort: value, page: 1 });
   };
   return (
@@ -71,7 +72,7 @@ export const ListHeader = ({ totalItems }: ListHeaderProps) => {
           </Flex>
           <Select
             size="large"
-            defaultValue={params.sort || 'ASC'}
+            defaultValue={params.sort || ParamsSortOption.asc}
             className={styles.select}
             options={sort}
             onChange={onSortChange}

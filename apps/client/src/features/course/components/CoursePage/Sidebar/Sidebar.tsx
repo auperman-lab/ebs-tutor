@@ -1,9 +1,8 @@
-import { Button, Divider, Flex, message, Spin } from 'antd';
+import { Button, Divider, Flex } from 'antd';
 import { useStyles } from './styles';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { api } from '@client/api/api';
-import { LoadingOutlined } from '@ant-design/icons';
 import {
   Alarm,
   BarChart,
@@ -21,48 +20,20 @@ import {
   Users,
 } from '@client/assets';
 import { routes } from '@client/const';
+import { useAuth } from '@client/hooks';
 import { formatDiscount, formatOldPrice, formatPrice } from '@client/utils';
-import { useState } from 'react';
-import { addCartItemEndpointRequest } from '@client/types';
+import { CourseSidebarSkeleton } from './SidebarSkeleton';
 
 export const Sidebar = () => {
   const { id } = useParams();
   const { styles } = useStyles();
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
-
-  const [inCart, setInCart] = useState(false);
+  const { user } = useAuth();
 
   const { data: course, isLoading } = useQuery({
     queryKey: ['course', id],
     queryFn: () => api.courses.getCourse(id!),
   });
-
-	const { mutate: addToCartMutation } = useMutation({
-		mutationFn: (payload: addCartItemEndpointRequest) => api.cart.add(payload),
-		onSuccess: () => {
-			setInCart(true);
-			queryClient.invalidateQueries({ queryKey: ['cart'] });
-			message.success('Added to cart');
-		},
-		onError: () => {
-			queryClient.invalidateQueries({ queryKey: ['cart'] });
-			message.error('Failed to add to cart');
-		},
-	});
-
-	const { mutate: removeFromCartMutation } = useMutation({
-		mutationFn: () => api.cart.remove(course?.product.id || 0),
-		onSuccess: () => {
-			setInCart(false);
-
-			message.success('Removed from cart');
-		},
-		onError: () => {
-			message.error('Failed to remove from cart');
-		},
-	});
-
 
   const onCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -102,22 +73,13 @@ export const Sidebar = () => {
   };
 
   const onBuy = () => {
+    if (!user) {
+      return navigate(routes.login);
+    }
     return navigate(routes.cart);
   };
 
-  const onCartClick = () => {
-    if (!course?.product?.id) return;
-
-    if (inCart) {
-      removeFromCartMutation();
-    } else {
-      addToCartMutation({
-        id: course.product.id,
-      });
-    }
-  };
-  if (isLoading)
-    return <Spin indicator={<LoadingOutlined spin />} size="large" />;
+  if (isLoading) return <CourseSidebarSkeleton />;
 
   return (
     <Flex vertical gap={24} className={styles.sidebarWrapper}>
@@ -184,12 +146,8 @@ export const Sidebar = () => {
       </Flex>
       <Divider className={styles.dividerNoMargin} />
       <Flex vertical gap={12}>
-        <Button
-          size="large"
-          type="primary"
-          onClick={onCartClick}
-        >
-          {inCart ? 'Delete from Cart' : 'Add To Cart'}
+        <Button size="large" type="primary">
+          Add To Cart
         </Button>
         <Button
           size="large"

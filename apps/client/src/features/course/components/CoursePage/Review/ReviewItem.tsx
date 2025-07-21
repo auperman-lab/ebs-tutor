@@ -1,4 +1,4 @@
-import { Avatar, Flex, List } from 'antd';
+import { Avatar, Flex, List, Rate } from 'antd';
 import { useStyles } from './styles';
 
 const mockReviews = [
@@ -50,10 +50,12 @@ export const ReviewItem = () => {
                   <div className={styles.timeAgo}>{item.timeAgo}</div>
                 </Flex>
               </Flex>
-              <div className={styles.stars}>
-                {'★'.repeat(item.rating)}
-                {'☆'.repeat(5 - item.rating)}
-              </div>
+              <Rate
+                disabled
+                defaultValue={item.rating}
+                allowHalf={false}
+                className={styles.stars}
+              />
               <div className={styles.text}>{item.text}</div>
             </Flex>
           </Flex>

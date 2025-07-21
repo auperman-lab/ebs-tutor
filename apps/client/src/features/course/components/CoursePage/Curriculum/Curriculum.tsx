@@ -7,6 +7,7 @@ import { useStyles } from './styles';
 import { Clock, File, FolderNotchOpen, Play, PlayCircle } from '@client/assets';
 import { useTheme } from 'antd-style';
 import { routes } from '@client/const';
+import { Lesson } from '@client/types';
 
 const { Panel } = Collapse;
 
@@ -26,7 +27,7 @@ export const Curriculum = () => {
     queryFn: () => api.courses.getCourse(id),
   });
 
-  const getLessonDuration = (lesson: any): number => {
+  const getLessonDuration = (lesson: Lesson): number => {
     if (lesson.duration) return lesson.duration;
 
     return (
@@ -72,7 +73,6 @@ export const Curriculum = () => {
       </Flex>
       <Collapse accordion>
         {course.lessons.map((lesson) => {
-          const topics = lesson.topics || [];
           return (
             <Panel
               key={lesson.id}
@@ -82,7 +82,7 @@ export const Curriculum = () => {
                   <Flex gap={16}>
                     <Flex gap={8}>
                       <PlayCircle />
-                      {topics.length} lectures
+                      {lesson.topics.length} lectures
                     </Flex>
                     <Flex gap={8}>
                       <Clock stroke={palette.common.black} />
@@ -93,7 +93,7 @@ export const Curriculum = () => {
               }
             >
               <List
-                dataSource={topics}
+                dataSource={lesson.topics}
                 renderItem={(topic) => (
                   <List.Item className={styles.topicItem}>
                     <Flex

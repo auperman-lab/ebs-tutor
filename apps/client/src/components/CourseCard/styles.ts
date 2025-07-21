@@ -26,11 +26,15 @@ export const useStyles = createStyles(({ token }) => ({
   },
 
   title: {
-    height: '24px',
     overflowY: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: 'vertical',
+    overflow: 'hidden',
     fontSize: token.fontSizeLG,
+    lineHeight: '1.4',
+    height: `calc(1.4em * 2)`,
   },
 
   divider: {
@@ -46,7 +50,6 @@ export const useStyles = createStyles(({ token }) => ({
     width: '100%',
     scrollbarWidth: 'none',
     msOverflowStyle: 'none',
-    paddingLeft: '10px',
 
     '&::-webkit-scrollbar': {
       display: 'none',

@@ -11,7 +11,7 @@ export const MainLayout = () => {
   return (
     <Layout className={styles.layout}>
       <MainHeader />
-      <Content className={styles.content}>
+      <Content >
         <Outlet />
       </Content>
       <MainFooter />
