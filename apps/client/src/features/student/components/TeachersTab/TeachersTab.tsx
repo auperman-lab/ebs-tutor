@@ -1,11 +1,11 @@
 import { Flex, Typography, Row, Col, Spin, Empty, Input } from 'antd';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '@clientApi';
-import { useURLQuery } from '@clientHooks';
+import { api } from '@client/api/api';
+import { useURLQuery } from '@client/hooks';
 import { useStyles } from './styles';
-import { InstructorCard } from '@clientComponents';
+import { InstructorCard } from '@client/components';
 import { useState } from 'react';
-import { Author } from '@clientTypes';
+import { Author } from '@client/types';
 
 const { Title } = Typography;
 

@@ -3,7 +3,6 @@ import { Flex, Spin } from 'antd';
 import { api } from '@client/api/api';
 import { useQuery } from '@tanstack/react-query';
 import { useURLQuery } from '@client/hooks';
-import { LoadingOutlined } from '@ant-design/icons';
 import { GetTagsResponse } from '@client/types';
 
 export const Filter = () => {

@@ -13,10 +13,10 @@ import {
 } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { useStyles } from './styles';
-import { useAuth } from '@clientHooks';
+import { useAuth } from '@client/hooks';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { api } from '@clientApi';
-import { ChangeEmail, UserChangeSettingsRequest } from '@clientTypes';
+import { api } from '@client/api/api';
+import { ChangeEmail, UserChangeSettingsRequest } from '@client/types';
 
 const { Title } = Typography;
 

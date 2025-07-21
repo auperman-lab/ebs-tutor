@@ -1,10 +1,11 @@
-import { Input, Select, Row, Col } from 'antd';
-import { useURLQuery } from '@clientHooks';
+import { Col, Input, Row, Select } from 'antd';
+import { useURLQuery } from '@client/hooks';
 import { useStyles } from './styles';
+import { ParamsSortOption } from '@client/types';
 
 const { Option } = Select;
 
-type FiltersProps = {
+type Props = {
   searchValue: string;
   setSearchValue: (v: string) => void;
   tutors: any[];
@@ -16,7 +17,7 @@ export const Filters = ({
   setSearchValue,
   tutors,
   hideTutorFilter = false,
-}: FiltersProps) => {
+}: Props) => {
   const { getParams, setParams } = useURLQuery();
   const urlParams = getParams();
   const { styles } = useStyles();
@@ -25,7 +26,7 @@ export const Filters = ({
     setParams({ ...urlParams, search: value, page: 1 });
   };
 
-  const handleSortChange = (value: 'ASC' | 'DESC') => {
+  const handleSortChange = (value: ParamsSortOption) => {
     setParams({ ...urlParams, sort: value, page: 1 });
   };
 

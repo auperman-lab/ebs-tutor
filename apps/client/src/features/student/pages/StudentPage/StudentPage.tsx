@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { Button, Flex, Avatar, Typography, Tabs, TabsProps } from 'antd';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '@clientApi';
+import { api } from '@client/api/api';
 import { useStyles } from './styles';
-import { useAuth } from '@clientHooks';
-import { ArrowRight } from '@clientAssets';
+import { useAuth } from '@client/hooks';
+import { ArrowRight } from '@client/assets';
 import {
   DashboardTab,
   CoursesTab,
   TeachersTab,
   SettingsTab,
-} from '@clientFeatures/student/components';
-import { getTokenData } from '@clientUtils';
+} from '@client/features/student';
+import { getTokenData } from '@client/utils';
 
 const { Title, Text } = Typography;
 

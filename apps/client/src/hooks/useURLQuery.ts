@@ -39,6 +39,7 @@ export const useURLQuery = () => {
       'categories[]': params.category || undefined,
       'tag[]': params.tag || undefined,
       'authors[]': params.tutor || undefined,
+      'ids[]': undefined,
     };
   };
 

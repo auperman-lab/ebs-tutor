@@ -1,11 +1,10 @@
-import { Flex, Typography, Row, Col, Spin, Empty } from 'antd';
+import { Col, Empty, Flex, Row, Spin, Typography } from 'antd';
 import { useQuery } from '@tanstack/react-query';
-import { useURLQuery } from '@clientHooks';
-import { api } from '@clientApi';
+import { useURLQuery } from '@client/hooks';
+import { api } from '@client/api/api';
 import { useStyles } from './styles';
-import { CourseCard, PaginationComponent } from '@clientComponents';
+import { CourseCard, Filters, PaginationComponent } from '@client/components';
 import { useState } from 'react';
-import { Filters } from '@clientComponents';
 
 const { Title } = Typography;
 
@@ -60,10 +59,12 @@ export const CoursesTab = () => {
               {courses.data.map((item) => (
                 <Col key={item.id} lg={12} xl={6}>
                   <CourseCard
-                    image_url={item.image_url}
+                    imageUrl={item.image_url}
                     title={item.title}
                     id={item.id}
                     isProfileCard={true}
+                    categories={item.categories}
+                    usersCount={item.users_count}
                   />
                 </Col>
               ))}

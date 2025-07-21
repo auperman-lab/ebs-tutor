@@ -1,8 +1,8 @@
 import { Button, Flex, Form, Input, Typography } from 'antd';
 import { useStyles } from './styles';
 import { useMutation } from '@tanstack/react-query';
-import { api } from '@clientApi';
-import { ChangePasswordRequest } from '@clientTypes';
+import { api } from '@client/api/api';
+import { ChangePasswordRequest } from '@client/types';
 
 const { Title } = Typography;
 

@@ -1,5 +1,5 @@
 import { Divider, Flex } from 'antd';
-import { ChangePassword, GeneralInfo } from '@clientFeatures/student';
+import { ChangePassword, GeneralInfo } from '@client/features/student';
 
 export const SettingsTab = () => {
   return (

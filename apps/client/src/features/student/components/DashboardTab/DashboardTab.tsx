@@ -1,19 +1,19 @@
 import { useRef } from 'react';
-import { Button, Flex, Typography, Row, Col, Carousel, Spin } from 'antd';
+import { Button, Carousel, Col, Flex, Row, Spin, Typography } from 'antd';
 import type { CarouselRef } from 'antd/es/carousel';
 import { useTheme } from 'antd-style';
 import { useQuery } from '@tanstack/react-query';
 import {
-  PlayCircle,
-  Users,
-  CheckSquare,
-  Trophy,
-  ArrowRight,
   ArrowLeft,
-} from '@clientAssets';
-import { StatCard, CourseCard } from '@clientComponents';
-import { useAuth } from '@clientHooks';
-import { api } from '@clientApi';
+  ArrowRight,
+  CheckSquare,
+  PlayCircle,
+  Trophy,
+  Users,
+} from '@client/assets';
+import { CourseCard, StatCard } from '@client/components';
+import { useAuth } from '@client/hooks';
+import { api } from '@client/api/api';
 import { useStyles } from './styles';
 
 const { Title } = Typography;
@@ -128,10 +128,12 @@ export const DashboardTab = () => {
                 {slide.map((item) => (
                   <Col key={item.id} xs={24} sm={12} md={6}>
                     <CourseCard
-                      image_url={item.image_url}
+                      imageUrl={item.image_url}
                       title={item.title}
                       id={item.id}
                       isProfileCard={true}
+                      categories={item.categories}
+                      usersCount={item.users_count}
                     />
                   </Col>
                 ))}
