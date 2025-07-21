@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { api } from '@client/api/api';
 import { LoadingOutlined } from '@ant-design/icons';
 import { CourseCard } from '@client/components';
-import { GetCoursesRequest } from '@client/types';
+import { GetCoursesRequest, ParamsSortOption } from '@client/types';
 import { ArrowRight } from '@client/assets';
 import { CustomTooltip } from './CustomTooltip';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +20,7 @@ export const RecentSubsection = () => {
   const params: GetCoursesRequest = {
     per_page: 4,
     page: 1,
-    order: 'ASC',
+    order: ParamsSortOption.asc,
     order_by: 'created_at',
   };
   let visibleCount = 4;

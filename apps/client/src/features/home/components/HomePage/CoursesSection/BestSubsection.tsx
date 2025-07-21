@@ -4,14 +4,14 @@ import { useQuery } from '@tanstack/react-query';
 import { api } from '@client/api/api';
 import { LoadingOutlined } from '@ant-design/icons';
 import { CourseCard } from '@client/components';
-import { GetCoursesRequest } from '@client/types';
+import { GetCoursesRequest, ParamsSortOption } from '@client/types';
 
 const { useBreakpoint } = Grid;
 
 const params: GetCoursesRequest = {
   per_page: 8,
   page: 1,
-  order: 'ASC',
+  order: ParamsSortOption.asc,
   order_by: 'title',
 };
 
