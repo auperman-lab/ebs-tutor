@@ -1,7 +1,7 @@
-import { Button, Divider, Flex } from 'antd';
+import { Button, Divider, Flex, message } from 'antd';
 import { useStyles } from './styles';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '@client/api/api';
 import {
   Alarm,
@@ -23,16 +23,45 @@ import { routes } from '@client/const';
 import { useAuth } from '@client/hooks';
 import { formatDiscount, formatOldPrice, formatPrice } from '@client/utils';
 import { CourseSidebarSkeleton } from './SidebarSkeleton';
+import { useState } from 'react';
 
 export const Sidebar = () => {
   const { id } = useParams();
   const { styles } = useStyles();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { user } = useAuth();
+  const [inCart, setInCart] = useState(false);
 
   const { data: course, isLoading } = useQuery({
     queryKey: ['course', id],
     queryFn: () => api.courses.getCourse(id!),
+  });
+
+  const { mutate: addToCartMutation } = useMutation({
+    mutationFn: (id: number) => api.cart.add({ id: id }),
+    onSuccess: () => {
+      setInCart(true);
+      queryClient.invalidateQueries({ queryKey: ['cart-products'] });
+      queryClient.invalidateQueries({ queryKey: ['cart'] });
+      message.success('Added to cart');
+    },
+    onError: () => {
+      message.error('Failed to add to cart');
+    },
+  });
+
+  const { mutate: removeFromCartMutation } = useMutation({
+    mutationFn: () => api.cart.remove(course?.product.id || 0), // assuming product.id is used
+    onSuccess: () => {
+      setInCart(false);
+      queryClient.invalidateQueries({ queryKey: ['cart-products'] });
+      queryClient.invalidateQueries({ queryKey: ['cart'] });
+      message.success('Removed from cart');
+    },
+    onError: () => {
+      message.error('Failed to remove from cart');
+    },
   });
 
   const onCopyLink = () => {
@@ -77,6 +106,16 @@ export const Sidebar = () => {
       return navigate(routes.login);
     }
     return navigate(routes.cart);
+  };
+
+  const onCartClick = () => {
+    if (!course?.product?.id) return;
+
+    if (inCart) {
+      removeFromCartMutation();
+    } else {
+      addToCartMutation(course.product.id);
+    }
   };
 
   if (isLoading) return <CourseSidebarSkeleton />;
@@ -146,8 +185,8 @@ export const Sidebar = () => {
       </Flex>
       <Divider className={styles.dividerNoMargin} />
       <Flex vertical gap={12}>
-        <Button size="large" type="primary">
-          Add To Cart
+        <Button size="large" type="primary" onClick={onCartClick}>
+          {inCart ? 'Delete from Cart' : 'Add To Cart'}
         </Button>
         <Button
           size="large"

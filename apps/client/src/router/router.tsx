@@ -13,6 +13,7 @@ import {
 import { StudentPage } from '@client/features/student';
 import { ProtectedRoute } from './ProtectedRoute';
 import { TutorPage } from '@client/features/tutor';
+import { CartPage } from '@client/features/cart';
 
 export const Router = () => {
   return useRoutes([
@@ -31,6 +32,10 @@ export const Router = () => {
         {
           path: routes.about,
           element: <AboutPage />,
+        },
+        {
+          path: routes.cart,
+          element: <CartPage />,
         },
         {
           path: routes.becomeInstructor,

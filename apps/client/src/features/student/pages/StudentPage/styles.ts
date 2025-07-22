@@ -3,6 +3,8 @@ import { createStyles } from 'antd-style';
 export const useStyles = createStyles(({ token }) => ({
   container: {
     marginTop: 60,
+    marginBottom: 60,
+    width: '80%',
   },
   profileHeader: {
     padding: 40,

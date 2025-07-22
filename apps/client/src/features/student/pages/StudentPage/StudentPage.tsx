@@ -61,59 +61,61 @@ export const StudentPage = () => {
   });
 
   return (
-    <Flex vertical className={styles.container}>
-      <Flex
-        justify="space-between"
-        className={styles.profileHeader}
-        align="center"
-      >
-        <Flex gap={24} align="center">
-          <Avatar size={110} src={user?.avatar}></Avatar>
-          <Flex vertical gap={14}>
-            <Title level={4}>{user?.fullName}</Title>
-            <Text>{data?.bio}</Text>
+    <Flex justify="center">
+      <Flex vertical className={styles.container}>
+        <Flex
+          justify="space-between"
+          className={styles.profileHeader}
+          align="center"
+        >
+          <Flex gap={24} align="center">
+            <Avatar size={110} src={user?.avatar}></Avatar>
+            <Flex vertical gap={14}>
+              <Title level={4}>{user?.fullName}</Title>
+              <Text>{data?.bio}</Text>
+            </Flex>
           </Flex>
-        </Flex>
-        <Flex vertical gap={24}>
-          {user?.roles.includes('admin') ? (
+          <Flex vertical gap={24}>
+            {user?.roles.includes('admin') ? (
+              <Button
+                size="large"
+                type="primary"
+                onClick={() => onToAdmin()}
+                className={styles.become}
+              >
+                Go to admin dashboard
+                <ArrowRight />
+              </Button>
+            ) : (
+              <Button size="large" type="primary" className={styles.become}>
+                <Flex align="center" gap={8}>
+                  Become Instructor
+                  <ArrowRight />
+                </Flex>
+              </Button>
+            )}
             <Button
               size="large"
               type="primary"
-              onClick={() => onToAdmin()}
-              className={styles.become}
+              onClick={() => logout()}
+              className={styles.logout}
             >
-              Go to admin dashboard
-              <ArrowRight />
-            </Button>
-          ) : (
-            <Button size="large" type="primary" className={styles.become}>
               <Flex align="center" gap={8}>
-                Become Instructor
+                Logout
                 <ArrowRight />
               </Flex>
             </Button>
-          )}
-          <Button
-            size="large"
-            type="primary"
-            onClick={() => logout()}
-            className={styles.logout}
-          >
-            <Flex align="center" gap={8}>
-              Logout
-              <ArrowRight />
-            </Flex>
-          </Button>
+          </Flex>
         </Flex>
+        <Tabs
+          size="large"
+          defaultActiveKey="1"
+          activeKey={activeKey}
+          destroyOnHidden={true}
+          onChange={(key) => setActiveKey(key)}
+          items={items}
+        />
       </Flex>
-      <Tabs
-        size="large"
-        defaultActiveKey="1"
-        activeKey={activeKey}
-        destroyOnHidden={true}
-        onChange={(key) => setActiveKey(key)}
-        items={items}
-      />
     </Flex>
   );
 };

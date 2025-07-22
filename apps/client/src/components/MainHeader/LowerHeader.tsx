@@ -17,7 +17,11 @@ export const LowerHeader = () => {
   const { user } = useAuth();
 
   const onLogoClick = () => {
-    navigate('/');
+    navigate(routes.main);
+  };
+
+  const onCartClick = () => {
+    navigate(routes.cart);
   };
 
   return (
@@ -58,26 +62,29 @@ export const LowerHeader = () => {
             className={styles.button}
             icon={<Bell />}
           />
-          <Button
-            size="large"
-            type="text"
-            className={styles.button}
-            icon={<Heart />}
-          />
-          <Button
-            size="large"
-            type="text"
-            className={styles.button}
-            icon={<Cart />}
-          />
 
           {user ? (
-            <Avatar
-              onClick={() => navigate(routes.profile)}
-              className={styles.avatar}
-              src={user?.avatar}
-              size={48}
-            />
+            <>
+              <Button
+                size="large"
+                type="text"
+                className={styles.button}
+                icon={<Heart />}
+              />
+              <Button
+                size="large"
+                type="text"
+                className={styles.button}
+                icon={<Cart />}
+                onClick={onCartClick}
+              />
+              <Avatar
+                onClick={() => navigate(routes.profile)}
+                className={styles.avatar}
+                src={user?.avatar}
+                size={48}
+              />
+            </>
           ) : (
             <Flex gap={12}>
               <Button
