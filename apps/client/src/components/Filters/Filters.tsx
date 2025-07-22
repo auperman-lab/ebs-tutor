@@ -1,14 +1,14 @@
 import { Col, Input, Row, Select } from 'antd';
 import { useURLQuery } from '@client/hooks';
 import { useStyles } from './styles';
-import { ParamsSortOption } from '@client/types';
+import { Author, ParamsSortOption } from '@client/types';
 
 const { Option } = Select;
 
 type Props = {
   searchValue: string;
   setSearchValue: (v: string) => void;
-  tutors: any[];
+  tutors: Author[];
   hideTutorFilter?: boolean;
 };
 
