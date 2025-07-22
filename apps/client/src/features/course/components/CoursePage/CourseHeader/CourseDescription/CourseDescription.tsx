@@ -19,7 +19,7 @@ export const CourseDescription = () => {
 
   const { data: course, isLoading } = useQuery({
     queryKey: ['course', id],
-    queryFn: () => api.courses.getCourse(id!),
+    queryFn: () => api.courses.getCourse(id),
   });
 
   if (isLoading) return <CourseDescriptionSkeleton />;

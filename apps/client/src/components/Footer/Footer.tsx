@@ -21,7 +21,7 @@ export const Footer = () => {
 
   return (
     <footer className={styles.footer}>
-      {location.pathname === routes.main ? <MainFooter /> : null}
+      {location.pathname === routes.main && <MainFooter />}
       <div className={styles.borderBottom}>
         <Flex className={styles.container} gap={100}>
           <Flex vertical gap={26} className={styles.buttonsSegment}>
