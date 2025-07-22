@@ -19,7 +19,6 @@ export const TeachersTab = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['tutors'],
     queryFn: api.courses.getTutors,
-    staleTime: Infinity,
   });
 
   const tutors: Author[] = data || [];

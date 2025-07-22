@@ -20,6 +20,8 @@ import { ChangeEmail, UserChangeSettingsRequest } from '@client/types';
 
 const { Title } = Typography;
 
+const options = [{ value: '+880', label: '+880' }];
+
 export const GeneralInfo = () => {
   const { styles } = useStyles();
 
@@ -29,8 +31,6 @@ export const GeneralInfo = () => {
   );
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [form] = Form.useForm();
-
-  const options = [{ value: '+880', label: '+880' }];
 
   const beforeUpload = (file: File) => {
     const isImage = file.type.startsWith('image/');

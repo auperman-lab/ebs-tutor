@@ -46,7 +46,7 @@ export const StudentPage = () => {
   const onToAdmin = () => {
     const tokenData = getTokenData();
     if (user?.roles.includes('admin')) {
-      const url = new URL('http://localhost:4201');
+      const url = new URL(import.meta.env['VITE_ADMIN_PANEL_URL']);
       url.searchParams.set('token', tokenData.token);
       url.searchParams.set('expires_at', tokenData.exp);
 
