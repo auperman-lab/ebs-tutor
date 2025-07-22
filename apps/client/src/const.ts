@@ -21,6 +21,7 @@ export const routes = {
 
   //admin
   create: '/create-course',
+
 };
 
 export const apiEndpoints = {
@@ -34,12 +35,16 @@ export const apiEndpoints = {
   getTags: '/tags/unique',
   getAllCourses: '/courses',
   getTutors: '/tutors',
+  getMyCourses: '/courses/my',
+  changeAvatar: '/profile/upload-avatar',
+  changeEmail: '/profile/me-auth',
 };
 
 export enum Roles {
   ADMIN = 'admin',
   USER = 'student',
 }
+
 
 export const regexPatterns = {
   password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,

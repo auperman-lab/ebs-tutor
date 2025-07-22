@@ -37,7 +37,7 @@ export const FilterItem = ({
   };
 
   const customHeader = (
-    <Flex justify="space-between" align="center" style={{ width: '100%' }}>
+    <Flex justify="space-between" align="center" className={styles.fullWidth}>
       <Flex align="center" gap={8}>
         <span>{label?.toUpperCase()}</span>
       </Flex>

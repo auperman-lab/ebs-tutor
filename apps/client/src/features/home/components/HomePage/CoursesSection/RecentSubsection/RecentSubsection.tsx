@@ -54,7 +54,7 @@ export const RecentSubsection = () => {
     <Flex gap={40} vertical align="center" justify="center">
       <div className={styles.title}>Recently added courses</div>
       {isLoading ? (
-        <Spin indicator={<LoadingOutlined spin />} size="large" />
+        <Spin size="large" />
       ) : (
         <Row gutter={[24, 24]} className={styles.coursesWrapper}>
           {courses?.data?.slice(0, visibleCount)?.map((item) => (

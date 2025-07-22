@@ -75,6 +75,13 @@ export const getUser = (): User | null => {
   }
 };
 
+export const getTokenData = () => {
+  return {
+    token: localStorage.getItem('token') || '',
+    exp: localStorage.getItem('exp') || '',
+  };
+};
+
 export const removeUser = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('exp');

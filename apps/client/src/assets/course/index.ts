@@ -1,4 +1,3 @@
-export { default as PlayCircle } from './play-circle.svg?react';
 export { default as Twitter } from './twitter.svg?react';
 export { default as YoutubeLogo } from './youtube.svg?react';
 export { default as Instagram } from './instagram.svg?react';
@@ -13,10 +12,8 @@ export { default as Alarm } from './alarm.svg?react';
 export { default as BarChart } from './bar-chart.svg?react';
 export { default as Notebook } from './notebook.svg?react';
 export { default as Notepad } from './notepad.svg?react';
-export { default as Users } from './users.svg?react';
 export { default as Dollar } from './currency-dollar-simple.svg?react';
 export { default as Monitor } from './monitor.svg?react';
 export { default as Stack } from './stack.svg?react';
-export { default as Trophy } from './trophy.svg?react';
 export { default as Envelope } from './envelope.svg?react';
 export { default as Linkedin } from './linkedin.svg?react';

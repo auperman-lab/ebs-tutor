@@ -9,6 +9,7 @@ export type GetCoursesRequest = {
   'categories[]'?: number[];
   'tag[]'?: string[];
   'authors[]'?: number[];
+  'ids[]'?: number[];
 };
 
 export type GetCoursesResponse = {

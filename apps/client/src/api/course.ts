@@ -27,6 +27,11 @@ export const courses = {
     );
     return data.data;
   },
+  getMyCourses: async (): Promise<{ ids: number[] }> => {
+    const { data } = await axiosInstance.get(apiEndpoints.getMyCourses);
+    return data.data;
+  },
+
   getCategories: async (): Promise<CategoryResponse[]> => {
     const { data } = await axiosInstance.get(
       apiEndpoints.getCategories + `?per_page=1000`
