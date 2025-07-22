@@ -1,4 +1,4 @@
-export * from './MainFooter';
+export * from './Footer';
 export * from './MainHeader';
 export * from './PaginationComponent';
 export * from './CourseCard';

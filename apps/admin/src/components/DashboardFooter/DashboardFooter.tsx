@@ -1,6 +1,6 @@
-import { Flex, Layout, Typography } from "antd";
-import { useStyles } from "./styles";
-import dayjs from "dayjs";
+import { Flex, Layout, Typography } from 'antd';
+import { useStyles } from './styles';
+import dayjs from 'dayjs';
 
 const { Text, Link } = Typography;
 const { Footer } = Layout;
@@ -12,10 +12,10 @@ export const DashboardFooter = () => {
     <Footer className={styles.footer}>
       <Flex justify="space-between">
         <Text type="secondary">
-          © {dayjs().year()} - Eduguard. Designed by{" "}
+          © {dayjs().year()} - Eduguard. Designed by{' '}
           <Link href="https://ant.design" target="_blank">
             Templatecookie.
-          </Link>{" "}
+          </Link>{' '}
           All rights reserved
         </Text>
         <Flex gap={24} align="center">

@@ -1,7 +1,7 @@
-import { Layout } from "antd";
-import { Outlet } from "react-router-dom";
-import { MainHeader, MainFooter } from "@client/components";
-import { useStyles } from "./styles";
+import { Layout } from 'antd';
+import { Outlet } from 'react-router-dom';
+import { MainHeader, Footer } from '@client/components';
+import { useStyles } from './styles';
 
 const { Content } = Layout;
 
@@ -14,7 +14,7 @@ export const MainLayout = () => {
       <Content >
         <Outlet />
       </Content>
-      <MainFooter />
+      <Footer />
     </Layout>
   );
 };
