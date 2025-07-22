@@ -1,10 +1,10 @@
 import { Product } from '@client/types';
 
-export type addCartItemEndpointRequest = {
+export type AddCartItemEndpointRequest = {
   id: number;
 };
 
-export type deleteCartItemEndpointResponse = {
+export type DeleteCartItemEndpointResponse = {
   operation: string;
   difference: number;
   quantity_owned: number;
@@ -13,7 +13,7 @@ export type deleteCartItemEndpointResponse = {
   buyable: boolean;
 };
 
-export type getCartEndpointResponse = {
+export type GetCartEndpointResponse = {
   total: number;
   subtotal: number;
   tax: number;

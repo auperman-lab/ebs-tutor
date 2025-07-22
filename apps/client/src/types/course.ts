@@ -3,7 +3,7 @@ export interface Course {
   created_at: string; //important
   updated_at: string; //important
   title: string; //important
-  summary: any; //important
+  summary: string; //important
   image_path: string;
   video_path: string;
   duration: number;

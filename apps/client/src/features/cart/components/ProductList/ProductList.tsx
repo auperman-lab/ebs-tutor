@@ -41,19 +41,22 @@ export const ProductList = ({ products, loading }: Props) => {
       </Col>
       <Col span={24}>
         <Divider className={styles.dividerNoMargin} />
-        <List
-          itemLayout="horizontal"
-          split
-          rowKey={(item) => (loading ? item.id : item.productId)}
-          dataSource={loading ? skeletonData : products}
-          renderItem={(item: any) =>
-            loading ? (
-              <ProductListItemSkeleton />
-            ) : (
-              <ProductListItem {...(item as ProductItem)} />
-            )
-          }
-        />
+
+        {loading ? (
+          <List
+            itemLayout="horizontal"
+            split
+            dataSource={products}
+            renderItem={(item) => <ProductListItem {...item} />}
+          />
+        ) : (
+          <List
+            itemLayout="horizontal"
+            split
+            dataSource={skeletonData}
+            renderItem={() => <ProductListItemSkeleton />}
+          />
+        )}
       </Col>
     </Row>
   );
