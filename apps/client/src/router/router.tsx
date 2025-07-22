@@ -54,12 +54,13 @@ export const Router = () => {
           element: <TutorPage />,
         },
       ],
+
     },
     {
       path: routes.main,
       element: (
         <ProtectedRoute>
-          <StudentLayout />
+          <MainLayout />
         </ProtectedRoute>
       ),
       children: [

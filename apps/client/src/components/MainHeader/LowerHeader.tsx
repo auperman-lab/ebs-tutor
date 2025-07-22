@@ -80,6 +80,12 @@ export const LowerHeader = () => {
               />
               <Avatar className={styles.avatar} src={user?.avatar} size={48} />
             </>
+            <Avatar
+              onClick={() => navigate(routes.profile)}
+              className={styles.avatar}
+              src={user?.avatar}
+              size={48}
+            />
           ) : (
             <Flex gap={12}>
               <Button

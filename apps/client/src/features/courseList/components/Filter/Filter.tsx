@@ -2,7 +2,6 @@ import { FilterItem } from './FilterItem';
 import { Flex, Spin } from 'antd';
 import { api } from '@client/api/api';
 import { useQuery } from '@tanstack/react-query';
-import { LoadingOutlined } from '@ant-design/icons';
 import { useURLQuery } from '@client/hooks';
 import { GetTagsResponse } from '@client/types';
 
@@ -80,7 +79,7 @@ export const Filter = () => {
   return (
     <Flex vertical gap={24}>
       {isLoadingCategory ? (
-        <Spin indicator={<LoadingOutlined spin />} size="large" />
+        <Spin size="large" />
       ) : (
         <FilterItem
           label="Categories"
@@ -91,7 +90,7 @@ export const Filter = () => {
       )}
 
       {isLoadingTags ? (
-        <Spin indicator={<LoadingOutlined spin />} size="large" />
+        <Spin size="large" />
       ) : (
         <FilterItem
           label="Tags"
@@ -102,7 +101,7 @@ export const Filter = () => {
       )}
 
       {isLoadingTutors ? (
-        <Spin indicator={<LoadingOutlined spin />} size="large" />
+        <Spin size="large" />
       ) : (
         <FilterItem
           label="Tutors"

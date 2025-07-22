@@ -1,4 +1,13 @@
-import { Card, Divider, Flex, Image, Tag, Tooltip, Typography } from 'antd';
+import {
+  Button,
+  Card,
+  Divider,
+  Flex,
+  Image,
+  Tag,
+  Tooltip,
+  Typography,
+} from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { Category } from '@client/types';
 import { NoImage, Star, User } from '@client/assets';
@@ -16,6 +25,7 @@ type CourseCardProps = {
   imageUrl: string;
   categories: Category[];
   price?: number;
+  isProfileCard: boolean;
 };
 
 export const CourseCard = ({
@@ -25,6 +35,7 @@ export const CourseCard = ({
   imageUrl,
   price,
   categories,
+  isProfileCard,
 }: CourseCardProps) => {
   const navigate = useNavigate();
   const { styles } = useStyles();
@@ -52,21 +63,27 @@ export const CourseCard = ({
       onClick={onClick}
     >
       <Flex vertical>
-        <Flex justify="space-between" align="center">
-          <Flex className={styles.tagContainer}>
-            {categories?.length ? (
-              categories.map((category) => (
-                <Tag key={category.id} bordered={false} className={styles.tag}>
-                  {category.name.toUpperCase()}
-                </Tag>
-              ))
-            ) : (
-              <div className={styles.emptyTag}></div>
-            )}
-          </Flex>
+        {!isProfileCard && (
+          <Flex justify="space-between" align="center">
+            <Flex className={styles.tagContainer}>
+              {categories?.length ? (
+                categories.map((category) => (
+                  <Tag
+                    key={category.id}
+                    bordered={false}
+                    className={styles.tag}
+                  >
+                    {category.name.toUpperCase()}
+                  </Tag>
+                ))
+              ) : (
+                <div className={styles.emptyTag}></div>
+              )}
+            </Flex>
 
-          <div className={styles.price}>{formatPrice(price)}</div>
-        </Flex>
+            <div className={styles.price}>{formatPrice(price)}</div>
+          </Flex>
+        )}
 
         <Tooltip
           title={title}
@@ -78,20 +95,24 @@ export const CourseCard = ({
         </Tooltip>
 
         <Divider className={styles.divider} />
-        <Flex justify="space-between" align="center" gap={24}>
-          <Flex align="center" gap={6}>
-            <Star />
-            <Text className={styles.text}>{4.1}</Text>
+        {isProfileCard ? (
+          <Button type="primary">Watch Lecture</Button>
+        ) : (
+          <Flex justify="space-between" align="center" gap={24}>
+            <Flex align="center" gap={6}>
+              <Star />
+              <Text className={styles.text}>{4.1}</Text>
+            </Flex>
+            <Flex align="center" gap={6}>
+              <User />
+              {usersCount}
+              <Text type="secondary" color="#4E5566">
+                {' '}
+                students
+              </Text>
+            </Flex>
           </Flex>
-          <Flex align="center" gap={6}>
-            <User />
-            {usersCount}
-            <Text type="secondary" color="#4E5566">
-              {' '}
-              students
-            </Text>
-          </Flex>
-        </Flex>
+        )}
       </Flex>
     </Card>
   );

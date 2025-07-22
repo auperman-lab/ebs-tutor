@@ -1,9 +1,9 @@
 export interface Course {
-  id: number; //important
-  created_at: string; //important
-  updated_at: string; //important
-  title: string; //important
-  summary: string; //important
+  id: number; 
+  created_at: string; 
+  updated_at: string; 
+  title: string; 
+  summary: string; 
   image_path: string;
   video_path: string;
   duration: number;
@@ -12,24 +12,24 @@ export interface Course {
   authors: Author[];
   status: string;
   subtitle: string;
-  language: string; //important
-  description: string;
+  language: any;
+  description: any;
   categories: Category[];
   tags: Tag[];
-  level: string; //important
+  level: string;
   lessons?: Lesson[];
-  poster_path: string;
+  poster_path: any;
   active_from: string;
   active_to: string;
   hours_to_complete: number;
   findable: boolean;
   scorm_sco_id: any;
   target_group: any;
-  users_count: number; //important
-  image_url: string; //important
-  video_url: string;
-  poster_url: string;
-  teaser_url: string;
+  users_count: number;
+  image_url: string;
+  video_url: any;
+  poster_url: any;
+  teaser_url: any;
   public: boolean;
   fields: any;
   product: Product;
@@ -78,14 +78,14 @@ export interface Pivot {
 export interface Lesson {
   id: number;
   title: string;
-  summary: string;
+  summary: any;
   duration: any;
   active: boolean;
   order: number;
   course_id: number;
-  active_from: string;
-  active_to: string;
-  lessons: Lesson[];
+  active_from: any;
+  active_to: any;
+  lessons: any[];
   topics: Topic[];
 }
 

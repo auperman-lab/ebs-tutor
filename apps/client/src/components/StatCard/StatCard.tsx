@@ -1,16 +1,35 @@
 import { useStyles } from './styles';
 import { Flex } from 'antd';
+import { ReactElement, isValidElement } from 'react';
 
 type Prop = {
   subtitle: string;
   title: string;
-  icon: string;
+  icon: string | ReactElement;
   color: string;
   onClick?: () => void;
 };
 
-export const StatCard = ({ color, title, subtitle, icon, onClick }: Prop) => {
+export const StatCard = ({
+  color,
+  title,
+  subtitle,
+  icon,
+  onClick,
+}: Prop) => {
   const { styles } = useStyles(color);
+
+  const renderIcon = () => {
+    if (typeof icon === 'string') {
+      return <img src={icon} alt={title} className={styles.icon} />;
+    }
+
+    if (isValidElement(icon)) {
+      return <Flex align="center">{icon}</Flex>;
+    }
+
+    return null;
+  };
 
   return (
     <Flex
@@ -20,7 +39,7 @@ export const StatCard = ({ color, title, subtitle, icon, onClick }: Prop) => {
       className={styles.wrapper}
     >
       <Flex align="center" justify="center" className={styles.iconWrapper}>
-        <img src={icon} alt={title} className={styles.icon} />
+        {renderIcon()}
       </Flex>
       <Flex
         vertical

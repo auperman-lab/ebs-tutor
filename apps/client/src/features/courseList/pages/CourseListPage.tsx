@@ -2,7 +2,6 @@ import { Col, Flex, Row, Spin } from 'antd';
 import { Filter, ListHeader } from '@client/features/courseList';
 import { api } from '@client/api/api';
 import { useQuery } from '@tanstack/react-query';
-import { LoadingOutlined } from '@ant-design/icons';
 import { useStyles } from './styles';
 import { CourseCard, PaginationComponent } from '@client/components';
 import { useURLQuery } from '@client/hooks';
@@ -35,12 +34,12 @@ export const CourseListPage = () => {
       </Col>
 
       {isLoading ? (
-        <Spin indicator={<LoadingOutlined spin />} size="large" />
+        <Spin size="large" />
       ) : (
         <Col span={18}>
           <Row gutter={[24, 24]}>
             {courses!.data.map((item) => (
-              <Col span={6} key={item.id}>
+              <Col key={item.id} lg={12} xl={8}>
                 <CourseCard
                   imageUrl={item.image_url}
                   title={item.title}

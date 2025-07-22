@@ -27,4 +27,8 @@ export const useStyles = createStyles(({ token }) => ({
   optionLabel: {
     color: token.colorInfo,
   },
+
+  fullWidth: {
+    width: '100%',
+  },
 }));

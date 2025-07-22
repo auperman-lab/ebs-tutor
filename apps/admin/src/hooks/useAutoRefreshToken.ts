@@ -1,12 +1,11 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 import dayjs from 'dayjs';
-import { getTokenExpiration } from "@utils";
-import { api } from "@api";
-import { useAuth } from "./useAuth";
+import { getTokenExpiration } from '@utils';
+import { api } from '@api';
+import { useAuth } from './useAuth';
 
 export const useAutoRefreshToken = () => {
-
-  const {refresh, logout} = useAuth();
+  const { refresh, logout } = useAuth();
 
   useEffect(() => {
     const checkAndRefresh = async () => {
@@ -24,10 +23,10 @@ export const useAutoRefreshToken = () => {
           const authUser = await refresh(data);
           if (!authUser) {
             logout();
-            return
+            return;
           }
         } catch (e) {
-          logout()
+          logout();
         }
       }
     };
