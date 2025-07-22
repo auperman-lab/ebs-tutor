@@ -22,15 +22,15 @@ export const Filters = ({
   const urlParams = getParams();
   const { styles } = useStyles();
 
-  const handleSearch = (value: string) => {
+  const onSearch = (value: string) => {
     setParams({ ...urlParams, search: value, page: 1 });
   };
 
-  const handleSortChange = (value: ParamsSortOption) => {
+  const onSortChange = (value: ParamsSortOption) => {
     setParams({ ...urlParams, sort: value, page: 1 });
   };
 
-  const handleTutorChange = (value: number[]) => {
+  const onTutorChange = (value: number[]) => {
     setParams({ ...urlParams, tutor: value, page: 1 });
   };
 
@@ -42,7 +42,7 @@ export const Filters = ({
           allowClear
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
-          onSearch={handleSearch}
+          onSearch={onSearch}
           size="large"
         />
       </Col>
@@ -50,7 +50,7 @@ export const Filters = ({
         <Select
           className={styles.select}
           value={urlParams.sort}
-          onChange={handleSortChange}
+          onChange={onSortChange}
           size="large"
         >
           <Option value="ASC">Ascend</Option>
@@ -65,7 +65,7 @@ export const Filters = ({
             allowClear
             placeholder="Filter by tutor"
             value={urlParams.tutor}
-            onChange={handleTutorChange}
+            onChange={onTutorChange}
             optionFilterProp="label"
             size="large"
           >

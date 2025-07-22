@@ -63,7 +63,7 @@ export const CourseCard = ({
       onClick={onClick}
     >
       <Flex vertical>
-        {isProfileCard ? null : (
+        {!isProfileCard && (
           <Flex justify="space-between" align="center">
             <Flex className={styles.tagContainer}>
               {categories?.length ? (
