@@ -46,15 +46,15 @@ export const ProductList = ({ products, loading }: Props) => {
           <List
             itemLayout="horizontal"
             split
-            dataSource={products}
-            renderItem={(item) => <ProductListItem {...item} />}
+            dataSource={skeletonData}
+            renderItem={() => <ProductListItemSkeleton />}
           />
         ) : (
           <List
             itemLayout="horizontal"
             split
-            dataSource={skeletonData}
-            renderItem={() => <ProductListItemSkeleton />}
+            dataSource={products}
+            renderItem={(item) => <ProductListItem {...item} />}
           />
         )}
       </Col>

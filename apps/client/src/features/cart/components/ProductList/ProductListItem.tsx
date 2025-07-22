@@ -30,6 +30,7 @@ export const ProductListItem = ({
   const { mutate: removeFromCartMutation } = useMutation({
     mutationFn: () => api.cart.remove(productId || 0),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['cart-products'] });
       queryClient.invalidateQueries({ queryKey: ['cart'] });
       message.success('Removed from cart');
     },
