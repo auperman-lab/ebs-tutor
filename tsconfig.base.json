@@ -16,6 +16,21 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["development"]
+    "customConditions": ["development"],
+    "baseUrl": ".",
+    "paths": {
+      "@api": ["apps/admin/src/api/api"],
+      "@assets": ["apps/admin/src/assets/index.ts"],
+      "@types": ["apps/admin/src/types/index.ts"],
+      "@context": ["apps/admin/src/context/index.ts"],
+      "@const": ["apps/admin/src/const.ts"],
+      "@hooks": ["apps/admin/src/hooks/index.ts"],
+      "@utils": ["apps/admin/src/utils/index.ts"],
+      "@components": ["apps/admin/src/components/index.ts"],
+      "@features/*": ["apps/admin/src/features/*"],
+      "@layout": ["apps/admin/src/layout/index.ts"],
+
+      "@client/*":  ["apps/client/src/*"],
+    }
   }
 }

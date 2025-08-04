@@ -1,0 +1,33 @@
+import { createStyles } from 'antd-style';
+
+export const useStyles = createStyles(({ token }) => ({
+  container: {
+    marginTop: 60,
+    marginBottom: 60,
+    width: '80%',
+  },
+  profileHeader: {
+    padding: 40,
+    border: `2px solid ${token.primary.primary100}`,
+    backgroundColor: token.primary.primary100,
+  },
+
+  become: {
+    fontWeight: 600,
+    paddingInline: token.paddingLG,
+  },
+
+  label: {
+    display: 'block',
+    width: 300,
+    fontWeight: 500,
+    textAlign: 'center',
+  },
+
+  logout: {
+    border: 0,
+    fontWeight: 600,
+    paddingInline: token.paddingLG,
+    backgroundColor: token.danger.danger500,
+  },
+}));
