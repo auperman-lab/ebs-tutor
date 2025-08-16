@@ -1,8 +1,18 @@
 // src/auth/auth.controller.ts
-import { Body, Controller, Post, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Delete,
+  HttpCode,
+  HttpStatus,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UsersService } from '../users/users.service';
 import { Prisma } from '@prisma/client';
+import { RtGuard } from '../common/guards';
+import { GetCurrentUser, GetCurrentUserId, Public } from '../common/decorators';
 
 @Controller('auth')
 export class AuthController {
@@ -11,26 +21,40 @@ export class AuthController {
     private readonly usersService: UsersService
   ) {}
 
+  @Public()
   @Post('register')
+  @HttpCode(HttpStatus.CREATED)
   async register(@Body() data: Prisma.UserCreateInput) {
     // You might want to hash the password in AuthService
     return this.authService.register(data);
   }
 
+  @Public()
   @Post('login')
+  @HttpCode(HttpStatus.OK)
   async login(@Body() credentials: { email: string; password: string }) {
     return this.authService.login(credentials.email, credentials.password);
   }
 
-  // Delete account
-  @Delete('delete')
-  async deleteAccount(@Body() body: { userId: number }) {
-    // You might also add auth guard to ensure the user is authenticated
-    return this.usersService.remove(body.userId);
+  @Post('refresh')
+  @UseGuards(RtGuard)
+  @HttpCode(HttpStatus.OK)
+  async refresh(
+    @GetCurrentUserId() userId: number,
+    @GetCurrentUser('refreshToken') refreshToken: string
+  ) {
+    return this.authService.refresh(userId, refreshToken);
   }
 
-  @Post('refresh')
-  async refresh(@Body() body: { refreshToken: string }) {
-    return this.authService.refresh(body.refreshToken);
+  @Delete('delete')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async deleteAccount(@GetCurrentUserId() userId: number) {
+    return this.usersService.remove(userId);
+  }
+
+  @Post('logout')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  logout(@GetCurrentUserId() userId: number): Promise<boolean> {
+    return this.authService.logout(userId);
   }
 }

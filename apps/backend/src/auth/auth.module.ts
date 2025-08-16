@@ -3,16 +3,12 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { UsersModule } from '../users/users.module';
+import { AtStrategy } from './strategies';
+import { RtStrategy } from './strategies';
 
 @Module({
-  imports: [
-    JwtModule.register({
-      secret: 'secret',
-      signOptions: { expiresIn: '1d' },
-    }),
-    UsersModule,
-  ],
-  providers: [AuthService],
+  imports: [JwtModule.register({}), UsersModule],
+  providers: [AuthService, AtStrategy, RtStrategy],
   controllers: [AuthController],
 })
 export class AuthModule {}
