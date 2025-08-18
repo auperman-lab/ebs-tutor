@@ -4,18 +4,13 @@ import { AppService } from './app.service';
 import { UsersModule } from '../users/users.module';
 import { PrismaModule } from '../prisma/prisma.module';
 import { AuthModule } from '../auth/auth.module';
-import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { AtGuard } from '../common/guards';
 import { RolesGuard } from '../common/guards/roles.guard';
+import { CloudinaryModule } from '../cloudinary/cloudinary.module';
 
 @Module({
-  imports: [
-    UsersModule,
-    PrismaModule,
-    AuthModule,
-    ConfigModule.forRoot({ isGlobal: true }),
-  ],
+  imports: [UsersModule, PrismaModule, AuthModule, CloudinaryModule],
   controllers: [AppController],
   providers: [
     AppService,
