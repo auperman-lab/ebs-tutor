@@ -3,7 +3,7 @@ import { UsersService } from '../users/users.service';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { Prisma } from '@prisma/client';
-import { Tokens } from './types';
+import { JwtPayload, Tokens } from './types';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +14,11 @@ export class AuthService {
 
   async register(data: Prisma.UserCreateInput): Promise<Tokens> {
     const user = await this.usersService.create(data);
-    const tokens = await this.signTokens(user.id, user.email);
+    const tokens = await this.signTokens({
+      sub: user.id,
+      email: user.email,
+      roles: user.roles,
+    });
     await this.updateRtHash(user.id, tokens.refreshToken);
 
     return tokens;
@@ -26,7 +30,11 @@ export class AuthService {
       throw new ForbiddenException('Access denied');
     }
 
-    const tokens = await this.signTokens(user.id, user.email);
+    const tokens = await this.signTokens({
+      sub: user.id,
+      email: user.email,
+      roles: user.roles,
+    });
     await this.updateRtHash(user.id, tokens.refreshToken);
 
     return tokens;
@@ -48,7 +56,11 @@ export class AuthService {
       throw new ForbiddenException('Access Den');
     }
 
-    const tokens = await this.signTokens(user.id, user.email);
+    const tokens = await this.signTokens({
+      sub: user.id,
+      email: user.email,
+      roles: user.roles,
+    });
     await this.updateRtHash(user.id, tokens.refreshToken);
 
     return tokens;
@@ -66,16 +78,16 @@ export class AuthService {
     await this.usersService.update(userId, { refreshToken: hash });
   }
 
-  async signTokens(userId: number, email: string): Promise<Tokens> {
+  async signTokens(payload: JwtPayload): Promise<Tokens> {
     const [at, rt] = await Promise.all([
-      this.jwtService.signAsync(
-        { sub: userId, email },
-        { secret: 'secret', expiresIn: 60 * 2 }
-      ),
-      this.jwtService.signAsync(
-        { sub: userId, email },
-        { secret: 'secret', expiresIn: 60 * 5 }
-      ),
+      this.jwtService.signAsync(payload, {
+        secret: 'secret',
+        expiresIn: 60 * 15,
+      }),
+      this.jwtService.signAsync(payload, {
+        secret: 'secret',
+        expiresIn: 60 * 60 * 24,
+      }),
     ]);
     return { accessToken: at, refreshToken: rt };
   }

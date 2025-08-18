@@ -10,9 +10,10 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UsersService } from '../users/users.service';
-import { Prisma } from '@prisma/client';
+import { Prisma, Role } from '@prisma/client';
 import { RtGuard } from '../common/guards';
 import { GetCurrentUser, GetCurrentUserId, Public } from '../common/decorators';
+import { Roles } from '../common/decorators/roles.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -25,7 +26,6 @@ export class AuthController {
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
   async register(@Body() data: Prisma.UserCreateInput) {
-    // You might want to hash the password in AuthService
     return this.authService.register(data);
   }
 
@@ -47,6 +47,7 @@ export class AuthController {
   }
 
   @Delete('delete')
+  @Roles(Role.ADMIN)
   @HttpCode(HttpStatus.NO_CONTENT)
   async deleteAccount(@GetCurrentUserId() userId: number) {
     return this.usersService.remove(userId);
