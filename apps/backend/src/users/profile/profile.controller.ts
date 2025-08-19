@@ -25,12 +25,15 @@ export class ProfileController {
   @Post('avatar')
   @UseInterceptors(FileInterceptor('file'))
   @HttpCode(HttpStatus.CREATED)
-  async uploadAvatar(@UploadedFile() file: Express.Multer.File) {
+  async uploadAvatar(
+    @UploadedFile() file: Express.Multer.File,
+    @GetCurrentUserId() userId: number
+  ) {
     const result = await this.uploadService.upload(file, {
       folder: 'avatar',
       transformation: [{ width: 128, height: 128, crop: 'fill' }],
     });
-    return { url: result.secure_url };
+    return this.usersService.update(userId, { avatar: result.secure_url });
   }
 
   @Delete('delete')

@@ -1,7 +1,6 @@
-import { Injectable, UseInterceptors } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { v2 as cloudinary } from 'cloudinary';
 import type { UploadApiOptions, UploadApiResponse } from 'cloudinary';
-import { FileInterceptor } from '@nestjs/platform-express';
 import { Readable } from 'stream';
 
 @Injectable()
@@ -14,7 +13,6 @@ export class CloudinaryService {
     });
   }
 
-  @UseInterceptors(FileInterceptor('file'))
   async upload(
     file: Express.Multer.File,
     options?: UploadApiOptions

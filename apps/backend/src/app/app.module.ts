@@ -8,9 +8,16 @@ import { APP_GUARD } from '@nestjs/core';
 import { AtGuard } from '../common/guards';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { CloudinaryModule } from '../cloudinary/cloudinary.module';
+import { ProfileModule } from '../users/profile/profile.module';
 
 @Module({
-  imports: [UsersModule, PrismaModule, AuthModule, CloudinaryModule],
+  imports: [
+    UsersModule,
+    ProfileModule,
+    PrismaModule,
+    AuthModule,
+    CloudinaryModule,
+  ],
   controllers: [AppController],
   providers: [
     AppService,
