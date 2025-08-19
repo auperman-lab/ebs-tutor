@@ -18,8 +18,23 @@ export class UsersService {
     return this.prisma.user.findMany();
   }
 
-  async findOne(id: number) {
-    return this.prisma.user.findUnique({ where: { id } });
+  async findOne(id: number, properties?: Prisma.UserSelect) {
+    return this.prisma.user.findUnique({
+      where: { id },
+      select: {
+        ...properties,
+        password: false,
+      },
+    });
+  }
+
+  async findOnePassword(id: number) {
+    return this.prisma.user.findUnique({
+      where: { id },
+      select: {
+        password: true,
+      },
+    });
   }
 
   async findOneByEmail(email: string) {

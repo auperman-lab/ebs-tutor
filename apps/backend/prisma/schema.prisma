@@ -17,6 +17,8 @@ model User {
   email String @unique
   password String
   name     String?
+  bio     String?
+  title   String?
   avatar  String?
   refreshToken String?
   roles Role[] @default([USER])
