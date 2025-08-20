@@ -61,7 +61,6 @@ export class ProfileController {
       name?: string;
       bio?: string;
       title?: string;
-      avatar?: string;
     }
   ) {
     return this.usersService.update(userId, updateDto);

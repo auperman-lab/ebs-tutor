@@ -9,6 +9,7 @@ import { AtGuard } from '../common/guards';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { CloudinaryModule } from '../cloudinary/cloudinary.module';
 import { ProfileModule } from '../users/profile/profile.module';
+import { TutorsModule } from '../users/tutors/tutors.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ProfileModule } from '../users/profile/profile.module';
     PrismaModule,
     AuthModule,
     CloudinaryModule,
+    TutorsModule,
   ],
   controllers: [AppController],
   providers: [

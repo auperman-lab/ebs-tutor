@@ -1,4 +1,11 @@
-import { Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
 import { UsersService } from '../users.service';
 import { Role } from '@prisma/client';
 import { Roles, Public } from '../../common/decorators';
@@ -33,6 +40,14 @@ export class TutorsController {
   async createTutor(@Param('id', ParseIntPipe) id: number) {
     return this.usersService.update(id, {
       roles: [Role.TUTOR, Role.USER],
+    });
+  }
+
+  @Delete(':id/demote')
+  @Roles(Role.TUTOR)
+  async removeTutor(@Param('id', ParseIntPipe) id: number) {
+    return this.usersService.update(id, {
+      roles: [Role.USER],
     });
   }
 }
