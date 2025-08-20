@@ -7,22 +7,26 @@ import * as bcrypt from 'bcrypt';
 export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
 
-  // Create
   async create(data: Prisma.UserCreateInput) {
     data.password = await bcrypt.hash(data.password, 10);
     return this.prisma.user.create({ data });
   }
 
-  // Read all
-  async findAll() {
-    return this.prisma.user.findMany();
+  async findAll(where?: Prisma.UserWhereInput, select?: Prisma.UserSelect) {
+    return this.prisma.user.findMany({
+      where: where ?? {},
+      select: {
+        ...(select ?? {}),
+        password: false,
+      },
+    });
   }
 
-  async findOne(id: number, properties?: Prisma.UserSelect) {
+  async findOne(id: number, select?: Prisma.UserSelect) {
     return this.prisma.user.findUnique({
       where: { id },
       select: {
-        ...properties,
+        ...(select ?? {}),
         password: false,
       },
     });
@@ -41,7 +45,6 @@ export class UsersService {
     return this.prisma.user.findUnique({ where: { email } });
   }
 
-  // Update
   async update(id: number, data: Prisma.UserUpdateInput) {
     return this.prisma.user.update({
       where: { id },
@@ -49,7 +52,6 @@ export class UsersService {
     });
   }
 
-  // Delete
   async remove(id: number) {
     return this.prisma.user.delete({ where: { id } });
   }
