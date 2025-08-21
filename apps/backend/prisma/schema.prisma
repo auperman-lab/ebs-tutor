@@ -11,6 +11,22 @@ enum Role {
   TUTOR
   ADMIN
 }
+enum Language {
+  ENGLISH
+  FRENCH
+  GERMAN
+  SPANISH
+  ITALIAN
+  ROMANIAN
+  RUSSIAN
+  OTHER
+}
+enum Level {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
 
 model User {
   id Int @default(autoincrement()) @id
@@ -22,6 +38,83 @@ model User {
   avatar  String?
   refreshToken String?
   roles Role[] @default([USER])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  courses      Course[] @relation("UserCourses")
+
+}
+
+model Course {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  summary String?
+  price Int
+  price_old Int?
+  tax Int @default(20)
+  sold_quantity Int?
+  image String?
+  video String?
+  duration Int?
+  author_id Int
+  author   User       @relation("UserCourses", fields: [author_id], references: [id])
+  language    Language
+  level       Level
+  categories  Category[]  @relation("CourseCategories")
+  tags     Tag[]   @relation("CourseTags")
+  lessons      Lesson[] @relation("CourseLessons")
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Category{
+  id Int @id @default(autoincrement())
+  name     String @unique
+  description String
+  icon String?
+  courses     Course[]   @relation("CourseCategories")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model  Tag {
+  id Int @id @default(autoincrement())
+  name     String?
+  courses     Course[]   @relation("CourseTags")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Lesson {
+  id Int @id @default(autoincrement())
+  course_id Int
+  course   Course       @relation("CourseLessons", fields: [course_id], references: [id])
+  title     String
+  summary String
+  duration Int
+  topics      Topic[] @relation("LessonTopic")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+
+model Topic {
+  id Int @id @default(autoincrement())
+  title     String?
+  lesson_id Int
+  lesson   Lesson       @relation("LessonTopic", fields: [lesson_id], references: [id])
+  image String?
+  summary String
+  introduction String?
+  description String
+  canSkip Boolean?
+  duration Int
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
