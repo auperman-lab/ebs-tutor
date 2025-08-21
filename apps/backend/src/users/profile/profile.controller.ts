@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CloudinaryService } from '../../cloudinary/cloudinary.service';
-import { Roles } from '../../common/decorators/roles.decorator';
+import { Roles } from '../../common/decorators';
 import { Role } from '@prisma/client';
 import { GetCurrentUserId } from '../../common/decorators';
 import { UsersService } from '../users.service';

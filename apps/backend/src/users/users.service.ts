@@ -13,22 +13,34 @@ export class UsersService {
   }
 
   async findAll(where?: Prisma.UserWhereInput, select?: Prisma.UserSelect) {
+    if (select) {
+      return this.prisma.user.findMany({
+        where: where ?? {},
+        select: {
+          ...select,
+          password: false,
+        },
+      });
+    }
     return this.prisma.user.findMany({
       where: where ?? {},
-      select: {
-        ...(select ?? {}),
-        password: false,
-      },
+      omit: { password: true },
     });
   }
 
   async findOne(id: number, select?: Prisma.UserSelect) {
+    if (select) {
+      return this.prisma.user.findUnique({
+        where: { id },
+        select: {
+          ...select,
+          password: false,
+        },
+      });
+    }
     return this.prisma.user.findUnique({
       where: { id },
-      select: {
-        ...(select ?? {}),
-        password: false,
-      },
+      omit: { password: true },
     });
   }
 
