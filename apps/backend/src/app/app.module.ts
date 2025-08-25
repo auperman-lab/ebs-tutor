@@ -10,6 +10,9 @@ import { RolesGuard } from '../common/guards/roles.guard';
 import { CloudinaryModule } from '../cloudinary/cloudinary.module';
 import { ProfileModule } from '../users/profile/profile.module';
 import { TutorsModule } from '../users/tutors/tutors.module';
+import { CategoriesModule } from '../courses/categories/categories.module';
+import { TopicsModule } from '../courses/topics/topics.module';
+import { CoursesModule } from '../courses/courses.module';
 
 @Module({
   imports: [
@@ -19,6 +22,9 @@ import { TutorsModule } from '../users/tutors/tutors.module';
     AuthModule,
     CloudinaryModule,
     TutorsModule,
+    CategoriesModule,
+    TopicsModule,
+    CoursesModule,
   ],
   controllers: [AppController],
   providers: [

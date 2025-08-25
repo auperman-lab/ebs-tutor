@@ -81,7 +81,7 @@ model Category{
 
 model  Tag {
   id Int @id @default(autoincrement())
-  name     String?
+  name     String @unique
   courses     Course[]   @relation("CourseTags")
 
   createdAt DateTime @default(now())
