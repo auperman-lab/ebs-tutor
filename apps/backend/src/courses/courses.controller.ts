@@ -10,7 +10,8 @@ import {
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { Prisma, Role } from '@prisma/client';
-import { Roles, Public } from '../common/decorators';
+import { Roles, Public, GetCurrentUserId } from '../common/decorators';
+import { CreateCourseDto, UpdateCourseDto } from './dto/course.dto';
 
 @Controller('courses')
 @Roles(Role.TUTOR)
@@ -18,9 +19,19 @@ export class CoursesController {
   constructor(private readonly coursesService: CoursesService) {}
 
   @Post()
-  create(@Body() data: Prisma.CourseCreateInput & { author_id: number }) {
-    const { author_id, ...rest } = data;
-    return this.coursesService.create(rest, data.author_id);
+  create(@Body() dto: CreateCourseDto) {
+    const { author_id, categories, tags, ...rest } = dto;
+
+    const data: Prisma.CourseCreateInput = {
+      ...rest,
+      author: { connect: { id: author_id } },
+      categories: categories?.length
+        ? { connect: categories.map((id) => ({ id })) }
+        : undefined,
+      tags: tags?.length ? { connect: tags.map((id) => ({ id })) } : undefined,
+    };
+
+    return this.coursesService.create(data);
   }
 
   @Get()
@@ -38,13 +49,27 @@ export class CoursesController {
   @Put(':id')
   update(
     @Param('id', ParseIntPipe) id: number,
-    @Body() data: Prisma.CourseUpdateInput
+    @Body() dto: UpdateCourseDto,
+    @GetCurrentUserId() userId: number
   ) {
-    return this.coursesService.update(id, data);
+    const { categories, tags, ...rest } = dto;
+
+    const data: Prisma.CourseUpdateInput = {
+      ...rest,
+      categories: categories
+        ? { set: categories.map((id) => ({ id })) }
+        : undefined,
+      tags: tags ? { set: tags.map((id) => ({ id })) } : undefined,
+    };
+
+    return this.coursesService.update(id, data, userId);
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.coursesService.delete(id);
+  remove(
+    @Param('id', ParseIntPipe) id: number,
+    @GetCurrentUserId() userId: number
+  ) {
+    return this.coursesService.delete(id, userId);
   }
 }

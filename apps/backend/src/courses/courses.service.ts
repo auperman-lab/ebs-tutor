@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Course, Prisma } from '@prisma/client';
 
@@ -6,20 +6,9 @@ import { Course, Prisma } from '@prisma/client';
 export class CoursesService {
   constructor(private prisma: PrismaService) {}
 
-  async create(
-    data: Prisma.CourseCreateInput,
-    author_id: number
-  ): Promise<Course> {
-    const { author, ...rest } = data;
+  async create(data: Prisma.CourseCreateInput): Promise<Course> {
     return this.prisma.course.create({
-      data: {
-        ...rest,
-        author: { connect: { id: author_id } },
-        categories: data.categories
-          ? { connect: (data.categories as any).connect }
-          : undefined,
-        tags: data.tags ? { connect: (data.tags as any).connect } : undefined,
-      },
+      data,
       include: {
         author: true,
         categories: true,
@@ -38,14 +27,38 @@ export class CoursesService {
     });
   }
 
-  async update(id: number, data: Prisma.CourseUpdateInput) {
+  async update(
+    id: number,
+    data: Prisma.CourseUpdateInput,
+    currentUserId: number
+  ) {
+    const course = await this.findOne(id);
+    if (!course) {
+      throw new ForbiddenException('Access denied');
+    }
+    if (course.author_id != currentUserId) {
+      throw new ForbiddenException('Access denied');
+    }
+
     return this.prisma.course.update({
       where: { id },
       data,
+      include: {
+        author: true,
+        categories: true,
+        tags: true,
+      },
     });
   }
 
-  async delete(id: number) {
+  async delete(id: number, currentUserId: number) {
+    const course = await this.findOne(id);
+    if (!course) {
+      throw new ForbiddenException('Access denied');
+    }
+    if (course.author_id != currentUserId) {
+      throw new ForbiddenException('Access denied');
+    }
     return this.prisma.course.delete({
       where: { id },
     });
